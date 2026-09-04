@@ -7,7 +7,7 @@ This is frontend-only. There is no login, backend, or crawler. It is **not** an 
 ## What it includes
 
 - A course catalog on the home page
-- Three lessons: `lle1-01`, `lle1-02`, `lle1-03`
+- Ten lessons: `lle1-01` through `lle1-10`
 - Official VOA MP4 video in an HTML5 player (YouTube is an optional fallback link only)
 - Dialogue lines in English and Chinese
 - Three multiple-choice quiz questions per lesson
@@ -22,7 +22,7 @@ All lesson content lives in:
 data/lessons.json
 ```
 
-`index.html` is the catalog. Each lesson opens as `lesson.html?id=lle1-01` (or `lle1-02` / `lle1-03`). Shared render, quiz, and progress logic is in `js/app.js`.
+`index.html` is the catalog. Each lesson opens as `lesson.html?id=lle1-01` (or `lle1-02` … `lle1-10`). Shared render, quiz, and progress logic is in `js/app.js`.
 
 ## Local preview
 
@@ -46,6 +46,6 @@ GitHub Pages is served from `main` at `/` (repo root). A newly published site ca
 
 ## Scope
 
-In scope: catalog + three static lessons with local progress.
+In scope: catalog + ten static lessons with local progress.
 
 Out of scope: login, accounts, a crawler, or a backend.

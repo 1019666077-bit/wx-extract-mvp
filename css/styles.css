@@ -8,6 +8,9 @@
   --accent-ink: #ffffff;
   --pete: #1d4e89;
   --anna: #9b3d12;
+  --jonathan: #6b3fa0;
+  --marsha: #0b6e4f;
+  --man: #5b6b74;
   --shadow: 0 10px 30px rgba(29, 42, 50, 0.08);
   --radius: 18px;
 }
@@ -39,9 +42,11 @@ body {
 }
 
 .header,
+.nav,
 .video-section,
 .dialogue-section,
 .quiz-section,
+.catalog-section,
 .footer {
   background: var(--card);
   border: 1px solid var(--line);
@@ -50,10 +55,26 @@ body {
 }
 
 .header,
+.nav,
 .dialogue-section,
 .quiz-section,
+.catalog-section,
 .footer {
   padding: 22px 24px;
+}
+
+.nav {
+  padding: 14px 24px;
+}
+
+.back-link {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.back-link:hover {
+  text-decoration: underline;
 }
 
 .eyebrow {
@@ -67,6 +88,7 @@ body {
 
 h1,
 h2,
+h3,
 .subtitle,
 .eyebrow {
   margin-top: 0;
@@ -82,10 +104,80 @@ h2 {
   font-size: 1.25rem;
 }
 
+h3 {
+  margin-bottom: 6px;
+  font-size: 1.15rem;
+}
+
 .subtitle {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 1.05rem;
+}
+
+.catalog {
+  display: grid;
+  gap: 14px;
+}
+
+.lesson-card {
+  display: grid;
+  gap: 8px;
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fbfaf7;
+}
+
+.lesson-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.lesson-number,
+.lesson-subtitle,
+.lesson-score {
+  margin: 0;
+  color: var(--muted);
+}
+
+.lesson-number {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.lesson-card .btn {
+  justify-self: start;
+  margin-top: 6px;
+  text-decoration: none;
+}
+
+.status-badge {
+  margin: 0;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+}
+
+.status-not-started {
+  background: #efeae0;
+  color: var(--muted);
+}
+
+.status-in-progress {
+  background: #e7f0ff;
+  color: var(--pete);
+}
+
+.status-done {
+  background: #e4f4ed;
+  color: var(--accent);
 }
 
 .video-section {
@@ -145,6 +237,18 @@ h2 {
 
 .line[data-speaker="Anna"] .speaker {
   color: var(--anna);
+}
+
+.line[data-speaker="Jonathan"] .speaker {
+  color: var(--jonathan);
+}
+
+.line[data-speaker="Marsha"] .speaker {
+  color: var(--marsha);
+}
+
+.line[data-speaker="Man"] .speaker {
+  color: var(--man);
 }
 
 .en,
@@ -235,8 +339,10 @@ h2 {
   }
 
   .header,
+  .nav,
   .dialogue-section,
   .quiz-section,
+  .catalog-section,
   .footer {
     padding: 18px 16px;
   }

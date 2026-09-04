@@ -1,11 +1,18 @@
 {
+  "course": {
+    "title": "Let's Learn English · Level 1",
+    "pitch": "A small self-study shell for VOA Learning English beginners. Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
+    "disclaimer": "This is an unofficial study helper. Lesson videos and scripts come from VOA Learning English and are in the public domain. This site is not affiliated with or endorsed by Voice of America."
+  },
   "lessons": [
     {
       "id": "lle1-01",
+      "number": 1,
       "title": "Let's Learn English Lesson 1",
       "subtitle": "Welcome!",
       "youtubeId": "WR9_nsLyaEY",
       "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/5/5f/5f00c78a-0f84-41e6-949d-bd808bcadf50_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html",
       "dialogue": [
         { "speaker": "Pete", "en": "Hi! Are you Anna?", "zh": "嗨！你是安娜吗？" },
         { "speaker": "Anna", "en": "Yes! Hi there! Are you Pete?", "zh": "是的！你好！你是皮特吗？" },
@@ -37,7 +44,108 @@
           "answerIndex": 0
         }
       ],
-      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 1: Welcome! (learningenglish.voanews.com). Public domain."
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 1: Welcome! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-02",
+      "number": 2,
+      "title": "Let's Learn English Lesson 2",
+      "subtitle": "Hello, I'm Anna!",
+      "youtubeId": "1-U7o9xjWQc",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/4/42/4298a2ba-d665-4b1c-aaa1-502bbcb9b88d_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-2-hello/3113733.html",
+      "dialogue": [
+        { "speaker": "Jonathan", "en": "Hey, Pete! Who’s your friend?", "zh": "嘿，皮特！你的朋友是谁？" },
+        { "speaker": "Pete", "en": "She is Anna. She is new to D.C.", "zh": "她是安娜。她刚到华盛顿特区。" },
+        { "speaker": "Jonathan", "en": "Where are you from?", "zh": "你来自哪里？" },
+        { "speaker": "Anna", "en": "I am from a small town.", "zh": "我来自一个小镇。" },
+        { "speaker": "Jonathan", "en": "Well, welcome to D.C.", "zh": "好的，欢迎来到华盛顿特区。" },
+        { "speaker": "Anna", "en": "Thank you.", "zh": "谢谢。" },
+        { "speaker": "Jonathan", "en": "I am Jonathan. I am in apartment B4.", "zh": "我是乔纳森。我住在 B4 公寓。" },
+        { "speaker": "Anna", "en": "I am in apartment C2. Marsha is my roommate.", "zh": "我住在 C2 公寓。玛莎是我的室友。" },
+        { "speaker": "Jonathan", "en": "I know Marsha. She is nice.", "zh": "我认识玛莎。她人很好。" },
+        { "speaker": "Pete", "en": "And I am in Apartment D7. I have to go now.", "zh": "我住在 D7 公寓。我现在得走了。" },
+        { "speaker": "Anna", "en": "Oh!", "zh": "哦！" },
+        { "speaker": "Pete", "en": "Remember to call Marsha at work. Tell her you’re here.", "zh": "记得给上班的玛莎打电话。告诉她你到了。" },
+        { "speaker": "Anna", "en": "Right, thanks, Pete. Nice to meet you!", "zh": "好的，谢谢，皮特。很高兴认识你！" },
+        { "speaker": "Jonathan", "en": "You too, Bye.", "zh": "我也是，再见。" },
+        { "speaker": "Anna", "en": "Apartment C2, here I come!", "zh": "C2 公寓，我来了！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where is Anna from?",
+          "choices": ["A big city", "A small town", "New York City"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Who lives in apartment B4?",
+          "choices": ["Pete", "Jonathan", "Marsha"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "Who is Marsha?",
+          "choices": ["Pete's roommate", "Anna's roommate", "Jonathan's roommate"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 2: Hello, I'm Anna! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-03",
+      "number": 3,
+      "title": "Let's Learn English Lesson 3",
+      "subtitle": "I'm Here!",
+      "youtubeId": "IEA9LMy-N3M",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/0/0d/0d8a07f4-87eb-469e-8e2b-3f641f360aae_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "I am in my new apartment! Great!", "zh": "我在我的新公寓里了！太好了！" },
+        { "speaker": "Anna", "en": "I live with Marsha. We’re roommates.", "zh": "我和玛莎住在一起。我们是室友。" },
+        { "speaker": "Anna", "en": "I want to cook dinner. Oh! Hmmm. Is there a supermarket near here?", "zh": "我想做晚饭。哦！嗯……这附近有超市吗？" },
+        { "speaker": "Anna", "en": "Marsha knows. Marsha's work number is 555-8986.", "zh": "玛莎知道。玛莎上班的电话是 555-8986。" },
+        { "speaker": "Man", "en": "Hello.", "zh": "喂。" },
+        { "speaker": "Anna", "en": "Hello. Is this Marsha? It is Anna.", "zh": "你好。是玛莎吗？我是安娜。" },
+        { "speaker": "Man", "en": "I am sorry. You have the wrong number.", "zh": "对不起。你打错电话了。" },
+        { "speaker": "Anna", "en": "Oh. Is this 555-8986?", "zh": "哦。这是 555-8986 吗？" },
+        { "speaker": "Man", "en": "No. This is 555-8689.", "zh": "不是。这是 555-8689。" },
+        { "speaker": "Anna", "en": "Oh. Excuse me!", "zh": "哦。不好意思！" },
+        { "speaker": "Man", "en": "Okay. 'Bye.", "zh": "好的。再见。" },
+        { "speaker": "Anna", "en": "One more time. 555-8986. Please be Marsha.", "zh": "再打一次。555-8986。希望是玛莎。" },
+        { "speaker": "Marsha", "en": "Hello. This is Marsha.", "zh": "喂。我是玛莎。" },
+        { "speaker": "Anna", "en": "Yes, Marsha. I want to cook dinner.", "zh": "是的，玛莎。我想做晚饭。" },
+        { "speaker": "Marsha", "en": "Excuse me? Anna? Is that you?", "zh": "什么？安娜？是你吗？" },
+        { "speaker": "Anna", "en": "Oh, yes. I am here!", "zh": "哦，是的。我到了！" },
+        { "speaker": "Marsha", "en": "Good. You are there.", "zh": "很好。你在那里。" },
+        { "speaker": "Anna", "en": "I want to find a supermarket.", "zh": "我想找一家超市。" },
+        { "speaker": "Marsha", "en": "Oh, okay. The supermarket is at 1500 Irving Street. It is near the apartment.", "zh": "哦，好的。超市在欧文街 1500 号。就在公寓附近。" },
+        { "speaker": "Anna", "en": "Great! Goodbye!", "zh": "太好了！再见！" },
+        { "speaker": "Marsha", "en": "Goodbye, Anna.", "zh": "再见，安娜。" },
+        { "speaker": "Anna", "en": "There is a big supermarket on our street. And Marsha says I am a good cook! Until next time! Bye!", "zh": "我们这条街上有一家很大的超市。玛莎还说我很会做饭！下次见！再见！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What does Anna say about Marsha?",
+          "choices": ["Marsha is her best friend", "She and Marsha are roommates", "Marsha lives on another street"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Why does the man say he is sorry?",
+          "choices": ["Anna has the wrong number", "Marsha is not at work", "He does not know Anna"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Marsha say about the supermarket?",
+          "choices": ["It is on another street", "It is at 1500 Main Street", "It is at 1500 Irving Street, near the apartment"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 3: I'm Here! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
     }
   ]
 }

@@ -1,17 +1,18 @@
-# VOA Learning English MVP
+# VOA Learning English · Level 1
 
-Static, single-lesson preview of **Let's Learn English Level 1, Lesson 1: Welcome!** (`lle1-01`).
+A small, static self-study shell for **Let's Learn English Level 1**.
 
-This MVP is frontend-only. There is no login, backend, crawler, or extra lessons.
+This is frontend-only. There is no login, backend, or crawler. It is **not** an official VOA product.
 
 ## What it includes
 
-- Lesson title and subtitle
+- A course catalog on the home page
+- Three lessons: `lle1-01`, `lle1-02`, `lle1-03`
 - Official VOA MP4 video in an HTML5 player (YouTube is an optional fallback link only)
 - Dialogue lines in English and Chinese
-- Three multiple-choice quiz questions
-- Quiz results saved in `localStorage` under `voa-lle1-01-quiz`
-- VOA public-domain attribution in the footer
+- Three multiple-choice quiz questions per lesson
+- Progress saved in `localStorage` under `voa-lle-progress` (`lessonId` → `{ score, total, completed, savedAt }`)
+- Clear VOA public-domain attribution
 
 ## Lesson data
 
@@ -21,7 +22,7 @@ All lesson content lives in:
 data/lessons.json
 ```
 
-`js/app.js` loads that file, finds the lesson with id `lle1-01`, and renders the page.
+`index.html` is the catalog. Each lesson opens as `lesson.html?id=lle1-01` (or `lle1-02` / `lle1-03`). Shared render, quiz, and progress logic is in `js/app.js`.
 
 ## Local preview
 
@@ -41,12 +42,10 @@ Open on phone or desktop:
 
 https://1019666077-bit.github.io/wx-extract-mvp/
 
-The page is VOA Let's Learn English Lesson 1, with dialogue and quiz. Video plays from VOA's MP4 CDN, so YouTube is not required. A newly published GitHub Pages site can take about 30 seconds to stabilize; if it does not load, refresh once.
-
-GitHub Pages is served from `main` at `/` (repo root).
+GitHub Pages is served from `main` at `/` (repo root). A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once.
 
 ## Scope
 
-In scope: one static lesson page for `lle1-01`.
+In scope: catalog + three static lessons with local progress.
 
-Out of scope: login, accounts, a crawler, a backend, or additional lessons.
+Out of scope: login, accounts, a crawler, or a backend.

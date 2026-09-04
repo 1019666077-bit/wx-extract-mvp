@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>开通 · Let's Learn English</title>
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body data-page="pricing">
+  <div class="page">
+    <nav class="site-nav" aria-label="Site">
+      <a href="index.html">课表</a>
+      <a href="progress.html">打卡</a>
+      <a href="wrongbook.html" data-wrongbook-count>错题本</a>
+      <a href="pricing.html" aria-current="page" data-unlock-status>开通</a>
+    </nav>
+    <header class="header">
+      <p class="eyebrow">非官方 · 基于 VOA Learning English 公版</p>
+      <h1>开通自学课</h1>
+      <p class="subtitle">免费试学：第 1–5 课。开通后解锁全部已上线课程。用兑换码解锁（演示码见 README）。</p>
+    </header>
+    <section class="pricing-section" aria-label="Plans">
+      <h2>方案</h2>
+      <div class="plan-grid">
+        <article class="plan-card">
+          <p class="plan-name">月付</p>
+          <p class="plan-price">¥39</p>
+          <p class="plan-note">按月开通</p>
+        </article>
+        <article class="plan-card is-featured">
+          <p class="plan-name">季卡</p>
+          <p class="plan-price">¥99</p>
+          <p class="plan-note">约 ¥33 / 月</p>
+        </article>
+      </div>
+      <ul class="perk-list">
+        <li>解锁本站已上线的全部 Level 1 课程</li>
+        <li>打卡日历与连续天数</li>
+        <li>错题本，方便复习错过的测验题</li>
+      </ul>
+      <p class="pay-note">收款暂人工。付款后联系发放兑换码。微信号：（待填写微信号）</p>
+    </section>
+    <section class="redeem-section" aria-label="Redeem code">
+      <h2>用兑换码解锁</h2>
+      <p id="unlock-status" class="unlock-status"></p>
+      <form id="redeem-form" class="redeem-form">
+        <label for="redeem-code">兑换码</label>
+        <input id="redeem-code" name="code" type="text" autocomplete="off" spellcheck="false" placeholder="输入兑换码" required />
+        <div class="quiz-actions">
+          <button type="submit" class="btn primary">解锁</button>
+          <button type="button" id="clear-unlock" class="btn" hidden>退出解锁</button>
+        </div>
+      </form>
+      <p id="redeem-result" class="quiz-result" role="status" aria-live="polite"></p>
+    </section>
+    <footer class="footer">
+      <p>This unofficial study helper is not affiliated with Voice of America. Lesson videos and scripts are in the public domain.</p>
+    </footer>
+  </div>
+  <script src="js/study.js"></script>
+  <script src="js/unlock.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

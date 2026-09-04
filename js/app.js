@@ -18,6 +18,15 @@ async function loadLessons() {
   return response.json();
 }
 
+async function loadCodes() {
+  const response = await fetch("data/codes.json");
+  if (!response.ok) {
+    throw new Error("Unable to load redeem codes.");
+  }
+  const payload = await response.json();
+  return Array.isArray(payload.codes) ? payload.codes : [];
+}
+
 function readProgress() {
   try {
     const raw = localStorage.getItem(PROGRESS_KEY);
@@ -92,10 +101,19 @@ function markLessonStarted(lessonId) {
   }
 }
 
+function renderUnlockNav() {
+  const unlocked = VOAUnlock.isUnlocked();
+  document.querySelectorAll("[data-unlock-status]").forEach((el) => {
+    el.textContent = unlocked ? "已解锁" : "开通";
+    el.classList.toggle("is-unlocked", unlocked);
+  });
+}
+
 function renderCatalog(payload) {
   const course = payload.course || {};
   const lessons = Array.isArray(payload.lessons) ? payload.lessons : [];
   const progress = migrateOldProgress();
+  const unlocked = VOAUnlock.isUnlocked();
 
   document.title = course.title || "Let's Learn English · Level 1";
   document.getElementById("course-title").textContent =
@@ -108,27 +126,42 @@ function renderCatalog(payload) {
     catalogHeading.textContent = `Lessons · 课程 · ${lessons.length}`;
   }
 
+  const catalogNote = document.querySelector(".catalog-note");
+  if (catalogNote) {
+    catalogNote.textContent = unlocked
+      ? "已解锁全部已上线课程。免费试学第 1–5 课对所有人开放。"
+      : "免费试学：第 1–5 课。开通后解锁全部已上线课程。用兑换码解锁（演示码见 README）。";
+  }
+
   const root = document.getElementById("catalog");
   root.innerHTML = lessons
     .map((lesson) => {
+      const locked = !VOAUnlock.canOpenLesson(lesson);
       const entry = progress[lesson.id];
       const status = getLessonStatus(entry);
       const scoreText =
-        status === "done" && typeof entry.score === "number"
+        !locked && status === "done" && typeof entry.score === "number"
           ? `Quiz ${entry.score} / ${entry.total}`
           : "";
       const action = status === "not-started" ? "Start" : status === "done" ? "Review" : "Continue";
+      const href = locked
+        ? "pricing.html"
+        : `lesson.html?id=${encodeURIComponent(lesson.id)}`;
+      const buttonLabel = locked ? "开通解锁" : action;
+      const badge = locked
+        ? `<p class="status-badge status-locked">未解锁</p>`
+        : `<p class="status-badge status-${status}">${statusLabel(status)}</p>`;
 
       return `
-        <article class="lesson-card" data-status="${status}">
+        <article class="lesson-card${locked ? " is-locked" : ""}" data-status="${locked ? "locked" : status}">
           <div class="lesson-card-top">
             <p class="lesson-number">Lesson ${escapeHtml(lesson.number || "")}</p>
-            <p class="status-badge status-${status}">${statusLabel(status)}</p>
+            ${badge}
           </div>
           <h3>${escapeHtml(lesson.title)}</h3>
           <p class="lesson-subtitle">${escapeHtml(lesson.subtitle)}</p>
           ${scoreText ? `<p class="lesson-score">${escapeHtml(scoreText)}</p>` : ""}
-          <a class="btn primary" href="lesson.html?id=${encodeURIComponent(lesson.id)}">${action}</a>
+          <a class="btn${locked ? "" : " primary"}" href="${href}">${buttonLabel}</a>
         </article>
       `;
     })
@@ -310,6 +343,40 @@ function resetQuiz(lessonId) {
   writeProgress(progress);
 }
 
+function hideLessonBody() {
+  document.querySelectorAll(".video-section, .dialogue-section, .quiz-section").forEach((el) => {
+    el.hidden = true;
+  });
+}
+
+function renderLessonPaywall(lesson) {
+  hideLessonBody();
+  document.title = `${lesson.title} · 未解锁`;
+  document.getElementById("lesson-title").textContent = lesson.title;
+  document.getElementById("lesson-subtitle").textContent = "该课需开通后学习";
+  document.getElementById("attribution").textContent = lesson.attribution || "";
+
+  const existing = document.getElementById("lesson-paywall");
+  if (existing) {
+    existing.remove();
+  }
+
+  const overlay = document.createElement("section");
+  overlay.id = "lesson-paywall";
+  overlay.className = "paywall-section";
+  overlay.setAttribute("aria-label", "Paywall");
+  overlay.innerHTML = `
+    <h2>课程未解锁</h2>
+    <p>免费试学：第 1–5 课。开通后解锁全部已上线课程。</p>
+    <p>用兑换码解锁（演示码见 README）。</p>
+    <div class="quiz-actions">
+      <a class="btn primary" href="pricing.html">去开通 / 兑换</a>
+      <a class="btn" href="index.html">返回课表</a>
+    </div>
+  `;
+  document.querySelector(".header").after(overlay);
+}
+
 function renderLesson(lesson) {
   document.title = lesson.title;
   document.getElementById("lesson-title").textContent = lesson.title;
@@ -415,6 +482,7 @@ function renderWrongbookPage() {
 
 async function initCatalog() {
   const root = document.getElementById("catalog");
+  renderUnlockNav();
   renderCheckinCalendar(document.getElementById("checkin-root"));
   updateWrongbookNavCount();
   try {
@@ -443,10 +511,17 @@ async function initLesson() {
     }
 
     migrateOldProgress();
+    renderUnlockNav();
+    updateWrongbookNavCount();
+
+    if (!VOAUnlock.canOpenLesson(lesson)) {
+      renderLessonPaywall(lesson);
+      return;
+    }
+
     markLessonStarted(lesson.id);
     renderLesson(lesson);
     applyStoredQuiz(readProgress()[lesson.id]);
-    updateWrongbookNavCount();
 
     document.getElementById("quiz-form").addEventListener("submit", (event) => {
       event.preventDefault();
@@ -460,12 +535,84 @@ async function initLesson() {
   }
 }
 
+function renderPricingState() {
+  const status = document.getElementById("unlock-status");
+  const clearBtn = document.getElementById("clear-unlock");
+  const state = VOAUnlock.readUnlock();
+  renderUnlockNav();
+
+  if (!status) {
+    return;
+  }
+
+  if (state) {
+    const when = state.unlockedAt ? String(state.unlockedAt).slice(0, 10) : "";
+    status.textContent = `已解锁 · ${VOAUnlock.planLabel(state.plan)}${when ? ` · ${when}` : ""}`;
+    if (clearBtn) {
+      clearBtn.hidden = false;
+    }
+    return;
+  }
+
+  status.textContent = "当前未解锁。第 1–5 课可免费试学。";
+  if (clearBtn) {
+    clearBtn.hidden = true;
+  }
+}
+
+async function initPricing() {
+  updateWrongbookNavCount();
+  renderPricingState();
+
+  const form = document.getElementById("redeem-form");
+  const result = document.getElementById("redeem-result");
+  const clearBtn = document.getElementById("clear-unlock");
+
+  if (form) {
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      result.textContent = "";
+      const input = document.getElementById("redeem-code");
+      const raw = input ? input.value : "";
+
+      try {
+        const codes = await loadCodes();
+        const match = VOAUnlock.findCode(codes, raw);
+        if (!match) {
+          result.textContent = "兑换码无效，请核对后重试。";
+          return;
+        }
+        VOAUnlock.redeem(match);
+        if (input) {
+          input.value = "";
+        }
+        renderPricingState();
+        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}。可学习全部已上线课程。`;
+      } catch (error) {
+        result.textContent = error.message || "解锁失败。";
+      }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      VOAUnlock.clearUnlock();
+      renderPricingState();
+      if (result) {
+        result.textContent = "已退出解锁。第 6 课及之后再次锁定。";
+      }
+    });
+  }
+}
+
 function initProgress() {
+  renderUnlockNav();
   renderCheckinCalendar(document.getElementById("checkin-root"));
   updateWrongbookNavCount();
 }
 
 function initWrongbook() {
+  renderUnlockNav();
   updateWrongbookNavCount();
   renderWrongbookPage();
   const clearAll = document.getElementById("clear-wrongbook");
@@ -499,6 +646,10 @@ function init() {
   }
   if (page === "wrongbook") {
     initWrongbook();
+    return;
+  }
+  if (page === "pricing") {
+    initPricing();
   }
 }
 

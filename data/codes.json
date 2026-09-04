@@ -1,0 +1,6 @@
+{
+  "codes": [
+    { "code": "VOA-DEMO-39", "plan": "monthly" },
+    { "code": "VOA-DEMO-99", "plan": "quarterly" }
+  ]
+}

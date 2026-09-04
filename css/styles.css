@@ -56,6 +56,9 @@ body {
 .catalog-section,
 .checkin-section,
 .wrongbook-section,
+.pricing-section,
+.redeem-section,
+.paywall-section,
 .footer {
   background: var(--card);
   border: 1px solid var(--line);
@@ -70,6 +73,9 @@ body {
 .catalog-section,
 .checkin-section,
 .wrongbook-section,
+.pricing-section,
+.redeem-section,
+.paywall-section,
 .footer {
   padding: 22px 24px;
 }
@@ -105,6 +111,11 @@ body {
 .site-nav a[aria-current="page"] {
   color: var(--accent);
   box-shadow: 0 2px 0 var(--accent);
+}
+
+.site-nav a.is-unlocked,
+.site-nav-inline a.is-unlocked {
+  color: var(--accent);
 }
 
 .site-nav-inline {
@@ -212,6 +223,15 @@ h3 {
   text-decoration: none;
 }
 
+.lesson-card.is-locked {
+  background: #f3efe6;
+}
+
+.catalog-note {
+  margin: -6px 0 16px;
+  color: var(--muted);
+}
+
 .status-badge {
   margin: 0;
   padding: 4px 10px;
@@ -234,6 +254,15 @@ h3 {
 .status-done {
   background: #e4f4ed;
   color: var(--accent);
+}
+
+.status-locked {
+  background: #efe6d4;
+  color: #8a5a12;
+}
+
+.status-locked::before {
+  content: "🔒 ";
 }
 
 .video-section {
@@ -593,6 +622,90 @@ h3 {
   text-decoration: none;
 }
 
+.plan-grid {
+  display: grid;
+  gap: 12px;
+}
+
+@media (min-width: 640px) {
+  .plan-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.plan-card {
+  padding: 16px 18px;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  background: #fbfaf7;
+}
+
+.plan-card.is-featured {
+  border-color: var(--accent);
+  background: #eef7f2;
+}
+
+.plan-name,
+.plan-note {
+  margin: 0;
+  color: var(--muted);
+}
+
+.plan-name {
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.plan-price {
+  margin: 4px 0;
+  font-size: 2rem;
+  font-weight: 750;
+  line-height: 1.1;
+}
+
+.perk-list {
+  margin: 16px 0 0;
+  padding-left: 1.2em;
+}
+
+.perk-list li + li {
+  margin-top: 6px;
+}
+
+.pay-note,
+.unlock-status {
+  margin: 16px 0 0;
+  color: var(--muted);
+}
+
+.redeem-form {
+  display: grid;
+  gap: 8px;
+}
+
+.redeem-form label {
+  font-weight: 700;
+}
+
+.redeem-form input {
+  width: 100%;
+  max-width: 360px;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  font: inherit;
+}
+
+.paywall-section .quiz-actions {
+  margin-top: 8px;
+}
+
+.paywall-section .btn {
+  text-decoration: none;
+}
+
 @media (max-width: 640px) {
   .page {
     width: min(100%, calc(100% - 20px));
@@ -607,6 +720,9 @@ h3 {
   .catalog-section,
   .checkin-section,
   .wrongbook-section,
+  .pricing-section,
+  .redeem-section,
+  .paywall-section,
   .footer {
     padding: 18px 16px;
   }

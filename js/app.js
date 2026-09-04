@@ -241,11 +241,14 @@ function renderLesson(lesson) {
   video.src = lesson.videoUrl;
 
   const youtubeLink = document.getElementById("youtube-link");
+  const youtubeSep = document.getElementById("youtube-sep");
   if (lesson.youtubeId) {
     youtubeLink.href = `https://www.youtube.com/watch?v=${lesson.youtubeId}`;
     youtubeLink.hidden = false;
+    if (youtubeSep) youtubeSep.hidden = false;
   } else {
     youtubeLink.hidden = true;
+    if (youtubeSep) youtubeSep.hidden = true;
   }
 
   const voaLink = document.getElementById("voa-page-link");

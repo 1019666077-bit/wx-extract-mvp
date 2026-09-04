@@ -201,13 +201,91 @@ function collectAnswers(questions) {
   return answers;
 }
 
+function updateWrongbookNavCount() {
+  const count = VOAStudy.readWrongbook().length;
+  document.querySelectorAll("[data-wrongbook-count]").forEach((el) => {
+    el.textContent = count ? `错题本 (${count})` : "错题本";
+  });
+}
+
+function monthTitle(year, month) {
+  return `${year}年${month}月`;
+}
+
+function renderCheckinCalendar(root, view) {
+  if (!root) {
+    return view;
+  }
+
+  const today = VOAStudy.nowParts();
+  const year = view?.year || today.year;
+  const month = view?.month || today.month;
+  const dates = VOAStudy.readCheckins();
+  const streak = VOAStudy.currentStreak(dates);
+  const monthCount = VOAStudy.daysCheckedInMonth(year, month, dates);
+  const cells = VOAStudy.monthGrid(year, month, dates);
+  const weekdays = VOAStudy.WEEKDAY_LABELS.map(
+    (label) => `<span class="cal-weekday">${escapeHtml(label)}</span>`
+  ).join("");
+  const grid = cells
+    .map((cell) => {
+      if (!cell) {
+        return `<span class="cal-day is-empty" aria-hidden="true"></span>`;
+      }
+      const classes = ["cal-day"];
+      if (cell.checked) classes.push("is-checked");
+      if (cell.today) classes.push("is-today");
+      const label = cell.checked ? `${cell.day}，已打卡` : `${cell.day}`;
+      return `<span class="${classes.join(" ")}" aria-label="${escapeHtml(label)}">${cell.day}</span>`;
+    })
+    .join("");
+
+  root.innerHTML = `
+    <div class="checkin-stats">
+      <p><strong>${streak}</strong><span>连续天数</span></p>
+      <p><strong>${monthCount}</strong><span>当月打卡</span></p>
+      <p><strong>${dates.length}</strong><span>累计打卡</span></p>
+    </div>
+    <div class="cal-toolbar">
+      <button type="button" class="btn cal-nav" data-cal-dir="-1" aria-label="上一月">‹</button>
+      <h3 class="cal-title">${escapeHtml(monthTitle(year, month))}</h3>
+      <button type="button" class="btn cal-nav" data-cal-dir="1" aria-label="下一月">›</button>
+    </div>
+    <div class="cal-grid" role="grid" aria-label="${escapeHtml(monthTitle(year, month))}打卡日历">
+      ${weekdays}
+      ${grid}
+    </div>
+    <p class="checkin-note">提交任意课程测验即计为当日打卡。日期按 Asia/Shanghai（北京时间）。</p>
+  `;
+
+  root.querySelectorAll("[data-cal-dir]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const next = new Date(Date.UTC(year, month - 1 + Number(button.dataset.calDir), 1));
+      renderCheckinCalendar(root, {
+        year: next.getUTCFullYear(),
+        month: next.getUTCMonth() + 1,
+      });
+    });
+  });
+
+  return { year, month };
+}
+
 function gradeQuiz(lesson) {
   const answers = collectAnswers(lesson.quiz);
   const score = lesson.quiz.reduce((total, question) => {
     return total + (answers[question.id] === question.answerIndex ? 1 : 0);
   }, 0);
   const resultText = `Score: ${score} / ${lesson.quiz.length}`;
-  document.getElementById("quiz-result").textContent = resultText;
+  const wrongCount = VOAStudy.syncWrongbook(lesson, answers).length;
+  VOAStudy.recordCheckin();
+  updateWrongbookNavCount();
+
+  const result = document.getElementById("quiz-result");
+  result.textContent = `${resultText} · 已打卡 ${VOAStudy.todayKey()}`;
+  if (wrongCount) {
+    result.textContent += ` · 错题本 ${wrongCount} 题`;
+  }
 
   const progress = readProgress();
   progress[lesson.id] = {
@@ -262,8 +340,83 @@ function renderLesson(lesson) {
   renderQuiz(lesson.quiz);
 }
 
+function renderWrongbookPage() {
+  const root = document.getElementById("wrongbook");
+  if (!root) {
+    return;
+  }
+
+  const items = VOAStudy.readWrongbook();
+  const clearAll = document.getElementById("clear-wrongbook");
+  if (clearAll) {
+    clearAll.hidden = items.length === 0;
+  }
+
+  if (!items.length) {
+    root.innerHTML = `<p class="empty-state">暂无错题</p>`;
+    return;
+  }
+
+  root.innerHTML = VOAStudy.groupWrongbook(items)
+    .map((group) => {
+      const cards = group.items
+        .map((item) => {
+          const choices = (item.choices || [])
+            .map((choice, index) => {
+              const classes = ["wrong-choice"];
+              if (index === item.chosenIndex) classes.push("is-chosen");
+              if (index === item.correctIndex) classes.push("is-correct");
+              const mark =
+                index === item.correctIndex
+                  ? "正确答案"
+                  : index === item.chosenIndex
+                    ? "你的选择"
+                    : "";
+              return `
+                <li class="${classes.join(" ")}">
+                  <span>${escapeHtml(choice)}</span>
+                  ${mark ? `<em>${mark}</em>` : ""}
+                </li>
+              `;
+            })
+            .join("");
+
+          return `
+            <article class="wrong-card" data-lesson-id="${escapeHtml(item.lessonId)}" data-question-id="${escapeHtml(item.questionId)}">
+              <p class="wrong-prompt">${escapeHtml(item.prompt)}</p>
+              <ul class="wrong-choices">${choices}</ul>
+              <div class="wrong-actions">
+                <a class="btn primary" href="lesson.html?id=${encodeURIComponent(item.lessonId)}#quiz">再练</a>
+                <button type="button" class="btn" data-remove-wrong>清除这题</button>
+              </div>
+            </article>
+          `;
+        })
+        .join("");
+
+      return `
+        <section class="wrong-group">
+          <h3>${escapeHtml(group.lessonTitle || group.lessonId)}</h3>
+          ${cards}
+        </section>
+      `;
+    })
+    .join("");
+
+  root.querySelectorAll("[data-remove-wrong]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const card = button.closest(".wrong-card");
+      VOAStudy.removeWrongItem(card.dataset.lessonId, card.dataset.questionId);
+      updateWrongbookNavCount();
+      renderWrongbookPage();
+    });
+  });
+}
+
 async function initCatalog() {
   const root = document.getElementById("catalog");
+  renderCheckinCalendar(document.getElementById("checkin-root"));
+  updateWrongbookNavCount();
   try {
     const payload = await loadLessons();
     renderCatalog(payload);
@@ -293,6 +446,7 @@ async function initLesson() {
     markLessonStarted(lesson.id);
     renderLesson(lesson);
     applyStoredQuiz(readProgress()[lesson.id]);
+    updateWrongbookNavCount();
 
     document.getElementById("quiz-form").addEventListener("submit", (event) => {
       event.preventDefault();
@@ -306,6 +460,29 @@ async function initLesson() {
   }
 }
 
+function initProgress() {
+  renderCheckinCalendar(document.getElementById("checkin-root"));
+  updateWrongbookNavCount();
+}
+
+function initWrongbook() {
+  updateWrongbookNavCount();
+  renderWrongbookPage();
+  const clearAll = document.getElementById("clear-wrongbook");
+  if (clearAll) {
+    clearAll.addEventListener("click", () => {
+      if (VOAStudy.readWrongbook().length === 0) {
+        return;
+      }
+      if (window.confirm("清除全部错题？")) {
+        VOAStudy.clearWrongbook();
+        updateWrongbookNavCount();
+        renderWrongbookPage();
+      }
+    });
+  }
+}
+
 function init() {
   const page = document.body.dataset.page;
   if (page === "catalog") {
@@ -314,6 +491,14 @@ function init() {
   }
   if (page === "lesson") {
     initLesson();
+    return;
+  }
+  if (page === "progress") {
+    initProgress();
+    return;
+  }
+  if (page === "wrongbook") {
+    initWrongbook();
   }
 }
 

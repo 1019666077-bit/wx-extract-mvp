@@ -1,5 +1,5 @@
-const LESSON_ID = "lle1-01";
-const STORAGE_KEY = "voa-lle1-01-quiz";
+const PROGRESS_KEY = "voa-lle-progress";
+const OLD_QUIZ_KEY = "voa-lle1-01-quiz";
 
 function escapeHtml(value) {
   return String(value)
@@ -18,9 +18,116 @@ async function loadLessons() {
   return response.json();
 }
 
-function findLesson(payload) {
+function readProgress() {
+  try {
+    const raw = localStorage.getItem(PROGRESS_KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch (error) {
+    return {};
+  }
+}
+
+function writeProgress(progress) {
+  localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+}
+
+function migrateOldProgress() {
+  const progress = readProgress();
+  if (progress["lle1-01"]) {
+    return progress;
+  }
+
+  try {
+    const raw = localStorage.getItem(OLD_QUIZ_KEY);
+    if (!raw) {
+      return progress;
+    }
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.score === "number") {
+      progress["lle1-01"] = {
+        score: parsed.score,
+        total: parsed.total,
+        completed: true,
+        savedAt: new Date().toISOString(),
+        answers: parsed.answers || {},
+        resultText: parsed.resultText || `Score: ${parsed.score} / ${parsed.total}`,
+      };
+      writeProgress(progress);
+    }
+  } catch (error) {
+    return progress;
+  }
+
+  return progress;
+}
+
+function getLessonStatus(entry) {
+  if (!entry) {
+    return "not-started";
+  }
+  if (entry.completed) {
+    return "done";
+  }
+  return "in-progress";
+}
+
+function statusLabel(status) {
+  if (status === "done") {
+    return "Done";
+  }
+  if (status === "in-progress") {
+    return "In progress";
+  }
+  return "Not started";
+}
+
+function markLessonStarted(lessonId) {
+  const progress = readProgress();
+  if (!progress[lessonId]) {
+    progress[lessonId] = {
+      completed: false,
+      savedAt: new Date().toISOString(),
+    };
+    writeProgress(progress);
+  }
+}
+
+function renderCatalog(payload) {
+  const course = payload.course || {};
   const lessons = Array.isArray(payload.lessons) ? payload.lessons : [];
-  return lessons.find((lesson) => lesson.id === LESSON_ID);
+  const progress = migrateOldProgress();
+
+  document.title = course.title || "Let's Learn English · Level 1";
+  document.getElementById("course-title").textContent =
+    course.title || "Let's Learn English · Level 1";
+  document.getElementById("course-pitch").textContent = course.pitch || "";
+  document.getElementById("course-disclaimer").textContent = course.disclaimer || "";
+
+  const root = document.getElementById("catalog");
+  root.innerHTML = lessons
+    .map((lesson) => {
+      const entry = progress[lesson.id];
+      const status = getLessonStatus(entry);
+      const scoreText =
+        status === "done" && typeof entry.score === "number"
+          ? `Quiz ${entry.score} / ${entry.total}`
+          : "";
+      const action = status === "not-started" ? "Start" : status === "done" ? "Review" : "Continue";
+
+      return `
+        <article class="lesson-card" data-status="${status}">
+          <div class="lesson-card-top">
+            <p class="lesson-number">Lesson ${escapeHtml(lesson.number || "")}</p>
+            <p class="status-badge status-${status}">${statusLabel(status)}</p>
+          </div>
+          <h3>${escapeHtml(lesson.title)}</h3>
+          <p class="lesson-subtitle">${escapeHtml(lesson.subtitle)}</p>
+          ${scoreText ? `<p class="lesson-score">${escapeHtml(scoreText)}</p>` : ""}
+          <a class="btn primary" href="lesson.html?id=${encodeURIComponent(lesson.id)}">${action}</a>
+        </article>
+      `;
+    })
+    .join("");
 }
 
 function renderDialogue(dialogue) {
@@ -61,15 +168,6 @@ function renderQuiz(questions) {
     .join("");
 }
 
-function readStoredQuiz() {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? JSON.parse(raw) : null;
-  } catch (error) {
-    return null;
-  }
-}
-
 function applyStoredQuiz(stored) {
   if (!stored || !stored.answers) {
     return;
@@ -98,29 +196,35 @@ function collectAnswers(questions) {
   return answers;
 }
 
-function gradeQuiz(questions) {
-  const answers = collectAnswers(questions);
-  const score = questions.reduce((total, question) => {
+function gradeQuiz(lesson) {
+  const answers = collectAnswers(lesson.quiz);
+  const score = lesson.quiz.reduce((total, question) => {
     return total + (answers[question.id] === question.answerIndex ? 1 : 0);
   }, 0);
-  const resultText = `Score: ${score} / ${questions.length}`;
+  const resultText = `Score: ${score} / ${lesson.quiz.length}`;
   document.getElementById("quiz-result").textContent = resultText;
-  localStorage.setItem(
-    STORAGE_KEY,
-    JSON.stringify({
-      lessonId: LESSON_ID,
-      answers,
-      score,
-      total: questions.length,
-      resultText,
-    })
-  );
+
+  const progress = readProgress();
+  progress[lesson.id] = {
+    score,
+    total: lesson.quiz.length,
+    completed: true,
+    savedAt: new Date().toISOString(),
+    answers,
+    resultText,
+  };
+  writeProgress(progress);
 }
 
-function resetQuiz() {
+function resetQuiz(lessonId) {
   document.getElementById("quiz-form").reset();
   document.getElementById("quiz-result").textContent = "";
-  localStorage.removeItem(STORAGE_KEY);
+  const progress = readProgress();
+  progress[lessonId] = {
+    completed: false,
+    savedAt: new Date().toISOString(),
+  };
+  writeProgress(progress);
 }
 
 function renderLesson(lesson) {
@@ -134,34 +238,74 @@ function renderLesson(lesson) {
   const youtubeLink = document.getElementById("youtube-link");
   if (lesson.youtubeId) {
     youtubeLink.href = `https://www.youtube.com/watch?v=${lesson.youtubeId}`;
+    youtubeLink.hidden = false;
+  } else {
+    youtubeLink.hidden = true;
   }
-  document.getElementById("video-fallback").hidden = false;
 
+  const voaLink = document.getElementById("voa-page-link");
+  if (lesson.sourceUrl) {
+    voaLink.href = lesson.sourceUrl;
+  }
+
+  document.getElementById("video-fallback").hidden = false;
   document.getElementById("attribution").textContent = lesson.attribution;
   renderDialogue(lesson.dialogue);
   renderQuiz(lesson.quiz);
 }
 
-async function init() {
+async function initCatalog() {
+  const root = document.getElementById("catalog");
+  try {
+    const payload = await loadLessons();
+    renderCatalog(payload);
+  } catch (error) {
+    root.innerHTML = `<p class="quiz-result">${escapeHtml(error.message)}</p>`;
+  }
+}
+
+async function initLesson() {
   const result = document.getElementById("quiz-result");
+  const lessonId = new URLSearchParams(window.location.search).get("id");
+
+  if (!lessonId) {
+    result.textContent = "No lesson selected.";
+    return;
+  }
 
   try {
     const payload = await loadLessons();
-    const lesson = findLesson(payload);
+    const lessons = Array.isArray(payload.lessons) ? payload.lessons : [];
+    const lesson = lessons.find((item) => item.id === lessonId);
     if (!lesson) {
-      throw new Error("Lesson lle1-01 was not found.");
+      throw new Error(`Lesson ${lessonId} was not found.`);
     }
 
+    migrateOldProgress();
+    markLessonStarted(lesson.id);
     renderLesson(lesson);
-    applyStoredQuiz(readStoredQuiz());
+    applyStoredQuiz(readProgress()[lesson.id]);
 
     document.getElementById("quiz-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      gradeQuiz(lesson.quiz);
+      gradeQuiz(lesson);
     });
-    document.getElementById("reset-quiz").addEventListener("click", resetQuiz);
+    document.getElementById("reset-quiz").addEventListener("click", () => {
+      resetQuiz(lesson.id);
+    });
   } catch (error) {
     result.textContent = error.message;
+  }
+}
+
+function init() {
+  const page = document.body.dataset.page;
+  if (page === "catalog") {
+    initCatalog();
+    return;
+  }
+  if (page === "lesson") {
+    initLesson();
   }
 }
 

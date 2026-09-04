@@ -1,0 +1,42 @@
+{
+  "lessons": [
+    {
+      "id": "lle1-01",
+      "title": "Let's Learn English Lesson 1",
+      "subtitle": "Welcome!",
+      "youtubeId": "WR9_nsLyaEY",
+      "dialogue": [
+        { "speaker": "Pete", "en": "Hi! Are you Anna?", "zh": "嗨！你是安娜吗？" },
+        { "speaker": "Anna", "en": "Yes! Hi there! Are you Pete?", "zh": "是的！你好！你是皮特吗？" },
+        { "speaker": "Pete", "en": "I am Pete.", "zh": "我是皮特。" },
+        { "speaker": "Anna", "en": "Nice to meet you.", "zh": "很高兴认识你。" },
+        { "speaker": "Anna", "en": "Let's try that again. I'm Anna. Nice to meet you.", "zh": "我们再试一次。我是安娜。很高兴认识你。" },
+        { "speaker": "Pete", "en": "I'm Pete. \"Anna\" Is that A-N-A?", "zh": "我是皮特。“安娜”是拼成 A-N-A 吗？" },
+        { "speaker": "Anna", "en": "No. A-N-N-A", "zh": "不是。是 A-N-N-A。" },
+        { "speaker": "Pete", "en": "Well, Anna with two \"n's\" ... Welcome to ... 1400 Irving Street!", "zh": "好的，有两个 n 的安娜……欢迎来到……欧文街 1400 号！" },
+        { "speaker": "Anna", "en": "My new apartment! Yes!", "zh": "我的新公寓！太好了！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Who greets Anna first?",
+          "choices": ["Pete", "Anna", "Marsha"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "How do you spell Anna's name?",
+          "choices": ["A-N-A", "A-N-N-A", "A-N-N-E"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "Where is Anna's new apartment?",
+          "choices": ["1400 Irving Street", "1400 Main Street", "400 Irving Street"],
+          "answerIndex": 0
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 1: Welcome! (learningenglish.voanews.com). Public domain."
+    }
+  ]
+}

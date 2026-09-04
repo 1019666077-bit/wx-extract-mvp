@@ -7,7 +7,7 @@ This MVP is frontend-only. There is no login, backend, crawler, or extra lessons
 ## What it includes
 
 - Lesson title and subtitle
-- YouTube embed for the official VOA video
+- Official VOA MP4 video in an HTML5 player (YouTube is an optional fallback link only)
 - Dialogue lines in English and Chinese
 - Three multiple-choice quiz questions
 - Quiz results saved in `localStorage` under `voa-lle1-01-quiz`
@@ -35,9 +35,15 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 Opening `index.html` as a file URL will not load the JSON.
 
-## Optional GitHub Pages preview
+## Public preview
 
-You can publish this folder with GitHub Pages (source: repo root). After Pages is enabled, the lesson page is available at the published site URL.
+Open on phone or desktop:
+
+https://1019666077-bit.github.io/wx-extract-mvp/
+
+The page is VOA Let's Learn English Lesson 1, with dialogue and quiz. Video plays from VOA's MP4 CDN, so YouTube is not required. A newly published GitHub Pages site can take about 30 seconds to stabilize; if it does not load, refresh once.
+
+GitHub Pages is served from `main` at `/` (repo root).
 
 ## Scope
 

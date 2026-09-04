@@ -127,7 +127,16 @@ function renderLesson(lesson) {
   document.title = lesson.title;
   document.getElementById("lesson-title").textContent = lesson.title;
   document.getElementById("lesson-subtitle").textContent = lesson.subtitle;
-  document.getElementById("lesson-video").src = `https://www.youtube.com/embed/${lesson.youtubeId}`;
+
+  const video = document.getElementById("lesson-video");
+  video.src = lesson.videoUrl;
+
+  const youtubeLink = document.getElementById("youtube-link");
+  if (lesson.youtubeId) {
+    youtubeLink.href = `https://www.youtube.com/watch?v=${lesson.youtubeId}`;
+  }
+  document.getElementById("video-fallback").hidden = false;
+
   document.getElementById("attribution").textContent = lesson.attribution;
   renderDialogue(lesson.dialogue);
   renderQuiz(lesson.quiz);

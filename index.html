@@ -15,8 +15,14 @@
     </header>
     <section class="video-section" aria-label="Lesson video">
       <div class="video-wrap">
-        <iframe id="lesson-video" title="Let's Learn English Lesson 1 video" src="https://www.youtube.com/embed/WR9_nsLyaEY" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <video id="lesson-video" controls playsinline preload="metadata" poster="">
+          Your browser does not support video.
+        </video>
       </div>
+      <p class="video-fallback" id="video-fallback" hidden>
+        <a id="youtube-link" href="#" target="_blank" rel="noopener">Open on YouTube</a>
+        · <a id="voa-page-link" href="https://learningenglish.voanews.com/a/lets-learn-english-lesson-one/3111026.html" target="_blank" rel="noopener">VOA lesson page</a>
+      </p>
     </section>
     <section class="dialogue-section" aria-label="Dialogue">
       <h2>Dialogue · 对话</h2>

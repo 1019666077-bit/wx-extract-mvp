@@ -103,6 +103,11 @@ function renderCatalog(payload) {
   document.getElementById("course-pitch").textContent = course.pitch || "";
   document.getElementById("course-disclaimer").textContent = course.disclaimer || "";
 
+  const catalogHeading = document.querySelector(".catalog-section h2");
+  if (catalogHeading) {
+    catalogHeading.textContent = `Lessons · 课程 · ${lessons.length}`;
+  }
+
   const root = document.getElementById("catalog");
   root.innerHTML = lessons
     .map((lesson) => {

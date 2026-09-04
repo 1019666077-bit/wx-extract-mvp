@@ -11,6 +11,12 @@
   --jonathan: #6b3fa0;
   --marsha: #0b6e4f;
   --man: #5b6b74;
+  --caty: #8a1c4a;
+  --anne: #b85c38;
+  --amelia: #2a6f97;
+  --phone: #4a5568;
+  --ashley: #c05621;
+  --coworkers: #2f6f4e;
   --shadow: 0 10px 30px rgba(29, 42, 50, 0.08);
   --radius: 18px;
 }
@@ -118,6 +124,12 @@ h3 {
 .catalog {
   display: grid;
   gap: 14px;
+}
+
+@media (min-width: 720px) {
+  .catalog {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 .lesson-card {
@@ -249,6 +261,30 @@ h3 {
 
 .line[data-speaker="Man"] .speaker {
   color: var(--man);
+}
+
+.line[data-speaker="Caty"] .speaker {
+  color: var(--caty);
+}
+
+.line[data-speaker="Anne"] .speaker {
+  color: var(--anne);
+}
+
+.line[data-speaker="Amelia"] .speaker {
+  color: var(--amelia);
+}
+
+.line[data-speaker="Phone"] .speaker {
+  color: var(--phone);
+}
+
+.line[data-speaker="Ashley"] .speaker {
+  color: var(--ashley);
+}
+
+.line[data-speaker="Co-Workers"] .speaker {
+  color: var(--coworkers);
 }
 
 .en,

@@ -146,6 +146,370 @@
         }
       ],
       "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 3: I'm Here! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-04",
+      "number": 4,
+      "title": "Let's Learn English Lesson 4",
+      "subtitle": "What Is It?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/c/c8/c829a13b-9764-4b89-ad70-1edbdc3d8013_hq.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-4/3168920.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Pete, hi! Hi, we are here!", "zh": "皮特，嗨！嗨，我们到了！" },
+        { "speaker": "Pete", "en": "Hi, Anna! Hi, Marsha!", "zh": "嗨，安娜！嗨，玛莎！" },
+        { "speaker": "Anna", "en": "Hi!", "zh": "嗨！" },
+        { "speaker": "Pete", "en": "How are you two?", "zh": "你们俩好吗？" },
+        { "speaker": "Marsha", "en": "I am great!", "zh": "我很好！" },
+        { "speaker": "Anna", "en": "You know, Pete, I am new to D.C. The city is big.", "zh": "你知道的，皮特，我刚到华盛顿特区。这座城市很大。" },
+        { "speaker": "Pete", "en": "Yeah. But you learn a little more every day. How's the new apartment?", "zh": "是啊。不过你每天都会多学一点。新公寓怎么样？" },
+        { "speaker": "Anna", "en": "The new apartment is great! Let's get coffee!", "zh": "新公寓很棒！我们去喝咖啡吧！" },
+        { "speaker": "Marsha", "en": "Anna, do you have a pen?", "zh": "安娜，你有笔吗？" },
+        { "speaker": "Anna", "en": "Yes. I have a pen in my bag.", "zh": "有。我包里有一支笔。" },
+        { "speaker": "Anna", "en": "I have a …", "zh": "我有一个……" },
+        { "speaker": "Pete", "en": "It is not a pen. It is a book. It is a big book.", "zh": "那不是笔。那是一本书。一本很大的书。" },
+        { "speaker": "Anna", "en": "Yes. Yes it is, Pete. I know I have a pen, though…", "zh": "对。是的，皮特。不过我知道我有一支笔……" },
+        { "speaker": "Anna", "en": "I have a ....", "zh": "我有一个……" },
+        { "speaker": "Marsha", "en": "It is not a pen, Anna ... a toy?", "zh": "那不是笔，安娜……是玩具？" },
+        { "speaker": "Anna", "en": "I have a ....", "zh": "我有一个……" },
+        { "speaker": "Pete", "en": "And it is a pillow!", "zh": "那是一个枕头！" },
+        { "speaker": "Anna", "en": "Pete, Marsha, I know I have a pen.", "zh": "皮特，玛莎，我知道我有一支笔。" },
+        { "speaker": "Marsha", "en": "Anna, it is a map.", "zh": "安娜，那是一张地图。" },
+        { "speaker": "Pete", "en": "Why do you have a map of the world?", "zh": "你为什么带着一张世界地图？" },
+        { "speaker": "Anna", "en": "Pete, Marsha. Now I know I have a pen.", "zh": "皮特，玛莎。现在我知道我有一支笔了。" },
+        { "speaker": "Pete", "en": "And now you have a lamp.", "zh": "现在你又拿出一盏灯。" },
+        { "speaker": "Marsha", "en": "Anna.", "zh": "安娜。" },
+        { "speaker": "Anna", "en": "I have a pen! Let’s get coffee!", "zh": "我有笔了！我们去喝咖啡吧！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What does Marsha ask Anna for?",
+          "choices": ["A book", "A pen", "A map"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What does Pete say about the first thing from Anna's bag?",
+          "choices": ["It is a pen", "It is a lamp", "It is a book. It is a big book"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Anna finally find?",
+          "choices": ["A pen", "A pillow", "A toy"],
+          "answerIndex": 0
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 4: What Is It? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-05",
+      "number": 5,
+      "title": "Let's Learn English Lesson 5",
+      "subtitle": "Where Are You?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/c/ce/ce630bdd-1ffd-4c63-aca7-4bdff50fc7ba_hq.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-5-where-are-you/3168971.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hello, everyone! Today my friend Marsha is at her friend's house.", "zh": "大家好！今天我的朋友玛莎在她朋友家里。" },
+        { "speaker": "Anna", "en": "She says it is beautiful. I want to see this house! Here we are!", "zh": "她说那房子很漂亮。我想去看看！我们到了！" },
+        { "speaker": "Anna", "en": "Marsha, I am in the kitchen! It is a beautiful kitchen!", "zh": "玛莎，我在厨房里！这厨房很漂亮！" },
+        { "speaker": "Marsha", "en": "It is beautiful. We cook in the kitchen.", "zh": "是很漂亮。我们在厨房做饭。" },
+        { "speaker": "Anna", "en": "I eat in the kitchen.", "zh": "我在厨房吃饭。" },
+        { "speaker": "Marsha", "en": "We relax in the living room.", "zh": "我们在客厅休息。" },
+        { "speaker": "Anna", "en": "I relax in the living room. Marsha, let’s go upstairs!", "zh": "我在客厅休息。玛莎，我们上楼吧！" },
+        { "speaker": "Marsha", "en": "Anna? Where are you?", "zh": "安娜？你在哪里？" },
+        { "speaker": "Anna", "en": "Marsha, I am in the bathroom! I wash in the bathroom.", "zh": "玛莎，我在浴室里！我在浴室洗澡。" },
+        { "speaker": "Marsha", "en": "I am in the bedroom. We sleep in the bedroom.", "zh": "我在卧室里。我们在卧室睡觉。" },
+        { "speaker": "Anna", "en": "I sleep in the bedroom!", "zh": "我在卧室睡觉！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where is Marsha today?",
+          "choices": ["At her office", "At her friend's house", "At the supermarket"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Where do they cook?",
+          "choices": ["In the living room", "In the bedroom", "In the kitchen"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "Where is Anna when Marsha asks, \"Where are you?\"",
+          "choices": ["In the bathroom", "In the kitchen", "In the living room"],
+          "answerIndex": 0
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 5: Where Are You? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-06",
+      "number": 6,
+      "title": "Let's Learn English Lesson 6",
+      "subtitle": "Where Is the Gym?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/1/17/17b61020-32a1-4021-9575-adbf9ee76979_hq.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-6-where-is-the-gym/3225958.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hi there! I’m Anna and I live in Washington, D.C.", "zh": "大家好！我是安娜，住在华盛顿特区。" },
+        { "speaker": "Anna", "en": "Every day I learn more about this great city. People in Washington like to work out!", "zh": "我每天都对这座很棒的城市了解得更多。华盛顿的人喜欢锻炼！" },
+        { "speaker": "Anna", "en": "Oh, hi, Pete. How’s it going?", "zh": "哦，嗨，皮特。最近怎么样？" },
+        { "speaker": "Pete", "en": "Hi, Anna. It’s going great. How’s it going with you?", "zh": "嗨，安娜。很好。你怎么样？" },
+        { "speaker": "Anna", "en": "Things are awesome! Pete, I want to work out. Where is the gym?", "zh": "棒极了！皮特，我想去锻炼。健身房在哪里？" },
+        { "speaker": "Pete", "en": "The gym is across from the lounge. It’s next to the mailroom. Go that way.", "zh": "健身房在休息厅对面。就在收发室旁边。走那边。" },
+        { "speaker": "Anna", "en": "Thanks, Pete!", "zh": "谢谢，皮特！" },
+        { "speaker": "Pete", "en": "No, Anna! Not that way! Go that way!", "zh": "不，安娜！不是那边！走这边！" },
+        { "speaker": "Anna", "en": "Oh, Pete. This is not the gym.", "zh": "哦，皮特。这不是健身房。" },
+        { "speaker": "Pete", "en": "That’s right, Anna. This is the mailroom.", "zh": "没错，安娜。这是收发室。" },
+        { "speaker": "Anna", "en": "The gym is across from … what?", "zh": "健身房在……什么对面？" },
+        { "speaker": "Pete", "en": "The gym is across from the lounge.", "zh": "健身房在休息厅对面。" },
+        { "speaker": "Anna", "en": "Across from the lounge. Right. Thanks!", "zh": "在休息厅对面。对。谢谢！" },
+        { "speaker": "Anna", "en": "Pete! This is not the gym!", "zh": "皮特！这不是健身房！" },
+        { "speaker": "Pete", "en": "The gym is across from the lounge. It is behind the lobby.", "zh": "健身房在休息厅对面。它在大堂后面。" },
+        { "speaker": "Anna", "en": "Right. Right. See you.", "zh": "对。对。再见。" },
+        { "speaker": "Pete", "en": "See you, Anna!", "zh": "再见，安娜！" },
+        { "speaker": "Anna", "en": "This is not the gym. This is a parking garage.", "zh": "这不是健身房。这是停车场。" },
+        { "speaker": "Anna", "en": "This is not a gym. This is a rooftop.", "zh": "这不是健身房。这是屋顶。" },
+        { "speaker": "Pete", "en": "I want to work out too! Join me!", "zh": "我也想锻炼！一起来吧！" },
+        { "speaker": "Anna", "en": "I’m good.", "zh": "我就算了。" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What does Anna want to do?",
+          "choices": ["Get coffee", "Work out", "Cook dinner"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Where is the gym?",
+          "choices": ["Across from the lounge, next to the mailroom", "Next to the rooftop", "Across from the parking garage"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Pete say when Anna finds the gym?",
+          "choices": ["This is the mailroom", "See you later", "I want to work out too! Join me!"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 6: Where Is the Gym? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-07",
+      "number": 7,
+      "title": "Let's Learn English Lesson 7",
+      "subtitle": "What Are You Doing?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/5/54/54ebe82e-9578-4c39-9ca9-42dae639be4f_hq.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html",
+      "dialogue": [
+        { "speaker": "Caty", "en": "Come in.", "zh": "进来。" },
+        { "speaker": "Caty", "en": "Well, Anna, welcome.", "zh": "安娜，欢迎。" },
+        { "speaker": "Anna", "en": "Thank you.", "zh": "谢谢。" },
+        { "speaker": "Caty", "en": "I am your boss, Caty Weaver. But, please call me Caty.", "zh": "我是你的老板，凯蒂·韦弗。不过，请叫我凯蒂。" },
+        { "speaker": "Anna", "en": "Thank you, Ms. Weaver.", "zh": "谢谢您，韦弗女士。" },
+        { "speaker": "Caty", "en": "Just Caty.", "zh": "叫凯蒂就行。" },
+        { "speaker": "Anna", "en": "Sure thing, Ms. Weaver.", "zh": "好的，韦弗女士。" },
+        { "speaker": "Caty", "en": "Okay then. Are you excited?", "zh": "那好。你兴奋吗？" },
+        { "speaker": "Anna", "en": "Yes, I am excited!", "zh": "是的，我很兴奋！" },
+        { "speaker": "Caty", "en": "So sorry, but I am busy. Please meet your co-workers. But remember, they are busy working.", "zh": "抱歉，我很忙。去见见你的同事吧。不过记住，他们正在忙着工作。" },
+        { "speaker": "Anna", "en": "Hi there! I’m Anna.", "zh": "你好！我是安娜。" },
+        { "speaker": "Anne", "en": "Hi, Anna. I’m Anne.", "zh": "嗨，安娜。我是安妮。" },
+        { "speaker": "Anna", "en": "Nice to meet you. What are you doing?", "zh": "很高兴认识你。你在做什么？" },
+        { "speaker": "Anne", "en": "Um, I’m writing.", "zh": "嗯，我在写东西。" },
+        { "speaker": "Anna", "en": "You are writing! You are writing a lot!", "zh": "你在写东西！你写得真多！" },
+        { "speaker": "Anne", "en": "No! No! That's okay.", "zh": "不！不！没关系。" },
+        { "speaker": "Anna", "en": "I am sorry!", "zh": "对不起！" },
+        { "speaker": "Jonathan", "en": "and people all around the world are waiting to hear news about the next president…", "zh": "全世界的人都在等待下一位总统的消息……" },
+        { "speaker": "Anna", "en": "Jonathan, hi! Remember me? I live in your building.", "zh": "乔纳森，嗨！还记得我吗？我住在你那栋楼里。" },
+        { "speaker": "Anna", "en": "What are you doing?", "zh": "你在做什么？" },
+        { "speaker": "Jonathan", "en": "I am doing my show!", "zh": "我在做我的节目！" },
+        { "speaker": "Anna", "en": "Oh, sorry. Are you recording?", "zh": "哦，抱歉。你在录音吗？" },
+        { "speaker": "Jonathan", "en": "Yes! And, now I have to record again!", "zh": "是的！现在我又得重新录一遍！" },
+        { "speaker": "Anna", "en": "Sorry. Have a good show.", "zh": "抱歉。节目顺利。" },
+        { "speaker": "Amelia", "en": "The word of the day is social.", "zh": "今日单词是 social。" },
+        { "speaker": "Anna", "en": "Nice to meet you! What are you doing?", "zh": "很高兴认识你！你在做什么？" },
+        { "speaker": "Amelia", "en": "I’m reading.", "zh": "我在读稿。" },
+        { "speaker": "Anna", "en": "Are you reading the news?", "zh": "你在读新闻吗？" },
+        { "speaker": "Amelia", "en": "No, I’m reading for my show.", "zh": "不是，我在为我的节目读稿。" },
+        { "speaker": "Caty", "en": "Anna! Hi! What’re you doing?", "zh": "安娜！嗨！你在做什么？" },
+        { "speaker": "Anna", "en": "I am bothering people, Ms. Weaver.", "zh": "我在打扰别人，韦弗女士。" },
+        { "speaker": "Caty", "en": "Let’s go to my office and talk.", "zh": "我们去我办公室谈谈。" },
+        { "speaker": "Anna", "en": "I like to talk with you, Ms. Weaver.", "zh": "我喜欢和您聊天，韦弗女士。" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Who is Anna's boss?",
+          "choices": ["Anne", "Caty Weaver", "Amelia"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What is Anne doing?",
+          "choices": ["She is writing", "She is recording a show", "She is reading the news"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Anna say she is doing at the end?",
+          "choices": ["I am writing", "I am recording", "I am bothering people"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 7: What Are You Doing? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-08",
+      "number": 8,
+      "title": "Let's Learn English Lesson 8",
+      "subtitle": "Are You Busy?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/e/ee/ee277d1c-017b-4b98-9491-8de08a76122e_hq.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-8-are-you-busy/3253185.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hello, everyone. Here I am at my new job!", "zh": "大家好。我现在在新工作的地方！" },
+        { "speaker": "Anna", "en": "Yesterday at my first day of work … Well, let’s not talk about yesterday. Today is a new day!", "zh": "昨天是我上班的第一天……算了，我们别提昨天了。今天是新的一天！" },
+        { "speaker": "Anna", "en": "Today I want to apologize to my co-workers.", "zh": "今天我想向同事们道歉。" },
+        { "speaker": "Anna", "en": "Hi, Anne. Are you busy?", "zh": "嗨，安妮。你忙吗？" },
+        { "speaker": "Anne", "en": "Hi, Anna. Yes. At 10 a.m. I am writing. Every day I do my morning show. Sorry!", "zh": "嗨，安娜。是的。上午 10 点我在写稿。我每天都做早间节目。抱歉！" },
+        { "speaker": "Anna", "en": "Okay. See you later, maybe.", "zh": "好的。也许回头见。" },
+        { "speaker": "Anne", "en": "Maybe I’ll see you later.", "zh": "也许回头见。" },
+        { "speaker": "Anna", "en": "Hi, Jonathan. Are you busy?", "zh": "嗨，乔纳森。你忙吗？" },
+        { "speaker": "Jonathan", "en": "Yes, I’m busy. When the studio light is on, I am recording my evening show.", "zh": "是的，我很忙。演播室的灯亮着的时候，我在录晚间节目。" },
+        { "speaker": "Anna", "en": "Right. Sorry about yesterday.", "zh": "好的。昨天的事抱歉。" },
+        { "speaker": "Jonathan", "en": "No worries.", "zh": "没关系。" },
+        { "speaker": "Anna", "en": "May I see the studio?", "zh": "我可以看看演播室吗？" },
+        { "speaker": "Jonathan", "en": "Um, maybe another time? Right now I am busy.", "zh": "嗯，下次吧？我现在很忙。" },
+        { "speaker": "Anna", "en": "Hi, Amelia! Are you busy?", "zh": "嗨，阿米莉亚！你忙吗？" },
+        { "speaker": "Amelia", "en": "I’m a little busy.", "zh": "我有一点忙。" },
+        { "speaker": "Anna", "en": "I want to say I’m sorry for yesterday.", "zh": "我想为昨天的事说对不起。" },
+        { "speaker": "Amelia", "en": "It’s okay, Anna. Come by this afternoon.", "zh": "没关系，安娜。今天下午再来。" },
+        { "speaker": "Caty", "en": "Are you busy?", "zh": "你忙吗？" },
+        { "speaker": "Anna", "en": "Yes, Ms. Weaver. I am busy.", "zh": "是的，韦弗女士。我很忙。" },
+        { "speaker": "Caty", "en": "My office. 5:00 p.m.", "zh": "来我办公室。下午 5 点。" },
+        { "speaker": "Co-Workers", "en": "Surprise!", "zh": "惊喜！" },
+        { "speaker": "Anna", "en": "A party! Awesome! And I still have my job! Until next time!", "zh": "派对！太棒了！而且我还保住了工作！下次见！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What does Anna want to do today?",
+          "choices": ["Record a show", "Apologize to her co-workers", "Find the gym"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What does Anne do at 10 a.m. every day?",
+          "choices": ["She is writing for her morning show", "She is recording her evening show", "She is having a party"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What happens in Caty's office at 5:00 p.m.?",
+          "choices": ["Anna loses her job", "Jonathan records a show", "The co-workers have a surprise party"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 8: Are You Busy? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-09",
+      "number": 9,
+      "title": "Let's Learn English Lesson 9",
+      "subtitle": "Is It Cold?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/4/44/44b5b429-02aa-45c0-ac5a-cde704945b4b_hq.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-9-is-it-cold/3261789.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Oh, hi, everyone! Here in Washington, DC, the weather changes often.", "zh": "哦，大家好！在华盛顿特区，天气常常变化。" },
+        { "speaker": "Anna", "en": "One day is cold and windy. But the next day is warm and sunny! So, every day I check the forecast.", "zh": "有一天又冷又刮风。可第二天又暖和又晴朗！所以我每天都看天气预报。" },
+        { "speaker": "Anna", "en": "Hello, Phone? What is today’s temperature?", "zh": "喂，手机？今天气温是多少？" },
+        { "speaker": "Phone", "en": "Today it is 18 degrees ...", "zh": "今天是 18 度……" },
+        { "speaker": "Anna", "en": "Eighteen degrees! That is cold!", "zh": "18 度！好冷！" },
+        { "speaker": "Phone", "en": "… eighteen degrees Celsius.", "zh": "……摄氏 18 度。" },
+        { "speaker": "Anna", "en": "Oh, Celsius. That is 65 degrees Fahrenheit. That’s warm.", "zh": "哦，是摄氏度。那是华氏 65 度。那很暖和。" },
+        { "speaker": "Phone", "en": "Yes, Anna. It is warm.", "zh": "是的，安娜。天气暖和。" },
+        { "speaker": "Anna", "en": "Excuse me, Phone. Is it windy today?", "zh": "不好意思，手机。今天刮风吗？" },
+        { "speaker": "Phone", "en": "No, it is not windy today.", "zh": "不，今天不刮风。" },
+        { "speaker": "Anna", "en": "Is it sunny today?", "zh": "今天晴天吗？" },
+        { "speaker": "Phone", "en": "Yes, Anna. It is sunny.", "zh": "是的，安娜。今天是晴天。" },
+        { "speaker": "Anna", "en": "Is it snowy today?", "zh": "今天下雪吗？" },
+        { "speaker": "Phone", "en": "No, Anna. It is not snowy.", "zh": "不，安娜。今天不下雪。" },
+        { "speaker": "Anna", "en": "Today the weather is warm and sunny -- great for seeing Washington, D.C.", "zh": "今天天气暖和又晴朗——很适合游览华盛顿特区。" },
+        { "speaker": "Anna", "en": "Phone! It is not warm and sunny! It is cold and windy and snowy!", "zh": "手机！今天并不暖和晴朗！又冷，又刮风，还下雪！" },
+        { "speaker": "Phone", "en": "Anna, it is not cold, windy, or snowy. It is warm and sunny … in Mexico City, Mexico.", "zh": "安娜，并不冷，也不刮风，更不下雪。暖和又晴朗的是……墨西哥的墨西哥城。" },
+        { "speaker": "Anna", "en": "Oh. I see. Mexico.", "zh": "哦。我明白了。墨西哥。" },
+        { "speaker": "Anna", "en": "Washington weather changes often. Remember to check the forecast -- the right forecast.", "zh": "华盛顿的天气常常变化。记得看天气预报——要看正确的预报。" },
+        { "speaker": "Anna", "en": "Until next time!", "zh": "下次见！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What is 18 degrees Celsius in Fahrenheit?",
+          "choices": ["18 degrees Fahrenheit", "65 degrees Fahrenheit", "80 degrees Fahrenheit"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What does the phone first say about the weather?",
+          "choices": ["It is cold and snowy", "It is windy", "It is warm and sunny"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "Where is the warm, sunny weather?",
+          "choices": ["Washington, D.C.", "Mexico City, Mexico", "New York City"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 9: Is It Cold? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-10",
+      "number": 10,
+      "title": "Let's Learn English Lesson 10",
+      "subtitle": "Come Over to My Place",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/06/3/3e/3ec2bbef-f064-4545-bbdd-74f2a695e141_hq.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-10/3285228.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hi! Today, my friend Ashley, is coming over. I am showing her my new apartment!", "zh": "嗨！今天我的朋友阿什莉要来。我要带她看看我的新公寓！" },
+        { "speaker": "Anna", "en": "Oh! That’s Ashley calling.", "zh": "哦！是阿什莉打来的。" },
+        { "speaker": "Anna", "en": "Hi Ashley!", "zh": "嗨，阿什莉！" },
+        { "speaker": "Ashley", "en": "Hi Anna! I’m coming to your apartment. Where is your apartment?", "zh": "嗨，安娜！我正去你的公寓。你的公寓在哪里？" },
+        { "speaker": "Anna", "en": "My apartment is near the Columbia Heights Metro.", "zh": "我的公寓在哥伦比亚高地地铁站附近。" },
+        { "speaker": "Ashley", "en": "It is near the Columbia Heights Metro?", "zh": "是在哥伦比亚高地地铁站附近吗？" },
+        { "speaker": "Anna", "en": "Yes. Exit the Metro and turn right. Then at the bus station turn left. Then walk straight ahead.", "zh": "对。出地铁后向右转。然后在公交站向左转。接着一直往前走。" },
+        { "speaker": "Ashley", "en": "Okay. Exit Metro, turn right, turn left, then go straight ahead?", "zh": "好的。出地铁，右转，左转，然后一直往前走？" },
+        { "speaker": "Anna", "en": "Yes. My apartment is near a coffee shop.", "zh": "对。我的公寓在一家咖啡店附近。" },
+        { "speaker": "Ashley", "en": "Okay. See you soon!", "zh": "好的。一会儿见！" },
+        { "speaker": "Ashley", "en": "Anna, Which coffee shop? There are three coffee shops.", "zh": "安娜，哪家咖啡店？这里有三家咖啡店。" },
+        { "speaker": "Anna", "en": "Okay, my apartment is across from a big department store.", "zh": "好的，我的公寓在一家大百货商店对面。" },
+        { "speaker": "Ashley", "en": "A big department store? Ah, I see it!", "zh": "一家大百货商店？啊，我看到了！" },
+        { "speaker": "Anna", "en": "Ashley! Over here! It’s Anna!", "zh": "阿什莉！这边！是我，安娜！" },
+        { "speaker": "Anna", "en": "I love having my friends over. Come on!", "zh": "我喜欢请朋友来家里。来吧！" },
+        { "speaker": "Ashley", "en": "Great!", "zh": "太好了！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where is Anna's apartment?",
+          "choices": ["Near the Columbia Heights Metro", "Next to the bus station", "Behind the supermarket"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "What does Anna tell Ashley to do after she exits the Metro?",
+          "choices": ["Turn left, then turn right", "Turn right, then at the bus station turn left", "Walk straight, then turn left"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "What is Anna's apartment across from?",
+          "choices": ["The Metro", "A coffee shop", "A big department store"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 10: Come Over to My Place (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
     }
   ]
 }

@@ -1157,6 +1157,318 @@
         }
       ],
       "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 20: What Can You Do? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-21",
+      "number": 21,
+      "title": "Let's Learn English Lesson 21",
+      "subtitle": "Can You Come to the Party?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/3/38/38946ff6-eee8-4acc-a3fc-759121fd6313_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-21-can-you-come-to-the-party/3406732.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hi there! Washington, D.C. has some great coffee shops. My favorite is this one -- Busboys & Poets.", "zh": "嗨！华盛顿特区有一些很棒的咖啡店。我最喜欢的就是这一家——Busboys & Poets。" },
+        { "speaker": "Anna", "en": "Actually it's more than a coffee shop. It's also a bookstore, a restaurant and a theater!", "zh": "其实它不只是咖啡店。它还是书店、餐厅，还有剧院！" },
+        { "speaker": "Anna", "en": "Marsha and I love coming here.", "zh": "玛莎和我都喜欢来这儿。" },
+        { "speaker": "Marsha", "en": "Hey, Anna, my friend is having a party on Saturday. Can you come with me?", "zh": "嘿，安娜，我朋友星期六要办派对。你能和我一起去吗？" },
+        { "speaker": "Anna", "en": "Sorry, I can't come with you. I have to get my driver's license.", "zh": "抱歉，我不能和你去。我得去考驾照。" },
+        { "speaker": "Marsha", "en": "Will you be busy all day?", "zh": "你会忙一整天吗？" },
+        { "speaker": "Anna", "en": "I don't know. First, I have to take a test on the computer. Then I have to take a test in the car.", "zh": "我不知道。先要考电脑上的笔试。然后还要考路上的路考。" },
+        { "speaker": "Marsha", "en": "But you have to take the test during the day, don't you?", "zh": "可你得在白天考试，对吧？" },
+        { "speaker": "Anna", "en": "Yes.", "zh": "对。" },
+        { "speaker": "Marsha", "en": "The party is at night.", "zh": "派对是在晚上。" },
+        { "speaker": "Anna", "en": "Oh. Then I can come with you to the party on Saturday night.", "zh": "哦。那我星期六晚上可以和你去派对。" },
+        { "speaker": "Marsha", "en": "Great! I have to help my friend with the party. Can you help me?", "zh": "太好了！我得帮朋友筹备派对。你能帮我吗？" },
+        { "speaker": "Anna", "en": "Sure. That sounds like fun.", "zh": "当然。听起来很好玩。" },
+        { "speaker": "Marsha", "en": "Everyone has to bring something or do something. You can bring food, or you can perform.", "zh": "每个人都得带点东西或者做点什么。你可以带食物，也可以表演。" },
+        { "speaker": "Anna", "en": "Really, I can perform?", "zh": "真的吗，我可以表演？" },
+        { "speaker": "Marsha", "en": "You can! Can you?", "zh": "可以！你行吗？" },
+        { "speaker": "Anna", "en": "Yes! I can recite poetry.", "zh": "可以！我会朗诵诗。" },
+        { "speaker": "Marsha", "en": "In this country, nobody recites poetry at parties. Um … can you do anything else?", "zh": "在这个国家，没人在派对上朗诵诗。嗯……你还会别的吗？" },
+        { "speaker": "Anna", "en": "Hmm, yes. I can do a card trick.", "zh": "嗯，会。我会纸牌魔术。" },
+        { "speaker": "Marsha", "en": "Anna, maybe you can just bring food.", "zh": "安娜，也许你还是带食物吧。" },
+        { "speaker": "Anna", "en": "No, I can't cook. And I really want to perform. You know, there is one thing I can do.", "zh": "不行，我不会做饭。而且我真的想表演。你知道，有一件事我会。" },
+        { "speaker": "Anna", "en": "Trouble in mind. I'm blue...", "zh": "心里有烦恼。我很忧郁……" },
+        { "speaker": "Marsha", "en": "That's it! You can sing at the party. Now, I have to go shopping for food.", "zh": "就是这个！你可以在派对上唱歌。现在我得去买食物了。" },
+        { "speaker": "Anna", "en": "Can I help? I'm not busy right now.", "zh": "我能帮忙吗？我现在不忙。" },
+        { "speaker": "Marsha", "en": "Sure, let's go!", "zh": "当然，走吧！" },
+        { "speaker": "Anna", "en": "We have to go. I have to help Marsha shop. And I have to practice my song!", "zh": "我们得走了。我要帮玛莎买东西。我还得练习我的歌！" },
+        { "speaker": "Anna", "en": "Until next time!", "zh": "下次见！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Why can't Anna go to the party at first?",
+          "choices": ["She has to get her driver's license", "She has to work all day", "She has to cook food"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "When is the party?",
+          "choices": ["Saturday during the day", "Saturday night", "Sunday night"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Marsha say Anna can do at the party?",
+          "choices": ["Recite poetry", "Do a card trick", "Sing"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 21: Can You Come to the Party? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-22",
+      "number": 22,
+      "title": "Let's Learn English Lesson 22",
+      "subtitle": "Next Summer...",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/6/6f/6f09d624-a8a7-4ce8-a972-1a7bfed06679_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-22/3397314.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Washington, D.C. has four seasons: winter, spring, summer and autumn or fall. My favorite season is summer because of summer vacation!", "zh": "华盛顿特区有四个季节：冬、春、夏，还有秋。我最喜欢夏天，因为有暑假！" },
+        { "speaker": "Anna", "en": "Hey, that will be a great subject for my new work assignment -- the children's show. I can teach what families in the U.S. do during summer vacation.", "zh": "嘿，这会是我新工作任务——儿童节目——的好主题。我可以讲美国的家庭暑假都做什么。" },
+        { "speaker": "Anna", "en": "Today, I'm planning the show with Amelia. This is the first time we are working together. I hope we can work well together. Hi, Amelia!", "zh": "今天我和阿梅莉亚一起策划节目。这是我们第一次一起工作。希望我们能合作愉快。嗨，阿梅莉亚！" },
+        { "speaker": "Amelia", "en": "Hi, Anna! So, what are we going to talk about on the first show?", "zh": "嗨，安娜！那第一期节目我们要讲什么？" },
+        { "speaker": "Anna", "en": "I want to talk about summer vacation.", "zh": "我想讲暑假。" },
+        { "speaker": "Amelia", "en": "That will be fun! Are you going on vacation this summer?", "zh": "那会很好玩！你今年夏天去度假吗？" },
+        { "speaker": "Anna", "en": "No. This summer I am too busy.", "zh": "不去。今年夏天我太忙了。" },
+        { "speaker": "Amelia", "en": "That's too bad.", "zh": "真可惜。" },
+        { "speaker": "Anna", "en": "It's okay. I can go on vacation next summer. This show will be a lot of fun too!", "zh": "没关系。我可以明年夏天再去度假。这个节目也会很好玩！" },
+        { "speaker": "Amelia", "en": "So, Anna, what's the plan for the show?", "zh": "所以，安娜，节目计划是什么？" },
+        { "speaker": "Anna", "en": "First, we're going to introduce the subject. Then we can show pictures and video.", "zh": "首先，我们介绍主题。然后我们可以放图片和视频。" },
+        { "speaker": "Amelia", "en": "We can show tons of video!", "zh": "我们可以放好多视频！" },
+        { "speaker": "Anna", "en": "Right! We can interview children and have guests, too.", "zh": "对！我们还可以采访孩子，请嘉宾。" },
+        { "speaker": "Amelia", "en": "Kids can ask us questions.", "zh": "孩子们可以问我们问题。" },
+        { "speaker": "Anna", "en": "Great idea! Finally, we can read the questions and tell them where to learn more.", "zh": "好主意！最后，我们可以读这些问题，并告诉他们去哪里了解更多。" },
+        { "speaker": "Amelia", "en": "Okay, let's try it!", "zh": "好，我们试试！" },
+        { "speaker": "Anna", "en": "Let's do it!", "zh": "开始吧！" },
+        { "speaker": "Anna", "en": "Hi there! And welcome to … Amelia, we don't have a name for the show.", "zh": "嗨！欢迎收看……阿梅莉亚，我们还没有节目名字。" },
+        { "speaker": "Amelia", "en": "We'll think of a name later. For now, we'll call it \"The Show.\"", "zh": "名字以后再想。现在就叫它“节目”吧。" },
+        { "speaker": "Anna", "en": "Great. Hi there! And welcome to \"The Show.\"", "zh": "好。嗨！欢迎收看“节目”。" },
+        { "speaker": "Anna", "en": "Today we are going to take you on a summer vacation! You will see popular things to do on vacation!", "zh": "今天我们要带你去过一个暑假！你会看到度假时流行的活动！" },
+        { "speaker": "Anna", "en": "One is camping. When you go camping, you cook, sleep and play outdoors!", "zh": "一个是露营。去露营的时候，你在户外做饭、睡觉和玩耍！" },
+        { "speaker": "Amelia", "en": "When I go camping, Anna, I like to go hiking and fishing.", "zh": "安娜，我去露营的时候，喜欢徒步和钓鱼。" },
+        { "speaker": "Anna", "en": "Me, too. Those are fun things to do when you go camping!", "zh": "我也是。这些都是露营时很好玩的事！" },
+        { "speaker": "Anna", "en": "These people are hiking.", "zh": "这些人在徒步。" },
+        { "speaker": "Amelia", "en": "Okay, let's talk about the next vacation.", "zh": "好，我们谈谈下一种度假。" },
+        { "speaker": "Anna", "en": "Another popular summer vacation is going to an amusement park. At an amusement park, you go on rides and eat lots of fun food!", "zh": "另一种很受欢迎的暑假是去游乐园。在游乐园，你可以坐游乐设施，吃很多好玩的食物！" },
+        { "speaker": "Amelia", "en": "I love cotton candy … !", "zh": "我爱棉花糖……！" },
+        { "speaker": "Anna and Amelia", "en": "and rollercoasters!", "zh": "还有过山车！" },
+        { "speaker": "Amelia", "en": "This show is going to be a lot of fun.", "zh": "这个节目会很好玩。" },
+        { "speaker": "Anna", "en": "I know!", "zh": "我知道！" },
+        { "speaker": "Anna", "en": "This is riding a rollercoaster!", "zh": "这就是坐过山车！" },
+        { "speaker": "Amelia", "en": "Whoooo! What is the last vacation?", "zh": "呜！最后一种度假是什么？" },
+        { "speaker": "Anna", "en": "One of the most popular vacations is … going to the beach!", "zh": "最受欢迎的度假之一是……去海边！" },
+        { "speaker": "Anna and Amelia", "en": "I love the beach!", "zh": "我爱海边！" },
+        { "speaker": "Anna", "en": "When I see that blue ocean, I want to leave Washington, D.C. immediately and go to the beach!", "zh": "我一看到那片蓝色的海，就想马上离开华盛顿特区去海边！" },
+        { "speaker": "Anna", "en": "Maybe next summer.", "zh": "也许明年夏天。" },
+        { "speaker": "Amelia", "en": "But right now, it's time to work!", "zh": "可现在，该工作了！" },
+        { "speaker": "Anna", "en": "Right. Until next time ...", "zh": "对。下次见……" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Why is summer Anna's favorite season?",
+          "choices": ["Because of summer vacation", "Because it is not hot", "Because she is going on vacation this summer"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "What do they call the children's show for now?",
+          "choices": ["Summer Vacation", "The Show", "The News"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "What is one of the most popular vacations they talk about last?",
+          "choices": ["Camping", "Going to an amusement park", "Going to the beach"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 22: Next Summer... (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-23",
+      "number": 23,
+      "title": "Let's Learn English Lesson 23",
+      "subtitle": "What Do You Want?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/e/e7/e7759765-b3e3-4624-a927-0cc2326eb311_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-23-what-do-you-want/3413753.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Washington, D.C. has great food from all over the world.", "zh": "华盛顿特区有来自世界各地的美食。" },
+        { "speaker": "Anna", "en": "Today I'm having lunch with my boss. Ms. Weaver says we're going on a trip around the world. But she knows I only have an hour for lunch! Silly woman.", "zh": "今天我和老板一起吃午饭。韦弗女士说我们要去环游世界。可她知道我午饭只有一小时！傻女人。" },
+        { "speaker": "Jonathan", "en": "Hi, Anna!", "zh": "嗨，安娜！" },
+        { "speaker": "Anna", "en": "Hi Jonathan! Hey, we are meeting Ms. Weaver for lunch at noon, aren't we?", "zh": "嗨，乔纳森！嘿，我们中午要和韦弗女士见面吃午饭，对吧？" },
+        { "speaker": "Jonathan", "en": "Yes.", "zh": "对。" },
+        { "speaker": "Anna", "en": "What time is it now?", "zh": "现在几点了？" },
+        { "speaker": "Jonathan", "en": "11:50.", "zh": "11:50。" },
+        { "speaker": "Anna", "en": "11:50! We have to go!", "zh": "11:50！我们得走了！" },
+        { "speaker": "Anna", "en": "So, where is this world food restaurant?", "zh": "所以，这家世界美食餐厅在哪里？" },
+        { "speaker": "Caty", "en": "We're not eating at a restaurant.", "zh": "我们不是在餐厅吃。" },
+        { "speaker": "Anna", "en": "Where are we eating?", "zh": "那我们在哪里吃？" },
+        { "speaker": "Caty", "en": "We are eating at ... food trucks!", "zh": "我们在……餐车吃！" },
+        { "speaker": "Anna", "en": "Food trucks … awesome! What's a food truck?", "zh": "餐车……太棒了！餐车是什么？" },
+        { "speaker": "Caty", "en": "These are food trucks!", "zh": "这些就是餐车！" },
+        { "speaker": "Anna", "en": "Wow!", "zh": "哇！" },
+        { "speaker": "Jonathan", "en": "Whoa!", "zh": "哇！" },
+        { "speaker": "Caty", "en": "Okay, Jonathan, you will buy the first dish. Here is $10. Surprise us!", "zh": "好，乔纳森，你去买第一道菜。这儿是 10 美元。给我们一个惊喜！" },
+        { "speaker": "Jonathan", "en": "Okay, I'll be back in 15 minutes.", "zh": "好，我 15 分钟后回来。" },
+        { "speaker": "Anna", "en": "What country do I want to visit?", "zh": "我想去哪个国家？" },
+        { "speaker": "Caty", "en": "Anna, you pick the second country. Here is $10.", "zh": "安娜，你选第二个国家。这儿是 10 美元。" },
+        { "speaker": "Anna", "en": "I want chicken.", "zh": "我想吃鸡肉。" },
+        { "speaker": "Caty", "en": "The food truck, over there, has great chicken.", "zh": "那边那辆餐车的鸡肉很棒。" },
+        { "speaker": "Anna", "en": "Awesome!", "zh": "太好了！" },
+        { "speaker": "Caty", "en": "After you buy your food, meet me here.", "zh": "买完食物后，在这儿和我会合。" },
+        { "speaker": "Jonathan", "en": "Excuse me, I'll have the shrimp.", "zh": "打扰一下，我要虾。" },
+        { "speaker": "Jonathan", "en": "Oh, you're out of shrimp. Okay, I'll have the beef then.", "zh": "哦，虾卖完了。那我要牛肉。" },
+        { "speaker": "Anna", "en": "Hello. I want the chicken dish.", "zh": "你好。我要鸡肉这道菜。" },
+        { "speaker": "Truck worker", "en": "We're out of chicken.", "zh": "鸡肉卖完了。" },
+        { "speaker": "Anna", "en": "You're out of chicken.", "zh": "鸡肉卖完了。" },
+        { "speaker": "Worker", "en": "Yep.", "zh": "对。" },
+        { "speaker": "Anna", "en": "I'll try another food truck. Thanks!", "zh": "我去另一辆餐车看看。谢谢！" },
+        { "speaker": "Worker", "en": "You're welcome.", "zh": "不客气。" },
+        { "speaker": "Jonathan", "en": "Okay, here is your change. The dish is $7. So, here is 1, 2, 3 dollars back from your 10.", "zh": "好，这是找你的钱。这道菜 7 美元。所以从你的 10 美元里找回 1、2、3 美元。" },
+        { "speaker": "Caty", "en": "Great.", "zh": "很好。" },
+        { "speaker": "Jonathan", "en": "Where's Anna? Is she dancing by that food truck?", "zh": "安娜呢？她是在那辆餐车旁边跳舞吗？" },
+        { "speaker": "Caty", "en": "Yes. Yes, she is.", "zh": "是的。她是。" },
+        { "speaker": "Anna", "en": "Ms. Weaver, here is your change. The dish costs $5. So - $5 back.", "zh": "韦弗女士，这是找你的钱。这道菜 5 美元。所以——找回 5 美元。" },
+        { "speaker": "Caty", "en": "Thanks, Anna. But where is the food?", "zh": "谢谢，安娜。可食物呢？" },
+        { "speaker": "Anna", "en": "I'm eating it. The Peruvian chicken is delicious! Try some!", "zh": "我在吃。这秘鲁鸡肉很好吃！尝尝！" },
+        { "speaker": "Caty", "en": "Well, we still have $8! What do you want now?", "zh": "嗯，我们还剩 8 美元！现在你想要什么？" },
+        { "speaker": "Anna", "en": "We can buy dessert!", "zh": "我们可以买甜点！" },
+        { "speaker": "Caty", "en": "I'll buy dessert.", "zh": "我去买甜点。" },
+        { "speaker": "Anna", "en": "In Washington, D.C., you can travel around the world … with food trucks! And it does not cost a lot.", "zh": "在华盛顿特区，你可以环游世界……靠餐车！而且花不了多少钱。" },
+        { "speaker": "Anna", "en": "Until next time!", "zh": "下次见！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where do they eat lunch?",
+          "choices": ["At a world food restaurant", "At food trucks", "In the office"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "How much does Anna's dish cost?",
+          "choices": ["$10", "$7", "$5"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Anna want to buy with the leftover money?",
+          "choices": ["Dessert", "More chicken", "Shrimp"],
+          "answerIndex": 0
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 23: What Do You Want? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-24",
+      "number": 24,
+      "title": "Let's Learn English Lesson 24",
+      "subtitle": "Yesterday Was Amazing!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/2/24/240be8a1-701d-4fd2-b6f0-5fa9dda5d188_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-24-yesterday-was-amazing/3439164.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Yesterday was the most amazing day. I want to tell my friend back home about it. So, I am writing her a letter!", "zh": "昨天是最棒的一天。我想告诉老家的朋友。所以，我正在给她写信！" },
+        { "speaker": "Anna", "en": "Dear Penelope, Life in Washington, D.C. is interesting. I see something new every day -- like yesterday. Yesterday started like a usual work day.", "zh": "亲爱的佩内洛普：华盛顿特区的生活很有意思。我每天都会看到新东西——比如昨天。昨天开始时像平常的工作日。" },
+        { "speaker": "Anna", "en": "I said, \"Yesterday started like a usual work day.\"", "zh": "我说：“昨天开始时像平常的工作日。”" },
+        { "speaker": "Anna's voice", "en": "I was at work. And I wanted a break. So, I walked and walked … and walked. Then, I saw something! It was a festival -- a big festival!", "zh": "我在上班。我想休息一下。所以我走啊走……又走。然后，我看到了什么！那是一个节日——一个很大的节日！" },
+        { "speaker": "Anna", "en": "It is the Smithsonian Folklife Festival.", "zh": "这是史密森民俗生活节。" },
+        { "speaker": "Anna's voice", "en": "Yes. It was the Smithsonian Folklife Festival. Every year the festival shows different cultures. This year one of the cultures was the Basque culture. There was dancing and food and games!", "zh": "对。那是史密森民俗生活节。每年这个节日都会展示不同的文化。今年其中一种是巴斯克文化。有舞蹈、食物和游戏！" },
+        { "speaker": "Anna", "en": "I am dancing a traditional Basque dance.", "zh": "我在跳传统的巴斯克舞。" },
+        { "speaker": "Anna's voice", "en": "At the festival, I danced a traditional Basque dance!", "zh": "在节日上，我跳了传统的巴斯克舞！" },
+        { "speaker": "Anna", "en": "They are cooking traditional Basque food.", "zh": "他们在做传统的巴斯克食物。" },
+        { "speaker": "Anna's voice", "en": "They cooked a lot of traditional Basque food.", "zh": "他们做了很多传统的巴斯克食物。" },
+        { "speaker": "Anna", "en": "They are playing a game. It's a kind of handball. What do they call it? They call it pilota!", "zh": "他们在玩游戏。那是一种手球。他们叫它什么？他们叫它皮洛塔！" },
+        { "speaker": "Anna's voice", "en": "They played a game with their hands and a small ball. It's a kind of handball. But this game is called pilota.", "zh": "他们用手和一个小球玩游戏。那是一种手球。不过这个游戏叫皮洛塔。" },
+        { "speaker": "Anna", "en": "This is beautiful! This is traditional Basque art.", "zh": "这真美！这是传统的巴斯克艺术。" },
+        { "speaker": "Anna", "en": "They are making a traditional Basque ship. This festival is a lot of fun!", "zh": "他们在做一艘传统的巴斯克船。这个节日很好玩！" },
+        { "speaker": "Anna's voice", "en": "The whole day was a lot of fun!", "zh": "一整天都很好玩！" },
+        { "speaker": "Anna", "en": "Who said that? I want to write my friends and tell them about my day!", "zh": "谁说的？我想写信给朋友们，告诉他们我的一天！" },
+        { "speaker": "Anna", "en": "… So, I wanted to tell you about my day! Please, my friend, come visit Washington, D.C. soon. There is a lot to do! Until next time … Anna.", "zh": "……所以，我想告诉你我的一天！朋友，请尽快来华盛顿特区玩。这里有很多事可以做！下次见……安娜。" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What festival did Anna see yesterday?",
+          "choices": ["The Cherry Blossom Festival", "The Smithsonian Folklife Festival", "A food truck festival"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Which culture did the festival show?",
+          "choices": ["Basque culture", "French culture", "Japanese culture"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What is the handball game called?",
+          "choices": ["Soccer", "Pilota", "Baseball"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 24: Yesterday Was Amazing! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-25",
+      "number": 25,
+      "title": "Let's Learn English Lesson 25",
+      "subtitle": "Watch Out!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/3/35/35095de1-0ff5-48bf-815c-5dab66a55a2f_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-25-watch-out/3431138.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hello from Washington, DC! This city has many monuments and memorials.", "zh": "你好，这里是华盛顿特区！这座城市有很多纪念碑和纪念堂。" },
+        { "speaker": "Anna", "en": "Today I am visiting the ones built in memory of our Presidents: Washington, Jefferson, Lincoln and Roosevelt.", "zh": "今天我去看为总统建造的那些：华盛顿、杰斐逊、林肯和罗斯福。" },
+        { "speaker": "Anna", "en": "I want to learn more about them.", "zh": "我想多了解他们。" },
+        { "speaker": "Anna", "en": "Hey! Watch out!", "zh": "嘿！小心！" },
+        { "speaker": "Dan", "en": "Sorry! I didn't see you.", "zh": "抱歉！我没看见你。" },
+        { "speaker": "Anna", "en": "You were not looking. You should be more careful.", "zh": "你没有看路。你应该更小心。" },
+        { "speaker": "Dan", "en": "I know I should be more careful. But this game is really fun.", "zh": "我知道我应该更小心。可这个游戏真的很好玩。" },
+        { "speaker": "Anna", "en": "What kind of game?", "zh": "什么样的游戏？" },
+        { "speaker": "Dan", "en": "You have to find things that aren't really there.", "zh": "你得找到其实不在那儿的东西。" },
+        { "speaker": "Anna", "en": "How can you find things that aren't really there?", "zh": "不在那儿的东西怎么找？" },
+        { "speaker": "Dan", "en": "They're in your phone. See?", "zh": "它们在你的手机里。看见了吗？" },
+        { "speaker": "Anna", "en": "I see. It's like a scavenger hunt.", "zh": "我明白了。就像寻宝游戏。" },
+        { "speaker": "Dan", "en": "That's right!", "zh": "对！" },
+        { "speaker": "Anna", "en": "I don't have time for games. I want to learn about U.S. presidents.", "zh": "我没时间玩游戏。我想了解美国总统。" },
+        { "speaker": "Dan", "en": "Then you should play this game! When you find an American symbol, you win points and a Fun Fact about a U.S. President.", "zh": "那你更应该玩这个游戏！找到一个美国象征，你就能得分，还能得到一条美国总统趣闻。" },
+        { "speaker": "Anna", "en": "I have time for this game!", "zh": "这个游戏我有时间！" },
+        { "speaker": "Dan", "en": "Here are the symbols that I caught: the Statue of Liberty for 20 points, Uncle Sam for 40 points and the American flag for 60 points.", "zh": "这些是我抓到的象征：自由女神像 20 分，山姆大叔 40 分，美国国旗 60 分。" },
+        { "speaker": "Anna", "en": "What symbol are you looking for now?", "zh": "你现在在找哪个象征？" },
+        { "speaker": "Dan", "en": "I am looking for the bald eagle. That is 100 points! It should be near the Washington Monument.", "zh": "我在找白头海雕。那是 100 分！它应该在华盛顿纪念碑附近。" },
+        { "speaker": "Anna", "en": "This game is awesome.", "zh": "这个游戏太棒了。" },
+        { "speaker": "Dan", "en": "You ought to buy the app right now. It's called \"Catch Americana.\"", "zh": "你现在就该买这个应用。它叫“Catch Americana”。" },
+        { "speaker": "Anna", "en": "Got it. Catch Americana.", "zh": "知道了。Catch Americana。" },
+        { "speaker": "Anna", "en": "Thanks! Good luck!", "zh": "谢谢！祝你好运！" },
+        { "speaker": "Dan", "en": "Good luck to you too!", "zh": "也祝你好运！" },
+        { "speaker": "Anna", "en": "This is the Jefferson Memorial. I know that Thomas Jefferson signed the Declaration of Independence! Now, where is that symbol?", "zh": "这是杰斐逊纪念堂。我知道托马斯·杰斐逊签署了《独立宣言》！现在，那个象征在哪里？" },
+        { "speaker": "Anna", "en": "Here it is! My first one. It's an American flag! I won 60 points!", "zh": "在这儿！我的第一个。是一面美国国旗！我得了 60 分！" },
+        { "speaker": "Anna", "en": "An American flag works well for Thomas Jefferson. I see lots of American flags on Independence Day!", "zh": "美国国旗很适合托马斯·杰斐逊。独立日那天我会看到很多美国国旗！" },
+        { "speaker": "Anna", "en": "Where is my Jefferson Fun Fact?", "zh": "我的杰斐逊趣闻呢？" },
+        { "speaker": "Voice", "en": "In his lifetime, Thomas Jefferson wrote about 19,000 letters!", "zh": "托马斯·杰斐逊一生大约写了 19,000 封信！" },
+        { "speaker": "Anna", "en": "I did not know that. Where is the next symbol?", "zh": "我以前不知道。下一个象征在哪里？" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What does Anna tell Dan he should do?",
+          "choices": ["Play another game", "Be more careful", "Leave the memorial"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What is the app called?",
+          "choices": ["Catch Americana", "Find Presidents", "Scavenger Hunt"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What symbol does Anna catch first?",
+          "choices": ["A bald eagle", "Uncle Sam", "An American flag"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 25: Watch Out! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
     }
   ]
 }

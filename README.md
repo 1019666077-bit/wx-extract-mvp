@@ -7,7 +7,7 @@ This is frontend-only. There is no login, backend, or crawler. It is **not** an 
 ## What it includes
 
 - A course catalog on the home page
-- Thirty lessons: `lle1-01` through `lle1-30`
+- Thirty-five lessons: `lle1-01` through `lle1-35`
 - Official VOA MP4 video in an HTML5 player (YouTube is an optional fallback link only)
 - Dialogue lines in English and Chinese
 - Three multiple-choice quiz questions per lesson
@@ -44,7 +44,7 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 
 ## How to use
 
-1. Open the catalog. Lessons 1–5 are free; 6–30 (and any later id with number > 5) show a lock badge until unlocked.
+1. Open the catalog. Lessons 1–5 are free; 6–35 (and any later id with number > 5) show a lock badge until unlocked.
 2. Start a free lesson, watch the VOA MP4, read the dialogue, then submit the quiz.
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
@@ -99,6 +99,6 @@ GitHub Pages is served from `main` at `/` (repo root). A newly published site ca
 
 ## Scope
 
-In scope: catalog + thirty static lessons with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
+In scope: catalog + thirty-five static lessons with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
 
 Out of scope: login, accounts, a real payment gateway, a crawler, or a backend.

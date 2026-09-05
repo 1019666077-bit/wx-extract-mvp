@@ -510,6 +510,306 @@
         }
       ],
       "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 10: Come Over to My Place (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-11",
+      "number": 11,
+      "title": "Let's Learn English Lesson 11",
+      "subtitle": "This Is My Neighborhood",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/1/12/1249bcfa-481d-498d-a387-a577c59adba9_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-11-this-is-my-neighborhood/3293986.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hello! DC is a city for walking. In our neighborhood, I can do all my errands. Marsha, before we get ice cream, I need to return three books to the library. Where is the library?", "zh": "嗨！华盛顿特区很适合走路。在我们这个街区，我能办完所有事。玛莎，吃冰淇淋之前，我要先去图书馆还三本书。图书馆在哪里？" },
+        { "speaker": "Marsha", "en": "It is on this street on the corner.", "zh": "就在这条街的拐角。" },
+        { "speaker": "Anna", "en": "Awesome!", "zh": "太好了！" },
+        { "speaker": "Marsha", "en": "Let's go!", "zh": "走吧！" },
+        { "speaker": "Anna", "en": "Marsha, I can return the books here.", "zh": "玛莎，我可以在这里还书。" },
+        { "speaker": "Marsha", "en": "Anna, what are those in the books?", "zh": "安娜，书里那些是什么？" },
+        { "speaker": "Anna", "en": "Marsha, these are letters to my family and friends back home … four letters! Is there a post office near here?", "zh": "玛莎，这些是寄给老家家人和朋友的信……一共四封！这附近有邮局吗？" },
+        { "speaker": "Marsha", "en": "Um, no. The post office is far from here. But there is a mailbox across from the store.", "zh": "嗯，没有。邮局离这儿很远。不过商店对面有一个邮筒。" },
+        { "speaker": "Anna", "en": "Awesome! Let’s go!", "zh": "太好了！走吧！" },
+        { "speaker": "Anna", "en": "Marsha, now I need to buy stamps.", "zh": "玛莎，现在我需要买邮票。" },
+        { "speaker": "Marsha", "en": "Do you have cash?", "zh": "你有现金吗？" },
+        { "speaker": "Anna", "en": "No. Is there a bank near here?", "zh": "没有。这附近有银行吗？" },
+        { "speaker": "Marsha", "en": "There is a bank behind you.", "zh": "你身后就有一家银行。" },
+        { "speaker": "Anna", "en": "Thanks, Marsha. You know our neighborhood so well.", "zh": "谢谢，玛莎。你对我们这个街区太熟了。" },
+        { "speaker": "Anna", "en": "Now I have cash. I can buy stamps.", "zh": "现在我有现金了。我可以买邮票了。" },
+        { "speaker": "Marsha", "en": "That store sells stamps.", "zh": "那家店卖邮票。" },
+        { "speaker": "Anna", "en": "Wait here.", "zh": "在这儿等我。" },
+        { "speaker": "Anna", "en": "I have stamps.", "zh": "我买到邮票了。" },
+        { "speaker": "Marsha", "en": "Wow, you’re fast.", "zh": "哇，你真快。" },
+        { "speaker": "Anna", "en": "Thank you, thank you letters, for sending my words… my love … to my family and friends -", "zh": "谢谢你们，信啊，把我的话……我的爱……带给我的家人和朋友——" },
+        { "speaker": "Marsha", "en": "Do you have more cash?", "zh": "你还有现金吗？" },
+        { "speaker": "Anna", "en": "I do!", "zh": "有！" },
+        { "speaker": "Marsha and Anna", "en": "Ice cream!!", "zh": "冰淇淋！！" },
+        { "speaker": "Anna", "en": "I love my new neighborhood! Everything is near our apartment! Even hair salons, and ice cream!", "zh": "我爱我的新街区！一切都在我们公寓附近！连美发店和冰淇淋都有！" },
+        { "speaker": "Anna", "en": "Until next time!", "zh": "下次见！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What does Anna need to do before they get ice cream?",
+          "choices": ["Buy stamps at the bank", "Return three books to the library", "Mail four letters at the post office"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Where is the mailbox?",
+          "choices": ["Across from the store", "On the corner of the library", "Behind the bank"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What do Anna and Marsha want at the end?",
+          "choices": ["More books", "A haircut", "Ice cream"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 11: This Is My Neighborhood (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-12",
+      "number": 12,
+      "title": "Let's Learn English Lesson 12",
+      "subtitle": "Meet My Family",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/b/b7/b7fedcc7-4bb0-4cf7-b596-ccd2a5e03041_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-12-meet-my-family/3301733.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hello! Washington, D.C. has many beautiful parks. In fact, this park reminds me of my home very far away.", "zh": "嗨！华盛顿特区有很多漂亮的公园。其实，这个公园让我想起很远的家乡。" },
+        { "speaker": "Marsha", "en": "Anna, here's your coffee.", "zh": "安娜，这是你的咖啡。" },
+        { "speaker": "Anna", "en": "Thanks, Marsha.", "zh": "谢谢，玛莎。" },
+        { "speaker": "Marsha", "en": "What's wrong?", "zh": "怎么了？" },
+        { "speaker": "Anna", "en": "I'm thinking about my family. I'm feeling homesick.", "zh": "我在想我的家人。我有点想家。" },
+        { "speaker": "Marsha", "en": "Do you want to talk about it?", "zh": "你想聊聊吗？" },
+        { "speaker": "Anna", "en": "Sure! I have some photos.", "zh": "好啊！我有一些照片。" },
+        { "speaker": "Marsha", "en": "Yes. Yes, you do!", "zh": "是的。你确实有！" },
+        { "speaker": "Anna", "en": "Photos really help.", "zh": "照片真的很有帮助。" },
+        { "speaker": "Anna", "en": "This is my mother and this is my father. They are rodeo clowns.", "zh": "这是我妈妈，这是我爸爸。他们是牛仔竞技小丑。" },
+        { "speaker": "Marsha", "en": "What do rodeo clowns do?", "zh": "牛仔竞技小丑做什么？" },
+        { "speaker": "Anna", "en": "They make jokes at a rodeo. They make people laugh.", "zh": "他们在牛仔竞技会上讲笑话。他们逗人笑。" },
+        { "speaker": "Marsha", "en": "That's very different.", "zh": "那可真特别。" },
+        { "speaker": "Marsha", "en": "Who is that woman in the picture?", "zh": "照片里那个女人是谁？" },
+        { "speaker": "Anna", "en": "That is my Aunt Lavender. She is my mom's sister. She loves gardening and makes spoons.", "zh": "那是我的姨妈拉文德。她是我妈妈的姐姐。她喜欢园艺，还做勺子。" },
+        { "speaker": "Marsha", "en": "She makes spoons?", "zh": "她做勺子？" },
+        { "speaker": "Anna", "en": "Of course.", "zh": "当然。" },
+        { "speaker": "Marsha", "en": "That, too, is very different.", "zh": "那也很特别。" },
+        { "speaker": "Anna", "en": "Oh! This is my Uncle John. He is my father's brother.", "zh": "哦！这是我的叔叔约翰。他是我爸爸的哥哥。" },
+        { "speaker": "Marsha", "en": "What does Uncle John do?", "zh": "约翰叔叔做什么？" },
+        { "speaker": "Anna", "en": "He's a chicken farmer. And makes guitars. He's awesome, and I'm his favorite niece.", "zh": "他是养鸡的。还做吉他。他很棒，我是他最喜欢的侄女。" },
+        { "speaker": "Marsha", "en": "Who are they?", "zh": "他们是谁？" },
+        { "speaker": "Anna", "en": "They are my cousins. They are my Uncle John's daughter and son.", "zh": "他们是我的堂兄弟姐妹。是约翰叔叔的女儿和儿子。" },
+        { "speaker": "Marsha", "en": "What do they do?", "zh": "他们做什么？" },
+        { "speaker": "Anna", "en": "They raise sheep and make sweaters.", "zh": "他们养羊，还织毛衣。" },
+        { "speaker": "Marsha", "en": "Yeah, that's not a surprise.", "zh": "嗯，这倒不意外。" },
+        { "speaker": "Marsha", "en": "Thanks for showing me your family photos. Your family is very different.", "zh": "谢谢你给我看家人的照片。你的家人很特别。" },
+        { "speaker": "Anna", "en": "I do feel better. Thanks for listening. I have many more photos!", "zh": "我确实感觉好多了。谢谢你听我说。我还有很多照片！" },
+        { "speaker": "Marsha", "en": "Yeah. Yeah, you do.", "zh": "嗯。是的，你确实有。" },
+        { "speaker": "Anna", "en": "Washington, DC is my new home. But I like remembering my old home, too.", "zh": "华盛顿特区是我的新家。不过我也喜欢想起我的老家。" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "How is Anna feeling?",
+          "choices": ["Homesick", "Angry", "Bored"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "What do Anna's mother and father do?",
+          "choices": ["They raise sheep", "They are rodeo clowns", "They make guitars"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "Who is Aunt Lavender?",
+          "choices": ["Anna's father's sister", "Anna's mom's sister", "Uncle John's daughter"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 12: Meet My Family (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-13",
+      "number": 13,
+      "title": "Let's Learn English Lesson 13",
+      "subtitle": "Happy Birthday, William Shakespeare!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/7/73/73103ed5-8133-4a1a-9219-cfef86973f25_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-13-happy-birthday-william-shakespeare/3312239.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hello! In Washington D.C. there are many things to do on a Sunday afternoon. I like to exercise. I like to shop. I like to garden. But today I feel bored. When I feel bored I always look for something unusual to do! I hear music. Let’s go see! What is going on here?", "zh": "嗨！在华盛顿特区，周日下午有很多事可以做。我喜欢锻炼。我喜欢购物。我喜欢园艺。可今天我觉得无聊。无聊的时候，我总是找点特别的事做！我听到音乐了。我们去看看！这里在干什么？" },
+        { "speaker": "Rebecca", "en": "It’s a big birthday party for the writer William Shakespeare.", "zh": "这是作家威廉·莎士比亚的大型生日派对。" },
+        { "speaker": "Anna", "en": "This is a party for William Shakespeare?", "zh": "这是给威廉·莎士比亚办的派对？" },
+        { "speaker": "Rebecca", "en": "Yes!", "zh": "是的！" },
+        { "speaker": "Anna", "en": "Awesome!", "zh": "太棒了！" },
+        { "speaker": "Rebecca", "en": "Awesome!", "zh": "太棒了！" },
+        { "speaker": "Anna", "en": "This is a drum band. I never listen to a drum band. But today I am listening to a drum band because it’s Shakespeare’s birthday!", "zh": "这是鼓乐队。我从来没听过鼓乐队。可今天我在听鼓乐队，因为今天是莎士比亚的生日！" },
+        { "speaker": "Anna", "en": "This is a puppet show. I never watch puppet shows. But today I am watching a puppet show because it’s Shakespeare’s birthday!", "zh": "这是木偶戏。我从来不看木偶戏。可今天我在看木偶戏，因为今天是莎士比亚的生日！" },
+        { "speaker": "Anna", "en": "My clothes are usual. His clothes are unusual.", "zh": "我的衣服很平常。他的衣服不平常。" },
+        { "speaker": "Anna", "en": "In Washington, D.C. seeing a politician or even the President is usual. Seeing the Queen of England is very unusual! Your majesty!", "zh": "在华盛顿特区，见到政客甚至总统都很平常。见到英国女王就非常不平常！女王陛下！" },
+        { "speaker": "Anna", "en": "This is sword fighting. I never sword fight. But today I am sword fighting because it’s Shakespeare’s birthday!", "zh": "这是击剑。我从来不击剑。可今天我在击剑，因为今天是莎士比亚的生日！" },
+        { "speaker": "Anna", "en": "There are many things to do in Washington, D.C. -- some usual, some unusual.", "zh": "在华盛顿特区有很多事可以做——有的平常，有的不平常。" },
+        { "speaker": "Anna", "en": "Today, I am not bored because … it is William Shakespeare’s birthday!", "zh": "今天我不无聊了，因为……今天是威廉·莎士比亚的生日！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Why is there a big party?",
+          "choices": ["It is Anna's birthday", "It is a birthday party for William Shakespeare", "It is Independence Day"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What does Anna say she never watches?",
+          "choices": ["Puppet shows", "A drum band", "Sword fighting"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What is very unusual in Washington, D.C.?",
+          "choices": ["Seeing a politician", "Seeing the President", "Seeing the Queen of England"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 13: Happy Birthday, William Shakespeare! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-14",
+      "number": 14,
+      "title": "Let's Learn English Lesson 14",
+      "subtitle": "How About This?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/3/3d/3d8d63a8-2984-4469-9737-d34b0d519506_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-14-how-about-this/3323771.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hi, there! In Washington, D.C. people do many things in the evening. They go listen to music. They eat at a restaurant. They go to the theater.", "zh": "大家好！在华盛顿特区，人们晚上会做很多事。他们去听音乐。他们去餐馆吃饭。他们去看戏。" },
+        { "speaker": "Anna", "en": "Tonight I am going to the theater with my friends. But I don’t know what clothes to wear. Maybe this magazine can help.", "zh": "今晚我要和朋友去剧院。可我不知道穿什么。也许这本杂志能帮上忙。" },
+        { "speaker": "Anna", "en": "Her clothes are beautiful! I really want a friend like her to help me.", "zh": "她的衣服真漂亮！我真想有个像她这样的朋友来帮我。" },
+        { "speaker": "Anna", "en": "Who are you?", "zh": "你是谁？" },
+        { "speaker": "Genie", "en": "I am Genie! You want help. I am here to help you find the right clothes!", "zh": "我是精灵！你需要帮助。我来帮你找到合适的衣服！" },
+        { "speaker": "Anna", "en": "Awesome! How about jeans and a t-shirt?", "zh": "太好了！牛仔裤和 T 恤怎么样？" },
+        { "speaker": "Genie", "en": "No! Jeans and a t-shirt are too casual. How about something more formal?", "zh": "不行！牛仔裤和 T 恤太休闲了。穿正式一点的怎么样？" },
+        { "speaker": "Anna", "en": "Sure!", "zh": "好啊！" },
+        { "speaker": "Anna", "en": "Wow! Genie, this dress is beautiful. But it’s not the right size. It’s too small.", "zh": "哇！精灵，这件裙子很漂亮。可尺码不对。太小了。" },
+        { "speaker": "Genie", "en": "Yes, it is too small. But green looks great on you.", "zh": "是的，太小了。不过绿色很适合你。" },
+        { "speaker": "Anna", "en": "Thanks.", "zh": "谢谢。" },
+        { "speaker": "Genie", "en": "Take off the green dress. Let’s try a green shirt and a skirt.", "zh": "把绿裙子脱下来。我们试试绿衬衫和裙子。" },
+        { "speaker": "Anna", "en": "Oh, Genie! This green shirt is too large and this orange skirt is too orange.", "zh": "哦，精灵！这件绿衬衫太大了，这条橙色裙子也太橙了。" },
+        { "speaker": "Genie", "en": "Yes, the right size for you is medium. Let’s try again.", "zh": "是的，你的正确尺码是中号。我们再试一次。" },
+        { "speaker": "Anna", "en": "Oh, I don’t like this outfit.", "zh": "哦，我不喜欢这套衣服。" },
+        { "speaker": "Genie", "en": "No. That does not match.", "zh": "不行。那不搭配。" },
+        { "speaker": "Anna", "en": "Nothing.", "zh": "什么都没有。" },
+        { "speaker": "Anna", "en": "These clothes are formal: a suit jacket, a dress shirt and a tie! They look great!", "zh": "这些衣服很正式：西装外套、正装衬衫和领带！看起来很棒！" },
+        { "speaker": "Genie", "en": "Those clothes look great … for a man! Something is wrong.", "zh": "那些衣服看起来很棒……对男人来说！有点不对。" },
+        { "speaker": "Anna", "en": "Let me see.", "zh": "让我看看。" },
+        { "speaker": "Anna", "en": "There. Now try.", "zh": "好了。现在试试。" },
+        { "speaker": "Genie", "en": "Oh. Thanks! Now these clothes look great on you!", "zh": "哦。谢谢！现在这些衣服穿在你身上很棒！" },
+        { "speaker": "Anna", "en": "They do! Um, Genie, can you put on a gold belt?", "zh": "是的！嗯，精灵，你能加上一条金腰带吗？" },
+        { "speaker": "Genie", "en": "Sure!", "zh": "当然！" },
+        { "speaker": "Genie", "en": "That looks great.", "zh": "看起来很棒。" },
+        { "speaker": "Anna", "en": "Can you put on a jacket?", "zh": "你能加上一件外套吗？" },
+        { "speaker": "Genie", "en": "Why not?", "zh": "为什么不呢？" },
+        { "speaker": "Anna", "en": "I love the jacket! How about a hat?", "zh": "我喜欢这件外套！帽子怎么样？" },
+        { "speaker": "Genie", "en": "Why not?", "zh": "为什么不呢？" },
+        { "speaker": "Genie", "en": "Mm, take off the hat. That’s better.", "zh": "嗯，把帽子摘掉。这样更好。" },
+        { "speaker": "Anna", "en": "Genie, these clothes look and feel great! Let’s go to the theater!", "zh": "精灵，这些衣服看起来、穿起来都很棒！我们去剧院吧！" },
+        { "speaker": "Genie", "en": "Sorry, Anna. I have to help other friends. Go to the magazine if you want me to help again.", "zh": "抱歉，安娜。我还要去帮别的朋友。要是还想让我帮忙，就去找那本杂志。" },
+        { "speaker": "Anna", "en": "Thanks, Genie. Sure thing. Goodbye!", "zh": "谢谢，精灵。没问题。再见！" },
+        { "speaker": "Genie", "en": "Goodbye!", "zh": "再见！" },
+        { "speaker": "Anna", "en": "There are many places in DC to go for a great evening out! And it’s nice to have a friend to help me look my best. Until next time! Bye!", "zh": "华盛顿特区有很多地方适合过一个美好的夜晚！有个朋友帮我打扮得漂漂亮亮，真好。下次见！再见！" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where is Anna going tonight?",
+          "choices": ["To a restaurant", "To the theater", "To listen to music"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Why does Genie say no to jeans and a t-shirt?",
+          "choices": ["They are too casual", "They are too small", "They are too orange"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What is the right size for Anna?",
+          "choices": ["Small", "Medium", "Large"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 14: How About This? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-15",
+      "number": 15,
+      "title": "Let's Learn English Lesson 15",
+      "subtitle": "I Love People-Watching!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/b/b0/b07eac5a-cc3a-4f3e-821c-ecae337b5415_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-15-i-love-people-watching/3343720.html",
+      "dialogue": [
+        { "speaker": "Anna", "en": "Hello! People from all over the world come to Washington, D.C. When I’m at work, I love eating lunch outside. I like to watch people walking by. They all look very different. Today, my friend Ashley is eating lunch with me.", "zh": "嗨！世界各地的人都会来华盛顿特区。上班的时候，我喜欢在外面吃午饭。我喜欢看路过的人。他们看起来都不一样。今天，我的朋友阿什莉和我一起吃午饭。" },
+        { "speaker": "Anna", "en": "Ashley, today the weather is beautiful, isn’t it?", "zh": "阿什莉，今天天气真好，对吧？" },
+        { "speaker": "Ashley", "en": "Yes, it is. Ahh. Ooh, we have to return to work!", "zh": "是的。啊。哦，我们得回去上班了！" },
+        { "speaker": "Anna", "en": "No, we have time! Let’s people-watch a little more.", "zh": "不，我们还有时间！再看一会儿路人吧。" },
+        { "speaker": "Ashley", "en": "Okay.", "zh": "好吧。" },
+        { "speaker": "Anna", "en": "Oh, I know her. She works in my office! Keyana, hi! Come and join us!", "zh": "哦，我认识她。她在我办公室工作！基亚娜，嗨！过来一起坐吧！" },
+        { "speaker": "Keyana", "en": "Hi Anna, how are you?", "zh": "嗨，安娜，你好吗？" },
+        { "speaker": "Anna", "en": "I’m doing great! Keyana, this is my friend Ashley.", "zh": "我很好！基亚娜，这是我的朋友阿什莉。" },
+        { "speaker": "Keyana", "en": "Hi, Ashley!", "zh": "嗨，阿什莉！" },
+        { "speaker": "Anna", "en": "We need to return to work. But the weather is beautiful and people-watching is fun!", "zh": "我们得回去上班。可天气真好，看路人也很有趣！" },
+        { "speaker": "Keyana", "en": "I love people-watching too!", "zh": "我也喜欢看路人！" },
+        { "speaker": "Anna", "en": "Well, have a seat! It is fun to see how people are different or the same.", "zh": "那就坐吧！看看大家哪里不同、哪里相同，很有意思。" },
+        { "speaker": "Keyana", "en": "It is. For example, Anna, you are tall. But Ashley and I are short.", "zh": "是啊。比如说，安娜，你很高。可阿什莉和我都很矮。" },
+        { "speaker": "Anna", "en": "And Keyana, you and Ashley have brown eyes; I have blue eyes.", "zh": "还有，基亚娜，你和阿什莉是棕色眼睛；我是蓝眼睛。" },
+        { "speaker": "Keyana", "en": "You two have light skin and I have dark skin.", "zh": "你们俩皮肤较浅，我皮肤较深。" },
+        { "speaker": "Anna", "en": "Ashley, you have straight hair. Keyana and I have curly hair.", "zh": "阿什莉，你是直发。基亚娜和我是卷发。" },
+        { "speaker": "Ashley", "en": "You have very curly hair, Anna.", "zh": "安娜，你的头发卷得很厉害。" },
+        { "speaker": "Keyana", "en": "I need to return to work. See you, Anna! Nice to meet you Ashley!", "zh": "我得回去上班了。再见，安娜！很高兴认识你，阿什莉！" },
+        { "speaker": "Ashley", "en": "Bye, Keyana!", "zh": "再见，基亚娜！" },
+        { "speaker": "Ashley", "en": "Anna, I have to go, too. Are you returning to work?", "zh": "安娜，我也得走了。你要回去上班吗？" },
+        { "speaker": "Anna", "en": "I still have time. And this sun feels so good!", "zh": "我还有时间。这阳光感觉真好！" },
+        { "speaker": "Ashley", "en": "Um, Anna, what does your boss look like?", "zh": "嗯，安娜，你的老板长什么样？" },
+        { "speaker": "Anna", "en": "She is short. She has straight, light hair.", "zh": "她个子矮。她是直的浅色头发。" },
+        { "speaker": "Ashley", "en": "Does she wear glasses?", "zh": "她戴眼镜吗？" },
+        { "speaker": "Anna", "en": "Yes. Yes, she does.", "zh": "是的。她戴眼镜。" },
+        { "speaker": "Ashley", "en": "Is she wearing a blue sweater today?", "zh": "她今天穿着蓝毛衣吗？" },
+        { "speaker": "Anna", "en": "How do you know that?", "zh": "你怎么知道的？" },
+        { "speaker": "Ashley", "en": "She’s coming this way.", "zh": "她正朝这边走来。" },
+        { "speaker": "Anna", "en": "Oh no! Hide me!", "zh": "哦不！把我藏起来！" },
+        { "speaker": "Ashley", "en": "Um, bye, Anna. Call me later.", "zh": "嗯，再见，安娜。回头给我打电话。" },
+        { "speaker": "Anna", "en": "Bye, Ashley! Talk to you later!", "zh": "再见，阿什莉！回头聊！" },
+        { "speaker": "Caty", "en": "Anna? Is that you?", "zh": "安娜？是你吗？" },
+        { "speaker": "Anna", "en": "Ms. Weaver! Hi!", "zh": "韦弗女士！嗨！" },
+        { "speaker": "Caty", "en": "What are you doing behind that bench?", "zh": "你在长椅后面干什么？" },
+        { "speaker": "Anna", "en": "I am looking for my, my … stick. Here it is.", "zh": "我在找我的、我的……棍子。在这儿。" },
+        { "speaker": "Anna", "en": "I am people-watching. Oh! But it’s time to return to work!", "zh": "我在看路人。哦！可是该回去上班了！" },
+        { "speaker": "Caty", "en": "No need to hurry. I love people-watching too! Let’s sit!", "zh": "不用着急。我也喜欢看路人！我们坐下吧！" },
+        { "speaker": "Anna", "en": "Sure! Ahh.", "zh": "好啊！啊。" },
+        { "speaker": "Caty", "en": "It’s a beautiful day, isn’t it?", "zh": "今天天气真好，对吧？" },
+        { "speaker": "Anna", "en": "Yes. Yes, it is, Ms. Weaver.", "zh": "是的。是的，韦弗女士。" },
+        { "speaker": "Anna", "en": "People-watching in D.C. is fun. It makes me forget the time!", "zh": "在特区看路人很有趣。它让我忘了时间！" },
+        { "speaker": "Anna", "en": "Until next time! Ahh.", "zh": "下次见！啊。" }
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What do Anna and her friends like to do at lunch?",
+          "choices": ["Go shopping", "People-watch", "Play soccer"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Who has blue eyes?",
+          "choices": ["Anna", "Ashley", "Keyana"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Anna say her boss looks like?",
+          "choices": ["Tall, with curly dark hair", "Short, with straight, light hair", "Short, with curly brown hair"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 15: I Love People-Watching! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
     }
   ]
 }

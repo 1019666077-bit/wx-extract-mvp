@@ -243,7 +243,7 @@ function renderCatalog(catalog, levelId) {
 
   const catalogHeading = document.querySelector(".catalog-section h2");
   if (catalogHeading) {
-    catalogHeading.textContent = `${level.title} · ${lessons.length}`;
+    catalogHeading.textContent = `${level.id === "lle2" ? "Level 2" : "Level 1"} · ${lessons.length}`;
   }
 
   const catalogNote = document.querySelector(".catalog-note");
@@ -386,6 +386,7 @@ function applyCatalogFilter(filter, root) {
   const empty = document.getElementById("catalog-filter-empty");
   const heading = document.querySelector(".catalog-section h2");
   const total = Number(root.dataset.total || cards.length);
+  const levelLabel = root.dataset.level === "lle2" ? "Level 2" : "Level 1";
   let visible = 0;
 
   cards.forEach((card) => {
@@ -401,7 +402,9 @@ function applyCatalogFilter(filter, root) {
   }
   if (heading) {
     heading.textContent =
-      filter === "all" ? `Lessons · 课程 · ${total}` : `Lessons · 课程 · ${visible} / ${total}`;
+      filter === "all"
+        ? `${levelLabel} · ${total}`
+        : `${levelLabel} · ${visible} / ${total}`;
   }
 }
 

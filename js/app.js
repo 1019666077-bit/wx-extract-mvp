@@ -1,5 +1,6 @@
 const PROGRESS_KEY = "voa-lle-progress";
 const OLD_QUIZ_KEY = "voa-lle1-01-quiz";
+const WECHAT_CONTACT = "15232188653";
 
 function escapeHtml(value) {
   return String(value)
@@ -82,12 +83,59 @@ function getLessonStatus(entry) {
 
 function statusLabel(status) {
   if (status === "done") {
-    return "Done";
+    return "已完成";
   }
   if (status === "in-progress") {
-    return "In progress";
+    return "学习中";
   }
-  return "Not started";
+  return "未开始";
+}
+
+function actionLabel(status) {
+  if (status === "done") {
+    return "复习";
+  }
+  if (status === "in-progress") {
+    return "继续";
+  }
+  return "开始";
+}
+
+function completedCount(lessons, progress) {
+  return lessons.filter((lesson) => progress[lesson.id]?.completed === true).length;
+}
+
+function isLevelCleared(lessons, progress) {
+  return lessons.length > 0 && lessons.every((lesson) => progress[lesson.id]?.completed === true);
+}
+
+function neighborLessons(lessons, currentId) {
+  const index = lessons.findIndex((lesson) => lesson.id === currentId);
+  return {
+    prev: index > 0 ? lessons[index - 1] : null,
+    next: index >= 0 && index < lessons.length - 1 ? lessons[index + 1] : null,
+  };
+}
+
+function catalogNoteText(lessonCount, unlocked) {
+  if (unlocked) {
+    return `已解锁 Level 1 全部 ${lessonCount} 课。免费试学第 1–5 课对所有人开放。坚持打卡、复习错题本，把这套课学下去。`;
+  }
+  return `免费试学第 1–5 课。开通解锁 Level 1 全部 ${lessonCount} 课，并保留打卡与错题本，帮你学得下去。微信联系 ${WECHAT_CONTACT} 付款（¥39 月 / ¥99 季），获兑换码后到开通页输入解锁。`;
+}
+
+function checkinHintText() {
+  const dates = VOAStudy.readCheckins();
+  const today = VOAStudy.todayKey();
+  const streak = VOAStudy.currentStreak(dates);
+  const checkedToday = dates.includes(today);
+  if (checkedToday) {
+    return streak > 1 ? `今日已打卡 · 连续 ${streak} 天` : "今日已打卡";
+  }
+  if (streak > 0) {
+    return `连续打卡 ${streak} 天，今天还没打`;
+  }
+  return "提交测验即可打卡";
 }
 
 function markLessonStarted(lessonId) {
@@ -128,12 +176,14 @@ function renderCatalog(payload) {
 
   const catalogNote = document.querySelector(".catalog-note");
   if (catalogNote) {
-    catalogNote.textContent = unlocked
-      ? "已解锁全部已上线课程。免费试学第 1–5 课对所有人开放。"
-      : "免费试学：第 1–5 课。开通后解锁全部已上线课程。微信付款后用兑换码解锁。";
+    catalogNote.textContent = catalogNoteText(lessons.length, unlocked);
   }
 
+  renderLevelProgress(lessons, progress);
+  renderLevelClear(lessons, progress, unlocked);
+
   const root = document.getElementById("catalog");
+  root.dataset.total = String(lessons.length);
   root.innerHTML = lessons
     .map((lesson) => {
       const locked = !VOAUnlock.canOpenLesson(lesson);
@@ -141,13 +191,12 @@ function renderCatalog(payload) {
       const status = getLessonStatus(entry);
       const scoreText =
         !locked && status === "done" && typeof entry.score === "number"
-          ? `Quiz ${entry.score} / ${entry.total}`
+          ? `测验 ${entry.score} / ${entry.total}`
           : "";
-      const action = status === "not-started" ? "Start" : status === "done" ? "Review" : "Continue";
       const href = locked
         ? "pricing.html"
         : `lesson.html?id=${encodeURIComponent(lesson.id)}`;
-      const buttonLabel = locked ? "开通解锁" : action;
+      const buttonLabel = locked ? "开通解锁" : actionLabel(status);
       const badge = locked
         ? `<p class="status-badge status-locked">未解锁</p>`
         : `<p class="status-badge status-${status}">${statusLabel(status)}</p>`;
@@ -166,6 +215,121 @@ function renderCatalog(payload) {
       `;
     })
     .join("");
+
+  bindCatalogFilters(root, unlocked);
+}
+
+function renderLevelProgress(lessons, progress) {
+  const root = document.getElementById("level-progress");
+  if (!root) {
+    return;
+  }
+
+  const total = lessons.length;
+  const done = completedCount(lessons, progress);
+  const percent = total ? Math.round((done / total) * 100) : 0;
+  root.hidden = false;
+  root.innerHTML = `
+    <div class="level-progress-row">
+      <p class="level-progress-count">已完成 <strong>${done}</strong> / ${total}</p>
+      <p class="level-progress-hint">${escapeHtml(checkinHintText())} · <a href="progress.html">打开打卡</a></p>
+    </div>
+    <div class="level-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="Level 1 完成进度">
+      <span style="width: ${percent}%"></span>
+    </div>
+  `;
+}
+
+function renderLevelClear(lessons, progress, unlocked) {
+  const root = document.getElementById("level-clear");
+  if (!root) {
+    return;
+  }
+
+  if (!isLevelCleared(lessons, progress)) {
+    root.hidden = true;
+    root.innerHTML = "";
+    return;
+  }
+
+  const cta = unlocked
+    ? `<a class="btn primary" href="progress.html">继续打卡</a>
+       <a class="btn" href="wrongbook.html">复习错题本</a>`
+    : `<a class="btn primary" href="pricing.html">开通解锁，把习惯学下去</a>
+       <a class="btn" href="wrongbook.html">复习错题本</a>`;
+
+  root.hidden = false;
+  root.innerHTML = `
+    <p class="eyebrow">Level 1</p>
+    <h2>通关！你学完了这一级</h2>
+    <p>恭喜完成全部 ${lessons.length} 课测验。坚持学完不容易——接下来用打卡保持节奏，用错题本把漏掉的句子补上。</p>
+    <div class="quiz-actions">${cta}</div>
+  `;
+}
+
+function applyCatalogFilter(filter, root) {
+  const cards = root.querySelectorAll(".lesson-card");
+  const empty = document.getElementById("catalog-filter-empty");
+  const heading = document.querySelector(".catalog-section h2");
+  const total = Number(root.dataset.total || cards.length);
+  let visible = 0;
+
+  cards.forEach((card) => {
+    const show = filter === "all" || card.dataset.status === filter;
+    card.hidden = !show;
+    if (show) {
+      visible += 1;
+    }
+  });
+
+  if (empty) {
+    empty.hidden = visible > 0;
+  }
+  if (heading) {
+    heading.textContent =
+      filter === "all" ? `Lessons · 课程 · ${total}` : `Lessons · 课程 · ${visible} / ${total}`;
+  }
+}
+
+function bindCatalogFilters(root, unlocked) {
+  const toolbar = document.getElementById("catalog-filters");
+  if (!toolbar) {
+    return;
+  }
+
+  const chips = [
+    { id: "all", label: "全部" },
+    { id: "not-started", label: "未学" },
+    { id: "in-progress", label: "进行中" },
+    { id: "done", label: "已完成" },
+  ];
+  if (!unlocked) {
+    chips.push({ id: "locked", label: "未解锁" });
+  }
+
+  toolbar.hidden = false;
+  toolbar.innerHTML = chips
+    .map(
+      (chip, index) => `
+        <button type="button" class="filter-chip${index === 0 ? " is-active" : ""}" data-filter="${chip.id}" aria-pressed="${index === 0 ? "true" : "false"}">${chip.label}</button>
+      `
+    )
+    .join("");
+
+  toolbar.addEventListener("click", (event) => {
+    const button = event.target.closest("[data-filter]");
+    if (!button) {
+      return;
+    }
+    toolbar.querySelectorAll("[data-filter]").forEach((el) => {
+      const active = el === button;
+      el.classList.toggle("is-active", active);
+      el.setAttribute("aria-pressed", active ? "true" : "false");
+    });
+    applyCatalogFilter(button.dataset.filter, root);
+  });
+
+  applyCatalogFilter("all", root);
 }
 
 function renderDialogue(dialogue) {
@@ -304,7 +468,7 @@ function renderCheckinCalendar(root, view) {
   return { year, month };
 }
 
-function gradeQuiz(lesson) {
+function gradeQuiz(lesson, lessons = []) {
   const answers = collectAnswers(lesson.quiz);
   const score = lesson.quiz.reduce((total, question) => {
     return total + (answers[question.id] === question.answerIndex ? 1 : 0);
@@ -314,13 +478,11 @@ function gradeQuiz(lesson) {
   VOAStudy.recordCheckin();
   updateWrongbookNavCount();
 
-  const result = document.getElementById("quiz-result");
-  result.textContent = `${resultText} · 已打卡 ${VOAStudy.todayKey()}`;
-  if (wrongCount) {
-    result.textContent += ` · 错题本 ${wrongCount} 题`;
-  }
-
   const progress = readProgress();
+  const remainingBefore = lessons.filter((item) => !progress[item.id]?.completed);
+  const isLastIncomplete =
+    remainingBefore.length === 1 && remainingBefore[0].id === lesson.id;
+
   progress[lesson.id] = {
     score,
     total: lesson.quiz.length,
@@ -330,6 +492,17 @@ function gradeQuiz(lesson) {
     resultText,
   };
   writeProgress(progress);
+
+  const result = document.getElementById("quiz-result");
+  let summary = `${resultText} · 已打卡 ${VOAStudy.todayKey()}`;
+  if (wrongCount) {
+    summary += ` · 错题本 ${wrongCount} 题`;
+  }
+  if (isLastIncomplete && lessons.length) {
+    result.innerHTML = `${escapeHtml(summary)}<span class="clear-note">Level 1 通关！你完成了全部 ${lessons.length} 课测验。<a href="index.html">回课表看通关纪念</a></span>`;
+    return;
+  }
+  result.textContent = summary;
 }
 
 function resetQuiz(lessonId) {
@@ -349,7 +522,7 @@ function hideLessonBody() {
   });
 }
 
-function renderLessonPaywall(lesson) {
+function renderLessonPaywall(lesson, lessonCount = 52) {
   hideLessonBody();
   document.title = `${lesson.title} · 未解锁`;
   document.getElementById("lesson-title").textContent = lesson.title;
@@ -367,14 +540,57 @@ function renderLessonPaywall(lesson) {
   overlay.setAttribute("aria-label", "Paywall");
   overlay.innerHTML = `
     <h2>课程未解锁</h2>
-    <p>免费试学：第 1–5 课。开通后解锁全部已上线课程。</p>
-    <p>微信付款后获得兑换码，在开通页输入即可解锁。</p>
+    <p>免费试学第 1–5 课。开通解锁 Level 1 全部 ${lessonCount} 课，并保留打卡与错题本，帮你学得下去。</p>
+    <p>下一步：去开通页看方案，微信联系 <strong>${WECHAT_CONTACT}</strong> 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。</p>
     <div class="quiz-actions">
-      <a class="btn primary" href="pricing.html">去开通 / 兑换</a>
+      <a class="btn primary" href="pricing.html">去开通 · 输入兑换码</a>
       <a class="btn" href="index.html">返回课表</a>
     </div>
   `;
-  document.querySelector(".header").after(overlay);
+  const header = document.querySelector(".header");
+  const pager = header && header.nextElementSibling;
+  if (pager && pager.hasAttribute("data-lesson-pager")) {
+    pager.after(overlay);
+  } else if (header) {
+    header.after(overlay);
+  }
+}
+
+function renderLessonPager(lessons, current) {
+  const pagers = document.querySelectorAll("[data-lesson-pager]");
+  if (!pagers.length || !current) {
+    return;
+  }
+
+  const { prev, next } = neighborLessons(lessons, current.id);
+  const linkFor = (lesson, kind) => {
+    if (!lesson) {
+      const label = kind === "prev" ? "已是第一课" : "已是最后一课";
+      return `<span class="pager-placeholder">${label}</span>`;
+    }
+    const locked = !VOAUnlock.canOpenLesson(lesson);
+    const href = locked ? "pricing.html" : `lesson.html?id=${encodeURIComponent(lesson.id)}`;
+    const label = locked
+      ? kind === "prev"
+        ? "上一课未解锁 · 去开通"
+        : "下一课未解锁 · 去开通"
+      : kind === "prev"
+        ? `← 上一课 · ${lesson.number}`
+        : `下一课 · ${lesson.number} →`;
+    const cls = ["btn"];
+    if (!locked && kind === "next") {
+      cls.push("primary");
+    }
+    if (locked) {
+      cls.push("is-locked-link");
+    }
+    return `<a class="${cls.join(" ")}" href="${href}">${escapeHtml(label)}</a>`;
+  };
+
+  pagers.forEach((pager) => {
+    pager.hidden = false;
+    pager.innerHTML = `${linkFor(prev, "prev")}${linkFor(next, "next")}`;
+  });
 }
 
 function renderLesson(lesson) {
@@ -515,17 +731,19 @@ async function initLesson() {
     updateWrongbookNavCount();
 
     if (!VOAUnlock.canOpenLesson(lesson)) {
-      renderLessonPaywall(lesson);
+      renderLessonPaywall(lesson, lessons.length);
+      renderLessonPager(lessons, lesson);
       return;
     }
 
     markLessonStarted(lesson.id);
     renderLesson(lesson);
+    renderLessonPager(lessons, lesson);
     applyStoredQuiz(readProgress()[lesson.id]);
 
     document.getElementById("quiz-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      gradeQuiz(lesson);
+      gradeQuiz(lesson, lessons);
     });
     document.getElementById("reset-quiz").addEventListener("click", () => {
       resetQuiz(lesson.id);
@@ -587,7 +805,7 @@ async function initPricing() {
           input.value = "";
         }
         renderPricingState();
-        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}。可学习全部已上线课程。`;
+        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}。可学习 Level 1 全部课程。`;
       } catch (error) {
         result.textContent = error.message || "解锁失败。";
       }

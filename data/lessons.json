@@ -3108,6 +3108,116 @@
         }
       ],
       "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 50: Back to School (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-51",
+      "number": 51,
+      "title": "Let's Learn English Lesson 51",
+      "subtitle": "A Good Habit",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/8/89/89e2abe4-1e50-4a83-b771-b3623fffb590_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-51-a-good-habit/3773577.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "D.C. is a popular city for marathons! A marathon is a long race. Many marathons raise money for charity, you know - good works. A marathon is a good fitness goal too. I want to challenge myself in a marathon and maybe win a medal! Hey, there's Ashley. Ashley! Wait for me! It's Anna!", "zh": "华盛顿特区很适合跑马拉松！马拉松是一场很长的比赛。很多马拉松是为慈善筹款，也就是做好事。马拉松也是很好的健身目标。我想挑战自己跑一场马拉松，也许还能赢一枚奖牌！嘿，那是阿什莉。阿什莉！等等我！是安娜！"},
+        {"speaker": "Anna", "en": "Ash ... ley. Ash ... ley.", "zh": "阿什……莉。阿什……莉。"},
+        {"speaker": "Ashley", "en": "Are you okay, Anna?", "zh": "你还好吗，安娜？"},
+        {"speaker": "Anna", "en": "I just ran ... from over there.", "zh": "我刚从那边……跑过来。"},
+        {"speaker": "Ashley", "en": "Do you want to sit down, Anna? Do you want some water? No thanks. You keep it.", "zh": "安娜，你想坐下吗？要喝点水吗？不用了。你留着吧。"},
+        {"speaker": "Anna", "en": "Thanks. I didn't know you like to run.", "zh": "谢谢。我不知道你喜欢跑步。"},
+        {"speaker": "Ashley", "en": "I love running. In fact, this weekend, I will run in my first marathon.", "zh": "我爱跑步。其实，这个周末我要跑人生第一场马拉松。"},
+        {"speaker": "Anna", "en": "Me ... too.", "zh": "我……也是。"},
+        {"speaker": "Ashley", "en": "Really? You are running in a marathon?", "zh": "真的？你也要跑马拉松？"},
+        {"speaker": "Anna", "en": "Yeah. In a couple of days. Why do you ask ... like that?", "zh": "对。过几天。你为什么那样问……？"},
+        {"speaker": "Ashley", "en": "What do you know about running in a marathon?", "zh": "你对跑马拉松了解多少？"},
+        {"speaker": "Anna", "en": "I know that there's a lot of running and sometimes you can win a medal.", "zh": "我知道要跑很多路，有时还能赢一枚奖牌。"},
+        {"speaker": "Ashley", "en": "How long have you been training?", "zh": "你训练多久了？"},
+        {"speaker": "Anna", "en": "I started today. I've been training for an hour ... no, an hour and seven minutes!", "zh": "我今天才开始。我已经训练一个小时了……不，一个小时零七分钟！"},
+        {"speaker": "Ashley", "en": "Anna, training a little every day is a good habit to get into. Not all at once!", "zh": "安娜，每天训练一点点才是好习惯。不要一次全练完！"},
+        {"speaker": "Anna", "en": "Thanks for the advice, Ashley. But I'm running in a special race.", "zh": "谢谢你的建议，阿什莉。不过我要跑的是一场特别的比赛。"},
+        {"speaker": "Ashley", "en": "What marathon is it?", "zh": "是哪一场马拉松？"},
+        {"speaker": "Anna", "en": "I don't remember the name. But the website said everyone gets a medal.", "zh": "我记不得名字了。但网站说每个人都能拿到奖牌。"},
+        {"speaker": "Ashley", "en": "Okay, well, good luck, Anna!", "zh": "好吧，祝你好运，安娜！"},
+        {"speaker": "Anna", "en": "Thanks, Ashley. Good luck to you, too.", "zh": "谢谢，阿什莉。也祝你好运。"},
+        {"speaker": "Anna", "en": "Hello. I am here to enter the race!", "zh": "你好。我来报名参赛！"},
+        {"speaker": "Woman", "en": "But ma'am you can't enter the race.", "zh": "可是女士，你不能参加这场比赛。"},
+        {"speaker": "Anna", "en": "What? How am I going to meet my goal?", "zh": "什么？那我怎么完成我的目标？"},
+        {"speaker": "Woman", "en": "Ma'am, this race is for children. You can't run with the children.", "zh": "女士，这场比赛是给孩子的。你不能和孩子们一起跑。"},
+        {"speaker": "Anna", "en": "Children? Children. That's perfect. I just might win!", "zh": "孩子？孩子。太完美了。我也许能赢！"},
+        {"speaker": "Woman", "en": "No, ma'am. You really can't run with the children.", "zh": "不行，女士。你真的不能和孩子们一起跑。"},
+        {"speaker": "Anna", "en": "I'm sorry. Of course. I was only thinking of my goal.", "zh": "抱歉。当然。我只想着自己的目标了。"},
+        {"speaker": "Woman", "en": "Well, you can help us with our goal, which is to raise money for sick children. Would you like to help us?", "zh": "那你可以帮我们完成目标，就是为生病的孩子筹款。你愿意帮忙吗？"},
+        {"speaker": "Anna", "en": "I've just found my new goal. And I get to wear a medal. Good job!", "zh": "我刚找到了新目标。而且我还能戴奖牌。干得好！"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What does Ashley say is a good habit?",
+          "choices": ["Training a little every day", "Running a marathon with no training", "Sitting down after every race"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "How long has Anna been training?",
+          "choices": ["For a year", "For an hour and seven minutes", "For a couple of weeks"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "Why can't Anna enter the race?",
+          "choices": ["She forgot her medal", "Ashley already won", "The race is for children"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 51: A Good Habit (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-52",
+      "number": 52,
+      "title": "Let's Learn English Lesson 52",
+      "subtitle": "Taking Chances",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/6/6d/6dfd5f69-746e-45bd-86b1-1dba49c23a48_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-52-taking-chances/3805454.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Hello, it's Anna! I did it - Washington, D.C. is my home. Looking back over the past year, I've done so many amazing things! I have met people from all over the world. I've made many good friends. And I have a great job! And I've taken a lot of chances. And now I have some really big news! Wait for it... and 3, 2, 1...", "zh": "你好，我是安娜！我做到了——华盛顿特区就是我的家。回望过去这一年，我做了很多了不起的事！我认识了来自世界各地的人。我交了很多好朋友。而且我有一份很棒的工作！我也试过很多次。现在我有个特别大的消息！等着……3、2、1……"},
+        {"speaker": "Kelly", "en": "Hello and welcome to \"Around the Corner and Across the Street from the Actor's Studio!\" Many people dream of becoming actors. But very often, those dreams don't come true.", "zh": "大家好，欢迎来到《演员工作室街角对面》！很多人梦想成为演员。但那些梦想常常无法实现。"},
+        {"speaker": "Kelly", "en": "Well, today we will meet a woman and -- her acting career has really taken off. In fact, she acted in my play, \"The Woods Are Alive!\" Oh. She really brought the part of Tree Number 15 to life! Let's give a warm welcome to Anna Matteo!", "zh": "今天我们要见一位女士——她的演艺事业真的起飞了。其实，她演过我的话剧《树林活了！》。哦。她把15号树这个角色演活了！让我们热烈欢迎安娜·马特奥！"},
+        {"speaker": "Anna", "en": "Thank you. Thank you so much for having me here.", "zh": "谢谢。非常感谢邀请我来。"},
+        {"speaker": "Kelly", "en": "Please, please, sit down. Here, here, let me help you.", "zh": "请坐，请坐。来，来，我帮你。"},
+        {"speaker": "Anna", "en": "Thanks. Thanks. Wow, it is great to see you again, Director Kelly!", "zh": "谢谢，谢谢。哇，再次见到你真好，凯利导演！"},
+        {"speaker": "Kelly", "en": "It's great to see you too, Anna. I see you are still wearing your tree costume. Does this have anything to do with your big news?", "zh": "见到你也很高兴，安娜。我看你还穿着树的服装。这和你的大消息有关吗？"},
+        {"speaker": "Anna", "en": "Yes. Yes, it does.", "zh": "是的。有关。"},
+        {"speaker": "Kelly", "en": "Well, Anna, please share that news with us.", "zh": "那安娜，请跟我们分享这个消息吧。"},
+        {"speaker": "Anna", "en": "Kelly, I will be acting in three movies.", "zh": "凯利，我将出演三部电影。"},
+        {"speaker": "Kelly", "en": "That is amazing! Anna, tell us more.", "zh": "太棒了！安娜，再多说一点。"},
+        {"speaker": "Anna", "en": "Well, the first is a science fiction movie. The second is a romantic comedy. And the third is an action movie.", "zh": "第一部是科幻片。第二部是爱情喜剧。第三部是动作片。"},
+        {"speaker": "Kelly", "en": "That is so great! Let me guess -- you're playing a tree in all of them!", "zh": "太好了！让我猜猜——你在这三部里都演一棵树！"},
+        {"speaker": "Anna", "en": "Yes! This is what happened. To prepare for your play, I had to find out what it was like to BE a tree in the world. I had to find out where to eat, where to shop, where to meet people and how to get around the city.", "zh": "对！事情是这样的。为了准备你的话剧，我得弄清楚在这个世界上当一棵树是什么感觉。我得弄清楚去哪里吃饭、去哪里购物、去哪里见人，还有怎么在城里走动。"},
+        {"speaker": "Kelly", "en": "Amazing. I think big things are going to happen for you, Anna. So, tell me, will you be moving to Hollywood for a career in movies?", "zh": "太厉害了。我觉得你要有大事发生了，安娜。那告诉我，你会搬去好莱坞发展电影事业吗？"},
+        {"speaker": "Anna", "en": "No. I'll make the movies and then come back. Washington, D.C. is my home.", "zh": "不会。我拍完电影就会回来。华盛顿特区才是我的家。"},
+        {"speaker": "Kelly", "en": "I'm sure your family is very proud.", "zh": "我肯定你的家人非常骄傲。"},
+        {"speaker": "Anna", "en": "Yes, they are. You know, Kelly, not too long ago, I didn't feel very good about my life. I had to make a change. So, I took some chances. Sometimes I succeeded. Sometimes I failed. But I will never stop trying.", "zh": "是的。你知道，凯利，不久前我对生活感觉不太好。我必须做出改变。所以我试了一些机会。有时成功。有时失败。但我永远不会停止尝试。"},
+        {"speaker": "Kelly", "en": "Well, thank you for sharing your news and so much more with us, Anna. Until next time ...", "zh": "谢谢你和我们分享这个消息，还有这么多故事，安娜。下次见……"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What part did Anna play in Kelly's play?",
+          "choices": ["Tree Number 15", "Director Kelly", "A movie star"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "How many movies will Anna act in?",
+          "choices": ["One", "Two", "Three"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "Will Anna move to Hollywood?",
+          "choices": ["Yes, she will stay there", "No, she will come back to Washington, D.C.", "She has not decided"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 52: Taking Chances (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
     }
   ]
 }

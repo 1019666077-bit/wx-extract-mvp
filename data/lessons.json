@@ -2142,6 +2142,300 @@
         }
       ],
       "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 35: Let's Make Dinner! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-36",
+      "number": 36,
+      "title": "Let's Learn English Lesson 36",
+      "subtitle": "I Can Fix This!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/6/6f/6f867a3f-a8f1-4a89-b18c-892f85e60d35_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-36-i-can-fix-this/3568962.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Last time on Let's Learn English, Marsha and I invited friends to a dinner party but I shopped with the wrong list. Guests are coming soon. Marsha is worried but I have a plan. Let's see what it is.", "zh": "上次在 Let's Learn English 里，玛莎和我请了朋友来吃晚餐，可我按错清单买了东西。客人马上就到。玛莎很担心，但我有计划。我们看看是什么。"},
+        {"speaker": "Anna", "en": "I just need a couple of ingredients. Marsha, please hand me the flour.", "zh": "我只需要几样材料。玛莎，请把面粉递给我。"},
+        {"speaker": "Marsha", "en": "Anna, where is the flour? It's not in the cabinets.", "zh": "安娜，面粉在哪里？不在柜子里。"},
+        {"speaker": "Anna", "en": "I put the flour inside the refrigerator.", "zh": "我把面粉放进冰箱了。"},
+        {"speaker": "Marsha", "en": "Why?", "zh": "为什么？"},
+        {"speaker": "Anna", "en": "It's cold and dry in the refrigerator. See, it says: \"Put in a cold, dry place.\" Okay, now, Marsha, please hand me the eggs.", "zh": "冰箱里又冷又干。看，上面写着：“放在阴凉干燥处。”好，现在，玛莎，请把鸡蛋递给我。"},
+        {"speaker": "Marsha", "en": "Anna, where are the eggs?", "zh": "安娜，鸡蛋在哪里？"},
+        {"speaker": "Anna", "en": "The eggs are inside the cabinet under the sink.", "zh": "鸡蛋在水槽下面的柜子里。"},
+        {"speaker": "Marsha", "en": "Anna, why are the eggs in here?", "zh": "安娜，鸡蛋怎么会在这儿？"},
+        {"speaker": "Anna", "en": "On the farm, we always put the eggs there. How else can the chickens see them? Okay. You clean the living room. I will make dinner.", "zh": "在农场，我们总是把鸡蛋放那儿。不然鸡怎么看见它们？好。你去打扫客厅。我来做晚餐。"},
+        {"speaker": "Marsha", "en": "What are you going to make with these ingredients?", "zh": "你要用这些材料做什么？"},
+        {"speaker": "Anna", "en": "I have a plan.", "zh": "我有计划。"},
+        {"speaker": "Marsha", "en": "Okay, the apartment is clean. The kitchen is not. What are you cooking?", "zh": "好，公寓干净了。厨房没有。你在做什么？"},
+        {"speaker": "Anna", "en": "I made my favorite recipe: peanut-butter-banana pancakes!", "zh": "我做了我最喜欢的食谱：花生酱香蕉煎饼！"},
+        {"speaker": "Marsha", "en": "You made breakfast.", "zh": "你做了早餐。"},
+        {"speaker": "Anna", "en": "Yes! I call it let's-eat-breakfast-for-dinner dinner!", "zh": "是的！我叫它“晚餐吃早餐”晚餐！"},
+        {"speaker": "Marsha", "en": "Anna! Mmm! Hey, this tastes good! Anna, you made it work!", "zh": "安娜！嗯！嘿，这味道不错！安娜，你搞定了！"},
+        {"speaker": "Anna", "en": "That's our guests!", "zh": "客人到了！"},
+        {"speaker": "Marsha", "en": "I'll answer the door.", "zh": "我去开门。"},
+        {"speaker": "Anna", "en": "I'll finish here.", "zh": "我在这儿收尾。"},
+        {"speaker": "Anna", "en": "Like I said, sometimes Marsha worries too much. When something goes wrong with your plan, just change the plan! Till next time!", "zh": "就像我说的，有时候玛莎担心太多。计划出问题时，就换个计划！下次见！"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where does Anna put the flour?",
+          "choices": ["In the cabinets", "Inside the refrigerator", "Under the sink"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "Where are the eggs?",
+          "choices": ["Inside the cabinet under the sink", "In the refrigerator", "On the table"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Anna cook for dinner?",
+          "choices": ["A salad", "Chicken soup", "Peanut-butter-banana pancakes"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 36: I Can Fix This! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-37",
+      "number": 37,
+      "title": "Let's Learn English Lesson 37",
+      "subtitle": "Let's Agree to Disagree",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/4/46/4619beb2-18dd-45cb-a55a-42989d3beeec_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-37-lets-agree-to-disagree/3574029.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "You know, I am from the country and sometimes I miss it. But I really like life in the city! I love the city. Oh, look. Someone lost a bag. Maybe it's theirs. Excuse me. Is this bag yours?", "zh": "你知道，我来自乡下，有时会想念它。可我真的喜欢城市生活！我爱这座城市。哦，看。有人丢了一个包。也许是他们的。打扰一下。这是你的包吗？"},
+        {"speaker": "Dr. Jill", "en": "No. It's not mine. It might be hers.", "zh": "不是。不是我的。也许是她的。"},
+        {"speaker": "Anna", "en": "Excuse me. Is this bag yours?", "zh": "打扰一下。这是你的包吗？"},
+        {"speaker": "Sarah", "en": "No. It's not mine. It might be his.", "zh": "不是。不是我的。也许是他的。"},
+        {"speaker": "Anna", "en": "Thank you. Hello. Is this bag yours?", "zh": "谢谢。你好。这是你的包吗？"},
+        {"speaker": "Phil", "en": "Yes, that's mine. These are all my travel things. Thank you, thank you!", "zh": "是的，那是我的。这些都是我的旅行用品。谢谢，谢谢！"},
+        {"speaker": "Anna", "en": "Are you okay? You seem ... nervous.", "zh": "你还好吗？你看起来……有点紧张。"},
+        {"speaker": "Phil", "en": "Well, this is my first visit to Washington, D.C. I'm from a small town in the country. I feel a little lost.", "zh": "嗯，这是我第一次来华盛顿特区。我来自乡下的一个小镇。我有点迷路。"},
+        {"speaker": "Anna", "en": "I am from the country too! And I understand. When I first came here, I felt lost ... all the time.", "zh": "我也来自乡下！我理解。我刚来这儿时，也总是觉得迷路……一直都是。"},
+        {"speaker": "Phil", "en": "So, do you like living in the country or in the city?", "zh": "那么，你喜欢住在乡下还是城市？"},
+        {"speaker": "Anna", "en": "I like to live in the city.", "zh": "我喜欢住在城市。"},
+        {"speaker": "Phil", "en": "Why?", "zh": "为什么？"},
+        {"speaker": "Anna", "en": "The city is exciting! It has more culture than the country. There are many museums and restaurants. Every night, there is theater and music. And, there are more jobs. That is why I'm here.", "zh": "城市很精彩！它比乡下更有文化。有很多博物馆和餐厅。每天晚上都有戏剧和音乐。而且，工作也更多。所以我才来这儿。"},
+        {"speaker": "Phil", "en": "Well, I agree. There is more culture in the city and there might be more jobs. But the country has more nature! It's peaceful and beautiful. There are more trees and mountains. The air is clean. You can go hiking and camping. The city is not beautiful. It's noisy and dirty.", "zh": "嗯，我同意。城市更有文化，工作也许也更多。可乡下有更多自然！它安静又美丽。树和山更多。空气干净。你可以去徒步和露营。城市不美。它又吵又脏。"},
+        {"speaker": "Anna", "en": "I disagree. I think all the different buildings are beautiful. And I like to watch all the different people.", "zh": "我不同意。我觉得各种不同的建筑都很美。而且我喜欢看各种各样的人。"},
+        {"speaker": "Phil", "en": "That's another thing that is different. People in the country are friendly. They always say \"hello!\" Here, no one says \"hello.\" I think city people are rude.", "zh": "还有一点不一样。乡下的人很友好。他们总是说“你好！”在这儿，没人说“你好”。我觉得城里人很没礼貌。"},
+        {"speaker": "Anna", "en": "Well, I agree. Country people are friendly. But I don't think city people are rude. I think they're just busy.", "zh": "嗯，我同意。乡下人很友好。可我不觉得城里人没礼貌。我觉得他们只是很忙。"},
+        {"speaker": "Phil", "en": "That's a good point.", "zh": "说得好。"},
+        {"speaker": "Anna", "en": "Look at me. I live in the city and I said \"hello\" to you.", "zh": "看看我。我住在城市，还跟你说了“你好”。"},
+        {"speaker": "Phil", "en": "But you are from the country.", "zh": "可你来自乡下。"},
+        {"speaker": "Anna", "en": "I have an idea. Let's say \"hello!\" to people -- to many people!", "zh": "我有个主意。我们跟人们说“你好！”——跟很多人说！"},
+        {"speaker": "Phil", "en": "What? Why?", "zh": "什么？为什么？"},
+        {"speaker": "Anna", "en": "Well, if we say \"hello,\" maybe they will say \"hello\" to other people ... Hello!", "zh": "嗯，如果我们说“你好”，也许他们也会对别人说“你好”……你好！"},
+        {"speaker": "Phil", "en": "... and they will say \"hello\" to more people! That's a great idea! I'm glad you found my bag.", "zh": "……然后他们会对更多人说“你好”！这主意太好了！很高兴你找到了我的包。"},
+        {"speaker": "Anna", "en": "Come on. Let's go say \"hello\" to people.", "zh": "来吧。我们去跟人们说“你好”。"},
+        {"speaker": "Anna", "en": "We don't have to agree with people. They have their opinions. We have ours. And as we like to say, you can always agree to disagree! Until next time...! Hello!", "zh": "我们不必同意别人。他们有他们的看法。我们有我们的。就像我们常说的，你可以求同存异！下次见……！你好！"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Whose bag did Anna find?",
+          "choices": ["Dr. Jill's", "Sarah's", "Phil's"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q2",
+          "prompt": "What does Phil like about the country?",
+          "choices": ["More nature", "More museums", "More jobs"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What do Anna and Phil decide to say to people?",
+          "choices": ["Goodbye", "Hello", "Thank you"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 37: Let's Agree to Disagree (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-38",
+      "number": 38,
+      "title": "Let's Learn English Lesson 38",
+      "subtitle": "She's My Best Friend!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/1/1d/1d74e0d6-82c0-4782-bebd-e5bbd65a8057_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-38-shes-my-best-friend/3591967.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Hello! I have great news. My best friend from my hometown is coming here -- to Washington, D.C.! I can't wait to catch up with her! Oh! I gotta go. Her train arrives in 10 minutes!", "zh": "嗨！我有好消息。我家乡最好的朋友要来这儿——华盛顿特区！我等不及要跟她叙旧了！哦！我得走了。她的火车 10 分钟后到！"},
+        {"speaker": "Anna", "en": "Penelope!", "zh": "佩内洛普！"},
+        {"speaker": "Penelope", "en": "Anna! I am really happy to see you!", "zh": "安娜！见到你真开心！"},
+        {"speaker": "Anna", "en": "Me too! How was your trip?", "zh": "我也是！旅途怎么样？"},
+        {"speaker": "Penelope", "en": "It was fine.", "zh": "还不错。"},
+        {"speaker": "Anna", "en": "Let me help you with your bags.", "zh": "我来帮你拿行李。"},
+        {"speaker": "Penelope", "en": "I'm really excited to be in Washington, D.C.! I can't wait to hear about ... everything!", "zh": "来到华盛顿特区我真的很兴奋！我等不及想听……所有的事！"},
+        {"speaker": "Anna", "en": "I have so much to tell you. Let's go to my apartment. We can talk over a hot cup of tea.", "zh": "我有好多话要跟你说。我们去我的公寓。可以边喝茶边聊。"},
+        {"speaker": "Penelope", "en": "I love your apartment building, Anna. Is your rent expensive?", "zh": "我喜欢你的公寓楼，安娜。房租贵吗？"},
+        {"speaker": "Anna", "en": "Well, I have a roommate. So, we split the rent.", "zh": "嗯，我有室友。所以我们平分房租。"},
+        {"speaker": "Penelope", "en": "Oh, that's right. Is your roommate nice?", "zh": "哦，对。你的室友人好吗？"},
+        {"speaker": "Anna", "en": "Marsha is the nicest person I know in this city. Sometimes she worries too much. And she says I'm the messiest cook she knows. But we are great roommates.", "zh": "玛莎是我在这座城市认识的最好的人。有时她担心太多。她还说我是她认识的最乱的厨师。不过我们是很好的室友。"},
+        {"speaker": "Penelope", "en": "So, Anna, is it hard to make friends in D.C.?", "zh": "那么，安娜，在华盛顿特区交朋友难吗？"},
+        {"speaker": "Anna", "en": "At first it was hard. But now, Marsha is a good friend. And there's Pete. Of all the people I know in D.C., Pete is the most serious and also the silliest.", "zh": "一开始很难。但现在，玛莎是好朋友。还有皮特。在我认识的华盛顿特区的人里，皮特最认真，也最傻。"},
+        {"speaker": "Penelope", "en": "He sounds ... interesting.", "zh": "他听起来……挺有意思。"},
+        {"speaker": "Anna", "en": "Jonathan and Ashley are two other good friends of mine. In the city, they are the friendliest people I know. They always help me when I need it.", "zh": "乔纳森和阿什莉是我另外两个好朋友。在这座城市，他们是我认识的最友好的人。我需要时他们总是帮我。"},
+        {"speaker": "Penelope", "en": "Your friends sound great! So, tell me about your job.", "zh": "你的朋友听起来很棒！那么，跟我说说你的工作。"},
+        {"speaker": "Anna", "en": "I love my work! I make a children's show called the \"Time Traveling Treehouse.\"", "zh": "我爱我的工作！我做了一个儿童节目，叫“时光旅行树屋”。"},
+        {"speaker": "Penelope", "en": "Anna, that is the best job for you! Do you remember when we were little? We played in that old treehouse behind my family's house for hours!", "zh": "安娜，那最适合你！你还记得我们小时候吗？我们在我家后面那座旧树屋里玩好几个小时！"},
+        {"speaker": "Anna", "en": "I forgot about that! We thought it really time traveled! It is really good to talk to you. New friends are good. But old friends are the best.", "zh": "我都忘了！我们以为它真的会时光旅行！跟你聊天真好。新朋友很好。但老朋友最好。"},
+        {"speaker": "Penelope", "en": "I know. Our hometown isn't the same now. You are not there.", "zh": "我知道。我们的家乡现在不一样了。你不在那儿。"},
+        {"speaker": "Anna", "en": "No crying. No crying. Penelope, why don't you move here and live with me and Marsha?", "zh": "别哭。别哭。佩内洛普，你为什么不搬来这儿，跟我和玛莎一起住？"},
+        {"speaker": "Penelope", "en": "Anna, I can't leave our hometown. You forget -- I love my job, too.", "zh": "安娜，我不能离开家乡。你忘了——我也爱我的工作。"},
+        {"speaker": "Anna", "en": "I didn't forget. You are the most famous turkey farmer I know!", "zh": "我没忘。你是我认识的最有名的火鸡农场主！"},
+        {"speaker": "Penelope", "en": "Thanks, Anna.", "zh": "谢谢，安娜。"},
+        {"speaker": "Anna", "en": "Come on. Let's go eat dinner at one of D.C.'s most famous restaurants.", "zh": "来吧。我们去华盛顿特区最有名的餐厅之一吃晚饭。"},
+        {"speaker": "Penelope", "en": "Awesome!", "zh": "太棒了！"},
+        {"speaker": "Anna", "en": "I have a great apartment. I love my work. And I have awesome friends. I am the luckiest woman in Washington, D.C.", "zh": "我有很棒的公寓。我爱我的工作。我还有很棒的朋友。我是华盛顿特区最幸运的女人。"},
+        {"speaker": "Anna", "en": "Until next time?", "zh": "下次见？"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Who is visiting Anna from her hometown?",
+          "choices": ["Marsha", "Penelope", "Ashley"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What children's show does Anna make?",
+          "choices": ["The Time Traveling Treehouse", "Hair Be Good", "The Woods Are Alive"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What is Penelope's job?",
+          "choices": ["A news writer", "A turkey farmer", "A director"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 38: She's My Best Friend! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-39",
+      "number": 39,
+      "title": "Let's Learn English Lesson 39",
+      "subtitle": "It's Unbelievable!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/0/08/088b68c0-58b8-46dc-9796-d6c542e3d44e_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-39-its-unbelieveable/3598920.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Hello! Winter weather in Washington, D.C. can be really windy. And wind messes up my hair. It is really windy today. Look at my hair. Will it be windy this weekend? I'll listen to the news. I am tired of my untidy hair.", "zh": "嗨！华盛顿特区的冬天可能很刮风。风还会弄乱我的头发。今天风真大。看看我的头发。这个周末会刮风吗？我要听新闻。我厌倦了乱糟糟的头发。"},
+        {"speaker": "Pete", "en": "Are you tired of your untidy hair?", "zh": "你厌倦乱糟糟的头发了吗？"},
+        {"speaker": "Anna", "en": "Yes. Yes, I am. And it's ... uncomfortable.", "zh": "是的。是的，我厌倦了。而且……不舒服。"},
+        {"speaker": "Pete", "en": "Is it ... uncomfortable?", "zh": "它……不舒服吗？"},
+        {"speaker": "Anna", "en": "Yes. Yes, it is! Hey, is that ... Pete?", "zh": "是的。是的，不舒服！嘿，那是……皮特吗？"},
+        {"speaker": "Pete", "en": "Hi. I'm Pete. And I have the perfect product for you -- Hair Be Good!", "zh": "嗨。我是皮特。我有最适合你的产品——Hair Be Good！"},
+        {"speaker": "Pete", "en": "Just spray Hair Be Good on your hair ... wrap in a towel ... and you are done! Hair Be Good works and it's inexpensive. One can costs only $10! So, go online and order your Hair Be Good today!", "zh": "只要把 Hair Be Good 喷在头发上……用毛巾包起来……就完成了！Hair Be Good 有效，而且不贵。一罐只要 10 美元！所以，今天就上网订购你的 Hair Be Good 吧！"},
+        {"speaker": "Anna", "en": "Hair Be Good sounds perfect! And I can trust Pete! I am buying some right now. Okay, I will order one can of Hair Be Good for $10. I'll pay with a credit card. My delivery will arrive in 2 days. Awesome!", "zh": "Hair Be Good 听起来很完美！而且我可以信任皮特！我现在就买。好，我要订一罐 10 美元的 Hair Be Good。我用信用卡付款。货会在 2 天内到。太棒了！"},
+        {"speaker": "Anna", "en": "It arrived! I'll use it before I go to work. Okay, Hair Be Good, make my untidy hair tidy! No, make it ... fabulous!", "zh": "到了！我上班前先用。好，Hair Be Good，让我乱糟糟的头发变整齐！不，让它……美极了！"},
+        {"speaker": "Amelia", "en": "Hi, Anna.", "zh": "嗨，安娜。"},
+        {"speaker": "Anna", "en": "Hello, Amelia!", "zh": "你好，阿梅莉亚！"},
+        {"speaker": "Amelia", "en": "Anna, you look ... different.", "zh": "安娜，你看起来……不一样。"},
+        {"speaker": "Anna", "en": "Thanks! I used a new product called Hair Be Good.", "zh": "谢谢！我用了一种新产品，叫 Hair Be Good。"},
+        {"speaker": "Amelia", "en": "Well, it's not.", "zh": "嗯，它并不。"},
+        {"speaker": "Anna", "en": "It's not what?", "zh": "并不什么？"},
+        {"speaker": "Amelia", "en": "Good. Your hair does not look good.", "zh": "好。你的头发看起来不好。"},
+        {"speaker": "Anna", "en": "Oh, no! This is not good.", "zh": "哦，不！这可不好。"},
+        {"speaker": "Amelia", "en": "Why don't you go home and take care of ... this.", "zh": "你为什么不回家处理一下……这个。"},
+        {"speaker": "Anna", "en": "Good idea.", "zh": "好主意。"},
+        {"speaker": "Pete", "en": "Hi, Anna!", "zh": "嗨，安娜！"},
+        {"speaker": "Anna", "en": "Hello, Pete.", "zh": "你好，皮特。"},
+        {"speaker": "Pete", "en": "Is something wrong?", "zh": "出什么事了？"},
+        {"speaker": "Anna", "en": "This is wrong!", "zh": "这就有问题！"},
+        {"speaker": "Pete", "en": "What did you do to your hair?", "zh": "你对头发做了什么？"},
+        {"speaker": "Anna", "en": "Hair Be Good did this to my hair.", "zh": "是 Hair Be Good 把我的头发弄成这样的。"},
+        {"speaker": "Pete", "en": "Ah, you bought it!", "zh": "啊，你买了！"},
+        {"speaker": "Anna", "en": "Yes, I bought it. You said in your ad it was a perfect product. This is not perfect. This is imperfect!", "zh": "是的，我买了。你在广告里说它是完美产品。这不完美。这是不完美的！"},
+        {"speaker": "Pete", "en": "It's unbelievable!", "zh": "这难以置信！"},
+        {"speaker": "Anna", "en": "I believed your ad, Pete. It was dishonest!", "zh": "我相信了你的广告，皮特。它不诚实！"},
+        {"speaker": "Pete", "en": "Anna, you don't believe everything you see in ads, do you?", "zh": "安娜，你不会相信广告里看到的一切，对吧？"},
+        {"speaker": "Anna", "en": "No, Pete. Just the ones with my friends.", "zh": "不会，皮特。只相信有我朋友的那些。"},
+        {"speaker": "Pete", "en": "Your hair will be okay. Just wash it ... a couple of times.", "zh": "你的头发会没事的。只要洗一洗……洗几次。"},
+        {"speaker": "Anna", "en": "Thanks. Thanks a lot, Pete! Here, here's your product! You should call it \"Hair Be Really, Really Bad!\" Until next time, Pete! Till next time.", "zh": "谢谢。非常感谢，皮特！给，这是你的产品！你该叫它“头发真的、真的很糟”！下次见，皮特！下次见。"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What product does Anna buy?",
+          "choices": ["Hair Be Good", "Pancake mix", "A tree costume"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "How much does one can cost?",
+          "choices": ["$5", "$10", "$20"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "What does Anna say about Pete's ad?",
+          "choices": ["It was inexpensive", "It was perfect", "It was dishonest"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 39: It's Unbelievable! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-40",
+      "number": 40,
+      "title": "Let's Learn English Lesson 40",
+      "subtitle": "The Woods Are Alive",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/a/ac/ac4d5f85-718e-433f-a4e6-989e842db20a_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-40-the-woods-are-alive/3630341.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Happy New Year! Some people, at the start of a new year, make a resolution -- a promise to yourself to be better. I thought about my resolution carefully. I want to be an actor on the stage! Today I will audition for a show called \"The Woods Are Alive!\" Wish me luck!", "zh": "新年快乐！有些人在新年开始时会立下决心——对自己承诺要做得更好。我认真想过我的决心。我想当舞台演员！今天我要去试镜一部叫“树林活了！”的戏。祝我好运！"},
+        {"speaker": "Director", "en": "Next! What is your name?", "zh": "下一位！你叫什么名字？"},
+        {"speaker": "Anna", "en": "My name is Anna Matteo.", "zh": "我叫安娜·马泰奥。"},
+        {"speaker": "Director", "en": "Are you ready to audition?", "zh": "你准备好试镜了吗？"},
+        {"speaker": "Anna", "en": "Yes.", "zh": "准备好了。"},
+        {"speaker": "Director", "en": "Great. Let's begin on page 1. Here is the story. You are lost in the woods. You are searching desperately for a way out. Suddenly, you hear something.", "zh": "很好。我们从第 1 页开始。故事是这样的。你在树林里迷路了。你拼命找出路。突然，你听到了什么。"},
+        {"speaker": "Director", "en": "Now, say your line.", "zh": "现在，说你的台词。"},
+        {"speaker": "Anna", "en": "'What was that? Hello. Is someone there?'", "zh": "“那是什么？你好。有人在吗？”"},
+        {"speaker": "Director", "en": "Anna, you are speaking too softly. Can you speak more loudly and a little more, um, seriously?", "zh": "安娜，你说得太轻了。你能说大声一点，再稍微……嗯，严肃一点吗？"},
+        {"speaker": "Anna", "en": "Yes, of course I can. 'What was that? Hello. Is someone there?' Is that loud enough?", "zh": "当然可以。‘那是什么？你好。有人在吗？’这样够大声吗？"},
+        {"speaker": "Director", "en": "Yes, that is loud enough. Let's turn to page 25. In this scene, you are moving slowly and quietly through the woods.", "zh": "够了。我们翻到第 25 页。这场戏里，你慢慢地、悄悄地穿过树林。"},
+        {"speaker": "Director", "en": "Anna. Anna! You are walking quickly and loudly. Walk slowly and quietly.", "zh": "安娜。安娜！你走得又快又响。慢慢走，悄悄走。"},
+        {"speaker": "Anna", "en": "I'm walking slowly and quietly. I am walking…", "zh": "我在慢慢地、悄悄地走。我在走……"},
+        {"speaker": "Director", "en": "Anna. Anna. You don't need to say \"slowly\" and \"quietly.\" Alright, let's try the last scene. Turn to page 48. I say my line first, then you say your line.", "zh": "安娜。安娜。你不用把“慢慢地”和“悄悄地”说出来。好，我们试最后一场。翻到第 48 页。我先说台词，然后你再说。"},
+        {"speaker": "Director", "en": "'You will never get out of these woods alive! Mwa-ha-ha-ha-ha Mwa-ha-ha-ha-ha!'", "zh": "“你永远走不出这片树林！哇哈哈哈哈 哇哈哈哈哈！”"},
+        {"speaker": "Anna", "en": "'Yes, I will.'", "zh": "“不，我会的。”"},
+        {"speaker": "Director", "en": "Okay, Anna, you said that line -- you said that line really late. You need to say it earlier.", "zh": "好，安娜，你那句台词——你说得太晚了。你得说早一点。"},
+        {"speaker": "Anna", "en": "Sorry. Sorry. Let me try again.", "zh": "抱歉。抱歉。让我再试一次。"},
+        {"speaker": "Director", "en": "'You will never …'", "zh": "“你永远……”"},
+        {"speaker": "Anna", "en": "'Yes, I will.'", "zh": "“不，我会的。”"},
+        {"speaker": "Director", "en": "'… get out of the woods alive.'", "zh": "“……走不出这片树林。”"},
+        {"speaker": "Anna", "en": "I was too early, wasn't I?", "zh": "我太早了，对吧？"},
+        {"speaker": "Director", "en": "Yes. Yes, you were.", "zh": "对。对，太早了。"},
+        {"speaker": "Anna", "en": "Director, how am I doing?", "zh": "导演，我表现得怎么样？"},
+        {"speaker": "Director", "en": "You know, Anna. I think that I have the perfect part for you.", "zh": "你知道吗，安娜。我想我有一个最适合你的角色。"},
+        {"speaker": "Director", "en": "The costume is in the back. Please go try it on.", "zh": "服装在后面。请去试穿。"},
+        {"speaker": "Anna", "en": "Awesome!", "zh": "太棒了！"},
+        {"speaker": "Director", "en": "Oh, Anna, that fits you perfectly!", "zh": "哦，安娜，这套太适合你了！"},
+        {"speaker": "Anna", "en": "I'm a tree. I'm a tree in … \"The Woods Are Alive!\" Yes!", "zh": "我是一棵树。我是“树林活了！”里的一棵树！太好了！"},
+        {"speaker": "Anna", "en": "My new year is starting awesomely! Excuse me, Director! I have a great idea for my tree. Oh, wait! Until next time!", "zh": "我的新年开始得真棒！打扰一下，导演！我对我的树有个好主意。哦，等一下！下次见！"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What is Anna's New Year resolution?",
+          "choices": ["To cook dinner", "To be an actor on the stage", "To move back home"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What show is Anna auditioning for?",
+          "choices": ["The Woods Are Alive", "The Time Traveling Treehouse", "Hair Be Good"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What part does Anna get?",
+          "choices": ["The director", "A lost hiker", "A tree"],
+          "answerIndex": 2
+        }
+      ],
+      "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 40: The Woods Are Alive (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
     }
   ]
 }

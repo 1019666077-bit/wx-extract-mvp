@@ -62,7 +62,7 @@ This is an MVP demo shell. There is **no payment API, login, or backend**. Codes
 
 Do not treat this allowlist as security. Anyone who can read the repo can redeem.
 
-Copy on the site: 免费试学：第 1–5 课 · 开通后解锁全部已上线课程 · 用兑换码解锁（演示码见 README）. Pricing also notes 非官方 · 基于 VOA Learning English 公版, and that payment is manual: 付款后联系发放兑换码, 微信号：（待填写微信号）.
+Copy on the site: 免费试学：第 1–5 课 · 开通后解锁全部已上线课程 · 用兑换码解锁（演示码见 README）. Pricing also notes 非官方 · 基于 VOA Learning English 公版, and that payment is manual: 付款后联系发放兑换码, 微信号：15232188653.
 
 ## Lesson data
 

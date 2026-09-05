@@ -130,7 +130,7 @@ function renderCatalog(payload) {
   if (catalogNote) {
     catalogNote.textContent = unlocked
       ? "已解锁全部已上线课程。免费试学第 1–5 课对所有人开放。"
-      : "免费试学：第 1–5 课。开通后解锁全部已上线课程。用兑换码解锁（演示码见 README）。";
+      : "免费试学：第 1–5 课。开通后解锁全部已上线课程。微信付款后用兑换码解锁。";
   }
 
   const root = document.getElementById("catalog");
@@ -368,7 +368,7 @@ function renderLessonPaywall(lesson) {
   overlay.innerHTML = `
     <h2>课程未解锁</h2>
     <p>免费试学：第 1–5 课。开通后解锁全部已上线课程。</p>
-    <p>用兑换码解锁（演示码见 README）。</p>
+    <p>微信付款后获得兑换码，在开通页输入即可解锁。</p>
     <div class="quiz-actions">
       <a class="btn primary" href="pricing.html">去开通 / 兑换</a>
       <a class="btn" href="index.html">返回课表</a>

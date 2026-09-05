@@ -674,6 +674,20 @@ h3 {
   margin-top: 6px;
 }
 
+.pay-steps-title {
+  margin: 20px 0 0;
+  font-size: 1rem;
+}
+
+.pay-steps {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+}
+
+.pay-steps li + li {
+  margin-top: 6px;
+}
+
 .pay-note,
 .unlock-status {
   margin: 16px 0 0;

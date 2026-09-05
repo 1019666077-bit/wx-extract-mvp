@@ -7,7 +7,7 @@ This is frontend-only. There is no login, backend, or crawler. It is **not** an 
 ## What it includes
 
 - A course catalog on the home page
-- Ten lessons: `lle1-01` through `lle1-10`
+- Fifteen lessons: `lle1-01` through `lle1-15`
 - Official VOA MP4 video in an HTML5 player (YouTube is an optional fallback link only)
 - Dialogue lines in English and Chinese
 - Three multiple-choice quiz questions per lesson
@@ -44,25 +44,22 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 
 ## How to use
 
-1. Open the catalog. Lessons 1–5 are free; 6–10 (and any later id with number > 5) show a lock badge until unlocked.
+1. Open the catalog. Lessons 1–5 are free; 6–15 (and any later id with number > 5) show a lock badge until unlocked.
 2. Start a free lesson, watch the VOA MP4, read the dialogue, then submit the quiz.
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
 5. Open **错题本** to review misses. **再练** returns to `lesson.html?id=...`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
-6. To open paid lessons, go to **开通** (`pricing.html`) and enter a redeem code. Nav shows **已解锁** afterward. Use **退出解锁** on the pricing page to reset for testing.
+6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 ¥39 or 季卡 ¥99, pay via WeChat **15232188653**, then enter the redeem code you receive. Nav shows **已解锁** afterward. Use **退出解锁** on the pricing page to reset this browser.
 
 ## Paywall / redeem codes
 
-This is an MVP demo shell. There is **no payment API, login, or backend**. Codes are an allowlist in `data/codes.json` and are checked in the browser.
+This is a frontend-only MVP. There is **no payment API, login, or backend**. Learners pay manually on WeChat; the operator sends a redeem code. The browser checks the code against `data/codes.json`.
 
-| Code | Plan |
-| --- | --- |
-| `VOA-DEMO-39` | 月付 ¥39 |
-| `VOA-DEMO-99` | 季卡 ¥99 |
+This allowlist is **not security**. Anyone who can read the public repo can redeem or skip the lock. Treat unused codes as burnable inventory and rotate them if they leak.
 
-Do not treat this allowlist as security. Anyone who can read the repo can redeem.
+**Operators:** follow [`docs/ops-redeem.md`](docs/ops-redeem.md) (sales copy, WeChat 15232188653, how to issue codes, how to generate a new batch with `scripts/gen-codes.py`). Do not publish unused codes on Moments, Xiaohongshu, or this README.
 
-Copy on the site: 免费试学：第 1–5 课 · 开通后解锁全部已上线课程 · 用兑换码解锁（演示码见 README）. Pricing also notes 非官方 · 基于 VOA Learning English 公版, and that payment is manual: 付款后联系发放兑换码, 微信号：（待填写微信号）.
+Site copy: 免费试学第 1–5 课 · 开通后解锁全部已上线课程 · 微信联系 15232188653 人工付款后获兑换码。
 
 ## Lesson data
 
@@ -90,6 +87,8 @@ Check-in, wrong-book, and unlock helpers can be unit-tested with:
 node --test js/study.test.js js/unlock.test.js
 ```
 
+Local testing note: there are **no public demo codes**. Unlock unit tests use their own fixtures. To try the redeem form locally, take a code from `data/codes.json` on your machine, or generate extras with `python3 scripts/gen-codes.py --monthly 1 --quarterly 1` and append them. Do not advertise those codes to end users.
+
 ## Public preview
 
 Open on phone or desktop:
@@ -100,6 +99,6 @@ GitHub Pages is served from `main` at `/` (repo root). A newly published site ca
 
 ## Scope
 
-In scope: catalog + ten static lessons with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
+In scope: catalog + fifteen static lessons with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
 
 Out of scope: login, accounts, a real payment gateway, a crawler, or a backend.

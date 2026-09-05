@@ -1,7 +1,7 @@
 {
   "course": {
     "title": "Let's Learn English",
-    "pitch": "A small self-study shell for VOA Learning English. Level 1 is complete (52 lessons). Level 2 has started (15 lessons). Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
+    "pitch": "A small self-study shell for VOA Learning English. Level 1 is complete (52 lessons). Level 2 has started (20 lessons). Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
     "disclaimer": "This is an unofficial study helper. Lesson videos and scripts come from VOA Learning English and are in the public domain. This site is not affiliated with or endorsed by Voice of America."
   },
   "levels": [
@@ -13588,6 +13588,1081 @@
             }
           ],
           "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 15: Before and After (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-16",
+          "number": 16,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 16",
+          "subtitle": "Find Your Joy!",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/e/e2/e28c9b49-99f9-4443-87ab-12329eccbdf1_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-16/4198066.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "Hi, Kaveh! Let’s go to lunch!",
+              "zh": "嗨，卡维！一起去吃午饭吧！"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "Ooh, I know a great place. When I first started working here, I would go every day!",
+              "zh": "哦，我知道一个很棒的地方。我刚来这儿工作时，每天都会去！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Great. Oh, no.",
+              "zh": "太好了。哦，不。"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "What’s wrong?",
+              "zh": "怎么了？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I lost my key! I just had it this morning.",
+              "zh": "我钥匙丢了！早上还在的。"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "You should check the Lost & Found office.",
+              "zh": "你该去失物招领处看看。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Great idea. Where is it?",
+              "zh": "好主意。在哪儿？"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "Oh, it used to be across from the cafeteria. But now it’s down in the basement next to the elevators. It’s really hard to find.",
+              "zh": "哦，以前在食堂对面。现在在地下室，电梯旁边。真的很难找。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "The Lost & Found is hard to find. That’s funny.",
+              "zh": "失物招领处很难找。好笑。"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "It is.",
+              "zh": "是啊。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "I hope Anna can find the Lost & Found office! Used to and would describe something that happened repeatedly in the past. Kaveh uses would when he says, “When I first started working here, I would go every day!” There are two differences between used to and would. Number 1: We use would only when we say the time period first. Number 2: For verbs like be, think, feel, see and understand, we can only use used to. Kaveh says, “It used to be across from the cafeteria.” Keep listening for more!",
+              "zh": "希望安娜能找到失物招领处！used to 和 would 都表示过去反复发生的事。卡维说：“When I first started working here, I would go every day!” used to 和 would 有两点不同。第一：只有先说出时间段时才用 would。第二：be、think、feel、see、understand 这类动词只能用 used to。卡维说：“It used to be across from the cafeteria.” 继续听！"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "Come in! I am Serenity.",
+              "zh": "请进！我是宁静。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Hi, Serenity. I’m Anna!",
+              "zh": "嗨，宁静。我是安娜！"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "Please, sit down. How can I help you?",
+              "zh": "请坐。我能帮你什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I lost something very important.",
+              "zh": "我丢了一件很重要的东西。"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "Shh. I already know. You need help.",
+              "zh": "嘘。我已经知道了。你需要帮助。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes. I need help finding the key …",
+              "zh": "是的。我需要帮忙找钥匙……"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "Shh. You need to find the key – the key that will give you happiness.",
+              "zh": "嘘。你需要找到那把钥匙——能给你幸福的钥匙。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes. Finding this key will make me very happy.",
+              "zh": "是的。找到这把钥匙会让我很高兴。"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "First, Anna, let me tell you a little bit about myself.",
+              "zh": "首先，安娜，让我先说说我自己。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Okay.",
+              "zh": "好。"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "I used to be a very important person with a very important job. I made a lot of money – I mean a lot.",
+              "zh": "我曾经是个很重要的人，有很重要的工作。我赚很多钱——我是说很多。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Wow. Good for you!",
+              "zh": "哇。真为你高兴！"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "No! No, it was bad for me. I lost the most important thing – the key! You’ve lost it too, haven’t you, Anna? Haven’t you?",
+              "zh": "不！不，那对我不好。我失去了最重要的东西——那把钥匙！你也失去了，对不对，安娜？对不对？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I guess. So, how does this work? Do I have to fill out a form or something?",
+              "zh": "大概吧。那这怎么弄？我要填表还是怎样？"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "No. No forms. Just answer this one question: As a child, what did you use to do to feel happy?",
+              "zh": "不用。不用填表。只回答一个问题：小时候，你常常做什么才会觉得快乐？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "When I was little, I used to sing all the time with my family. Those were good times.",
+              "zh": "我小时候常常和家人一起唱歌。那是美好的时光。"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "Singing is so joyful! I used to sing. But now that I’ve started my business, I’ve just been too busy. Too busy! Anna, why don’t you sing again?",
+              "zh": "唱歌真快乐！我以前也唱歌。可自从我开始做生意，我就太忙了。太忙了！安娜，你为什么不再唱呢？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I sing everywhere! I sing in the office. I sing on the metro. I sing in the elevators. I sing on the escalators. I sing in the bathroom. Serenity! Serenity! I really need to find my key. Yeah!",
+              "zh": "我到处都唱！我在办公室唱。我在地铁上唱。我在电梯里唱。我在扶梯上唱。我在洗手间唱。宁静！宁静！我真的需要找到我的钥匙。对！"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "Yes, we need to find the key … the key to happiness.",
+              "zh": "是的，我们需要找到那把钥匙……幸福的钥匙。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No, no. I just need to find the key to my apartment.",
+              "zh": "不，不。我只需要找到公寓钥匙。"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "I used to know. But now I don’t! Do you, Anna?",
+              "zh": "我以前知道。可现在不知道了！你知道吗，安娜？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I don’t know. I think I left it in the ladies’ room. You know, this isn’t the Lost & Found, is it?",
+              "zh": "我不知道。我想我落在女洗手间了。你知道，这儿不是失物招领处，对吧？"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "It could be the Lost & Found. I’m lost! And I used to find joy for people! I used to find joy!",
+              "zh": "这儿也可以是失物招领处。我迷路了！我以前帮人找到快乐！我以前找到快乐！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "You know, this is a bad time for you. I’ll find the Lost & Found myself. Bye, thanks.",
+              "zh": "你现在不太方便。我会自己去找失物招领处。再见，谢谢。"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "I used to find joy. I used to find joy! I used to find joy!",
+              "zh": "我以前找到快乐。我以前找到快乐！我以前找到快乐！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ah, I found my key!",
+              "zh": "啊，我找到钥匙了！"
+            },
+            {
+              "speaker": "Serenity",
+              "en": "I used to find joy!",
+              "zh": "我以前找到快乐！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Oh no. Serenity lost her joy. But at least Anna found her key! Check out our website for more!",
+              "zh": "哦不。宁静失去了她的快乐。不过至少安娜找到了钥匙！去我们的网站看更多吧！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What did Anna lose?",
+              "choices": [
+                "Her apartment key",
+                "Her flour baby",
+                "Her movie ticket"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "Who does Anna meet when she walks into the wrong office?",
+              "choices": [
+                "Serenity",
+                "Caroline",
+                "Ms. Weaver"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "As a child, what did Anna use to do to feel happy?",
+              "choices": [
+                "Sing with her family",
+                "Bake cookies",
+                "Speed walk"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 16: Find Your Joy! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-17",
+          "number": 17,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 17",
+          "subtitle": "Flour Baby, Part 1",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/9/99/99b14704-c92c-4969-9b69-cba7e81ed310_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-17/4220576.html",
+          "dialogue": [
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Anna, Pete, I have a new assignment for you – a show on single parents! What is it like for a mother or a father to raise a child by herself or himself?",
+              "zh": "安娜、皮特，我给你们一个新任务——做一期关于单亲父母的节目！一位母亲或父亲独自抚养孩子是什么样的？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "We can interview single parents. They can share their experiences themselves.",
+              "zh": "我们可以采访单亲父母。他们可以亲自分享自己的经历。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Yes, but you need to experience parenthood yourselves.",
+              "zh": "可以，可你们得自己体验一下为人父母。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ourselves?",
+              "zh": "我们自己？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Yeah, how do we do that? We’re not parents.",
+              "zh": "对啊，怎么体验？我们又不是父母。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "I asked myself the same question. I said, “Caty, how are they gonna do that?” Then an idea came to me. I will give you the babies!",
+              "zh": "我也问过自己同样的问题。我说：“凯蒂，他们要怎么做到？”然后我有了主意。我把宝宝给你们！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "You may be asking yourself the same thing that I’m asking myself: what is Ms. Weaver talking about!? I am sure we will find out shortly. This lesson teaches reflexive pronouns. Reflexive pronouns refer back to the subject of a sentence or clause. We use them when the subject and the object are the same person or thing. For example, Ms. Weaver says, “I asked myself the same question.” “I” is the subject and “myself” refers back to it. Here, she would not use the pronoun “me.” You need to use the reflexive pronoun “myself.” Reflexive pronouns are easy to find: they end in “self” or “selves.” I have a feeling we are going to see a lot of reflexive pronouns. Listen for them!",
+              "zh": "你可能也在问自己我在问的问题：韦弗女士在说什么！？我们很快就会知道。这一课教反身代词。反身代词回指句子或从句的主语。当主语和宾语是同一个人或事物时使用。比如韦弗女士说：“I asked myself the same question.” I 是主语，myself 回指它。这里不能用 me，要用反身代词 myself。反身代词很好找：以 self 或 selves 结尾。我感觉我们会听到很多反身代词。注意听！"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Here are your babies!",
+              "zh": "这是你们的宝宝！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Those are bags of flour.",
+              "zh": "那是几袋面粉。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "No, Pete, for the next six days, this is your baby. Here are your instructions. Do not leave your babies alone. A baby cannot take care of itself. And you two must do everything by yourselves. We will meet next Friday. Oh, and the person who does the best research will get an extra day of vacation. Help yourself to a baby.",
+              "zh": "不，皮特，接下来六天，这就是你的宝宝。这是你们的说明。不要把宝宝单独留下。宝宝不能照顾自己。你们两个必须自己做所有事。下周五见面。哦，研究做得最好的人会多得一天假期。自己选一个宝宝吧。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Pete, look, my baby is organic and whole grain. Your baby is ordinary.",
+              "zh": "皮特，看，我的宝宝是有机全麦的。你的宝宝很普通。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Monster! This is a great idea, Ms. Weaver!",
+              "zh": "怪物！这主意太棒了，韦弗女士！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "This is a terrible idea.",
+              "zh": "这主意糟透了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Speak for yourself, Pete! We need to throw ourselves into the research! I’m starting right now!",
+              "zh": "那是你自己的想法，皮特！我们得全身心投入研究！我现在就开始！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Hey Anna, you forgot your baby!",
+              "zh": "嘿，安娜，你忘了你的宝宝！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Come to mama!",
+              "zh": "到妈妈这儿来！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Good girl! Good girl!",
+              "zh": "好姑娘！好姑娘！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Singular reflexive pronouns end in “self.” Plural ones end in “selves.” Anna says, “We need to throw ourselves into the research!” The subject “we” is plural. So, we must use the plural reflexive pronoun “ourselves.”",
+              "zh": "单数反身代词以 self 结尾。复数以 selves 结尾。安娜说：“We need to throw ourselves into the research!” 主语 we 是复数，所以必须用复数反身代词 ourselves。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "This is hard! I hope Pete is not doing well. I really need that vacation day!",
+              "zh": "好难！希望皮特做得不好。我真的需要那天假期！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "We will all see how Pete is doing in the next episode. We’ll also learn when not to use reflexive pronouns.",
+              "zh": "下一集我们会看到皮特做得怎么样。我们也会学什么时候不用反身代词。"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What new assignment does Ms. Weaver give Anna and Pete?",
+              "choices": [
+                "A show on single parents",
+                "Cover the Washington Car Show",
+                "Interview a beekeeper"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What are the \"babies\" Ms. Weaver gives them?",
+              "choices": [
+                "Bags of flour",
+                "Real infants",
+                "Pet rocks"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "What does the person with the best research get?",
+              "choices": [
+                "An extra day of vacation",
+                "A raise",
+                "Movie tickets"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 17: Flour Baby, Part 1 (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-18",
+          "number": 18,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 18",
+          "subtitle": "Flour Baby, Part 2",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/2/20/2098556b-efbc-46af-b466-ec35e553d691_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-18/4231290.html",
+          "dialogue": [
+            {
+              "speaker": "Professor Bot",
+              "en": "In Part 1 of this two-part lesson, Ms. Weaver gave Anna and Pete an assignment. Ms. Weaver instructed them to do everything by themselves. “Themselves” is a reflexive pronoun. In today’s lesson, Ms. Weaver will look at Pete’s and Anna’s research. First, let’s see Pete’s experiment.",
+              "zh": "在这个两集课程的第一部分，韦弗女士给安娜和皮特布置了任务。她让他们自己做所有事。Themselves 是反身代词。今天这课，韦弗女士会看皮特和安娜的研究。先看皮特的实验。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Okay, Pete, let me see your research first.",
+              "zh": "好，皮特，先让我看看你的研究。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "That’s a heavy binder. And you and your Baby look great.",
+              "zh": "这本活页夹真重。你和你的宝宝看起来都很好。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Thanks, Ms. Weaver. We feel great!",
+              "zh": "谢谢，韦弗女士。我们感觉很好！"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Anna. Anna, you’re next. Anna? Anna wake up!",
+              "zh": "安娜。安娜，到你了。安娜？安娜，醒醒！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’m here, Baby! I’m here! I’m here! Here’s your bottle.",
+              "zh": "宝宝，我在！我在！我在！这是你的奶瓶。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Anna, you and your baby look awful. What happened?",
+              "zh": "安娜，你和你的宝宝看起来糟透了。发生了什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Well, I took her everywhere. Everywhere. And I fed her every three hours. So, I haven’t slept since … what day is it?",
+              "zh": "我带她去了所有地方。所有地方。而且每三个小时喂她一次。所以我从……今天星期几？就没睡过。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "It’s Friday. What happened there?",
+              "zh": "今天星期五。那儿怎么了？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh, that. Oh, that. I was making myself a salad and had a little accident with a knife. I put my flour baby in front of me. And then I accidentally stabbed it. But I gave it First Aid!",
+              "zh": "哦，那个。那个。我给自己做沙拉，刀子出了点小意外。我把面粉宝宝放在面前。然后不小心刺到它了。不过我给它做了急救！"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Is that a burn?",
+              "zh": "那是烫伤吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes. Yes it is. While I was making myself dinner, I put Baby next to me. I accidentally knocked her into the sink. So I put her in the microwave to dry. That’s when she caught fire.",
+              "zh": "是的。是烫伤。我给自己做晚饭时，把宝宝放在旁边。不小心把她碰进水槽了。所以我把她放进微波炉烘干。然后她着火了。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Okay. So, we use a reflexive pronoun when it refers to the subject of a sentence or clause. But we DON’T use a reflexive pronoun with prepositions of place. Anna uses examples of both in one sentence: While I was making myself dinner, I put Baby next to me. We use a reflexive pronoun in the first part of the sentence. “Myself” refers to the subject “I.” But in the second part of the sentence, we don’t use a reflexive pronoun in the prepositional phrase. We use the pronoun “me.” Why? “next to” is a preposition of place.",
+              "zh": "好。当它回指句子或从句的主语时，我们用反身代词。但地点介词后面不用反身代词。安娜一句话里两种都有：While I was making myself dinner, I put Baby next to me。前半句用反身代词，myself 回指主语 I。后半句介词短语里不用反身代词，而用 me。为什么？next to 是地点介词。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Anna, Anna, you should be very proud of yourself.",
+              "zh": "安娜，安娜，你应该为自己感到骄傲。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Proud? She stabbed and burned her baby!! And she only did one page of research…and it’s covered in milk. Ew.",
+              "zh": "骄傲？她刺伤还烧伤了她的宝宝！！而且她只写了一页研究……还沾满了奶。恶心。"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Yes, Pete. But she followed instructions.",
+              "zh": "是的，皮特。可她按说明做了。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Hey, I did ...",
+              "zh": "嘿，我做了……"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Please, Pete. Anna, I think your baby has lost some weight. Is there something else you want to share?",
+              "zh": "拜托，皮特。安娜，我觉得你的宝宝瘦了。你还有什么想分享的吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes. I’d like to share … these! I made them myself this morning.",
+              "zh": "有。我想分享……这些！今天早上我自己做的。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "You baked your baby? You should be ashamed of yourself!",
+              "zh": "你把宝宝烤了？你应该为自己感到羞耻！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I baked them at the end of the experiment, Pete. At that point, this was just a bag of flour.",
+              "zh": "我是在实验结束时烤的，皮特。那时候，这只是一袋面粉。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "It was always just a bag of flour!!",
+              "zh": "它一直都只是一袋面粉！！"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Pete, will you listen to yourself?! You sound crazy.",
+              "zh": "皮特，你听听自己在说什么？！你听起来像疯了。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "I sound crazy! This whole experiment was crazy!! She was the one who carried around and fed it and ...",
+              "zh": "我听起来像疯了！这整个实验才疯了！！是她带着它到处走、喂它，还……"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Mmm. That is good.",
+              "zh": "嗯。真好吃。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "So, what have we learned? We’ve learned when to use reflexive pronouns and when not to. Go to our website for more information! You can practice using reflexive pronouns in our comments section.",
+              "zh": "那么我们学到了什么？我们学到了什么时候用反身代词，什么时候不用。去我们的网站了解更多！你可以在评论区练习反身代词。"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "Why does Ms. Weaver say Anna should be proud of herself?",
+              "choices": [
+                "Anna followed the instructions",
+                "Anna wrote a heavier research binder",
+                "Anna never left her baby"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What accidents happen to Anna's flour baby?",
+              "choices": [
+                "She stabbed it and it caught fire",
+                "Bees attacked it at the park",
+                "Pete threw it into the circus"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "What does Anna share at the end of the experiment?",
+              "choices": [
+                "Cookies she baked herself",
+                "An extra vacation day",
+                "A Jaguar test drive"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 18: Flour Baby, Part 2 (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-19",
+          "number": 19,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 19",
+          "subtitle": "Movie Night",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/7/72/72d73c46-9f5a-47ba-96dc-4a2e460ce714_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-19/4242927.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "Hi, can you tell me how to get to your movie theater?",
+              "zh": "嗨，能告诉我去你们电影院怎么走吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh, that’s easy. OK, thank you. Bye.",
+              "zh": "哦，很简单。好，谢谢。再见。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Hi, Pete! Thanks for the movie invitation.",
+              "zh": "嗨，皮特！谢谢你邀请我看电影。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Yeah, sure Anna.",
+              "zh": "嗯，当然，安娜。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I love movies. I love the plot! I love the set design! I love the costumes! I love -",
+              "zh": "我爱电影。我爱剧情！我爱布景！我爱服装！我爱——"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, I take movies very seriously. You’re not one of those people who talks during a movie, are you?",
+              "zh": "安娜，我对电影很认真。你不会是那种看电影时说话的人吧？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No.",
+              "zh": "不会。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Good.",
+              "zh": "很好。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Anna loves movies. And..she loves talking about movies. And Pete doesn’t sound happy about that. But he’s trying to be polite. He can do that with Indirect Questions. We can ask a question directly: Where is your movie theater? or indirectly as Anna does: “Can you tell me how to get to your movie theater?” They have the same meaning. But indirect questions are more polite and a little more formal. Many indirect questions begin with: Can/Could you tell me… Would/Do you mind… Would it be possible… or Do you know… Hmm, do you know if Anna will stop talking? I sure don’t. Keep watching. And, this time look for indirect questions that begin with: Would you mind…",
+              "zh": "安娜爱电影。而且……她爱谈论电影。皮特听起来不太高兴。可他想保持礼貌。他可以用间接疑问句。可以直接问：Where is your movie theater？也可以像安娜那样间接问：“Can you tell me how to get to your movie theater?” 意思一样。但间接疑问句更礼貌，也更正式。很多间接疑问句以这些开头：Can/Could you tell me… Would/Do you mind… Would it be possible… 或 Do you know… 嗯，你知道安娜会不会停下来吗？我可不知道。继续看。这次找以 Would you mind… 开头的间接疑问句。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I love the smell of popcorn. I love seats that rock.",
+              "zh": "我爱爆米花的味道。我爱会摇的座位。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "I love when people are quiet.",
+              "zh": "我爱人们安静的时候。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ooh look, the previews are starting. I love to see what movies are coming out. Oh, this one looks good!",
+              "zh": "哦看，预告片开始了。我爱看有什么新电影要上映。哦，这部看起来不错！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, the previews are part of the movie experience. So, would you mind not talking?",
+              "zh": "安娜，预告片也是看电影的一部分。所以，能不能请你不要说话？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh, sure, sure.",
+              "zh": "哦，当然，当然。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, I was wondering: are you almost finished with that?",
+              "zh": "安娜，我想问问：你快喝完了吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No. There’s still a lot of milkshake at the bottom.",
+              "zh": "没有。底部还有很多奶昔。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, do you mind not drinking so loudly?",
+              "zh": "安娜，能不能请你喝的时候小声一点？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’ll try. But it’s really thick.",
+              "zh": "我试试。可它真的很稠。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, what are you doing?!",
+              "zh": "安娜，你在干什么？！"
+            },
+            {
+              "speaker": "Person in audience",
+              "en": "Shh!",
+              "zh": "嘘！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "I’m not the one making all the noise.",
+              "zh": "制造噪音的又不是我。"
+            },
+            {
+              "speaker": "Person in audience",
+              "en": "Shhh!",
+              "zh": "嘘——！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’m done now.",
+              "zh": "我喝完了。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, would you mind opening that a little bit more quietly?",
+              "zh": "安娜，能不能请你开包装时小声一点？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’ll try.",
+              "zh": "我试试。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, just give it to me!",
+              "zh": "安娜，把它给我！"
+            },
+            {
+              "speaker": "Person in audience",
+              "en": "Shhh!",
+              "zh": "嘘——！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "It’s not mine. I’m opening it for her. Here.",
+              "zh": "这不是我的。我在帮她开。给。"
+            },
+            {
+              "speaker": "Person in audience",
+              "en": "Shhhhhh!!",
+              "zh": "嘘————！！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Here!",
+              "zh": "给！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Thanks, Pete.",
+              "zh": "谢谢，皮特。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Now, would you mind being more quiet?",
+              "zh": "现在，能不能请你安静一点？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Excuse me, would you mind turning down your phone light?",
+              "zh": "不好意思，能不能请你把手机灯光调暗一点？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh, sorry! I forgot to turn my phone off.",
+              "zh": "哦，抱歉！我忘了关手机。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh no! I dropped it. Where is it?",
+              "zh": "哦不！我掉了。在哪儿？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Anna, can you please turn off your phone?",
+              "zh": "安娜，能不能请你把手机关了？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Excuse me, would you mind lending me your phone light for a minute?",
+              "zh": "不好意思，能不能把你的手机灯光借我用一分钟？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "No! I’ll get it!",
+              "zh": "不行！我来拿！"
+            },
+            {
+              "speaker": "Person in audience",
+              "en": "Shhhhh!",
+              "zh": "嘘——！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Look, people, I’m not the noisy one here! So, you all need to shush the right person. And I should know about shushing! I shush people all the time!!",
+              "zh": "听着，各位，这儿吵的不是我！所以你们该嘘对的人。而且我最懂嘘人！我老是嘘别人！！"
+            },
+            {
+              "speaker": "Security guard",
+              "en": "Excuse me, sir. You can’t yell in a movie theater. Would you mind coming with me?",
+              "zh": "不好意思，先生。电影院里不能大喊。能不能请你跟我走一趟？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "You’re kicking me out? Me? But I’m always the quiet one in the movie!",
+              "zh": "你要把我赶出去？我？可我看电影一向最安静！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Pete should know better. You have to be quiet in a movie theater. Shh, the movie’s starting!",
+              "zh": "皮特该更懂事。电影院里必须安静。嘘，电影开始了！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Well, that’s a surprise! I thought Anna would be the noisy one. Well, she was … with her food. But Pete did all of the talking. At least he tried to be polite by using indirect questions.",
+              "zh": "哇，真意外！我还以为安娜会是吵的那个。嗯，她吃东西是有点吵。可说话的全是皮特。至少他试着用间接疑问句保持礼貌。"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What does Pete keep asking Anna to do at the movies?",
+              "choices": [
+                "Stop making noise",
+                "Share her popcorn",
+                "Change seats"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "Who gets kicked out of the theater?",
+              "choices": [
+                "Pete",
+                "Anna",
+                "The security guard"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "How does Pete try to be polite?",
+              "choices": [
+                "He uses indirect questions",
+                "He buys Anna more candy",
+                "He turns off Anna's phone"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 19: Movie Night (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-20",
+          "number": 20,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 20",
+          "subtitle": "The Test Drive",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/a/ab/ab7dd50e-b4fa-412f-b50d-e7b0e81221ff_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-20/4254704.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "That’s a great idea. Rick, I think we should use this as the opening shot.",
+              "zh": "这主意很好。里克，我觉得我们应该用这个做开场镜头。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Anna, did Ms. Weaver give us instructions for covering the car show?",
+              "zh": "安娜，韦弗女士有没有给我们报道车展的指示？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "She did. She said that we need to show lots of cars. She said we need to interview people. And she also said that we should have fun.",
+              "zh": "有。她说我们需要展示很多车。她说我们需要采访人。她还说我们应该玩得开心。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Those were her exact words?",
+              "zh": "那是她的原话？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yeah. She said, “Have fun, Anna!” And she is the boss.",
+              "zh": "对。她说：“玩得开心，安娜！”而且她是老板。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Okay, Rick, are you - are you ready? OK. Hello, I’m Anna Matteo. Welcome to the Washington Car Show!",
+              "zh": "好，里克，你——准备好了吗？好。大家好，我是安娜·马特奥。欢迎来到华盛顿车展！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "People all over town are saying that if you like cars, this is the place to be! So, let’s see what people are talking about. How was that? Okay? Is that Good?",
+              "zh": "全城的人都在说，如果你喜欢车，这儿就是该来的地方！那我们去听听大家在说什么。刚才怎么样？可以吗？好吗？"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Anna, Penelope and Rick are making a news story about the Washington Car Show. Ms. Weaver gave them instructions. We often need to tell others what someone else said. There are two ways to do this. One is to use the person’s exact words and use quotation marks. We call this “direct speech.” For example, Ms. Weaver had said, “You need to show lots of cars.” The other way is to talk about what someone said. We call this “reported speech.” Anna tells Penelope: She said that we need to show lots of cars. In this sentence, “she,” is the subject, “said” is the reporting verb, “that” is the conjunction and “we need to show lots of cars” is the reporting clause. Keep watching, and listen for sentences where Anna talks about what someone else said!",
+              "zh": "安娜、佩内洛普和里克在做华盛顿车展的新闻报道。韦弗女士给了他们指示。我们常常需要告诉别人别人说过的话。有两种做法。一种是用原话加引号，叫直接引语。比如韦弗女士说过：“You need to show lots of cars.” 另一种是转述别人说的话，叫间接引语。安娜对佩内洛普说：She said that we need to show lots of cars。这句话里，she 是主语，said 是转述动词，that 是连词，we need to show lots of cars 是转述从句。继续看，注意听安娜转述别人的话！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "This car show has many styles of vehicles. There are utility vehicles, classic cars, trucks, sports cars, and everyday vehicles.",
+              "zh": "这个车展有很多种车。有多功能车、老爷车、卡车、跑车，还有日常用车。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Okay, I think we got good interviews.",
+              "zh": "好，我觉得我们采访得不错。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Me too! People had very different opinions. But they all said they loved cars.",
+              "zh": "我也这么觉得！人们看法很不一样。可他们都说喜欢车。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Anna, look – a robot!",
+              "zh": "安娜，看——一个机器人！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "A robot!",
+              "zh": "一个机器人！"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "A robot!",
+              "zh": "一个机器人！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Rick, we have to use the robot in the show!",
+              "zh": "里克，节目里一定要用这个机器人！"
+            },
+            {
+              "speaker": "Robot",
+              "en": "What is your first name?",
+              "zh": "你叫什么名字？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Anna! Anna!",
+              "zh": "安娜！安娜！"
+            },
+            {
+              "speaker": "Robot",
+              "en": "Anna, you know, what an effort. What an effort to robot dance. How about a round of applause for Anna! I’ve never seen anyone try so hard.",
+              "zh": "安娜，你知道吗，真努力。机器人舞跳得真努力。给安娜鼓鼓掌吧！我从没见过有人这么拼命试。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Penelope, did you hear that? Hank the Robot said that he has never seen anyone dance like me.",
+              "zh": "佩内洛普，你听到了吗？机器人汉克说他从没见过有人像我这样跳舞。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Uh, I think many people here are saying that, Anna.",
+              "zh": "呃，我觉得这儿很多人都在这么说，安娜。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That was fun. You know what someone told me? You can test drive a Jaguar at this car show.",
+              "zh": "真好玩。你知道有人跟我说什么吗？这个车展可以试驾捷豹。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Now, that sounds fun.",
+              "zh": "这听起来好玩。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Let’s go.",
+              "zh": "走吧。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Okay.",
+              "zh": "好。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "This course is smooth. So you can drive faster.",
+              "zh": "这条赛道很平。所以可以开得更快。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "He said...that I can’t drive, unfortunately.",
+              "zh": "他说……很遗憾，我不能开。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh my gosh…reverse.",
+              "zh": "我的天……倒车。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That was great. This is awesome.",
+              "zh": "太棒了。这太爽了。"
+            },
+            {
+              "speaker": "Kurt",
+              "en": "Are you ready to go on the rollercoaster?",
+              "zh": "准备好上过山车了吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’m ready.",
+              "zh": "我准备好了。"
+            },
+            {
+              "speaker": "Kurt",
+              "en": "Here we go!",
+              "zh": "出发！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That’s awesome.",
+              "zh": "太棒了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That was...That was awesome! I just want to go one more time. I promise. That’s it. Just one more time.",
+              "zh": "刚才……刚才太爽了！我只想再来一次。我保证。就这样。就再一次。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "This course is bumpy and uneven. I was told that I could drive this course. So I am.",
+              "zh": "这条赛道又颠又不平。有人告诉我我可以开这条赛道。所以我开了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Okay, Rick, are you rolling? Awesome. Okay, this course is uneven. But I think the ride will be smooth.",
+              "zh": "好，里克，在拍吗？太好了。好，这条赛道不平。可我觉得乘坐会很平稳。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ooh. This hill is really steep.",
+              "zh": "哦。这坡真陡。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh my gosh. I can’t tell you how much fun this is.",
+              "zh": "我的天。我没法告诉你这有多好玩。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Penelope, that was so much fun! I think I need to go again.",
+              "zh": "佩内洛普，太好玩了！我觉得我还得再来一次。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Uh, Anna, I think we have enough test drive video.",
+              "zh": "呃，安娜，我觉得试驾视频够了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ms. Weaver said to get a lot. So, I think I should go again. Rick, I’m going to go again. Until next time!",
+              "zh": "韦弗女士说要多拍。所以我觉得我应该再来一次。里克，我还要再来。下次见！"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "But I want to get lunch, Anna!",
+              "zh": "可我想去吃午饭，安娜！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Penelope said she wants to go to lunch. But I don’t think that’s going to happen soon. Visit our website for more!",
+              "zh": "佩内洛普说她想去吃午饭。可我觉得这事一时半会儿不会发生。去我们的网站看更多吧！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What event are Anna and Penelope covering?",
+              "choices": [
+                "The Washington Car Show",
+                "A movie premiere",
+                "A barbecue festival"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What does Hank the Robot say about Anna's dance?",
+              "choices": [
+                "He has never seen anyone try so hard",
+                "She should drive the Jaguar herself",
+                "She talks too much in the theater"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "Why does Anna want another test drive?",
+              "choices": [
+                "Ms. Weaver said to get a lot",
+                "Penelope wants to get lunch",
+                "Rick needs more practice"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 20: The Test Drive (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
         }
       ]
     }

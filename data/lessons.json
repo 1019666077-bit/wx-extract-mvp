@@ -2787,6 +2787,327 @@
         }
       ],
       "attribution": "Source: VOA Learning English \u2013 Let's Learn English Level 1, Lesson 45: This Land is Your Land (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-46",
+      "number": 46,
+      "title": "Let's Learn English Lesson 46",
+      "subtitle": "May I Borrow That?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/1/13/13db3058-03d4-44b8-910e-d344aa823b34_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-46-may-i-borrow-that/3723588.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Have a nice day at work Marsha!", "zh": "上班愉快，玛莎！"},
+        {"speaker": "Marsha", "en": "You too, Anna. Oh, wait. Do you have pen and paper I can borrow?", "zh": "你也是，安娜。哦，等一下。你有笔和纸可以借我吗？"},
+        {"speaker": "Anna", "en": "Of course.", "zh": "当然。"},
+        {"speaker": "Marsha", "en": "We are meeting at this restaurant tonight.", "zh": "我们今晚在这家餐厅见面。"},
+        {"speaker": "Anna", "en": "What is happening tonight?", "zh": "今晚有什么事？"},
+        {"speaker": "Marsha", "en": "Today is my birthday. We are celebrating at 7pm tonight. Did you forget?", "zh": "今天是我的生日。我们今晚 7 点庆祝。你忘了吗？"},
+        {"speaker": "Anna", "en": "Sorry, Marsha! I gotta go! See you later!", "zh": "抱歉，玛莎！我得走了！回头见！"},
+        {"speaker": "Marsha", "en": "Don't forget! Tonight … 7pm!", "zh": "别忘了！今晚……7 点！"},
+        {"speaker": "Anna", "en": "I forgot Marsha’s birthday! And I don’t get my paycheck until next week. I know. I'll make her a gift. I’ll just have to borrow a couple of things.", "zh": "我忘了玛莎的生日！而且我下周才发工资。我知道了。我给她做一份礼物。我只要借几样东西就行。"},
+        {"speaker": "Anna", "en": "Amelia, may I borrow your stapler?", "zh": "阿米莉亚，我可以借你的订书机吗？"},
+        {"speaker": "Amelia", "en": "Sure. I can lend you my stapler, Anna. But please return it. It’s my favorite stapler.", "zh": "当然。我可以借给你订书机，安娜。但请还回来。这是我最喜欢的订书机。"},
+        {"speaker": "Anna", "en": "You can trust me. I understand. One time, I loaned my stapler to the wrong person.", "zh": "你可以相信我。我懂。有一次，我把订书机借给了不该借的人。"},
+        {"speaker": "Anna", "en": "Thanks, Amelia.", "zh": "谢谢，阿米莉亚。"},
+        {"speaker": "Amelia", "en": "Don’t mention it. Bye, stapler!", "zh": "不客气。再见，订书机！"},
+        {"speaker": "Anna", "en": "Jonathan! Can I borrow your scissors?", "zh": "乔纳森！我可以借你的剪刀吗？"},
+        {"speaker": "Jonathan", "en": "Oh! Hi, Anna! What’re you doing?", "zh": "哦！嗨，安娜！你在干什么？"},
+        {"speaker": "Anna", "en": "Can I borrow your scissors? Sorry to bother you.", "zh": "我可以借你的剪刀吗？抱歉打扰你。"},
+        {"speaker": "Jonathan", "en": "Yes, I can lend them to you, but you must return them. These scissors -- they are the sharpest scissors in the office. Watch.", "zh": "可以，我可以借给你，但你必须还回来。这把剪刀——是办公室里最锋利的。看。"},
+        {"speaker": "Anna", "en": "Wow, those are sharp. I will be very careful.", "zh": "哇，真锋利。我会非常小心。"},
+        {"speaker": "Jonathan", "en": "Okay.", "zh": "好。"},
+        {"speaker": "Anna", "en": "And I’ll bring them back tomorrow.", "zh": "我明天会还回来。"},
+        {"speaker": "Jonathan", "en": "Good.", "zh": "好。"},
+        {"speaker": "Anna", "en": "Thank you.", "zh": "谢谢。"},
+        {"speaker": "Jonathan", "en": "You're welcome.", "zh": "不客气。"},
+        {"speaker": "Anna", "en": "Happy Birthday, Marsha!", "zh": "生日快乐，玛莎！"},
+        {"speaker": "Marsha", "en": "Thanks, Anna! I love birthday gifts! Anna, it is … interesting. What is it?", "zh": "谢谢，安娜！我爱生日礼物！安娜，它……挺有意思的。这是什么？"},
+        {"speaker": "Anna", "en": "Well, I know you love hats. And you need office supplies. So, this is your own office supply hat!", "zh": "嗯，我知道你爱帽子。而且你需要办公用品。所以，这是你专属的办公用品帽！"},
+        {"speaker": "Marsha", "en": "Wow! That is a lot of office supplies!", "zh": "哇！好多办公用品！"},
+        {"speaker": "Anna", "en": "Many people loaned or shared their supplies with me. Some people really love their office supplies. It has paper, pens, tape, erasers, rubber bands, binder clips, paper clips, and a light!", "zh": "很多人把用品借给我或和我分享。有些人真的很爱他们的办公用品。上面有纸、笔、胶带、橡皮、橡皮筋、长尾夹、回形针，还有一盏灯！"},
+        {"speaker": "Marsha", "en": "What is the balloon for?", "zh": "气球是干什么的？"},
+        {"speaker": "Anna", "en": "The balloon will help your friends find you. Let’s try it! You get a seat in the restaurant - I will find you!", "zh": "气球能帮朋友找到你。我们试试！你在餐厅找个座位——我会找到你！"},
+        {"speaker": "Anna", "en": "Sometimes all the money in the world can’t buy the perfect gift. Until next time!", "zh": "有时候全世界的钱也买不到完美的礼物。下次见！"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Whose birthday is it today?",
+          "choices": ["Anna", "Marsha", "Amelia"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What does Anna borrow from Amelia?",
+          "choices": ["Scissors", "A balloon", "A stapler"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "What gift does Anna make for Marsha?",
+          "choices": ["An office supply hat", "A birthday cake", "A painting"],
+          "answerIndex": 0
+        }
+      ],
+      "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 46: May I Borrow That? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-47",
+      "number": 47,
+      "title": "Let's Learn English Lesson 47",
+      "subtitle": "How Can I Help?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/5/5c/5cb0595a-5299-4b58-bdcc-b8541b468cf3_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-47-how-can-i-help/3737352.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Hi, Pete. What are you doing?", "zh": "嗨，皮特。你在干什么？"},
+        {"speaker": "Pete", "en": "Oh! Hi, Anna. Right now, I am fixing my car.", "zh": "哦！嗨，安娜。我现在在修车。"},
+        {"speaker": "Anna", "en": "How’s it going?", "zh": "怎么样了？"},
+        {"speaker": "Pete", "en": "It’s going … not so good.", "zh": "进展……不太好。"},
+        {"speaker": "Anna", "en": "How can I help? I was planning to visit some friends. But if you need help, I can help. I like helping.", "zh": "我能帮什么忙？我本来打算去看朋友。但如果你需要帮忙，我可以帮。我喜欢帮忙。"},
+        {"speaker": "Pete", "en": "Anna, I can fix it myself. But thanks.", "zh": "安娜，我自己能修好。不过谢谢。"},
+        {"speaker": "Anna", "en": "Pete, I think I found your problem. These are spark plugs. They start the engine.", "zh": "皮特，我想我找到问题了。这些是火花塞。它们用来启动引擎。"},
+        {"speaker": "Pete", "en": "I know that, Anna. But there were too many spark plugs … in there. So I took out the extra ones.", "zh": "我知道，安娜。可里面火花塞太多了……所以我把多余的拿出来了。"},
+        {"speaker": "Anna", "en": "There are no extras, Pete. You need all of them. Pete, can you fix a car yourself?", "zh": "没有多余的，皮特。你全都需要。皮特，你能自己修车吗？"},
+        {"speaker": "Pete", "en": "Well, Anna, last night I was watching the online video course, “You CAN Fix a Car Yourself!”", "zh": "嗯，安娜，昨晚我在看网课，《你也能自己修车！》"},
+        {"speaker": "Dan", "en": "Yes, you CAN fix your car yourself!", "zh": "是的，你也能自己修车！"},
+        {"speaker": "Pete", "en": "And I watched the first 10 lessons. So, I think I know what I’m doing.", "zh": "而且我看了前 10 课。所以我觉得我知道自己在做什么。"},
+        {"speaker": "Anna", "en": "How many lessons are there?", "zh": "一共有多少课？"},
+        {"speaker": "Pete", "en": "Four hundred and fifty.", "zh": "四百五十课。"},
+        {"speaker": "Anna", "en": "450! That'll take too long! If I fix your car, I'll have it running in 10 to 15 minutes.", "zh": "450 课！那太久了！要是我来修，10 到 15 分钟就能让它跑起来。"},
+        {"speaker": "Anna", "en": "Where’re your tools?", "zh": "你的工具在哪儿？"},
+        {"speaker": "Pete", "en": "I have this. And this.", "zh": "我有这个。还有这个。"},
+        {"speaker": "Anna", "en": "Great. Um, I’ll get my tools. I’ll be back in a flash!", "zh": "很好。嗯，我去拿我的工具。我马上回来！"},
+        {"speaker": "Pete", "en": "But, Anna, I don’t need your help.", "zh": "可是，安娜，我不需要你帮忙。"},
+        {"speaker": "Anna", "en": "Pete, when I was a teenager, I was fixing cars -- myself. I learned from a master.", "zh": "皮特，我十几岁的时候就自己修车。我跟一位师傅学的。"},
+        {"speaker": "Anna", "en": "You can trust me.", "zh": "你可以相信我。"},
+        {"speaker": "Pete", "en": "Okay.", "zh": "好吧。"},
+        {"speaker": "Anna", "en": "Great! But we need teamwork. You sit in the car. When I say “go,” you start the engine.", "zh": "太好了！但我们需要配合。你坐在车里。我说“走”，你就启动引擎。"},
+        {"speaker": "Anna", "en": "Okay, go!", "zh": "好，走！"},
+        {"speaker": "Anna", "en": "Stop!", "zh": "停！"},
+        {"speaker": "Anna", "en": "Okay, go! Huh.", "zh": "好，走！嗯？"},
+        {"speaker": "Pete", "en": "It's not starting! It’s not starting!", "zh": "发动不了！发动不了！"},
+        {"speaker": "Anna", "en": "What’s wrong?", "zh": "怎么了？"},
+        {"speaker": "Pete", "en": "This car is stupid … stupid, stupid!", "zh": "这车太笨了……笨，笨！"},
+        {"speaker": "Anna", "en": "Pete, kicking the tires will not help.", "zh": "皮特，踢轮胎没用。"},
+        {"speaker": "Pete", "en": "Well, you did not help, Anna. You did not help!!", "zh": "嗯，你也没帮上忙，安娜。你没帮上忙！！"},
+        {"speaker": "Anna", "en": "Pete, Pete! Pull yourself together, man. Give me the keys. I must feel the key in the ignition and turn it myself.", "zh": "皮特，皮特！冷静一点。把钥匙给我。我必须自己把钥匙插进点火开关再转动。"},
+        {"speaker": "Master", "en": "Use the key, Anna. Turn the key, Anna. What are you forgetting, Anna?", "zh": "用钥匙，安娜。转动钥匙，安娜。你忘了什么，安娜？"},
+        {"speaker": "Anna", "en": "Pete. Pete.", "zh": "皮特。皮特。"},
+        {"speaker": "Pete", "en": "What?", "zh": "什么？"},
+        {"speaker": "Anna", "en": "You are out of gas.", "zh": "你没油了。"},
+        {"speaker": "Pete", "en": "I can’t be out of gas. I’m out of gas. Sorry, Anna. I’ll go get some.", "zh": "不可能没油。我没油了。抱歉，安娜。我去加油。"},
+        {"speaker": "Anna", "en": "Pete. You relax. Clean your face. You can watch the rest of your online video course. It’ll be faster if I go … in a flash. Until next time …", "zh": "皮特。你休息。把脸擦干净。你可以继续看网课。我去会更快……一转眼就回来。下次见……"},
+        {"speaker": "Dan", "en": "Lesson 11. Always make sure you have a full tank of gas!", "zh": "第 11 课。一定要确保油箱是满的！"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What is Pete trying to do?",
+          "choices": ["Fix his car", "Buy new tools", "Teach Anna"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "How many lessons are in the video course?",
+          "choices": ["10", "15", "450"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "Why won't the car start?",
+          "choices": ["The spark plugs are extra", "Pete is out of gas", "Anna lost the keys"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 47: How Can I Help? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-48",
+      "number": 48,
+      "title": "Let's Learn English Lesson 48",
+      "subtitle": "Have You Ever ...?",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/0/0a/0a211e31-97d1-4192-b60d-4de9a153000e_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-48-have-you-ever/3753664.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Hello! I have lived in Washington, D.C. for a long time now. And I have done a lot. I feel that I know this city pretty well. That's the wrong way. Where is it again?", "zh": "你好！我在华盛顿特区住了很久了。我也做了很多事。我觉得自己挺了解这座城市。走错路了。它在哪儿来着？"},
+        {"speaker": "Anna", "en": "Excuse me, can I help you? Have we met before?", "zh": "不好意思，需要帮忙吗？我们以前见过吗？"},
+        {"speaker": "Jean", "en": "I don’t think so. I’ve just flown in from Boston. My name is Jean.", "zh": "应该没有。我刚从波士顿飞来。我叫吉恩。"},
+        {"speaker": "Anna", "en": "Hi, Jean! I'm Anna. I really feel like we’ve met before. Anyway, how can I help?", "zh": "嗨，吉恩！我是安娜。我真觉得我们见过。不过，我能帮什么忙？"},
+        {"speaker": "Jean", "en": "I want to see an interesting museum but I don’t know which one.", "zh": "我想看一个有意思的博物馆，但不知道选哪一个。"},
+        {"speaker": "Anna", "en": "I can help with that. I’ve lived in Washington, D.C. a long time. I think I’ve seen all the museums.", "zh": "这个我能帮。我在华盛顿特区住了很久。我想博物馆我都看过了。"},
+        {"speaker": "Jean", "en": "Wow, thanks. So, tell me, which museums are good?", "zh": "哇，谢谢。那告诉我，哪些博物馆好？"},
+        {"speaker": "Anna", "en": "Well, they are all good. But they’re all different. There are science museums and history museums and art and culture museums.", "zh": "嗯，都很好。但各不一样。有科学博物馆、历史博物馆，还有艺术和文化博物馆。"},
+        {"speaker": "Jean", "en": "I want to see an unusual museum.", "zh": "我想看一个特别的博物馆。"},
+        {"speaker": "Anna", "en": "I like the Sculpture Garden. Have you ever seen sculptures in a garden? It is really artistic!", "zh": "我喜欢雕塑花园。你见过花园里的雕塑吗？非常有艺术感！"},
+        {"speaker": "Jean", "en": "I have never seen a garden of sculptures! I’ll write that on my list!", "zh": "我从没见过雕塑花园！我要写到清单上！"},
+        {"speaker": "Anna", "en": "Have you been to the Museum of the American Indian? I’ve visited that museum many times. It is very peaceful.", "zh": "你去过美国印第安人博物馆吗？我去过很多次。那里很安静。"},
+        {"speaker": "Jean", "en": "I have always liked American Indian culture.", "zh": "我一直喜欢美国印第安文化。"},
+        {"speaker": "Jean", "en": "I’ll put that on my list. Do you have any other suggestions?", "zh": "我把它写上。你还有别的建议吗？"},
+        {"speaker": "Anna", "en": "Well, if you like plants, you can visit the U.S. Botanic Gardens. It's very organic.", "zh": "嗯，如果你喜欢植物，可以去美国植物园。非常天然。"},
+        {"speaker": "Jean", "en": "I have always loved plants. I’ll write that on my list, too! Wow, you know so much about D.C.’s museums.", "zh": "我一直爱植物。这个也写上！哇，你对特区的博物馆了解真多。"},
+        {"speaker": "Anna", "en": "Well, I have lived here for over a year.", "zh": "嗯，我在这儿住一年多了。"},
+        {"speaker": "Jean", "en": "You’re so lucky to live in such a beautiful city filled with so many museums and a zoo!", "zh": "你真幸运，住在这么美的城市，有这么多博物馆，还有动物园！"},
+        {"speaker": "Anna", "en": "What? D.C. has a zoo?", "zh": "什么？华盛顿特区有动物园？"},
+        {"speaker": "Jean", "en": "Yes, and it’s beautiful. You’ve lived here for so long and you haven’t been to the zoo?", "zh": "有，而且很美。你住这么久，还没去过动物园？"},
+        {"speaker": "Anna", "en": "I've never been to D.C.’s zoo. I've never been to any zoos!", "zh": "我从没去过特区的动物园。我从没去过任何动物园！"},
+        {"speaker": "Jean", "en": "You have never seen zoo animals?", "zh": "你从没见过动物园的动物？"},
+        {"speaker": "Anna", "en": "I grew up on a farm, Jean. I've known farm animals my whole life.", "zh": "我在农场长大，吉恩。我一辈子都认识农场动物。"},
+        {"speaker": "Jean", "en": "But the zoo has lions and elephants and zebras! If you have never seen a real, live elephant, you must. They are so majestic.", "zh": "可动物园有狮子、大象和斑马！如果你从没见过真正活着的大象，一定要去。它们太威风了。"},
+        {"speaker": "Anna", "en": "I will. I will! There. I’ve written my own must-see zoo animal list!", "zh": "我会去。我会去！好了。我写好了自己的必看动物园动物清单！"},
+        {"speaker": "Jean", "en": "Have fun at the zoo and thanks, Anna!", "zh": "在动物园玩得开心，谢谢你，安娜！"},
+        {"speaker": "Anna", "en": "Have fun at the museums, Jean! And thank YOU!", "zh": "在博物馆玩得开心，吉恩！也谢谢你！"},
+        {"speaker": "Anna", "en": "This has been awesome! And I have seen every animal on my list! Jean, the tourist, helped me see more of my city. But where have I seen her before?", "zh": "太棒了！清单上的动物我都看到了！游客吉恩帮我看到了更多这座城市。可我以前在哪儿见过她？"},
+        {"speaker": "Anna", "en": "Oh well. Until next time …", "zh": "算了。下次见……"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where has Jean just flown in from?",
+          "choices": ["Boston", "New York", "a farm"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "Which place has Anna never been to?",
+          "choices": ["The Sculpture Garden", "The Museum of the American Indian", "The zoo"],
+          "answerIndex": 2
+        },
+        {
+          "id": "q3",
+          "prompt": "Why does Anna know farm animals?",
+          "choices": ["She grew up on a farm", "She works at the zoo", "Jean showed her"],
+          "answerIndex": 0
+        }
+      ],
+      "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 48: Have You Ever ...? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-49",
+      "number": 49,
+      "title": "Let's Learn English Lesson 49",
+      "subtitle": "Operation Spy!",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/a/a4/a49eae09-d90d-4d8e-a62c-0a718b8f32be_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-49-operation-spy/3763537.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "It is no secret that Washington, D.C. has spies. Well, it should be a secret because spying is secret. But it’s not a secret. There’s even a spy museum! The International Spy Museum has created an amazing collection of spy things! And today, we will see them! My boss, Ms. Weaver, has sent me here … on a mission!", "zh": "华盛顿特区有间谍，这不是秘密。嗯，这本该是秘密，因为间谍活动是秘密的。可它不是秘密。这儿甚至有一座间谍博物馆！国际间谍博物馆收藏了很多了不起的间谍物品！今天我们就去看！我的老板韦弗女士派我来这儿……执行任务！"},
+        {"speaker": "Ms. Weaver", "en": "Hello, Anna, are you there?", "zh": "喂，安娜，你在吗？"},
+        {"speaker": "Anna", "en": "That’s her. Yes, Agent Peacock. This is Agent Flamingo, reporting for duty.", "zh": "是她。是的，孔雀特工。我是火烈鸟特工，报到。"},
+        {"speaker": "Ms. Weaver", "en": "Agent what? Look, Anna … I mean, Agent Flamingo, I want you to learn all you can about spying.", "zh": "什么特工？听着，安娜……我是说，火烈鸟特工，我要你尽量多了解间谍活动。"},
+        {"speaker": "Anna", "en": "You mean, collect intelligence?", "zh": "你是说，收集情报？"},
+        {"speaker": "Ms. Weaver", "en": "Yeah, it’s for our new show -- “D.C. Secrets.”", "zh": "对，是给我们的新节目——《特区秘密》。"},
+        {"speaker": "Anna", "en": "You've got it, Agent Peacock. The mission is safe with me.", "zh": "明白，孔雀特工。任务包在我身上。"},
+        {"speaker": "Ms. Weaver", "en": "Oh, okay, great. Just be back by noon.", "zh": "哦，好，很好。中午之前回来就行。"},
+        {"speaker": "Anna", "en": "Agent Peacock, I’m at an air duct!", "zh": "孔雀特工，我到通风管了！"},
+        {"speaker": "Ms. Weaver", "en": "Yes, spies sometimes sneak down air ducts.", "zh": "是的，间谍有时会从通风管悄悄爬下去。"},
+        {"speaker": "Anna", "en": "I have never snuck down an air duct. It’s dark and small. I’m afraid of dark, small places.", "zh": "我从没从通风管爬下去过。又黑又小。我怕又黑又小的地方。"},
+        {"speaker": "Ms. Weaver", "en": "You can do it, Agent Flamingo. You know, spies aren’t afraid of a little darkness.", "zh": "你能行的，火烈鸟特工。你知道，间谍不怕一点点黑暗。"},
+        {"speaker": "Anna", "en": "Right. It’s just an air duct -- a dark, small air duct. Okay. I’m doing it, Agent Peacock! I am sneaking down a long, dark, small air duct. I’m having a little trouble breathing.", "zh": "对。只是一根通风管——又黑又小的通风管。好。我在做了，孔雀特工！我正沿着又长又黑又小的通风管往下爬。我呼吸有点困难。"},
+        {"speaker": "Ms. Weaver", "en": "Just keep going, Agent Flamingo. Think of the team!", "zh": "继续往前，火烈鸟特工。想想团队！"},
+        {"speaker": "Anna", "en": "Okay, I will think of the team. I’m thinking of the team, Agent Peacock! I did it! I did it! I sneaked down an air duct. That was a little uncomfortable.", "zh": "好，我会想着团队。我在想着团队，孔雀特工！我做到了！我做到了！我从通风管爬下来了。有点不舒服。"},
+        {"speaker": "Ms. Weaver", "en": "Good!", "zh": "好！"},
+        {"speaker": "Anna", "en": "What's the next mission?", "zh": "下一个任务是什么？"},
+        {"speaker": "Ms. Weaver", "en": "Umm … have you ever cracked a code?", "zh": "嗯……你破译过密码吗？"},
+        {"speaker": "Anna", "en": "No.", "zh": "没有。"},
+        {"speaker": "Ms. Weaver", "en": "Well, go learn. Spies use their brains.", "zh": "那就去学。间谍靠脑子。"},
+        {"speaker": "Anna", "en": "Got it! I’ve never cracked a code before. Let’s try, Agent Flamingo! This is really hard. I'm still trying to crack the code. I've cracked the code! I've cracked the code, Agent Peacock! My brain really hurts.", "zh": "明白！我以前从没破译过密码。试试吧，火烈鸟特工！这真难。我还在试着破译。我破译了！我破译了，孔雀特工！我的脑子真疼。"},
+        {"speaker": "Ms. Weaver", "en": "Great. Umm, Agent Flamingo, now answer this question: Do spies have to be in good shape?", "zh": "很好。嗯，火烈鸟特工，现在回答这个问题：间谍必须身体好吗？"},
+        {"speaker": "Anna", "en": "“Yes,” Agent Peacock! Spies have to be in really good shape! Can you hear me?", "zh": "“是的”，孔雀特工！间谍必须身体非常好！你听得见吗？"},
+        {"speaker": "Ms. Weaver", "en": "You’re breaking up, Flamingo.", "zh": "信号不好，火烈鸟。"},
+        {"speaker": "Anna", "en": "The International Spy Museum is awesome! Agent Peacock, I completed the mission!", "zh": "国际间谍博物馆太棒了！孔雀特工，我完成任务了！"},
+        {"speaker": "Ms. Weaver", "en": "Great. Great. Now, I have another very important mission for you.", "zh": "很好。很好。现在，我还有一个非常重要的任务给你。"},
+        {"speaker": "Anna", "en": "Got it. See you back at H.Q.!", "zh": "明白。总部见！"},
+        {"speaker": "Ms. Weaver", "en": "Yummy! You brought my lunch! Thanks, Agent Flamingo!", "zh": "好吃！你把我的午饭带来了！谢谢，火烈鸟特工！"},
+        {"speaker": "Anna", "en": "Mission completed. Agent Peacock!", "zh": "任务完成。孔雀特工！"},
+        {"speaker": "Ms. Weaver", "en": "Don't ask.", "zh": "别问。"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "What is Anna's spy name?",
+          "choices": ["Agent Peacock", "Agent Flamingo", "Agent Duck"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q2",
+          "prompt": "What does Anna sneak down?",
+          "choices": ["An air duct", "A subway", "A chimney"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q3",
+          "prompt": "What is Ms. Weaver's last mission for Anna?",
+          "choices": ["Crack another code", "Bring her lunch", "Film a new show"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 49: Operation Spy! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+    },
+    {
+      "id": "lle1-50",
+      "number": 50,
+      "title": "Let's Learn English Lesson 50",
+      "subtitle": "Back to School",
+      "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/b/b7/b76551c9-f6b7-4a36-b8b8-013060087617_720p.mp4",
+      "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-50-back-to-school/3771173.html",
+      "dialogue": [
+        {"speaker": "Anna", "en": "Hello, and welcome to Georgetown University in Washington, D.C.! I am going back to school! Georgetown is the oldest Catholic and Jesuit university in the United States. The Jesuits are a religious order known worldwide for their many colleges and universities. Students have been studying here since 1792!", "zh": "你好，欢迎来到华盛顿特区的乔治城大学！我要重返校园了！乔治城是美国最古老的天主教耶稣会大学。耶稣会是一个宗教修会，因创办许多学院和大学而闻名世界。学生们从 1792 年起就在这里学习！"},
+        {"speaker": "Sarah", "en": "Hey, are you finished with your report?", "zh": "嘿，你的报告写完了吗？"},
+        {"speaker": "Taylor", "en": "Almost. I have been writing and re-writing since last night! The subject is really interesting to me.", "zh": "快了。我从昨晚就开始写了又写！这个主题我真的很感兴趣。"},
+        {"speaker": "Sarah", "en": "Me too! I have been studying this topic for a long time.", "zh": "我也是！这个题目我研究很久了。"},
+        {"speaker": "Anna", "en": "Am I late?", "zh": "我迟到了吗？"},
+        {"speaker": "Sarah", "en": "You’re a little late. But don’t worry. The professor isn’t here yet.", "zh": "你晚了一点。不过别担心。教授还没到。"},
+        {"speaker": "Anna", "en": "How long has the class been waiting?", "zh": "全班等了多久了？"},
+        {"speaker": "Taylor", "en": "We’ve only been waiting for about 10 minutes.", "zh": "我们才等了大约 10 分钟。"},
+        {"speaker": "Anna", "en": "Oh good. Oh, no! I forgot my pencil sharpener. Excuse me, do you have a pencil sharpener I can borrow?", "zh": "哦，还好。哦，不！我忘带卷笔刀了。不好意思，你有卷笔刀可以借我吗？"},
+        {"speaker": "Taylor", "en": "No, sorry.", "zh": "没有，抱歉。"},
+        {"speaker": "Anna", "en": "Oh wait. I found my extra one! Whew, that was close.", "zh": "哦，等一下。我找到备用的了！呼，好险。"},
+        {"speaker": "Anna", "en": "So, how long have you been studying at Georgetown?", "zh": "那你在乔治城学习多久了？"},
+        {"speaker": "Andrew", "en": "I’ve been studying here since 2015.", "zh": "我从 2015 年起就在这儿学习。"},
+        {"speaker": "Anna", "en": "Awesome. You know, I've been wanting to go back to school for a long time. So, here I am!", "zh": "太棒了。你知道，我想回学校很久了。所以，我来了！"},
+        {"speaker": "Andrew", "en": "Well, you picked a great school. I’ve been really happy here.", "zh": "嗯，你选了所好学校。我在这儿一直很开心。"},
+        {"speaker": "Anna", "en": "Awesome. See, I’ve been working for several years now. So, going back to school makes me a little nervous.", "zh": "太好了。你看，我已经工作好几年了。所以回学校让我有点紧张。"},
+        {"speaker": "Randall", "en": "Don’t be nervous. Just pay attention and do your best!", "zh": "别紧张。只要专心听，尽力就好！"},
+        {"speaker": "Anna", "en": "That is great advice. You know, I have been paying attention. But sometimes I still feel like I don’t understand. Like last week …", "zh": "这建议真好。你知道，我一直在专心听。但有时我还是觉得没听懂。就像上周……"},
+        {"speaker": "Anna", "en": "What’s that?", "zh": "那是什么？"},
+        {"speaker": "Jada", "en": "This is my draft.", "zh": "这是我的草稿。"},
+        {"speaker": "Anna", "en": "What draft?", "zh": "什么草稿？"},
+        {"speaker": "Jada", "en": "The professor told us to bring our drafts.", "zh": "教授让我们带草稿来。"},
+        {"speaker": "Anna", "en": "I think she said “giraffe.”", "zh": "我以为她说的是“长颈鹿”。"},
+        {"speaker": "Jada", "en": "No. She didn’t.", "zh": "不。她没那么说。"},
+        {"speaker": "Anna", "en": "Here comes the professor.", "zh": "教授来了。"},
+        {"speaker": "Dr. Jones", "en": "Hello class! Sorry I'm late, but the snow storm made getting here really difficult. I see you’ve been waiting very patiently. So, let’s get started! Who wants to give their talk first?", "zh": "同学们好！抱歉我迟到了，暴风雪让过来很困难。我看你们等得很有耐心。那我们开始吧！谁想先做报告？"},
+        {"speaker": "Anna", "en": "Oh! Oh! Please, please pick me.", "zh": "哦！哦！请选我，请选我。"},
+        {"speaker": "Dr. Jones", "en": "Anna?", "zh": "安娜？"},
+        {"speaker": "Anna", "en": "Who me? Sure. Thanks.", "zh": "谁，我？当然。谢谢。"},
+        {"speaker": "Anna", "en": "Here is my report on “Violins in the City.”", "zh": "这是我的报告：《城市里的小提琴》。"},
+        {"speaker": "Anna", "en": "People have been looking for a solution to the problem of violins in the city. I say stop! Stop! They are not the problem! In fact, violins are part of the solution!", "zh": "人们一直在找解决城市小提琴问题的办法。我说停下！停下！它们不是问题！其实，小提琴是解决方案的一部分！"},
+        {"speaker": "Anna", "en": "Violins create beautiful music that can fill a city with hope.", "zh": "小提琴能奏出美妙的音乐，让一座城市充满希望。"},
+        {"speaker": "Dr. Jones", "en": "Anna …", "zh": "安娜……"},
+        {"speaker": "Anna", "en": "If we put a violin in the hands of every child …", "zh": "如果我们让每个孩子手里都有一把小提琴……"},
+        {"speaker": "Dr. Jones", "en": "Anna! The topic is “Violence in the city.” Violence. Not violins.", "zh": "安娜！题目是《城市里的暴力》。暴力。不是小提琴。"},
+        {"speaker": "Anna", "en": "Until next time … Like I was saying, many people are saying that violence in the city is a problem. A very big problem.", "zh": "下次见……就像我刚才说的，很多人都说城市里的暴力是个问题。一个非常大的问题。"}
+      ],
+      "quiz": [
+        {
+          "id": "q1",
+          "prompt": "Where is Anna going back to school?",
+          "choices": ["Georgetown University", "The Spy Museum", "Her office"],
+          "answerIndex": 0
+        },
+        {
+          "id": "q2",
+          "prompt": "What did the professor tell students to bring?",
+          "choices": ["A giraffe", "Their drafts", "A violin"],
+          "answerIndex": 1
+        },
+        {
+          "id": "q3",
+          "prompt": "What is the real topic of the report?",
+          "choices": ["Violins in the city", "Violence in the city", "Snow storms"],
+          "answerIndex": 1
+        }
+      ],
+      "attribution": "Source: VOA Learning English \\u2013 Let's Learn English Level 1, Lesson 50: Back to School (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
     }
   ]
 }

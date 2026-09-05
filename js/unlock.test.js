@@ -68,7 +68,7 @@ test("published catalog: L1 1-5 free, L1 6+ and all L2 locked until redeem", () 
   const l1 = levels.find((level) => level.id === "lle1");
   const l2 = levels.find((level) => level.id === "lle2");
   assert.equal(l1.lessons.length, 52);
-  assert.equal(l2.lessons.length, 25);
+  assert.equal(l2.lessons.length, 30);
   assert.deepEqual(
     l2.lessons.map((lesson) => lesson.subtitle),
     [
@@ -97,6 +97,11 @@ test("published catalog: L1 1-5 free, L1 6+ and all L2 locked until redeem", () 
       "Rock Star",
       "I Feel Super!",
       "Only Human",
+      "Look-alikes",
+      "Fish out of Water",
+      "For the Birds",
+      "Where There's Smoke...",
+      "Dream a Little Dream",
     ]
   );
 

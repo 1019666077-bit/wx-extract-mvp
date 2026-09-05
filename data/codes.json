@@ -1,6 +1,29 @@
 {
   "codes": [
-    { "code": "VOA-DEMO-39", "plan": "monthly" },
-    { "code": "VOA-DEMO-99", "plan": "quarterly" }
+    { "code": "LLE-M-03939E", "plan": "monthly" },
+    { "code": "LLE-M-OWEWO2", "plan": "monthly" },
+    { "code": "LLE-M-VMP4K8", "plan": "monthly" },
+    { "code": "LLE-M-12KFN0", "plan": "monthly" },
+    { "code": "LLE-M-UMUEL4", "plan": "monthly" },
+    { "code": "LLE-M-TT3LPU", "plan": "monthly" },
+    { "code": "LLE-M-E1WC5Z", "plan": "monthly" },
+    { "code": "LLE-M-8UJZSZ", "plan": "monthly" },
+    { "code": "LLE-M-GNN2VD", "plan": "monthly" },
+    { "code": "LLE-M-MYNUFJ", "plan": "monthly" },
+    { "code": "LLE-M-ZO8E0Q", "plan": "monthly" },
+    { "code": "LLE-M-PG984E", "plan": "monthly" },
+    { "code": "LLE-M-OXGLG9", "plan": "monthly" },
+    { "code": "LLE-M-PYIMHI", "plan": "monthly" },
+    { "code": "LLE-M-MAZ722", "plan": "monthly" },
+    { "code": "LLE-Q-H3H0NY", "plan": "quarterly" },
+    { "code": "LLE-Q-7URHCU", "plan": "quarterly" },
+    { "code": "LLE-Q-ROPJ79", "plan": "quarterly" },
+    { "code": "LLE-Q-DMTOFH", "plan": "quarterly" },
+    { "code": "LLE-Q-ZB2OSU", "plan": "quarterly" },
+    { "code": "LLE-Q-XEPOF9", "plan": "quarterly" },
+    { "code": "LLE-Q-Y1CNST", "plan": "quarterly" },
+    { "code": "LLE-Q-CTPK15", "plan": "quarterly" },
+    { "code": "LLE-Q-AL55HV", "plan": "quarterly" },
+    { "code": "LLE-Q-MFXE15", "plan": "quarterly" }
   ]
 }

@@ -227,9 +227,162 @@ h3 {
   background: #f3efe6;
 }
 
+.lesson-card[hidden] {
+  display: none;
+}
+
 .catalog-note {
-  margin: -6px 0 16px;
+  margin: 0 0 14px;
   color: var(--muted);
+}
+
+.level-progress {
+  display: grid;
+  gap: 10px;
+  margin: -4px 0 16px;
+}
+
+.level-progress-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 6px 16px;
+}
+
+.level-progress-count,
+.level-progress-hint {
+  margin: 0;
+}
+
+.level-progress-count {
+  font-weight: 700;
+}
+
+.level-progress-count strong {
+  color: var(--accent);
+  font-size: 1.15em;
+}
+
+.level-progress-hint {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.level-progress-hint a {
+  color: var(--accent);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.level-progress-bar {
+  height: 10px;
+  border-radius: 999px;
+  background: #efeae0;
+  overflow: hidden;
+}
+
+.level-progress-bar span {
+  display: block;
+  height: 100%;
+  min-width: 0;
+  background: var(--accent);
+  border-radius: inherit;
+}
+
+.level-clear {
+  margin: 0 0 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--accent);
+  border-radius: 14px;
+  background: #eef7f2;
+}
+
+.level-clear h2 {
+  margin-bottom: 8px;
+}
+
+.level-clear p {
+  margin: 0 0 12px;
+}
+
+.level-clear .quiz-actions {
+  margin-top: 4px;
+}
+
+.level-clear .btn {
+  text-decoration: none;
+}
+
+.catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.filter-chip {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  padding: 8px 14px;
+  font: inherit;
+  font-size: 0.88rem;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+.filter-chip.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.filter-empty {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.lesson-pager {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 18px;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.lesson-pager .btn {
+  text-decoration: none;
+}
+
+.lesson-pager .is-locked-link {
+  border-color: #d4b483;
+  background: #fff8ee;
+}
+
+.pager-placeholder {
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+.quiz-result .clear-note {
+  display: block;
+  margin-top: 10px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: #e4f4ed;
+  color: var(--accent);
+}
+
+.quiz-result .clear-note a {
+  color: var(--accent);
 }
 
 .status-badge {
@@ -712,8 +865,21 @@ h3 {
   font: inherit;
 }
 
+.paywall-section {
+  border-color: #d4b483;
+  background: #fff8ee;
+}
+
+.paywall-section h2 {
+  margin-bottom: 10px;
+}
+
+.paywall-section p {
+  margin: 0 0 10px;
+}
+
 .paywall-section .quiz-actions {
-  margin-top: 8px;
+  margin-top: 12px;
 }
 
 .paywall-section .btn {
@@ -748,5 +914,28 @@ h3 {
   .nav {
     align-items: flex-start;
     flex-direction: column;
+  }
+
+  .level-progress-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .catalog-filters {
+    gap: 8px;
+  }
+
+  .filter-chip {
+    padding: 8px 12px;
+  }
+
+  .lesson-pager {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .lesson-pager .btn,
+  .lesson-pager .pager-placeholder {
+    text-align: center;
   }
 }

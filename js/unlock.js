@@ -40,8 +40,24 @@ function createUnlock(options = {}) {
     return match ? Number(match[1]) : 0;
   }
 
+  function lessonLevel(lesson) {
+    if (lesson && Number.isFinite(Number(lesson.level))) {
+      return Number(lesson.level);
+    }
+    const id = String(lesson?.id || "");
+    const match = id.match(/^lle(\d+)/i);
+    if (match) {
+      return Number(match[1]);
+    }
+    return 1;
+  }
+
+  function isFreeTrialLesson(lesson) {
+    return lessonLevel(lesson) === 1 && lessonNumber(lesson) <= FREE_LESSON_MAX;
+  }
+
   function isPaidLesson(lesson) {
-    return lessonNumber(lesson) > FREE_LESSON_MAX;
+    return !isFreeTrialLesson(lesson);
   }
 
   function readUnlock() {
@@ -111,6 +127,8 @@ function createUnlock(options = {}) {
     PLAN_LABELS,
     normalizeCode,
     lessonNumber,
+    lessonLevel,
+    isFreeTrialLesson,
     isPaidLesson,
     readUnlock,
     isUnlocked,

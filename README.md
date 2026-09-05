@@ -1,20 +1,21 @@
-# VOA Learning English · Level 1
+# VOA Learning English
 
-A small, static self-study shell for **Let's Learn English Level 1**.
+A small, static self-study shell for **Let's Learn English**.
 
 This is frontend-only. There is no login, backend, or crawler. It is **not** an official VOA product.
 
 ## What it includes
 
-- A course catalog on the home page
-- Fifty-two lessons: `lle1-01` through `lle1-52`. The official Level 1 catalog is now complete.
+- A course catalog on the home page with a Level 1 / Level 2 switcher
+- Level 1 complete: fifty-two lessons, `lle1-01` through `lle1-52`
+- Level 2 started: first five lessons, `lle2-01` through `lle2-05` (Budget Cuts, The Interview, He Said - She Said, Run Away With the Circus!, Greatest Vacation of All Time)
 - Official VOA MP4 video in an HTML5 player (YouTube is an optional fallback link only)
 - Dialogue lines in English and Chinese
 - Three multiple-choice quiz questions per lesson
 - Progress saved in `localStorage` under `voa-lle-progress` (`lessonId` → `{ score, total, completed, savedAt }`)
 - Check-in / streak calendar (`voa-lle-checkins`) after each quiz submit
 - Wrong-answer book (`voa-lle-wrongbook`) for missed quiz questions
-- Frontend paywall: lessons 1–5 are free; lessons 6+ need a redeem code
+- Frontend paywall: only **Level 1 lessons 1–5** are free; all other published lessons (Level 1 6–52 and every Level 2 lesson) need a redeem code
 - Clear VOA public-domain attribution
 
 ## Pages
@@ -25,7 +26,7 @@ This is frontend-only. There is no login, backend, or crawler. It is **not** an 
 | 打卡 | `progress.html` | Dedicated streak + month grid |
 | 错题本 | `wrongbook.html` | Missed questions grouped by lesson |
 | 开通 | `pricing.html` | Plans, manual-payment note, redeem-code unlock |
-| Lesson | `lesson.html?id=lle1-01` | Video, dialogue, quiz. Paid lessons show a paywall until unlocked |
+| Lesson | `lesson.html?id=lle1-01` | Video, dialogue, quiz. Paid lessons show a paywall until unlocked. Prev/next stay inside the current level |
 
 Shared render, quiz, progress, check-in, unlock, and wrong-book logic lives in `js/study.js`, `js/unlock.js`, and `js/app.js`.
 
@@ -44,7 +45,7 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 
 ## How to use
 
-1. Open the catalog. Lessons 1–5 are free; 6–52 (and any later id with number > 5) show a lock badge until unlocked.
+1. Open the catalog and switch Level 1 / Level 2. Only Level 1 lessons 1–5 are free. Level 1 lessons 6–52 and every `lle2-*` lesson show a lock badge until unlocked.
 2. Start a free lesson, watch the VOA MP4, read the dialogue, then submit the quiz.
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
@@ -59,15 +60,29 @@ This allowlist is **not security**. Anyone who can read the public repo can rede
 
 **Operators:** follow [`docs/ops-redeem.md`](docs/ops-redeem.md) (sales copy, WeChat 15232188653, how to issue codes, how to generate a new batch with `scripts/gen-codes.py`). Do not publish unused codes on Moments, Xiaohongshu, or this README.
 
-Site copy: 免费试学第 1–5 课 · 开通后解锁全部已上线课程 · 微信联系 15232188653 人工付款后获兑换码。
+Site copy: 免费试学仅 Level 1 第 1–5 课 · 开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课） · 微信联系 15232188653 人工付款后获兑换码。
 
 ## Lesson data
 
-All lesson content lives in:
+All lesson content lives in one file:
 
 ```text
 data/lessons.json
 ```
+
+Shape:
+
+```json
+{
+  "course": { "title": "...", "pitch": "...", "disclaimer": "..." },
+  "levels": [
+    { "id": "lle1", "title": "Let's Learn English · Level 1", "lessons": [/* 52 */] },
+    { "id": "lle2", "title": "Let's Learn English · Level 2", "lessons": [/* 5 so far */] }
+  ]
+}
+```
+
+Each lesson uses `{ id, number, title, subtitle, videoUrl, sourceUrl, dialogue, quiz, attribution }`. Level 2 lessons also set `"level": 2`. Unlock treats a lesson as free only when `level === 1` and `number <= 5` (`lle2-*` is always paid). The Level 1 通关 banner still uses the 52 `lle1` lessons only.
 
 ## Local preview
 
@@ -99,6 +114,6 @@ GitHub Pages is served from `main` at `/` (repo root). A newly published site ca
 
 ## Scope
 
-In scope: catalog + fifty-two static lessons (Level 1 complete) with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
+In scope: catalog + fifty-two Level 1 lessons and the first five Level 2 lessons, with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
 
 Out of scope: login, accounts, a real payment gateway, a crawler, or a backend.

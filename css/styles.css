@@ -17,6 +17,15 @@
   --phone: #4a5568;
   --ashley: #c05621;
   --coworkers: #2f6f4e;
+  --bot: #3d5a80;
+  --weaver: #9b2226;
+  --kaveh: #0077b6;
+  --penelope: #6a4c93;
+  --mimi: #bc4749;
+  --dan: #2b6cb0;
+  --trudy: #9c4221;
+  --kate: #2f855a;
+  --piper: #805ad5;
   --shadow: 0 10px 30px rgba(29, 42, 50, 0.08);
   --radius: 18px;
 }
@@ -234,6 +243,32 @@ h3 {
 .catalog-note {
   margin: 0 0 14px;
   color: var(--muted);
+}
+
+.level-switcher {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 14px;
+}
+
+.level-tab {
+  appearance: none;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--ink);
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.level-tab.is-active {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--accent-ink);
 }
 
 .level-progress {
@@ -511,6 +546,42 @@ h3 {
 
 .line[data-speaker="Co-Workers"] .speaker {
   color: var(--coworkers);
+}
+
+.line[data-speaker="Professor Bot"] .speaker {
+  color: var(--bot);
+}
+
+.line[data-speaker="Ms. Weaver"] .speaker {
+  color: var(--weaver);
+}
+
+.line[data-speaker="Kaveh"] .speaker {
+  color: var(--kaveh);
+}
+
+.line[data-speaker="Penelope"] .speaker {
+  color: var(--penelope);
+}
+
+.line[data-speaker="Mimi"] .speaker {
+  color: var(--mimi);
+}
+
+.line[data-speaker="Dan"] .speaker {
+  color: var(--dan);
+}
+
+.line[data-speaker="Trudy"] .speaker {
+  color: var(--trudy);
+}
+
+.line[data-speaker="Kate"] .speaker {
+  color: var(--kate);
+}
+
+.line[data-speaker="Piper"] .speaker {
+  color: var(--piper);
 }
 
 .en,
@@ -921,6 +992,7 @@ h3 {
     align-items: flex-start;
   }
 
+  .level-switcher,
   .catalog-filters {
     gap: 8px;
   }

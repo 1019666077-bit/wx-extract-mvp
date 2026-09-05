@@ -1,7 +1,7 @@
 {
   "course": {
     "title": "Let's Learn English",
-    "pitch": "A small self-study shell for VOA Learning English. Level 1 is complete (52 lessons). Level 2 has started (10 lessons). Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
+    "pitch": "A small self-study shell for VOA Learning English. Level 1 is complete (52 lessons). Level 2 has started (15 lessons). Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
     "disclaimer": "This is an unofficial study helper. Lesson videos and scripts come from VOA Learning English and are in the public domain. This site is not affiliated with or endorsed by Voice of America."
   },
   "levels": [
@@ -12513,6 +12513,1081 @@
             }
           ],
           "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 10: Visit to Peru (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-11",
+          "number": 11,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 11",
+          "subtitle": "The Big Snow",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/a/a4/a461d037-2f47-4d6e-b971-86c661a4cb8d_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-11-the-big-snow/4102755.html",
+          "dialogue": [
+            {
+              "speaker": "Kelly",
+              "en": "Hi, Anna. Why do you have all this weather stuff?",
+              "zh": "嗨，安娜。你怎么有这么多气象用品？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I love weather.",
+              "zh": "我喜欢天气。"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "Me too! Weather is so important.",
+              "zh": "我也是！天气非常重要。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "It is. It affects people’s lives!",
+              "zh": "是的。它会影响人们的生活！"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "Have you ever reported on a big weather event?",
+              "zh": "你报道过大型天气事件吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I have. I’ve reported on a blizzard.",
+              "zh": "报道过。我报道过一场暴风雪。"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "Do mean the one last weekend?",
+              "zh": "你是说上周末那场吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes! I had been waiting for that blizzard for years. When it came, I was ready.",
+              "zh": "对！那场暴风雪我等了很多年。它来的时候，我准备好了。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Welcome to our most perfect lesson! Why is it perfect? Today we are reviewing the present perfect and past perfect verb tenses. These show that an action is completed. Kelly uses the present perfect when she says, “Have you ever reported on a big weather event?” Anna uses the past perfect when she says, “I had been waiting for that blizzard for years.” Listen for “have” or “had” and the past participle to find more sentences with the perfect tense.",
+              "zh": "欢迎来到我们最“完成时”的一课！为什么完美？今天我们复习现在完成时和过去完成时。它们表示一个动作已经完成。凯莉用现在完成时说：“Have you ever reported on a big weather event?” 安娜用过去完成时说：“I had been waiting for that blizzard for years.” 注意听 have 或 had 加上过去分词，找出更多完成时的句子。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I have wanted to report on a big weather event my whole life.",
+              "zh": "我一辈子都想报道大型天气事件。"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "Who hasn’t? Did you report all weekend ... by yourself?",
+              "zh": "谁不想呢？你整个周末都自己报道吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No, no. I volunteered Pete to help me.",
+              "zh": "没有，没有。我拉皮特来帮我。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Why am I here on a Saturday? Why are you carrying things? Why? Why?",
+              "zh": "我星期六怎么在这儿？你为什么拿这么多东西？为什么？为什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Pete, these are my supplies – food, a blanket; warm clothing. Where are your supplies?",
+              "zh": "皮特，这些是我的补给——食物、毯子、保暖衣服。你的补给呢？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Pete, Pete, Pete. This could be the “blizzard of the century.”",
+              "zh": "皮特，皮特，皮特。这可能是“世纪暴风雪”。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "It’ll be fine.",
+              "zh": "不会有事的。"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "How else had you prepared?",
+              "zh": "你还做了什么准备？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Well, I had just bought the latest weather forecasting software. So, I brought it!",
+              "zh": "我刚买了最新的天气预报软件。所以我带来了！"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "Do you mean The Weather Genie Pro?",
+              "zh": "你是说天气精灵专业版？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "You know it. Pete thought it was pretty great too.",
+              "zh": "就是它。皮特也觉得很棒。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Do you have any games on that thing?",
+              "zh": "那东西上有游戏吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes! I have the best weather survival game. Boom!",
+              "zh": "有！我有最好的天气生存游戏。砰！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Sounds fun.",
+              "zh": "听起来好玩。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "It is. But right now, Pete, this computer is a work tool. It will give us the temperature, wind speed, wind direction and amount of snowfall … in real time! Boom, boom!",
+              "zh": "是很好玩。可现在，皮特，这台电脑是工作工具。它会给我们温度、风速、风向和降雪量……实时的！砰，砰！"
+            },
+            {
+              "speaker": "Pete",
+              "en": "I can’t wait.",
+              "zh": "我等不及了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Pete, we need a name for this blizzard.",
+              "zh": "皮特，这场暴风雪得有个名字。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "No, we don’t.",
+              "zh": "不需要。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "All the great storms have names.",
+              "zh": "所有大风暴都有名字。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "No, they don’t.",
+              "zh": "才没有。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I know -- “The Big Snow!”",
+              "zh": "我知道了——“大雪！”"
+            },
+            {
+              "speaker": "Pete",
+              "en": "I am not saying “The Big Snow.”",
+              "zh": "我才不说“大雪”。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Welcome to “The Big Snow.”",
+              "zh": "欢迎来到“大雪”。"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "The Big Snow broke all kinds of records, didn’t it?",
+              "zh": "这场大雪打破了各种纪录，对吧？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes it did. And every time a record was broken, we celebrated!",
+              "zh": "是的。每次破纪录，我们都庆祝！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "So far, in Washington, D.C. 29 inches of snow has fallen. That, my dear listeners, is a record! (Honks horn)",
+              "zh": "到目前为止，华盛顿特区已经下了 29 英寸的雪。亲爱的听众，这是纪录！（按喇叭）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "We just broke the wind speed record! (Honks horn)",
+              "zh": "我们刚打破风速纪录！（按喇叭）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Snow has been falling for 30 hours straight! That’s another record! (Honks horn. Pete comes into room and breaks the horn.)",
+              "zh": "雪已经连续下了 30 个小时！又是一个纪录！（按喇叭。皮特进来把喇叭弄坏了。）"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "By Saturday night, stores and restaurants had closed. Did you bring enough food?",
+              "zh": "到周六晚上，商店和餐馆都关了。你们带的食物够吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I thought I had brought enough food. But I ran out.",
+              "zh": "我以为带够了。可是吃完了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Hey, Pete, where is my bag of popcorn?",
+              "zh": "嘿，皮特，我那袋爆米花呢？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Maybe you ate it already.",
+              "zh": "也许你已经吃了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No, I didn’t.",
+              "zh": "没有。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "I haven't seen it. (Pete has popcorn in his beard. Anna tries to hit him.)",
+              "zh": "我没看见。（皮特胡子里有爆米花。安娜想打他。）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "We had reported together for 48 hours straight!",
+              "zh": "我们连续一起报道了 48 个小时！"
+            },
+            {
+              "speaker": "Kelly",
+              "en": "Wow. That must have been a great team-building exercise for you and Pete.",
+              "zh": "哇。对你和皮特来说，那一定是很好的团队建设。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yeah. You - you could say that.",
+              "zh": "嗯。可以……可以这么说。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "I hope you found all the sentences with perfect tenses. Learn more on our website!",
+              "zh": "希望你找到了所有完成时的句子。去我们的网站学更多吧！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What weather event does Anna report on?",
+              "choices": [
+                "A blizzard",
+                "A hurricane",
+                "A heat wave"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What name does Anna give the storm?",
+              "choices": [
+                "Winter Storm Kelly",
+                "The Big Snow",
+                "Blizzard Pete"
+              ],
+              "answerIndex": 1
+            },
+            {
+              "id": "q3",
+              "prompt": "How long do Anna and Pete report together?",
+              "choices": [
+                "30 hours",
+                "One Saturday morning",
+                "48 hours straight"
+              ],
+              "answerIndex": 2
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 11: The Big Snow (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-12",
+          "number": 12,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 12",
+          "subtitle": "Run! Bees!",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/b/b4/b442094f-e869-4a7f-9c14-d335957eafbc_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-12-run-bees/4139015.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "Wow. Did you know that bees are dying?",
+              "zh": "哇。你知道蜜蜂正在消失吗？"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "That is bad news. If all the bees died, there would be no food. Bees are very important.",
+              "zh": "那是坏消息。如果所有蜜蜂都死了，就不会有食物。蜜蜂非常重要。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes, they are. Speaking of bees, one of our little friends is here now.",
+              "zh": "是的。说到蜜蜂，我们的一位小朋友现在就在这儿。"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "You know, Anna, if you ignore it, it will fly away. But if you swat it, it might sting you.",
+              "zh": "安娜，如果你不理它，它就会飞走。可如果你拍它，它可能会蛰你。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’ll ignore it. I can ignore it. See, I’m ignoring it. (she is swatting at the bee)",
+              "zh": "我会不理它。我能不理它。看，我在不理它。（她其实在拍打蜜蜂）"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "Anna, are you afraid of bees?",
+              "zh": "安娜，你怕蜜蜂吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "What makes you say that?",
+              "zh": "你怎么会这么说？"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "Anna, you should call my friend, Caroline. She is a beekeeper and a bee educator. If you talk to her, she’ll probably help you get over your fear of bees.",
+              "zh": "安娜，你应该给我的朋友卡洛琳打电话。她是养蜂人，也是蜜蜂教育者。如果你跟她谈谈，她大概能帮你克服对蜜蜂的害怕。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I am not afraid of bees.",
+              "zh": "我不怕蜜蜂。"
+            },
+            {
+              "speaker": "Kaveh",
+              "en": "Here’s her card.",
+              "zh": "这是她的名片。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ahhh!",
+              "zh": "啊——！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "In this lesson, you can learn about conditionals. They have “if” and “will” or “would.” There are two kinds of conditional sentences in this lesson. Type 1 conditionals have a real event, and a result that probably will happen. The pattern is: If + present tense verb … will + future tense verb. Kaveh uses this when he says: “If you ignore it, it will fly away.” Type 2 conditionals have a possible event and a result that may or may not happen. The pattern is: If + past tense verb … would + infinitive verb. Kaveh uses this when he says, “If all the bees died, there would be no food.” Look for the “if” in a sentence to find more conditionals.",
+              "zh": "这一课可以学条件句。它们有 if，再加上 will 或 would。本课有两种条件句。第一种是真实事件，结果很可能发生。句式是：If + 现在时 … will + 将来时。卡维说：“If you ignore it, it will fly away.” 第二种是可能的事件，结果不一定发生。句式是：If + 过去时 … would + 动词原形。卡维说：“If all the bees died, there would be no food.” 找句子里的 if，就能找到更多条件句。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I think I'm at the wrong address. This does not look like a place where bees are kept. (knocks on door)",
+              "zh": "我好像走错地址了。这儿看起来不像养蜜蜂的地方。（敲门）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh, sorry to bother you. I’m looking for beekeeper Caroline. I’m here to take her “Learn to Love Bees!” class.",
+              "zh": "哦，抱歉打扰。我在找养蜂人卡洛琳。我来上她的“学会爱蜜蜂！”课。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "You’re in the right place! I’m Caroline!",
+              "zh": "你来对了！我就是卡洛琳！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh, nice to meet you! Um, Caroline, I thought this class used real bees and real hives.",
+              "zh": "哦，很高兴认识你！嗯，卡洛琳，我以为这门课用真蜜蜂和真蜂箱。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "It does! If you look in my backyard, you will see my bees! I’m a home beekeeper!",
+              "zh": "就是用真的！如果你看我的后院，就会看到我的蜜蜂！我是家庭养蜂人！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "What? You live with bees? That is really amazing! And at the same time really scary.",
+              "zh": "什么？你跟蜜蜂住一起？太神奇了！同时也好吓人。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "It’s not scary. If you come, I’ll show you.",
+              "zh": "不可怕。如果你过来，我就给你看。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Caroline, how many bees are in that hive?",
+              "zh": "卡洛琳，那个蜂箱里有多少蜜蜂？"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "About thirty thousand (30,000) in each.",
+              "zh": "每个大约三万只。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "What? That's amazing! But, aren’t you afraid that they are gonna come out and kill you?",
+              "zh": "什么？太惊人了！可你不怕它们出来把你蛰死吗？"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "No, not at all, Anna. Even my children help me. Tell me, why are you afraid of bees?",
+              "zh": "一点也不怕，安娜。连我的孩子都帮我。告诉我，你为什么怕蜜蜂？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I don't know. Well, when I was a little girl my mom ran out of honey. And I really wanted honey for my pancakes. So, I climbed high into a tree and hit a beehive with a stick … several times. Then I reached inside with my bare hands to pull the honey out. That’s when I got stung … a lot.",
+              "zh": "我不知道。嗯，我小时候妈妈的蜂蜜用完了。我很想在煎饼上放蜂蜜。所以我爬到很高的树上，用棍子打蜂巢……打了好几次。然后我光着手伸进去掏蜂蜜。那时我就被蛰了……很多次。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Caroline, if you hit a beehive with a stick and reach inside, you might get stung.",
+              "zh": "卡洛琳，如果你用棍子打蜂巢再伸进去，你可能会被蛰。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "No, Anna. If you do those things, you will get stung.",
+              "zh": "不对，安娜。如果你做那些事，你一定会被蛰。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes. I did.",
+              "zh": "是的。我被蛰了。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "And you know that it was your fault you got stung, don’t you?",
+              "zh": "而且你知道被蛰是你自己的错，对吧？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes. I did.",
+              "zh": "是的。我知道。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Bees know your feelings. And if you stay calm, the bees will be calm. If you're nervous, the bees will be nervous. And if bees are nervous, they may sting. So, please be calm.",
+              "zh": "蜜蜂能感觉到你的情绪。如果你保持冷静，蜜蜂也会冷静。如果你紧张，蜜蜂也会紧张。蜜蜂紧张时可能会蛰人。所以，请冷静。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I will be calm. I am calm. Okay, I'm ready. I'm ready",
+              "zh": "我会冷静。我很冷静。好，我准备好了。我准备好了。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Great. Let’s get our equipment on.",
+              "zh": "很好。我们穿上装备吧。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Wait! Wait! I’m not ready! I'm nervous! Give me a minute to be calm.",
+              "zh": "等等！等等！我还没准备好！我好紧张！给我一分钟冷静一下。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Are you ready for one more conditional sentence? If you are not afraid, you will join us next time to learn more about bees!",
+              "zh": "准备好听再一句条件句了吗？如果你不怕，下次就会跟我们一起继续了解蜜蜂！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What does Kaveh say would happen if all the bees died?",
+              "choices": [
+                "There would be no food",
+                "Honey would be cheaper",
+                "Flowers would grow faster"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "Who does Kaveh tell Anna to call?",
+              "choices": [
+                "Ms. Weaver",
+                "Caroline the beekeeper",
+                "Alaskan Albert"
+              ],
+              "answerIndex": 1
+            },
+            {
+              "id": "q3",
+              "prompt": "Why did Anna get stung as a little girl?",
+              "choices": [
+                "She ignored a bee at work",
+                "She wore no medals",
+                "She hit a beehive with a stick and reached inside"
+              ],
+              "answerIndex": 2
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 12: Run! Bees! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-13",
+          "number": 13,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 13",
+          "subtitle": "Save the Bees!",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/d/d7/d71f7385-7af3-4032-b1a8-3e543cf0cac0_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-13-save-the-bees/4145716.html",
+          "dialogue": [
+            {
+              "speaker": "Professor Bot",
+              "en": "We are back with Anna and Caroline and the bees. Last time, Anna was afraid. (Anna: I'm not afraid of bees!) But Caroline is helping her to stay safe. Look at sentences that start with “If” to find more conditional sentences. Remember, Type 1 conditionals use the present tense and “will,” and Type 2 use the past tense and “would.” Now, let's find out what happens with Anna and the bees.",
+              "zh": "我们又和安娜、卡洛琳还有蜜蜂在一起了。上次安娜很害怕。（安娜：我不怕蜜蜂！）但卡洛琳在帮她保持安全。找以 If 开头的句子，就能找到更多条件句。记住，第一种条件句用现在时和 will，第二种用过去时和 would。现在看看安娜和蜜蜂会怎样。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "I have a feeling that your fear of bees will be gone soon. There are things beekeepers do to protect ourselves. For example, we wear protective clothing. This is a beekeeper’s veil, suit and gloves. There are other things we can do, too. If I use a smoker, the bees will stay calm.",
+              "zh": "我有预感，你对蜜蜂的害怕很快就会消失。养蜂人会做一些事来保护自己。比如我们穿防护服。这是养蜂面罩、套装和手套。还有别的办法。如果我用喷烟器，蜜蜂就会保持冷静。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Let’s use smoke … lots of smoke.",
+              "zh": "我们用烟吧……很多很多烟。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Okay, Anna, that’s enough smoke. Another thing you can do is stay calm. Okay. When I lift the frame, you will see the bees.",
+              "zh": "好了，安娜，烟够了。另一件事是保持冷静。好。我提起蜂框时，你就会看到蜜蜂。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’m ready. Let's do this thing!",
+              "zh": "我准备好了。开始吧！"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Okay, let's put on our protective clothing.",
+              "zh": "好，我们穿上防护服。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "I will carefully take out a frame. This is where the bees live. There are worker bees, drone bees and the queen bee. The bees have different jobs. The queen bee lays the eggs. The worker bees collect nectar and pollen from flowers and bring it back to the hive. Then they make honey! Now, you hold the frame. There are the bees.",
+              "zh": "我会小心地拿出一个蜂框。这就是蜜蜂住的地方。有工蜂、雄蜂和蜂后。蜜蜂有不同的工作。蜂后产卵。工蜂从花上采集花蜜和花粉，带回蜂箱。然后它们酿蜜！现在你拿着这个框。蜜蜂在这儿。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "There are so many! And they are so busy! Now I know why we say, “busy as a bee!”",
+              "zh": "好多啊！它们好忙！现在我知道为什么说“忙得像蜜蜂”了！"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Good job, Anna.",
+              "zh": "做得好，安娜。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Caroline, bees are beautiful and important. If I wanted to help the bees, what would I do?",
+              "zh": "卡洛琳，蜜蜂又美丽又重要。如果我想帮助蜜蜂，我该做什么？"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Great question. You can plant native flowers that bees like. Here’s a book to help you know which ones to plant.",
+              "zh": "好问题。你可以种蜜蜂喜欢的本地花。这本书能帮你知道该种哪些。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "It’s a beautiful book. And look, it tells you which bees like which types of flowers.",
+              "zh": "这本书很漂亮。看，它还告诉你哪种蜜蜂喜欢哪种花。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "It also tells you how the flowers affect the flavor of the honey.",
+              "zh": "它还告诉你这些花怎样影响蜂蜜的味道。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Flowers make a big difference to bees. If they don’t eat, they won’t live.",
+              "zh": "花对蜜蜂很重要。如果它们不吃东西，就活不下去。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Buying local honey also helps the bees. If you want to help bees, do those two things.",
+              "zh": "买本地蜂蜜也有帮助。如果你想帮助蜜蜂，就做这两件事。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "I learned a lot about bees. Hey, if I worked with bees, I would not need protective clothing! Guess what? That was a Type 2 conditional. And I heard a Type 1 conditional, too. (Anna: If they don’t eat, they won’t live.)",
+              "zh": "我学到了很多关于蜜蜂的知识。嘿，如果我和蜜蜂一起工作，就不需要防护服！猜怎么着？那是第二种条件句。我还听到了第一种条件句。（安娜：If they don’t eat, they won’t live.）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Thanks for the book, Caroline, and the bee puppet and for teaching me about bees. Look … I’m not scared.",
+              "zh": "谢谢你的书，卡洛琳，还有蜜蜂玩偶，也谢谢你教我认识蜜蜂。看……我不害怕了。"
+            },
+            {
+              "speaker": "Caroline",
+              "en": "Good job, Anna. If you ever want to see the bees again, I’ll be here! You have my business card. I'll let you see yourself out.",
+              "zh": "做得好，安娜。如果你以后还想看蜜蜂，我会在这儿！你有我的名片。你自己出去就行。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Thanks! Bye! I will plant tons of flowers!",
+              "zh": "谢谢！再见！我会种好多花！"
+            },
+            {
+              "speaker": "Bees",
+              "en": "Thanks, Anna. (bees spell out the words)",
+              "zh": "谢谢，安娜。（蜜蜂拼出这些字）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Sure thing, bees! Oh, and I'm sorry about hitting that hive when I was a little girl.",
+              "zh": "应该的，蜜蜂们！哦，还有，对不起我小时候打过那个蜂巢。"
+            },
+            {
+              "speaker": "Bees",
+              "en": "We love you, Anna. (bees make a heart sign.)",
+              "zh": "我们爱你，安娜。（蜜蜂摆出爱心）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Take care, bees! (to herself) Which way is the Metro?",
+              "zh": "保重，蜜蜂们！（自言自语）地铁往哪边走？"
+            },
+            {
+              "speaker": "Bees",
+              "en": "That way. (they draw an arrow)",
+              "zh": "那边。（它们画出一个箭头）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Thanks!",
+              "zh": "谢谢！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "So, if you want to learn more about bees, visit your local beekeeper like Anna did. Maybe you can try some local honey, too. Now it’s your turn. Practice making conditional sentences. If you practice, you will become better at them. That's type 1!",
+              "zh": "所以，如果你想多了解蜜蜂，就像安娜一样去拜访本地养蜂人。也许你还可以尝尝本地蜂蜜。现在轮到你了。练习造条件句。如果你练习，你就会更擅长。这就是第一种条件句！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What does Caroline use to keep the bees calm?",
+              "choices": [
+                "A horn",
+                "A smoker",
+                "Popcorn"
+              ],
+              "answerIndex": 1
+            },
+            {
+              "id": "q2",
+              "prompt": "What two things does Caroline say help the bees?",
+              "choices": [
+                "Plant native flowers and buy local honey",
+                "Swat bees and ignore hives",
+                "Report blizzards and collect popcorn"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "What does Anna say she will do at the end?",
+              "choices": [
+                "Become a spy",
+                "Hire a parkour trainer",
+                "Plant tons of flowers"
+              ],
+              "answerIndex": 2
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 13: Save the Bees! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-14",
+          "number": 14,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 14",
+          "subtitle": "Made for Each Other",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/b/b0/b0230cad-9353-42b1-8d57-d64a8e5c7c5a_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-14-made-for-each-other/4159000.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "Hello! What are you guys looking at?",
+              "zh": "你们好！你们在看什么？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "I’m showing Ashley pictures of my girlfriend. We have so much in common -- even small things. She can’t whistle and I can’t either.",
+              "zh": "我在给阿什莉看我女朋友的照片。我们有好多共同点——连小事也一样。她不会吹口哨，我也不会。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "(to Pete) And here’s a picture of my boyfriend. (sighs)",
+              "zh": "（对皮特）这是我男朋友的照片。（叹气）"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "My family is big and so is his. I don’t like ball sports and he doesn’t either! (sighs) We are made for each other ...",
+              "zh": "我家人口很多，他家也是。我不喜欢球类运动，他也不喜欢！（叹气）我们真是天生一对……"
+            },
+            {
+              "speaker": "Pete",
+              "en": "… and so are we. (sighs)",
+              "zh": "……我们也是。（叹气）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Uh… you have found perfect partners … and so have I!",
+              "zh": "呃……你们找到了完美伴侣……我也找到了！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Pete and Ashley are talking about people they love. They are putting two ideas together with connectors. Let’s start with these two sentences: She can’t whistle. Pete can’t whistle. How do you put them together? Pete says, “She can’t whistle and I can’t either.” You can see we just add the conjunction “either” and take away the verb “whistle.” And Ashley says: “I don’t like ball sports and he doesn’t either!” Keep looking for connectors!",
+              "zh": "皮特和阿什莉在谈论他们爱的人。他们用连接词把两个意思合在一起。先看这两句：She can’t whistle. Pete can’t whistle. 怎么合在一起？皮特说：“She can’t whistle and I can’t either.” 我们加上连接词 either，并去掉动词 whistle。阿什莉说：“I don’t like ball sports and he doesn’t either!” 继续找连接词！"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "You met someone, Anna? That’s great! What’s his name?",
+              "zh": "安娜，你认识人了？太好了！他叫什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "His name? His name is uh… (stalling, looks around, sees a bus) Bus … ter. (stalling, looks around, sees a car) Car … ter.",
+              "zh": "他的名字？他的名字是呃……（拖延，四处看，看见一辆公交车）Bus……ter。（拖延，看见一辆汽车）Car……ter。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "(says it like Anna did) Bus...ter Car...ter?",
+              "zh": "（学安娜的样子）Bus...ter Car...ter？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "It’s just Buster Carter, Ashley. I like him and he likes me. We’re a great couple.",
+              "zh": "就是 Buster Carter，阿什莉。我喜欢他，他也喜欢我。我们是很棒的一对。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "Hey, let’s all get dinner tonight, together. You can bring Buster.",
+              "zh": "嘿，今晚我们一起吃饭吧。你可以带上巴斯特。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "(laughing) Yeah, I can’t wait to meet him.",
+              "zh": "（笑）对，我等不及见他了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Thanks, Ashley, but he’s really busy tonight with his uh, (looks around, sees squirrel) squirrel collection. Bye, guys! Gotta go!",
+              "zh": "谢谢，阿什莉，可他今晚真的很忙，忙他的呃，（四处看，看见松鼠）松鼠收藏。再见，伙计们！我得走了！"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "Squirrel collection?",
+              "zh": "松鼠收藏？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "You know, she made all that up.",
+              "zh": "你知道的，那全是她编的。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "That’s so sad. She needs to meet someone. Hey, do you know anyone who she might...",
+              "zh": "好难过。她需要认识个人。嘿，你认识谁也许可以……"
+            },
+            {
+              "speaker": "Pete",
+              "en": "No.",
+              "zh": "不。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "(to herself) Anna, Anna, you lied! You lied! Now, they think you have a boyfriend - with a squirrel collection. Here, squirrel. (throws food) Well, you need to tell them the truth. You don’t have a boyfriend.",
+              "zh": "（自言自语）安娜，安娜，你撒谎了！你撒谎了！现在他们以为你有男朋友——还收藏松鼠。来，松鼠。（扔食物）你得告诉他们实话。你没有男朋友。"
+            },
+            {
+              "speaker": "Man",
+              "en": "Excuse me, is this seat taken?",
+              "zh": "不好意思，这个位子有人吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ashley, Pete, I need to talk to you. This morning, I lied.",
+              "zh": "阿什莉，皮特，我得跟你们谈谈。今天早上，我撒谎了。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Let me guess. There’s no Buster Carter. What a surprise!",
+              "zh": "让我猜。根本没有巴斯特·卡特。真是惊喜！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’m sorry. But later I really did meet someone and we have a lot in common! He’s good at flying kites and so am I. He likes to read comics and so do I. I can play the ukulele and so can he.",
+              "zh": "对不起。可后来我真的遇到了一个人，我们有很多共同点！他很会放风筝，我也是。他喜欢看漫画，我也是。我会弹尤克里里，他也会。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "He sounds perfect for you, Anna. Can he come tonight?",
+              "zh": "听起来他很适合你，安娜。他今晚能来吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That’s the sad part. You see, he just got a job as a spy, and tonight he leaves on assignment.",
+              "zh": "这就是让人难过的地方。你看，他刚找到一份间谍的工作，今晚就要出发执行任务。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "Of course he does.",
+              "zh": "当然了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "But that's okay, because now I know that there is someone out there made for me. (looks at the time) Oh, it’s late! I have to see him off at the train station. Bye, you guys!",
+              "zh": "不过没关系，因为我现在知道外面有一个为我而生的人。（看时间）哦，晚了！我得去火车站送他。再见！"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "Bye Anna! Oh dear, she’s worse than we thought.",
+              "zh": "再见，安娜！天哪，她比我们想的还严重。"
+            },
+            {
+              "speaker": "Pete",
+              "en": "She’s lost her mind.",
+              "zh": "她疯了。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "What should we do?",
+              "zh": "我们该怎么办？"
+            },
+            {
+              "speaker": "Pete",
+              "en": "(happy, excited) Let’s tell her!",
+              "zh": "（高兴、兴奋）我们告诉她吧！"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "No, Pete. Mr. Right may not be real but he makes her really happy.",
+              "zh": "不行，皮特。真命天子也许不是真的，可他让她很开心。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Did you find any other connectors? Notice how the words are in a different order in the part after “so.” “I am” becomes “am I” and “he can” becomes “can he.” “He’s good at flying kites and so am I. I can play the ukulele and so can he.”",
+              "zh": "你还找到别的连接词了吗？注意 so 后面的词序变了。“I am” 变成 “am I”，“he can” 变成 “can he”。“He’s good at flying kites and so am I. I can play the ukulele and so can he.”"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What fake name does Anna invent for her boyfriend?",
+              "choices": [
+                "Buster Carter",
+                "Alaskan Albert",
+                "Mark in Accounting"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What excuse does Anna give for why he cannot come to dinner?",
+              "choices": [
+                "He is reporting a blizzard",
+                "He is busy with his squirrel collection",
+                "He is afraid of bees"
+              ],
+              "answerIndex": 1
+            },
+            {
+              "id": "q3",
+              "prompt": "What job does Anna later say her new friend just got?",
+              "choices": [
+                "Beekeeper",
+                "Personal trainer",
+                "Spy"
+              ],
+              "answerIndex": 2
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 14: Made for Each Other (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-15",
+          "number": 15,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 15",
+          "subtitle": "Before and After",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/5/5c/5c124a10-74f5-4641-a72b-7f8efdbc8fa9_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-15-before-after/4159057.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "Penelope, even though we both love speed walking, could we slow down a bit?",
+              "zh": "佩内洛普，虽然我们都爱竞走，能不能慢一点？"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "No way! I think because I’m walking with you, I’m walking faster.",
+              "zh": "不行！我觉得因为跟你一起走，我走得更快了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Come on, Penelope. Let's take a break. We've been speed walking since 8 a.m.! You're so competitive! You even wore your medals!",
+              "zh": "拜托，佩内洛普。休息一下吧。我们从早上 8 点就在竞走了！你好好胜！你还戴着奖牌！"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "You brought your trophies! You’re out of shape. When we were little girls, we could speed walk all day! (pulls ahead)",
+              "zh": "你还带了奖杯！你身体不行了。我们还是小女孩的时候，可以竞走一整天！（抢先走）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "(chases her) Hey, wait for me! Hey, you know the speed walking rules! If both feet leave the ground, it’s running! You ran!",
+              "zh": "（追她）嘿，等等我！嘿，你知道竞走规则！如果双脚都离地，那就是跑步！你跑了！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Anna and Penelope are doing something they both love - speed walking! They are also using adverb clauses. Adverb clauses tell us when, why, how, where and under what conditions. For example, “since 8 a.m.” tells us when. Adverb clauses are dependent clauses and need an independent clause to make a complete sentence. Words like before, after, when, because, since, if and even though can signal an adverb clause. Keep watching for more adverb clauses!",
+              "zh": "安娜和佩内洛普在做她们都喜欢的事——竞走！她们也在用状语从句。状语从句告诉我们何时、为何、怎样、何处以及在什么条件下。比如 “since 8 a.m.” 告诉我们时间。状语从句是从属从句，需要一个独立从句才能构成完整句子。before、after、when、because、since、if 和 even though 这类词可以提示状语从句。继续看，找更多状语从句！"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "Whew! That was great!",
+              "zh": "呼！太棒了！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "(Anna catches up) Wow, Penelope, you’re still really fast! Since I’ve been working in an office, my speed walking has been much slower.",
+              "zh": "（安娜追上）哇，佩内洛普，你还是很快！自从我在办公室工作以来，我的竞走慢多了。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "You are slower, Anna. Maybe you should hire a personal trainer.",
+              "zh": "你是慢了，安娜。也许你该请个私人教练。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That will be great. As long as the trainer understands speed walking.",
+              "zh": "那很好。只要教练懂竞走就行。"
+            },
+            {
+              "speaker": "Penelope",
+              "en": "(hands her a business card) Try this company. After you fill out an online application, they will match you to the perfect trainer.",
+              "zh": "（递给她一张名片）试试这家公司。你填完网上申请后，他们会给你匹配最合适的教练。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "As soon as I get home tonight, I’ll do it! Thanks.",
+              "zh": "今晚我一到家就填！谢谢。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Are you my trainer?",
+              "zh": "你是我的教练吗？"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "If you’re Anna, then I’m your trainer -- Alaskan Albert. Because I’m from Alaskan wilderness, I’m skilled in all outdoor activities of the wild.",
+              "zh": "如果你是安娜，那我就是你的教练——阿拉斯加的艾伯特。因为我来自阿拉斯加荒野，我擅长所有野外户外活动。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That’s great but what about speed walking?",
+              "zh": "那很好，可竞走呢？"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "Speed walking? That's funny! Since I’ve been living in the city, I’ve combined wilderness training with a city workout. I call it “Call of the Wild Parkour!” (He howls like a wolf.)",
+              "zh": "竞走？真好笑！自从我住在城里，我就把荒野训练和城市锻炼结合起来。我叫它“野性的呼唤跑酷！”（他像狼一样嚎叫。）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Okay … but seriously, when do we speed walk?",
+              "zh": "好吧……可说真的，我们什么时候竞走？"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "Your application did not say how funny you are!",
+              "zh": "你的申请没说你这么幽默！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No. But it did say that I'm a speed walker! Did you read it? Forget it. We'll have to cancel.",
+              "zh": "没有。可它写了我是竞走者！你读了吗？算了。我们得取消。"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "Why?",
+              "zh": "为什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "We can't train today because it's too cold and too windy.",
+              "zh": "今天不能训练，因为太冷也太刮风。"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "No way! No pain, no gain! When you exercise in really cold weather, you feel alive!",
+              "zh": "不行！没有痛苦就没有收获！在很冷的天气里锻炼，你会觉得自己活着！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Really? Because right now I just feel cold.",
+              "zh": "真的吗？因为我现在只觉得冷。"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "You're so funny. But seriously, after our training, you will be ready for any extreme physical challenge. Let's get started!",
+              "zh": "你真有趣。可说真的，训练之后，你就能应对任何极限体能挑战。开始吧！"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "Anna, even though you’re trying really hard, you’re really bad at Call of the Wild Parkour. (he howls)",
+              "zh": "安娜，虽然你很努力，可你的“野性的呼唤跑酷”真的很差。（他嚎叫）"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I'm bad at Call of the Wild Parkour because I don’t want to do Call of the Wild Parkour! (she howls) I am a speed walker. It’s what I do. It’s part of who I am.",
+              "zh": "我跑酷差，是因为我不想做“野性的呼唤跑酷”！（她嚎叫）我是竞走者。这就是我做的事。这是我的一部分。"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "Why didn’t you say something?",
+              "zh": "你为什么不说？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I did. Several times! You thought I was joking.",
+              "zh": "我说了。说了好几次！你以为我在开玩笑。"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "Now I understand. Anna, I can help you. If you follow my advice, I'll put the speed back in your speed walk.",
+              "zh": "现在我明白了。安娜，我能帮你。如果你听我的建议，我会把速度还给你的竞走。"
+            },
+            {
+              "speaker": "Alaskan Albert",
+              "en": "Go, Anna, go!",
+              "zh": "加油，安娜，加油！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "For more about adverb clauses, visit our website!",
+              "zh": "想了解更多状语从句，请访问我们的网站！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What activity do Anna and Penelope both love?",
+              "choices": [
+                "Parkour",
+                "Speed walking",
+                "Beekeeping"
+              ],
+              "answerIndex": 1
+            },
+            {
+              "id": "q2",
+              "prompt": "What does Alaskan Albert call his workout?",
+              "choices": [
+                "The Big Snow",
+                "Learn to Love Bees",
+                "Call of the Wild Parkour"
+              ],
+              "answerIndex": 2
+            },
+            {
+              "id": "q3",
+              "prompt": "What does Anna say she is?",
+              "choices": [
+                "A speed walker",
+                "A spy",
+                "A beekeeper"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 15: Before and After (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
         }
       ]
     }

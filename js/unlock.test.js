@@ -68,7 +68,7 @@ test("published catalog: L1 1-5 free, L1 6+ and all L2 locked until redeem", () 
   const l1 = levels.find((level) => level.id === "lle1");
   const l2 = levels.find((level) => level.id === "lle2");
   assert.equal(l1.lessons.length, 52);
-  assert.equal(l2.lessons.length, 20);
+  assert.equal(l2.lessons.length, 25);
   assert.deepEqual(
     l2.lessons.map((lesson) => lesson.subtitle),
     [
@@ -92,6 +92,11 @@ test("published catalog: L1 1-5 free, L1 6+ and all L2 locked until redeem", () 
       "Flour Baby, Part 2",
       "Movie Night",
       "The Test Drive",
+      "Trash to Treasure, Part 1",
+      "Trash to Treasure, Part 2",
+      "Rock Star",
+      "I Feel Super!",
+      "Only Human",
     ]
   );
 

@@ -1,7 +1,7 @@
 {
   "course": {
     "title": "Let's Learn English",
-    "pitch": "A small self-study shell for VOA Learning English. Level 1 is complete (52 lessons). Level 2 has started (20 lessons). Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
+    "pitch": "A small self-study shell for VOA Learning English. Level 1 is complete (52 lessons). Level 2 has started (25 lessons). Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
     "disclaimer": "This is an unofficial study helper. Lesson videos and scripts come from VOA Learning English and are in the public domain. This site is not affiliated with or endorsed by Voice of America."
   },
   "levels": [
@@ -14663,6 +14663,1201 @@
             }
           ],
           "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 20: The Test Drive (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-21",
+          "number": 21,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 21",
+          "subtitle": "Trash to Treasure, Part 1",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/3/33/33288430-6fd2-49ab-aa0d-e7bcca6f13d8_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-21/4273059.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "(on phone, to Pete) Got it. Pete, I promise. I won’t tell anyone. (to herself) Bye. He is so strange.",
+              "zh": "（打电话给皮特）知道了。皮特，我保证。我谁也不会说。（对自己）再见。他真奇怪。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "Hey, Anna!",
+              "zh": "嘿，安娜！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Hi, Ashley!",
+              "zh": "嗨，阿什莉！"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "Are you talking to yourself again?",
+              "zh": "你又在自言自语了？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No, not this time. I was talking to Pete.",
+              "zh": "这次没有。我在跟皮特说话。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "How’s he doing?",
+              "zh": "他怎么样？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Good. He has a birthday coming up! But he told me not to tell anyone.",
+              "zh": "挺好。他生日快到了！可他叫我别告诉任何人。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "Why?",
+              "zh": "为什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Well, from the way he was speaking, I don’t think he likes cake or presents or fun.",
+              "zh": "听他说话的样子，我觉得他不喜欢蛋糕、礼物，也不喜欢热闹。"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "That sounds like Pete.",
+              "zh": "听起来就是皮特。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Well, I don’t care. I’m getting him a present. Do you know where I can buy something unique?",
+              "zh": "反正我不在乎。我要给他买礼物。你知道哪儿能买到特别的东西吗？"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "I do -- Tanglewood Works. You will definitely find something unique there.",
+              "zh": "知道——Tanglewood Works。那儿肯定能找到特别的东西。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Great. I’ll go this weekend. Now, speaking of Pete’s birthday, what else should I do? I know. I’ll rent him a clown!",
+              "zh": "太好了。我这周末去。说到皮特的生日，我还该做什么？我知道了。我给他租个小丑！"
+            },
+            {
+              "speaker": "Ashley",
+              "en": "Yeah, he’ll never speak to you again.",
+              "zh": "是啊，那他再也不会跟你说话了。"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Did you hear Ashley and Anna using the words talk and speak? Talk and speak both mean “to say words.” And, many times, you can use either word without losing any meaning. But there are some differences in when we use these words. The word talk is usually used for conversations between two or more people and informal situations, such as between friends or family. For example, Ashley asks Anna: “Are you talking to yourself again?” Speak is usually used for one-way communication, such as presentations; formal situations, such as a boss speaking with her workers; to talk about language ability; and in polite requests. Keep watching, and listen for the words talk and speak.",
+              "zh": "你听到阿什莉和安娜用 talk 和 speak 了吗？这两个词都表示“说话”。很多时候用哪个都行，意思差不多。但使用场合有些差别。talk 通常用于两人或多人之间的对话，以及朋友或家人之间这类非正式场合。比如阿什莉问安娜：“Are you talking to yourself again?” speak 通常用于单向交流，比如演讲；正式场合，比如老板对员工讲话；谈论语言能力；以及礼貌请求。继续看，注意听 talk 和 speak。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Hey there. Welcome to Tanglewood Works! I’m Sue. How can I help you today?",
+              "zh": "嗨。欢迎来到 Tanglewood Works！我是苏。今天能帮你什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Hi Sue, I’m Anna. A friend told me about your store. She said, “Anna, this place is really unique!”",
+              "zh": "嗨苏，我是安娜。一个朋友跟我说起你们店。她说：“安娜，这地方真的很特别！”"
+            },
+            {
+              "speaker": "Sue",
+              "en": "We are! Here at Tanglewood Works, we focus on things that are handmade, reclaimed and recycled.",
+              "zh": "没错！在 Tanglewood Works，我们做的是手工、再利用和回收的东西。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Wow! That is really good for the environment.",
+              "zh": "哇！这对环境真的很好。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "It’s good for you too. Local artists made all of these one-of-a-kind pieces. And I paint most of the furniture.",
+              "zh": "对你也好。这些独一无二的作品都是本地艺术家做的。家具大多是我刷的漆。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Can I look around?",
+              "zh": "我可以转转吗？"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Oh, please do.",
+              "zh": "当然可以。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "So, Anna, do you like to make things?",
+              "zh": "安娜，你喜欢动手做东西吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Me? Oh, no. Every time I try to make something, something goes wrong.",
+              "zh": "我？哦，不。我每次一动手，就会出问题。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh, sorry. Sorry.",
+              "zh": "哦，对不起。对不起。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "It’s okay. Anna, everybody can make something.",
+              "zh": "没关系。安娜，每个人都能做出点什么。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Sue, this piece is very interesting!",
+              "zh": "苏，这件作品很有意思！"
+            },
+            {
+              "speaker": "Sue",
+              "en": "You know, when I found these pieces, they were broken and in a dumpster. But they spoke to me. And they said, “Save me, Sue! Save me!”",
+              "zh": "你知道吗，我找到这些东西时，它们是破的，在垃圾箱里。可它们对我说话了。它们说：“救救我，苏！救救我！”"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Sue, what do you mean they “spoke” to you?",
+              "zh": "苏，你说它们对你“说话”是什么意思？"
+            },
+            {
+              "speaker": "Sue",
+              "en": "When I see something special that someone has thrown away, I can almost hear it talk.",
+              "zh": "当我看到别人扔掉的特别的东西，我几乎能听见它说话。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "It’s not saying anything!",
+              "zh": "它什么也没说啊！"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Anna, it’s not easy to see the treasure in trash.",
+              "zh": "安娜，要从垃圾里看出宝贝可不容易。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Or hear it talk.",
+              "zh": "或者听见它说话。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "But you can learn. In fact, I teach private classes. And one is called Turning Trash to Treasure.",
+              "zh": "可你可以学。其实我教私人课。有一门就叫“变废为宝”。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Next week, bring in some trash and we’ll turn it into treasure. Just remember – pick some trash that “speaks” to you.",
+              "zh": "下周带点垃圾来，我们把它变成宝贝。记住——挑那种会对你“说话”的垃圾。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Got it! I’ll see you next week!",
+              "zh": "明白了！下周见！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Will Anna find trash that “speaks” to her? What will it say? We’ll find out next week!",
+              "zh": "安娜能找到对她“说话”的垃圾吗？它会说什么？我们下周再看！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "Why does Anna want to buy Pete a present?",
+              "choices": [
+                "He has a birthday coming up",
+                "He asked her for a clown",
+                "He works at Tanglewood Works"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What kind of things does Tanglewood Works sell?",
+              "choices": [
+                "Handmade, reclaimed and recycled pieces",
+                "New factory furniture only",
+                "Birthday cakes and clown rentals"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "What does Sue tell Anna to bring next week?",
+              "choices": [
+                "Trash that “speaks” to her",
+                "A birthday cake for Pete",
+                "A painted chair from the dumpster"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 21: Trash to Treasure, Part 1 (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-22",
+          "number": 22,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 22",
+          "subtitle": "Trash to Treasure, Part 2",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/d/d1/d122dfe7-5f99-4ef9-980f-1ac4aa6a4865_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-22/4283017.html",
+          "dialogue": [
+            {
+              "speaker": "Sue",
+              "en": "Welcome to class, Anna. I can’t wait to see your trash!",
+              "zh": "欢迎来上课，安娜。我等不及要看你的垃圾了！"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Oh, okay. Alright, it’s a -- it’s a net with a … oh, it’s got a hole in it. Tell me about that.",
+              "zh": "哦，好。好吧，这是——一张网，上面……哦，有个洞。跟我说说这个。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "This net said to me, “Anna, I used to catch stuff. I don’t anymore. So, use me, Anna.” That’s what it said. It said, “Use me, Anna.”",
+              "zh": "这张网对我说：“安娜，我以前能抓东西。现在不行了。所以，用我吧，安娜。”它就是这么说的。它说：“用我吧，安娜。”"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Okay. So...it’s a plastic helmet.",
+              "zh": "好。那……这是一顶塑料头盔。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "This plastic helmet said, “Anna. Hey, Anna, find me a head.”",
+              "zh": "这顶塑料头盔说：“安娜。嘿，安娜，给我找个头。”"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Okay, um...and a broken toy.",
+              "zh": "好，嗯……还有一个破玩具。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "This broken toy … this broken toy said to me – it said, “Anna, help me find fun.” “Help me, Anna” is what it said.",
+              "zh": "这个破玩具……这个破玩具对我说——它说：“安娜，帮我找回乐趣。”“帮帮我，安娜”，它就是这么说的。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Anna, this stuff is not saying anything to you or me or anyone. It’s what we like to call in the business … garbage.",
+              "zh": "安娜，这些东西对你、对我、对谁都没说话。我们行里管这叫……垃圾。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "But you said to bring in trash.",
+              "zh": "可你说要带垃圾来。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Sometimes trash is treasure. Sometimes it's just trash.",
+              "zh": "有时垃圾是宝贝。有时它就只是垃圾。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Anna, don’t worry. Next week, I could teach you decoupage.",
+              "zh": "安娜，别担心。下周我可以教你做 decoupage。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Decoupage. Decoupage. That’s fun to say.",
+              "zh": "Decoupage。Decoupage。这词说起来真好玩。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "All you need to bring is a clean shoe box. A box that held shoes.",
+              "zh": "你只需要带一个干净的鞋盒。装过鞋的盒子。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I got it. I got it! See you next week!",
+              "zh": "明白了。明白了！下周见！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Uh oh. It looks like Anna doesn’t know the difference between treasure and trash. She thinks those things are telling her something! The words tell and say have similar meanings. But we use them in different ways. Tell means “to inform or instruct someone with words” and is almost always followed by an indirect object. For example, Sue says, “Tell me about that.” The word me is the indirect object and tells us who is being told. Say means “to express something with words” and focuses more on the words used. For example, Anna says, “That’s what it said. It said, ‘Use me, Anna.’” Listen for when Anna and Sue use tell and say.",
+              "zh": "哎呀。看起来安娜分不清宝贝和垃圾。她觉得那些东西在跟她说话！tell 和 say 意思相近，但用法不同。tell 表示“用话告知或指示某人”，后面几乎总跟间接宾语。比如苏说：“Tell me about that。” me 就是间接宾语，告诉我们在对谁说。say 表示“用话说出某事”，更侧重说了什么。比如安娜说：“That’s what it said. It said, ‘Use me, Anna.’” 注意听安娜和苏什么时候用 tell 和 say。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Anna, welcome to Decoupage class. Decoupage is just gluing pretty pictures onto stuff.",
+              "zh": "安娜，欢迎来上拼贴课。Decoupage 就是把漂亮的图片粘到东西上。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Anna, I’ve got to talk to this person. I’ll be right back. Don’t start without me.",
+              "zh": "安娜，我得跟这个人说几句。马上回来。别不等我就开始。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Got it.",
+              "zh": "知道了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Okay. I can fix this.",
+              "zh": "好。我能修好这个。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Anna, what happened? I told you to wait for me!",
+              "zh": "安娜，怎么了？我告诉过你等我！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Actually, you told me not to start without you, which I didn’t. Your glue is really sticky.",
+              "zh": "其实你说的是别不等你就开始，我没有不等你。你的胶水真的很黏。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Next week, let’s try lamp making. There’s – there’s no glue. Here's a flier.",
+              "zh": "下周我们试试做灯。没有——没有胶水。这是传单。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Thanks. See you next week.",
+              "zh": "谢谢。下周见。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Anna, you did really well this week. I think lamp making might be your thing!",
+              "zh": "安娜，你这周做得真好。我觉得做灯可能适合你！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Thanks, Sue. I did everything you told me to do.",
+              "zh": "谢谢，苏。你让我做的我都做了。"
+            },
+            {
+              "speaker": "Sue",
+              "en": "Remember: I said to read the instructions really carefully. Where are those instructions?",
+              "zh": "记住：我说了要非常仔细地读说明书。说明书呢？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Let’s just plug it in!",
+              "zh": "我们直接插上电吧！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "So, what class will you be teaching next week?",
+              "zh": "那下周你要教什么课？"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Too bad Anna didn’t follow instructions! Visit our website for more on tell and say!",
+              "zh": "可惜安娜没按说明书做！去我们的网站看更多关于 tell 和 say 的内容吧！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What does Sue call the net, helmet, and broken toy Anna brought?",
+              "choices": [
+                "Garbage",
+                "Treasure",
+                "Furniture"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What happens while Sue is on the phone in decoupage class?",
+              "choices": [
+                "Anna gets covered with glue and paper",
+                "Anna finishes a perfect shoe box",
+                "Anna rents a clown for Pete"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "What does Anna do with the lamp instead of reading the instructions?",
+              "choices": [
+                "She plugs it in",
+                "She paints it first",
+                "She gives it to Sue"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 22: Trash to Treasure, Part 2 (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-23",
+          "number": 23,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 23",
+          "subtitle": "Rock Star",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/0/0e/0e75964c-a547-4867-81bc-23c1a81ac2e2_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-23/4287922.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "Hello?",
+              "zh": "喂？"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Anna, this is Ms. Weaver.",
+              "zh": "安娜，我是韦弗女士。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ms. Weaver!",
+              "zh": "韦弗女士！"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Tomorrow, you’ll be interviewing musician Emma G.",
+              "zh": "明天，你将采访音乐家 Emma G。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Emma G?! I will be talking to Emma G?!",
+              "zh": "Emma G？！我要跟 Emma G 谈话？！"
+            },
+            {
+              "speaker": "Ms. Weaver",
+              "en": "Anna? Anna, are you there?",
+              "zh": "安娜？安娜，你还在吗？"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Anna and Ms. Weaver used the future continuous verb tense to talk about the interview. We use future continuous to talk about actions that will be in progress at or around a time in the future. For example, Ms. Weaver says, “Tomorrow, you’ll be interviewing musician Emma G.” There are two options for future continuous. The first is: will be + the -ing form of the verb. And the second is: be + going to be + the -ing form of the verb. Keep watching for more!",
+              "zh": "安娜和韦弗女士用将来进行时来谈这次采访。将来进行时用来表示将来某个时间正在进行的动作。比如韦弗女士说：“Tomorrow, you’ll be interviewing musician Emma G.” 将来进行时有两种形式。第一种：will be + 动词的 -ing 形式。第二种：be + going to be + 动词的 -ing 形式。继续看！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Hello and welcome to The Music! Today, musician Emma G will be joining us here!",
+              "zh": "大家好，欢迎来到 The Music！今天，音乐家 Emma G 将来到这里！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "She is a wonderful songwriter and an amazing singer. And I love her! Let’s give a warm welcome to Emma G!",
+              "zh": "她是出色的词曲作者，也是了不起的歌手。而且我超爱她！让我们热烈欢迎 Emma G！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Hi. Thank you for coming on the show, Emma G.",
+              "zh": "嗨。谢谢你来上节目，Emma G。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Of course. It’s great to be here.",
+              "zh": "当然。很高兴来到这里。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Well, we can’t wait to hear you sing. I listen to your music a lot. So, I feel like I know you. Is that strange?",
+              "zh": "我们等不及听你唱歌了。我经常听你的歌。所以感觉好像认识你。这奇怪吗？"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Anna, listening to music can be a very personal experience. So, no, that’s not strange.",
+              "zh": "安娜，听音乐可以是很个人的体验。所以，不，这不奇怪。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Good because I made something for you -- a video scrapbook of our friendship.",
+              "zh": "那就好，因为我给你做了个东西——我们友谊的视频剪贴簿。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I took photos of you and added myself. I worked on it all weekend.",
+              "zh": "我用了你的照片，再把自己加进去。我做了整整一个周末。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Well, that -- that’s strange. Is that even -- is that even legal?",
+              "zh": "嗯，那——那有点奇怪。这甚至——这合法吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Now, Emma, let’s talk about your schedule. Tell me ... I mean, tell us exactly where you will be and when. Exactly.",
+              "zh": "好，Emma，我们来谈谈你的行程。告诉我……我是说，准确地告诉我们你什么时候会在哪里。准确的。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Sure. Well, in early June, I’ll be performing at several venues across Austin, Texas.",
+              "zh": "好。六月初，我将在得克萨斯州奥斯汀的几个场地演出。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That’s my vacation week. I can meet you there! We can tour the city. We can have lunch.",
+              "zh": "那是我的假期周。我可以去那儿见你！我们可以逛城市。我们可以吃午饭。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Um, yeah maybe. Then in mid-July, I’m going to be teaching at a music camp in Chicago.",
+              "zh": "嗯，也许吧。然后七月中旬，我将在芝加哥的一个音乐营教课。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’ll be visiting my sister then. She only lives about six hours from Chicago! I could drive over. We could hang out.",
+              "zh": "那时我会去看我姐姐。她住的地方离芝加哥大概六个小时！我可以开车过去。我们可以一起玩。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Yeah, uh maybe. You know, maybe now is a good time for some music.",
+              "zh": "嗯，也许吧。你知道，也许现在适合来点音乐。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That’s a great idea. Now, let's hear a song from Emma G.!",
+              "zh": "好主意。现在，来听 Emma G. 的一首歌！"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "I wrote this song a couple of years ago. It’s called “Wary.”",
+              "zh": "这首歌是我几年前写的。叫《Wary》。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Do you believe in happy endings?",
+              "zh": "你相信圆满结局吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Endings...",
+              "zh": "结局……"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Do you really believe that we could be…",
+              "zh": "你真的相信我们能……"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Be...",
+              "zh": "能……"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "I think something is wrong. I hear a voice in the background.",
+              "zh": "我觉得有点不对。我听到背景里有个声音。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Sorry. Sorry, Emma. That was me. I’m just so excited.",
+              "zh": "抱歉。抱歉，Emma。是我。我实在太兴奋了。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "No problem. I'm glad you like the song.",
+              "zh": "没关系。我很高兴你喜欢这首歌。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "You go ahead. You go ahead.",
+              "zh": "你继续。你继续。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Okay. Do you believe in happy endings?",
+              "zh": "好。你相信圆满结局吗？"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Anna, there’s no tambourine in this.",
+              "zh": "安娜，这首歌没有铃鼓。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’m so sorry. I’m so sorry, Emma. See, I’ve always wanted to sing with you.",
+              "zh": "真对不起。真对不起，Emma。你看，我一直想跟你一起唱。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Well, come on over then and we can sing a song together first.",
+              "zh": "那过来吧，我们先一起唱一首。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No, I couldn't.",
+              "zh": "不，我不行。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Come on. It’ll be fun.",
+              "zh": "来嘛。会很好玩的。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Okay! Here. I brought my favorite song.",
+              "zh": "好！给。我带了我最喜欢的歌。"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Oh, uh okay. Actually, I like this song. Um, are you ready?",
+              "zh": "哦，嗯好。其实我喜欢这首歌。准备好了吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Yes! Yes!",
+              "zh": "好了！好了！"
+            },
+            {
+              "speaker": "Emma G",
+              "en": "Okay.",
+              "zh": "好。"
+            },
+            {
+              "speaker": "Emma G / Anna",
+              "en": "Every breath you take. Every move you make. Every bond you break. Every step you take. I'll be watching you … I’ll be watching you... I’ll be watching you...",
+              "zh": "你的每一次呼吸。你的每一个动作。你打破的每一段关系。你的每一步。我都会看着你……我都会看着你……我都会看着你……"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "Who will Anna be interviewing tomorrow?",
+              "choices": [
+                "Musician Emma G",
+                "Ms. Weaver",
+                "Professor Bot"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What does Anna make for Emma G?",
+              "choices": [
+                "A video scrapbook of their friendship",
+                "A birthday cake",
+                "A decoupage shoe box"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "What does Anna do during Emma G’s song “Wary”?",
+              "choices": [
+                "She sings and plays tambourine in the background",
+                "She leaves the studio",
+                "She interviews Ms. Weaver"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 23: Rock Star (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-24",
+          "number": 24,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 24",
+          "subtitle": "I Feel Super!",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/5/52/5234adeb-50d6-4f72-8a68-42beb3b26a82_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-24/4307612.html",
+          "dialogue": [
+            {
+              "speaker": "Anna",
+              "en": "Hi! I see you like superhero culture. Me too.",
+              "zh": "嗨！我看你喜欢超级英雄文化。我也是。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "In fact, tonight I’m going to the big superhero convention. Are you going?",
+              "zh": "其实今晚我要去超级英雄大会。你去吗？"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Um, I don’t know.",
+              "zh": "嗯，我不知道。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Well, you'd better decide soon. Last year, it sold out.",
+              "zh": "那你最好快点决定。去年票卖光了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "So, since we’re talking about superheroes: would you rather become a superhero by accident, like Spiderman, or be born a superhero, like Wonder Woman?",
+              "zh": "既然我们在谈超级英雄：你更愿意像蜘蛛侠那样意外成为超级英雄，还是像神奇女侠那样生来就是？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Take your time. It’s a big question. I thought about it for days –",
+              "zh": "慢慢想。这是个大问题。我想了好几天——"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Okay. If I had to choose, I’d rather be born a superhero.",
+              "zh": "好。如果必须选，我更愿意生来就是超级英雄。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’d rather become a superhero by an unexpected accident!",
+              "zh": "我更愿意因为一场意外事故成为超级英雄！"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Aren’t all accidents unexpected?",
+              "zh": "事故不都是意外的吗？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Well, yeah.",
+              "zh": "嗯，对。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "What was that!? Are you okay?",
+              "zh": "那是什么？！你没事吧？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I'm better than okay. I feel super!",
+              "zh": "我岂止没事。我感觉超棒！"
+            },
+            {
+              "speaker": "Professor Bot",
+              "en": "Oh no! Anna was just hit by lightning. She had better get help. We use had better to give advice. It is very informal and stronger than should and ought to. For example, Anna says: “You'd better decide soon. Last year, it sold out.” When we use had better, we usually shorten the word had for personal pronouns. We use would rather to say what we or someone else prefers to do or have. For example, the boy says: “Okay. If I had to choose, I’d rather be born a superhero.” With would rather, we also shorten the word would when used with personal pronouns. Keep watching and listen for had better and would rather.",
+              "zh": "哦不！安娜刚被闪电击中。她最好去求助。had better 用来给建议，很口语，比 should 和 ought to 更强。比如安娜说：“You'd better decide soon. Last year, it sold out.” 用 had better 时，人称代词后的 had 通常缩写。would rather 用来表示自己或别人更想做什么或要什么。比如那个男孩说：“Okay. If I had to choose, I’d rather be born a superhero.” 用 would rather 时，人称代词后的 would 也常缩写。继续看，注意听 had better 和 would rather。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "You’d better see a doctor.",
+              "zh": "你最好去看医生。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I’ve never felt better!",
+              "zh": "我从来没这么好过！"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "You were just struck by lightning!! And what happened to your hair and your clothes?",
+              "zh": "你刚被闪电击中了！！你的头发和衣服怎么了？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I don't know. Wait, I do know. This is my super suit! And this is my origin story.",
+              "zh": "我不知道。等等，我知道了。这是我的超级战衣！这也是我的起源故事。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "What are you talking about?",
+              "zh": "你在说什么？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "An origin story tells the beginning of a superhero. You should know that.",
+              "zh": "起源故事讲的是超级英雄的开始。这你该知道。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "You're not making any sense, lady.",
+              "zh": "女士，你说的完全没道理。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "I would rather be called Lightning Bolt Lady! It’ll sound great in a theme song: Lightning Bolt Lady!",
+              "zh": "我更愿意叫闪电女士！主题曲里会很好听：闪电女士！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Now, I need to find my superpowers --",
+              "zh": "现在，我得找到我的超能力——"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Um, I really think --",
+              "zh": "嗯，我真的觉得——"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Wait. Don’t tell me. I’ll read your mind. You are thinking you’d like to be my super helper.",
+              "zh": "等等。别告诉我。我来读你的心。你在想你想当我的超级助手。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "I was not thinking that.",
+              "zh": "我没那么想。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "... that you’d like to live in a treehouse.",
+              "zh": "……你想住在树屋里。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "No.",
+              "zh": "没有。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "… that you should eat more vegetables.",
+              "zh": "……你该多吃蔬菜。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Please, stop talking. You really should get some help.",
+              "zh": "请你别说了。你真的该去求助。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Mind reading is not my superpower. Maybe I can become invisible. I … am … invisible!",
+              "zh": "读心不是我的超能力。也许我能隐身。我……隐……身了！"
+            },
+            {
+              "speaker": "Anna",
+              "en": "You can’t see me. Who am I? I’m not here. You can’t see me.",
+              "zh": "你看不见我。我是谁？我不在这儿。你看不见我。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "I can see you and so can everybody else.",
+              "zh": "我看得见你，别人也看得见。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "No power of invisibility. Maybe I can create a force field. I feel it working. Nothing can hurt –",
+              "zh": "没有隐身能力。也许我能制造力场。我感觉它在起作用。什么都伤不了——"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Ow, that wasn’t very nice. I see I have a lot of work to do. Well, goodbye, non-super person!",
+              "zh": "哎哟，那可不太友好。看来我还有很多要练。好了，再见，非超级人！"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Wait. I’d better go with you. You might get worse…if that’s even possible.",
+              "zh": "等等。我最好跟你一起去。你可能会更糟……如果还能更糟的话。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "That's very nice of you, ordinary human. But I’d rather go by myself. This is a quest.",
+              "zh": "你真好，普通人类。可我更愿意自己去。这是一次任务。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Every time you speak, I get more confused.",
+              "zh": "你每说一句，我就更糊涂。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "A quest is a part of all superhero stories. You really need to work on your superhero studies. Now, stand back. I’ve never flown before.",
+              "zh": "任务是所有超级英雄故事的一部分。你真该补补超级英雄课。现在，退后。我以前从没飞过。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "And you’re not flying now.",
+              "zh": "你现在也没在飞。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Flying is also not my superpower. That’s too bad. It's going to be expensive to Uber everywhere. You know, I'd rather walk. It’s a nice day. Goodbye, non-super person.",
+              "zh": "飞也不是我的超能力。太可惜了。到处打车会很贵。你知道吗，我宁愿走路。今天天气不错。再见，非超级人。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "I am not talking to strangers again.",
+              "zh": "我再也不跟陌生人说话了。"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "Will Lightning Bolt Lady find her superpowers … ever? Ouch! Did that brick wall hurt? Will the young man ever talk to a stranger again? Find out on the next episode of Let’s Learn English!",
+              "zh": "闪电女士到底……找不找得到她的超能力？哎哟！那面砖墙疼不疼？那个年轻人还会再跟陌生人说话吗？请看下集 Let’s Learn English！"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "What happens to Anna while she is talking about superheroes?",
+              "choices": [
+                "She is hit by lightning",
+                "She flies to the convention",
+                "She becomes invisible"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What name does Anna want to be called?",
+              "choices": [
+                "Lightning Bolt Lady",
+                "Wonder Woman",
+                "Spiderman"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "Which superpower does Anna actually have in this lesson?",
+              "choices": [
+                "None of the ones she tries",
+                "Invisibility",
+                "Flying"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 24: I Feel Super! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
+        },
+        {
+          "id": "lle2-25",
+          "number": 25,
+          "level": 2,
+          "title": "Let's Learn English Level 2 Lesson 25",
+          "subtitle": "Only Human",
+          "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/4/4d/4d8e7b5e-ee13-4a0e-a743-5db22ceb979c_720p.mp4",
+          "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-25/4322773.html",
+          "dialogue": [
+            {
+              "speaker": "Announcer",
+              "en": "When last we saw Anna, she had made a new friend. And they had been talking about superheroes for a while when suddenly Anna became Lightning Bolt Lady!",
+              "zh": "上次我们看到安娜时，她交了一个新朋友。他们已经谈了一会儿超级英雄，突然安娜变成了闪电女士！"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "She tried to find her superpowers. But it did not go well.",
+              "zh": "她试着寻找自己的超能力。但并不顺利。"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "She can’t fly, become invisible or create a force field. And she really cannot walk through walls. Ouch, Lightning Bolt Lady.",
+              "zh": "她不会飞，不能隐身，也不能制造力场。她也真的不能穿墙。哎哟，闪电女士。"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "She had been walking into that wall for about 15 minutes when she had a great idea.",
+              "zh": "她朝那面墙走了大约十五分钟，这时她想到一个好主意。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "I just had a great idea!",
+              "zh": "我刚想到一个好主意！"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "I can’t wait to hear this one! But first, let’s talk about grammar. Professor Bot is on vacation this week. I’m the announcer. So, I’m going to tell you about the past perfect continuous. We use this verb tense to show that an action started in the past and continued to another time or action in the past. For example, I said, “She had been walking into that wall for about 15 minutes when she had a great idea.” Had been walking is the past perfect continuous of the verb walk. It’s had been plus the -ing form of the verb. You’ll hear me use this verb tense a few more times today. Now, what am I forgetting? Oh right! Lightning Bolt Lady’s great idea.",
+              "zh": "我等不及听这个了！不过先讲语法。机器人教授这周休假。我是旁白。所以我来讲过去完成进行时。这个时态表示一个动作从过去开始，一直持续到过去的另一个时间或动作。比如我说：“She had been walking into that wall for about 15 minutes when she had a great idea.” had been walking 就是 walk 的过去完成进行时。形式是 had been 加上动词的 -ing 形式。今天你还会再听到我用几次。我忘了什么来着？对了！闪电女士的好主意。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "If I want to know my superpowers, I’ll need to learn about lightning!",
+              "zh": "如果我想知道自己的超能力，就得先了解闪电！"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "So, she read many books about lightning.",
+              "zh": "于是她读了很多关于闪电的书。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Wow. A lightning strike usually lasts less than a second.",
+              "zh": "哇。一次雷击通常不到一秒钟。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Lightning is really fast and I like speed walking. So, maybe one of my superpowers is super-speed walking! (to stranger) Bye!",
+              "zh": "闪电非常快，而我喜欢竞走。所以，也许我的超能力之一就是超级竞走！（对陌生人）再见！"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Check! Super-speed walking is definitely one of my superpowers.",
+              "zh": "搞定！超级竞走绝对是我的超能力之一。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Lightning has millions of volts of electricity. Amazing!",
+              "zh": "闪电有数百万伏特的电。太神奇了！"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Wow! I can charge a lot of batteries with this superpower!",
+              "zh": "哇！用这个超能力我能给很多电池充电！"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "She had been looking for hours for someone to help when she found her chance.",
+              "zh": "她找了几个小时想帮人，这时终于等到机会。"
+            },
+            {
+              "speaker": "Woman",
+              "en": "Hello? Hello? I’m sorry. I’m going to have to call you back. My phone is dying.",
+              "zh": "喂？喂？抱歉。我得回你电话。我手机快没电了。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Excuse me, I can charge your phone.",
+              "zh": "不好意思，我能给你的手机充电。"
+            },
+            {
+              "speaker": "Woman",
+              "en": "Really? Thanks!",
+              "zh": "真的？谢谢！"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "I’m Lightning Bolt Lady!",
+              "zh": "我是闪电女士！"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "She had been practicing her superpowers all day. Suddenly, she heard a terrible sound – a child’s disappointment.",
+              "zh": "她练了一整天超能力。突然，她听到一个可怕的声音——孩子的失望。"
+            },
+            {
+              "speaker": "Announcer",
+              "en": "These children tried to light a fire for over an hour. But then, they gave up.",
+              "zh": "这些孩子试着生火超过一个小时。然后他们放弃了。"
+            },
+            {
+              "speaker": "Parent",
+              "en": "Hey kids, that wood will never burn. It'is too wet.",
+              "zh": "孩子们，那些木头烧不着。太湿了。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Small humans, what is wrong?",
+              "zh": "小人类们，怎么了？"
+            },
+            {
+              "speaker": "Child",
+              "en": "Stranger danger!",
+              "zh": "陌生人危险！"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "I’m Lightning Bolt Lady!",
+              "zh": "我是闪电女士！"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Oh no. It’s you.",
+              "zh": "哦不。是你。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "We meet again. And guess what: I found my superpowers.",
+              "zh": "我们又见面了。你猜怎么着：我找到我的超能力了。"
+            },
+            {
+              "speaker": "Child",
+              "en": "Well, we need a fire to toast the marshmallows to make S’mores.",
+              "zh": "我们需要火来烤棉花糖，做 S’mores。"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "I can help.",
+              "zh": "我能帮忙。"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "We don’t need a super-speed walker but thanks!",
+              "zh": "我们不需要超级竞走的人，不过还是谢谢！"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Super-speed walking is just one of my superpowers. I can also do this!",
+              "zh": "超级竞走只是我的超能力之一。我还能这样！"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Sorry! Let me do it again.",
+              "zh": "抱歉！让我再来一次。"
+            },
+            {
+              "speaker": "Child",
+              "en": "Thanks, Lightning Bolt Lady!",
+              "zh": "谢谢你，闪电女士！"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "Lightning Bolt Lady",
+              "zh": "闪电女士"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "You’re welcome. But you don’t have enough firewood. Using my super-speed walking, I will get more.",
+              "zh": "不客气。可你们木柴不够。我用超级竞走再去多拿一些。"
+            },
+            {
+              "speaker": "Parent",
+              "en": "Lightning Bolt Lady, come back! A lightning storm is coming!",
+              "zh": "闪电女士，回来！雷暴要来了！"
+            },
+            {
+              "speaker": "Lightning Bolt Lady",
+              "en": "Not a chance! There’s not a cloud in the …",
+              "zh": "不可能！天上连一朵云都……"
+            },
+            {
+              "speaker": "Child",
+              "en": "Lightning Bolt Lady, are you okay?",
+              "zh": "闪电女士，你没事吧？"
+            },
+            {
+              "speaker": "Child",
+              "en": "Where's your super-suit?",
+              "zh": "你的超级战衣呢？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "Oh no! I've lost my superpowers!",
+              "zh": "哦不！我失去超能力了！"
+            },
+            {
+              "speaker": "Young Man",
+              "en": "It's starting to rain. Do you want to go inside and eat some S’mores?",
+              "zh": "开始下雨了。要不要进去吃点 S’mores？"
+            },
+            {
+              "speaker": "Anna",
+              "en": "You read my mind.",
+              "zh": "你读懂我的心了。"
+            },
+            {
+              "speaker": "Anna",
+              "en": "You know, I thought mind reading would be one of my superpowers. But it wasn’t.",
+              "zh": "你知道吗，我还以为读心会是我的超能力之一。可并不是。"
+            },
+            {
+              "speaker": "Child",
+              "en": "That’d be a cool superpower.",
+              "zh": "那会是很酷的超能力。"
+            },
+            {
+              "speaker": "Child",
+              "en": "But I’d rather be able to talk to animals.",
+              "zh": "可我更愿意能跟动物说话。"
+            }
+          ],
+          "quiz": [
+            {
+              "id": "q1",
+              "prompt": "Which superpower does Lightning Bolt Lady decide she has?",
+              "choices": [
+                "Super-speed walking",
+                "Flying through walls",
+                "Mind reading"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q2",
+              "prompt": "What happens when she tries to charge the woman’s phone?",
+              "choices": [
+                "The phone turns into ashes",
+                "The phone works perfectly",
+                "The woman becomes a superhero"
+              ],
+              "answerIndex": 0
+            },
+            {
+              "id": "q3",
+              "prompt": "How does Lightning Bolt Lady lose her superpowers?",
+              "choices": [
+                "She is hit by a lightning storm",
+                "She gives them to the children",
+                "Professor Bot takes them away"
+              ],
+              "answerIndex": 0
+            }
+          ],
+          "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 25: Only Human (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA."
         }
       ]
     }

@@ -8,7 +8,7 @@ This is frontend-only. There is no login, backend, or crawler. It is **not** an 
 
 - A course catalog on the home page with a Level 1 / Level 2 switcher
 - Level 1 complete: fifty-two lessons, `lle1-01` through `lle1-52`
-- Level 2 started: first twenty lessons, `lle2-01` through `lle2-20` (Budget Cuts, The Interview, He Said - She Said, Run Away With the Circus!, Greatest Vacation of All Time, Will It Float?, Tip Your Tour Guide, The Best Barbecue, Pets Are Family, Too!, Visit to Peru, The Big Snow, Run! Bees!, Save the Bees!, Made for Each Other, Before and After, Find Your Joy!, Flour Baby, Part 1, Flour Baby, Part 2, Movie Night, The Test Drive)
+- Level 2 started: first twenty-five lessons, `lle2-01` through `lle2-25` (Budget Cuts, The Interview, He Said - She Said, Run Away With the Circus!, Greatest Vacation of All Time, Will It Float?, Tip Your Tour Guide, The Best Barbecue, Pets Are Family, Too!, Visit to Peru, The Big Snow, Run! Bees!, Save the Bees!, Made for Each Other, Before and After, Find Your Joy!, Flour Baby, Part 1, Flour Baby, Part 2, Movie Night, The Test Drive, Trash to Treasure, Part 1, Trash to Treasure, Part 2, Rock Star, I Feel Super!, Only Human)
 - Official VOA MP4 video in an HTML5 player (YouTube is an optional fallback link only)
 - Dialogue lines in English and Chinese
 - Three multiple-choice quiz questions per lesson
@@ -77,7 +77,7 @@ Shape:
   "course": { "title": "...", "pitch": "...", "disclaimer": "..." },
   "levels": [
     { "id": "lle1", "title": "Let's Learn English · Level 1", "lessons": [/* 52 */] },
-    { "id": "lle2", "title": "Let's Learn English · Level 2", "lessons": [/* 20 so far */] }
+    { "id": "lle2", "title": "Let's Learn English · Level 2", "lessons": [/* 25 so far */] }
   ]
 }
 ```
@@ -114,6 +114,6 @@ GitHub Pages is served from `main` at `/` (repo root). A newly published site ca
 
 ## Scope
 
-In scope: catalog + fifty-two Level 1 lessons and the first twenty Level 2 lessons, with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
+In scope: catalog + fifty-two Level 1 lessons and the first twenty-five Level 2 lessons, with local progress, check-in, a wrong-answer book, and a frontend redeem-code paywall.
 
 Out of scope: login, accounts, a real payment gateway, a crawler, or a backend.

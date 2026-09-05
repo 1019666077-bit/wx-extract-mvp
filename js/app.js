@@ -1,5 +1,6 @@
 const PROGRESS_KEY = "voa-lle-progress";
 const OLD_QUIZ_KEY = "voa-lle1-01-quiz";
+const CATALOG_LEVEL_KEY = "voa-lle-catalog-level";
 const WECHAT_CONTACT = "15232188653";
 
 function escapeHtml(value) {
@@ -17,6 +18,71 @@ async function loadLessons() {
     throw new Error("Unable to load lesson data.");
   }
   return response.json();
+}
+
+function normalizeCatalog(payload) {
+  const course = payload.course || {};
+  if (Array.isArray(payload.levels) && payload.levels.length) {
+    return {
+      course,
+      levels: payload.levels.map((level) => ({
+        id: level.id,
+        title: level.title || level.id,
+        lessons: Array.isArray(level.lessons) ? level.lessons : [],
+      })),
+    };
+  }
+
+  const lessons = Array.isArray(payload.lessons) ? payload.lessons : [];
+  return {
+    course,
+    levels: [
+      {
+        id: "lle1",
+        title: course.title || "Let's Learn English · Level 1",
+        lessons,
+      },
+    ],
+  };
+}
+
+function findLevel(catalog, levelId) {
+  return catalog.levels.find((level) => level.id === levelId) || catalog.levels[0];
+}
+
+function findLessonInCatalog(catalog, lessonId) {
+  for (const level of catalog.levels) {
+    const lesson = level.lessons.find((item) => item.id === lessonId);
+    if (lesson) {
+      return { lesson, level };
+    }
+  }
+  return { lesson: null, level: null };
+}
+
+function readStoredLevelId() {
+  try {
+    return sessionStorage.getItem(CATALOG_LEVEL_KEY) || "";
+  } catch (error) {
+    return "";
+  }
+}
+
+function writeStoredLevelId(levelId) {
+  try {
+    sessionStorage.setItem(CATALOG_LEVEL_KEY, levelId);
+  } catch (error) {
+    /* ignore quota / private mode */
+  }
+}
+
+function selectedLevelId(catalog) {
+  const fromUrl = new URLSearchParams(window.location.search).get("level");
+  const requested = fromUrl || readStoredLevelId();
+  if (requested && catalog.levels.some((level) => level.id === requested)) {
+    return requested;
+  }
+  return catalog.levels[0].id;
 }
 
 async function loadCodes() {
@@ -117,11 +183,15 @@ function neighborLessons(lessons, currentId) {
   };
 }
 
-function catalogNoteText(lessonCount, unlocked) {
+function catalogNoteText(catalog, unlocked) {
+  const l1 = findLevel(catalog, "lle1");
+  const l2 = catalog.levels.find((level) => level.id === "lle2");
+  const l1n = l1 ? l1.lessons.length : 0;
+  const l2n = l2 ? l2.lessons.length : 0;
   if (unlocked) {
-    return `已解锁 Level 1 全部 ${lessonCount} 课。免费试学第 1–5 课对所有人开放。坚持打卡、复习错题本，把这套课学下去。`;
+    return `已解锁全部已上线课程（Level 1 ${l1n} 课 + Level 2 ${l2n} 课）。免费试学仅 Level 1 第 1–5 课。坚持打卡、复习错题本，把这套课学下去。`;
   }
-  return `免费试学第 1–5 课。开通解锁 Level 1 全部 ${lessonCount} 课，并保留打卡与错题本，帮你学得下去。微信联系 ${WECHAT_CONTACT} 付款（¥39 月 / ¥99 季），获兑换码后到开通页输入解锁。`;
+  return `免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课），并保留打卡与错题本，帮你学得下去。微信联系 ${WECHAT_CONTACT} 付款（¥39 月 / ¥99 季），获兑换码后到开通页输入解锁。`;
 }
 
 function checkinHintText() {
@@ -157,33 +227,37 @@ function renderUnlockNav() {
   });
 }
 
-function renderCatalog(payload) {
-  const course = payload.course || {};
-  const lessons = Array.isArray(payload.lessons) ? payload.lessons : [];
+function renderCatalog(catalog, levelId) {
+  const course = catalog.course || {};
+  const level = findLevel(catalog, levelId);
+  const lessons = level.lessons;
   const progress = migrateOldProgress();
   const unlocked = VOAUnlock.isUnlocked();
+  writeStoredLevelId(level.id);
 
-  document.title = course.title || "Let's Learn English · Level 1";
+  document.title = course.title || "Let's Learn English";
   document.getElementById("course-title").textContent =
-    course.title || "Let's Learn English · Level 1";
+    course.title || "Let's Learn English";
   document.getElementById("course-pitch").textContent = course.pitch || "";
   document.getElementById("course-disclaimer").textContent = course.disclaimer || "";
 
   const catalogHeading = document.querySelector(".catalog-section h2");
   if (catalogHeading) {
-    catalogHeading.textContent = `Lessons · 课程 · ${lessons.length}`;
+    catalogHeading.textContent = `${level.title} · ${lessons.length}`;
   }
 
   const catalogNote = document.querySelector(".catalog-note");
   if (catalogNote) {
-    catalogNote.textContent = catalogNoteText(lessons.length, unlocked);
+    catalogNote.textContent = catalogNoteText(catalog, unlocked);
   }
 
-  renderLevelProgress(lessons, progress);
-  renderLevelClear(lessons, progress, unlocked);
+  renderLevelSwitcher(catalog, level.id);
+  renderLevelProgress(level, progress);
+  renderLevelClear(level, progress, unlocked);
 
   const root = document.getElementById("catalog");
   root.dataset.total = String(lessons.length);
+  root.dataset.level = level.id;
   root.innerHTML = lessons
     .map((lesson) => {
       const locked = !VOAUnlock.canOpenLesson(lesson);
@@ -219,34 +293,74 @@ function renderCatalog(payload) {
   bindCatalogFilters(root, unlocked);
 }
 
-function renderLevelProgress(lessons, progress) {
+function renderLevelSwitcher(catalog, levelId) {
+  const root = document.getElementById("level-switcher");
+  if (!root || catalog.levels.length < 2) {
+    if (root) {
+      root.hidden = true;
+      root.innerHTML = "";
+    }
+    return;
+  }
+
+  root.hidden = false;
+  root.innerHTML = catalog.levels
+    .map((level) => {
+      const active = level.id === levelId;
+      const label = level.id === "lle2" ? "Level 2" : "Level 1";
+      return `
+        <button type="button" class="level-tab${active ? " is-active" : ""}" data-level="${escapeHtml(level.id)}" aria-pressed="${active ? "true" : "false"}">
+          ${escapeHtml(label)} · ${level.lessons.length}
+        </button>
+      `;
+    })
+    .join("");
+
+  root.querySelectorAll("[data-level]").forEach((button) => {
+    button.addEventListener("click", () => {
+      const nextId = button.dataset.level;
+      if (nextId === levelId) {
+        return;
+      }
+      const url = new URL(window.location.href);
+      url.searchParams.set("level", nextId);
+      window.history.replaceState({}, "", url);
+      renderCatalog(catalog, nextId);
+    });
+  });
+}
+
+function renderLevelProgress(level, progress) {
   const root = document.getElementById("level-progress");
   if (!root) {
     return;
   }
 
+  const lessons = level.lessons;
   const total = lessons.length;
   const done = completedCount(lessons, progress);
   const percent = total ? Math.round((done / total) * 100) : 0;
+  const label = level.id === "lle2" ? "Level 2" : "Level 1";
   root.hidden = false;
   root.innerHTML = `
     <div class="level-progress-row">
       <p class="level-progress-count">已完成 <strong>${done}</strong> / ${total}</p>
       <p class="level-progress-hint">${escapeHtml(checkinHintText())} · <a href="progress.html">打开打卡</a></p>
     </div>
-    <div class="level-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="Level 1 完成进度">
+    <div class="level-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="${escapeHtml(label)} 完成进度">
       <span style="width: ${percent}%"></span>
     </div>
   `;
 }
 
-function renderLevelClear(lessons, progress, unlocked) {
+function renderLevelClear(level, progress, unlocked) {
   const root = document.getElementById("level-clear");
   if (!root) {
     return;
   }
 
-  if (!isLevelCleared(lessons, progress)) {
+  const lessons = level.lessons;
+  if (level.id !== "lle1" || !isLevelCleared(lessons, progress)) {
     root.hidden = true;
     root.innerHTML = "";
     return;
@@ -308,20 +422,23 @@ function bindCatalogFilters(root, unlocked) {
   }
 
   toolbar.hidden = false;
-  toolbar.innerHTML = chips
+  const fresh = toolbar.cloneNode(false);
+  fresh.hidden = false;
+  fresh.innerHTML = chips
     .map(
       (chip, index) => `
         <button type="button" class="filter-chip${index === 0 ? " is-active" : ""}" data-filter="${chip.id}" aria-pressed="${index === 0 ? "true" : "false"}">${chip.label}</button>
       `
     )
     .join("");
+  toolbar.replaceWith(fresh);
 
-  toolbar.addEventListener("click", (event) => {
+  fresh.addEventListener("click", (event) => {
     const button = event.target.closest("[data-filter]");
     if (!button) {
       return;
     }
-    toolbar.querySelectorAll("[data-filter]").forEach((el) => {
+    fresh.querySelectorAll("[data-filter]").forEach((el) => {
       const active = el === button;
       el.classList.toggle("is-active", active);
       el.setAttribute("aria-pressed", active ? "true" : "false");
@@ -468,7 +585,7 @@ function renderCheckinCalendar(root, view) {
   return { year, month };
 }
 
-function gradeQuiz(lesson, lessons = []) {
+function gradeQuiz(lesson, level = null) {
   const answers = collectAnswers(lesson.quiz);
   const score = lesson.quiz.reduce((total, question) => {
     return total + (answers[question.id] === question.answerIndex ? 1 : 0);
@@ -479,7 +596,8 @@ function gradeQuiz(lesson, lessons = []) {
   updateWrongbookNavCount();
 
   const progress = readProgress();
-  const remainingBefore = lessons.filter((item) => !progress[item.id]?.completed);
+  const levelLessons = level?.lessons || [];
+  const remainingBefore = levelLessons.filter((item) => !progress[item.id]?.completed);
   const isLastIncomplete =
     remainingBefore.length === 1 && remainingBefore[0].id === lesson.id;
 
@@ -498,8 +616,8 @@ function gradeQuiz(lesson, lessons = []) {
   if (wrongCount) {
     summary += ` · 错题本 ${wrongCount} 题`;
   }
-  if (isLastIncomplete && lessons.length) {
-    result.innerHTML = `${escapeHtml(summary)}<span class="clear-note">Level 1 通关！你完成了全部 ${lessons.length} 课测验。<a href="index.html">回课表看通关纪念</a></span>`;
+  if (isLastIncomplete && level?.id === "lle1" && levelLessons.length) {
+    result.innerHTML = `${escapeHtml(summary)}<span class="clear-note">Level 1 通关！你完成了全部 ${levelLessons.length} 课测验。<a href="index.html?level=lle1">回课表看通关纪念</a></span>`;
     return;
   }
   result.textContent = summary;
@@ -522,7 +640,7 @@ function hideLessonBody() {
   });
 }
 
-function renderLessonPaywall(lesson, lessonCount = 52) {
+function renderLessonPaywall(lesson, level) {
   hideLessonBody();
   document.title = `${lesson.title} · 未解锁`;
   document.getElementById("lesson-title").textContent = lesson.title;
@@ -534,17 +652,18 @@ function renderLessonPaywall(lesson, lessonCount = 52) {
     existing.remove();
   }
 
+  const backHref = `index.html?level=${encodeURIComponent(level?.id || "lle1")}`;
   const overlay = document.createElement("section");
   overlay.id = "lesson-paywall";
   overlay.className = "paywall-section";
   overlay.setAttribute("aria-label", "Paywall");
   overlay.innerHTML = `
     <h2>课程未解锁</h2>
-    <p>免费试学第 1–5 课。开通解锁 Level 1 全部 ${lessonCount} 课，并保留打卡与错题本，帮你学得下去。</p>
+    <p>免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课），并保留打卡与错题本，帮你学得下去。</p>
     <p>下一步：去开通页看方案，微信联系 <strong>${WECHAT_CONTACT}</strong> 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。</p>
     <div class="quiz-actions">
       <a class="btn primary" href="pricing.html">去开通 · 输入兑换码</a>
-      <a class="btn" href="index.html">返回课表</a>
+      <a class="btn" href="${backHref}">返回课表</a>
     </div>
   `;
   const header = document.querySelector(".header");
@@ -702,8 +821,8 @@ async function initCatalog() {
   renderCheckinCalendar(document.getElementById("checkin-root"));
   updateWrongbookNavCount();
   try {
-    const payload = await loadLessons();
-    renderCatalog(payload);
+    const catalog = normalizeCatalog(await loadLessons());
+    renderCatalog(catalog, selectedLevelId(catalog));
   } catch (error) {
     root.innerHTML = `<p class="quiz-result">${escapeHtml(error.message)}</p>`;
   }
@@ -719,11 +838,21 @@ async function initLesson() {
   }
 
   try {
-    const payload = await loadLessons();
-    const lessons = Array.isArray(payload.lessons) ? payload.lessons : [];
-    const lesson = lessons.find((item) => item.id === lessonId);
-    if (!lesson) {
+    const catalog = normalizeCatalog(await loadLessons());
+    const found = findLessonInCatalog(catalog, lessonId);
+    const lesson = found.lesson;
+    const level = found.level;
+    if (!lesson || !level) {
       throw new Error(`Lesson ${lessonId} was not found.`);
+    }
+
+    const lessons = level.lessons;
+    writeStoredLevelId(level.id);
+    const backLink = document.querySelector(".back-link");
+    if (backLink) {
+      const label = level.id === "lle2" ? "Level 2" : "Level 1";
+      backLink.href = `index.html?level=${encodeURIComponent(level.id)}`;
+      backLink.textContent = `← ${label} · 课表`;
     }
 
     migrateOldProgress();
@@ -731,7 +860,7 @@ async function initLesson() {
     updateWrongbookNavCount();
 
     if (!VOAUnlock.canOpenLesson(lesson)) {
-      renderLessonPaywall(lesson, lessons.length);
+      renderLessonPaywall(lesson, level);
       renderLessonPager(lessons, lesson);
       return;
     }
@@ -743,7 +872,7 @@ async function initLesson() {
 
     document.getElementById("quiz-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      gradeQuiz(lesson, lessons);
+      gradeQuiz(lesson, level);
     });
     document.getElementById("reset-quiz").addEventListener("click", () => {
       resetQuiz(lesson.id);
@@ -772,7 +901,7 @@ function renderPricingState() {
     return;
   }
 
-  status.textContent = "当前未解锁。第 1–5 课可免费试学。";
+  status.textContent = "当前未解锁。仅 Level 1 第 1–5 课可免费试学。";
   if (clearBtn) {
     clearBtn.hidden = true;
   }
@@ -805,7 +934,7 @@ async function initPricing() {
           input.value = "";
         }
         renderPricingState();
-        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}。可学习 Level 1 全部课程。`;
+        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}。可学习全部已上线课程（含 Level 1 + Level 2 已发布课）。`;
       } catch (error) {
         result.textContent = error.message || "解锁失败。";
       }
@@ -817,7 +946,7 @@ async function initPricing() {
       VOAUnlock.clearUnlock();
       renderPricingState();
       if (result) {
-        result.textContent = "已退出解锁。第 6 课及之后再次锁定。";
+        result.textContent = "已退出解锁。除 Level 1 第 1–5 课外再次锁定。";
       }
     });
   }

@@ -1,0 +1,71 @@
+<view class="page">
+  <view class="card">
+    <view class="eyebrow">Unofficial VOA study helper</view>
+    <view class="heading">{{course.title}}</view>
+    <view class="sub">{{course.pitch}}</view>
+  </view>
+
+  <view class="card">
+    <view class="heading" style="font-size: 32rpx;">打卡 · Check-in</view>
+    <checkin-calendar />
+  </view>
+
+  <view class="card">
+    <view class="heading" style="font-size: 32rpx;">{{heading}}</view>
+    <view class="sub catalog-note">{{catalogNote}}</view>
+
+    <view class="level-switch" wx:if="{{levels.length > 1}}">
+      <button
+        wx:for="{{levels}}"
+        wx:key="id"
+        class="chip {{item.id === levelId ? 'is-active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onSwitchLevel"
+      >{{item.label}} · {{item.count}}</button>
+    </view>
+
+    <view class="progress-row">
+      <text>已完成 {{done}} / {{total}}</text>
+      <text class="muted">{{checkinHint}}</text>
+    </view>
+    <view class="bar">
+      <view class="bar-fill" style="width: {{percent}}%;"></view>
+    </view>
+
+    <view class="clear-banner" wx:if="{{cleared}}">
+      <view class="eyebrow">Level 1</view>
+      <view class="heading" style="font-size: 32rpx;">通关！你学完了这一级</view>
+      <view class="sub">恭喜完成全部 {{total}} 课测验。</view>
+    </view>
+
+    <view class="filters">
+      <button
+        wx:for="{{filters}}"
+        wx:key="id"
+        class="chip {{item.id === filter ? 'is-active' : ''}}"
+        data-id="{{item.id}}"
+        bindtap="onFilter"
+      >{{item.label}}</button>
+    </view>
+
+    <view wx:if="{{cards.length === 0}}" class="empty">没有符合条件的课程</view>
+
+    <view wx:for="{{cards}}" wx:key="id" class="lesson-card {{item.locked ? 'is-locked' : ''}}">
+      <view class="card-top">
+        <text class="lesson-number">Lesson {{item.number}}</text>
+        <text class="badge {{item.locked ? 'locked' : item.status}}">{{item.badge}}</text>
+      </view>
+      <view class="lesson-title">{{item.title}}</view>
+      <view class="lesson-sub">{{item.subtitle}}</view>
+      <view wx:if="{{item.scoreText}}" class="lesson-sub">{{item.scoreText}}</view>
+      <button
+        class="btn {{item.locked ? '' : 'btn-primary'}}"
+        data-id="{{item.id}}"
+        data-locked="{{item.locked ? 1 : 0}}"
+        bindtap="onOpenLesson"
+      >{{item.action}}</button>
+    </view>
+  </view>
+
+  <view class="card footer">{{course.disclaimer}}</view>
+</view>

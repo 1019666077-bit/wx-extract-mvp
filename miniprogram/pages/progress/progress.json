@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "checkin-calendar": "../../components/checkin-calendar/checkin-calendar"
+  },
+  "navigationBarTitleText": "打卡日历"
+}

@@ -1,0 +1,5 @@
+# 微信开发者工具本地私有配置（可能含本机 AppID），不入库
+project.private.config.json
+miniprogram/project.private.config.json
+miniprogram/miniprogram_npm/
+.DS_Store

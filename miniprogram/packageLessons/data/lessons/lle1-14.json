@@ -1,0 +1,234 @@
+{
+  "id": "lle1-14",
+  "number": 14,
+  "title": "Let's Learn English Lesson 14",
+  "subtitle": "How About This?",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-14-how-about-this/3323771.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 14: How About This? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hi, there! In Washington, D.C. people do many things in the evening. They go listen to music. They eat at a restaurant. They go to the theater.",
+      "zh": "大家好！在华盛顿特区，人们晚上会做很多事。他们去听音乐。他们去餐馆吃饭。他们去看戏。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Tonight I am going to the theater with my friends. But I don’t know what clothes to wear. Maybe this magazine can help.",
+      "zh": "今晚我要和朋友去剧院。可我不知道穿什么。也许这本杂志能帮上忙。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Her clothes are beautiful! I really want a friend like her to help me.",
+      "zh": "她的衣服真漂亮！我真想有个像她这样的朋友来帮我。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Who are you?",
+      "zh": "你是谁？"
+    },
+    {
+      "speaker": "Genie",
+      "en": "I am Genie! You want help. I am here to help you find the right clothes!",
+      "zh": "我是精灵！你需要帮助。我来帮你找到合适的衣服！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Awesome! How about jeans and a t-shirt?",
+      "zh": "太好了！牛仔裤和 T 恤怎么样？"
+    },
+    {
+      "speaker": "Genie",
+      "en": "No! Jeans and a t-shirt are too casual. How about something more formal?",
+      "zh": "不行！牛仔裤和 T 恤太休闲了。穿正式一点的怎么样？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sure!",
+      "zh": "好啊！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Wow! Genie, this dress is beautiful. But it’s not the right size. It’s too small.",
+      "zh": "哇！精灵，这件裙子很漂亮。可尺码不对。太小了。"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Yes, it is too small. But green looks great on you.",
+      "zh": "是的，太小了。不过绿色很适合你。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thanks.",
+      "zh": "谢谢。"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Take off the green dress. Let’s try a green shirt and a skirt.",
+      "zh": "把绿裙子脱下来。我们试试绿衬衫和裙子。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, Genie! This green shirt is too large and this orange skirt is too orange.",
+      "zh": "哦，精灵！这件绿衬衫太大了，这条橙色裙子也太橙了。"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Yes, the right size for you is medium. Let’s try again.",
+      "zh": "是的，你的正确尺码是中号。我们再试一次。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, I don’t like this outfit.",
+      "zh": "哦，我不喜欢这套衣服。"
+    },
+    {
+      "speaker": "Genie",
+      "en": "No. That does not match.",
+      "zh": "不行。那不搭配。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Nothing.",
+      "zh": "什么都没有。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "These clothes are formal: a suit jacket, a dress shirt and a tie! They look great!",
+      "zh": "这些衣服很正式：西装外套、正装衬衫和领带！看起来很棒！"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Those clothes look great … for a man! Something is wrong.",
+      "zh": "那些衣服看起来很棒……对男人来说！有点不对。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Let me see.",
+      "zh": "让我看看。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "There. Now try.",
+      "zh": "好了。现在试试。"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Oh. Thanks! Now these clothes look great on you!",
+      "zh": "哦。谢谢！现在这些衣服穿在你身上很棒！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "They do! Um, Genie, can you put on a gold belt?",
+      "zh": "是的！嗯，精灵，你能加上一条金腰带吗？"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Sure!",
+      "zh": "当然！"
+    },
+    {
+      "speaker": "Genie",
+      "en": "That looks great.",
+      "zh": "看起来很棒。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Can you put on a jacket?",
+      "zh": "你能加上一件外套吗？"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Why not?",
+      "zh": "为什么不呢？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I love the jacket! How about a hat?",
+      "zh": "我喜欢这件外套！帽子怎么样？"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Why not?",
+      "zh": "为什么不呢？"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Mm, take off the hat. That’s better.",
+      "zh": "嗯，把帽子摘掉。这样更好。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Genie, these clothes look and feel great! Let’s go to the theater!",
+      "zh": "精灵，这些衣服看起来、穿起来都很棒！我们去剧院吧！"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Sorry, Anna. I have to help other friends. Go to the magazine if you want me to help again.",
+      "zh": "抱歉，安娜。我还要去帮别的朋友。要是还想让我帮忙，就去找那本杂志。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thanks, Genie. Sure thing. Goodbye!",
+      "zh": "谢谢，精灵。没问题。再见！"
+    },
+    {
+      "speaker": "Genie",
+      "en": "Goodbye!",
+      "zh": "再见！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "There are many places in DC to go for a great evening out! And it’s nice to have a friend to help me look my best. Until next time! Bye!",
+      "zh": "华盛顿特区有很多地方适合过一个美好的夜晚！有个朋友帮我打扮得漂漂亮亮，真好。下次见！再见！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Where is Anna going tonight?",
+      "choices": [
+        "To a restaurant",
+        "To the theater",
+        "To listen to music"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Why does Genie say no to jeans and a t-shirt?",
+      "choices": [
+        "They are too casual",
+        "They are too small",
+        "They are too orange"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What is the right size for Anna?",
+      "choices": [
+        "Small",
+        "Medium",
+        "Large"
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "prev": {
+    "id": "lle1-13",
+    "number": 13,
+    "level": 1,
+    "title": "Let's Learn English Lesson 13"
+  },
+  "next": {
+    "id": "lle1-15",
+    "number": 15,
+    "level": 1,
+    "title": "Let's Learn English Lesson 15"
+  },
+  "videoStatus": "m1-placeholder"
+}

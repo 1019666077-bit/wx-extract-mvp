@@ -1,0 +1,64 @@
+<view class="page" wx:if="{{ready}}">
+  <view class="card">
+    <view class="eyebrow">Unofficial VOA study helper</view>
+    <view class="heading">{{lesson.title}}</view>
+    <view class="sub">{{lesson.subtitle}}</view>
+  </view>
+
+  <view class="pager" wx:if="{{!paywall}}">
+    <button class="btn pager-btn" disabled="{{!prev}}" data-kind="prev" bindtap="onNeighbor">{{prevLabel}}</button>
+    <button class="btn btn-primary pager-btn" disabled="{{!next}}" data-kind="next" bindtap="onNeighbor">{{nextLabel}}</button>
+  </view>
+
+  <view class="card paywall" wx:if="{{paywall}}">
+    <view class="heading" style="font-size: 34rpx;">课程未解锁</view>
+    <view class="sub">免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。</view>
+    <view class="sub" style="margin-top: 12rpx;">下一步：去开通页看方案，微信联系 {{contact}} 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。</view>
+    <view class="btn-row">
+      <button class="btn btn-primary" bindtap="goPricing">去开通 · 输入兑换码</button>
+      <button class="btn" bindtap="goCatalog">返回课表</button>
+    </view>
+  </view>
+
+  <block wx:if="{{!paywall}}">
+    <view class="card video-placeholder">
+      <view class="eyebrow">视频 · M1</view>
+      <view class="heading" style="font-size: 32rpx;">视频将在 M1 接入</view>
+      <view class="sub">本课不播放 VOA Akamai CDN。小程序无法把 voa-video-ns.akamaized.net 配成合法域名，硬接会失败。M1 将镜像到国内 COS 后再用 downloadFile 域名播放。</view>
+    </view>
+
+    <view class="card">
+      <view class="heading" style="font-size: 32rpx;">Dialogue · 对话</view>
+      <view class="line" wx:for="{{lesson.dialogue}}" wx:key="index">
+        <view class="speaker">{{item.speaker}}</view>
+        <view class="en">{{item.en}}</view>
+        <view class="zh">{{item.zh}}</view>
+      </view>
+    </view>
+
+    <view class="card">
+      <view class="heading" style="font-size: 32rpx;">Quiz · 练习</view>
+      <view class="question" wx:for="{{questions}}" wx:key="id">
+        <view class="prompt">{{index + 1}}. {{item.prompt}}</view>
+        <radio-group data-id="{{item.id}}" bindchange="onAnswer">
+          <label class="choice {{item.selectedIndex === choiceIndex ? 'is-on' : ''}}" wx:for="{{item.choices}}" wx:for-index="choiceIndex" wx:for-item="choice" wx:key="choiceIndex">
+            <radio value="{{choiceIndex}}" checked="{{item.selectedIndex === choiceIndex}}" color="#0b6e4f" />
+            <text>{{choice}}</text>
+          </label>
+        </radio-group>
+      </view>
+      <view class="btn-row">
+        <button class="btn btn-primary" bindtap="onSubmit">Check answers</button>
+        <button class="btn" bindtap="onReset">Reset</button>
+      </view>
+      <view class="result">{{resultText}}</view>
+    </view>
+
+    <view class="pager">
+      <button class="btn pager-btn" disabled="{{!prev}}" data-kind="prev" bindtap="onNeighbor">{{prevLabel}}</button>
+      <button class="btn btn-primary pager-btn" disabled="{{!next}}" data-kind="next" bindtap="onNeighbor">{{nextLabel}}</button>
+    </view>
+  </block>
+
+  <view class="card footer">{{lesson.attribution}}</view>
+</view>

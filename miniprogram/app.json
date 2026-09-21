@@ -1,0 +1,63 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/progress/progress",
+    "pages/wrongbook/wrongbook",
+    "pages/pricing/pricing"
+  ],
+  "subPackages": [
+    {
+      "root": "packageLessons",
+      "name": "lessons",
+      "pages": ["lesson/lesson"]
+    }
+  ],
+  "preloadRule": {
+    "pages/index/index": {
+      "network": "all",
+      "packages": ["lessons"]
+    }
+  },
+  "window": {
+    "navigationBarTitleText": "Let's Learn English",
+    "navigationBarBackgroundColor": "#ffffff",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#f4f1ea",
+    "backgroundTextStyle": "light"
+  },
+  "tabBar": {
+    "color": "#5b6b74",
+    "selectedColor": "#0b6e4f",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "课表",
+        "iconPath": "images/tab-catalog.png",
+        "selectedIconPath": "images/tab-catalog-active.png"
+      },
+      {
+        "pagePath": "pages/progress/progress",
+        "text": "打卡",
+        "iconPath": "images/tab-progress.png",
+        "selectedIconPath": "images/tab-progress-active.png"
+      },
+      {
+        "pagePath": "pages/wrongbook/wrongbook",
+        "text": "错题本",
+        "iconPath": "images/tab-wrongbook.png",
+        "selectedIconPath": "images/tab-wrongbook-active.png"
+      },
+      {
+        "pagePath": "pages/pricing/pricing",
+        "text": "开通",
+        "iconPath": "images/tab-pricing.png",
+        "selectedIconPath": "images/tab-pricing-active.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

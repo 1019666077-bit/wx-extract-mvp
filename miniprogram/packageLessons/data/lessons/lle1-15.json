@@ -1,0 +1,269 @@
+{
+  "id": "lle1-15",
+  "number": 15,
+  "title": "Let's Learn English Lesson 15",
+  "subtitle": "I Love People-Watching!",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-15-i-love-people-watching/3343720.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 15: I Love People-Watching! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello! People from all over the world come to Washington, D.C. When I’m at work, I love eating lunch outside. I like to watch people walking by. They all look very different. Today, my friend Ashley is eating lunch with me.",
+      "zh": "嗨！世界各地的人都会来华盛顿特区。上班的时候，我喜欢在外面吃午饭。我喜欢看路过的人。他们看起来都不一样。今天，我的朋友阿什莉和我一起吃午饭。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Ashley, today the weather is beautiful, isn’t it?",
+      "zh": "阿什莉，今天天气真好，对吧？"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Yes, it is. Ahh. Ooh, we have to return to work!",
+      "zh": "是的。啊。哦，我们得回去上班了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, we have time! Let’s people-watch a little more.",
+      "zh": "不，我们还有时间！再看一会儿路人吧。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Okay.",
+      "zh": "好吧。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, I know her. She works in my office! Keyana, hi! Come and join us!",
+      "zh": "哦，我认识她。她在我办公室工作！基亚娜，嗨！过来一起坐吧！"
+    },
+    {
+      "speaker": "Keyana",
+      "en": "Hi Anna, how are you?",
+      "zh": "嗨，安娜，你好吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I’m doing great! Keyana, this is my friend Ashley.",
+      "zh": "我很好！基亚娜，这是我的朋友阿什莉。"
+    },
+    {
+      "speaker": "Keyana",
+      "en": "Hi, Ashley!",
+      "zh": "嗨，阿什莉！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "We need to return to work. But the weather is beautiful and people-watching is fun!",
+      "zh": "我们得回去上班。可天气真好，看路人也很有趣！"
+    },
+    {
+      "speaker": "Keyana",
+      "en": "I love people-watching too!",
+      "zh": "我也喜欢看路人！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Well, have a seat! It is fun to see how people are different or the same.",
+      "zh": "那就坐吧！看看大家哪里不同、哪里相同，很有意思。"
+    },
+    {
+      "speaker": "Keyana",
+      "en": "It is. For example, Anna, you are tall. But Ashley and I are short.",
+      "zh": "是啊。比如说，安娜，你很高。可阿什莉和我都很矮。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "And Keyana, you and Ashley have brown eyes; I have blue eyes.",
+      "zh": "还有，基亚娜，你和阿什莉是棕色眼睛；我是蓝眼睛。"
+    },
+    {
+      "speaker": "Keyana",
+      "en": "You two have light skin and I have dark skin.",
+      "zh": "你们俩皮肤较浅，我皮肤较深。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Ashley, you have straight hair. Keyana and I have curly hair.",
+      "zh": "阿什莉，你是直发。基亚娜和我是卷发。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "You have very curly hair, Anna.",
+      "zh": "安娜，你的头发卷得很厉害。"
+    },
+    {
+      "speaker": "Keyana",
+      "en": "I need to return to work. See you, Anna! Nice to meet you Ashley!",
+      "zh": "我得回去上班了。再见，安娜！很高兴认识你，阿什莉！"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Bye, Keyana!",
+      "zh": "再见，基亚娜！"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Anna, I have to go, too. Are you returning to work?",
+      "zh": "安娜，我也得走了。你要回去上班吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I still have time. And this sun feels so good!",
+      "zh": "我还有时间。这阳光感觉真好！"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Um, Anna, what does your boss look like?",
+      "zh": "嗯，安娜，你的老板长什么样？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "She is short. She has straight, light hair.",
+      "zh": "她个子矮。她是直的浅色头发。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Does she wear glasses?",
+      "zh": "她戴眼镜吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. Yes, she does.",
+      "zh": "是的。她戴眼镜。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Is she wearing a blue sweater today?",
+      "zh": "她今天穿着蓝毛衣吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "How do you know that?",
+      "zh": "你怎么知道的？"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "She’s coming this way.",
+      "zh": "她正朝这边走来。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh no! Hide me!",
+      "zh": "哦不！把我藏起来！"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Um, bye, Anna. Call me later.",
+      "zh": "嗯，再见，安娜。回头给我打电话。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Bye, Ashley! Talk to you later!",
+      "zh": "再见，阿什莉！回头聊！"
+    },
+    {
+      "speaker": "Caty",
+      "en": "Anna? Is that you?",
+      "zh": "安娜？是你吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Ms. Weaver! Hi!",
+      "zh": "韦弗女士！嗨！"
+    },
+    {
+      "speaker": "Caty",
+      "en": "What are you doing behind that bench?",
+      "zh": "你在长椅后面干什么？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I am looking for my, my … stick. Here it is.",
+      "zh": "我在找我的、我的……棍子。在这儿。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I am people-watching. Oh! But it’s time to return to work!",
+      "zh": "我在看路人。哦！可是该回去上班了！"
+    },
+    {
+      "speaker": "Caty",
+      "en": "No need to hurry. I love people-watching too! Let’s sit!",
+      "zh": "不用着急。我也喜欢看路人！我们坐下吧！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sure! Ahh.",
+      "zh": "好啊！啊。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "It’s a beautiful day, isn’t it?",
+      "zh": "今天天气真好，对吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. Yes, it is, Ms. Weaver.",
+      "zh": "是的。是的，韦弗女士。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "People-watching in D.C. is fun. It makes me forget the time!",
+      "zh": "在特区看路人很有趣。它让我忘了时间！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Until next time! Ahh.",
+      "zh": "下次见！啊。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What do Anna and her friends like to do at lunch?",
+      "choices": [
+        "Go shopping",
+        "People-watch",
+        "Play soccer"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Who has blue eyes?",
+      "choices": [
+        "Anna",
+        "Ashley",
+        "Keyana"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What does Anna say her boss looks like?",
+      "choices": [
+        "Tall, with curly dark hair",
+        "Short, with straight, light hair",
+        "Short, with curly brown hair"
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "prev": {
+    "id": "lle1-14",
+    "number": 14,
+    "level": 1,
+    "title": "Let's Learn English Lesson 14"
+  },
+  "next": {
+    "id": "lle1-16",
+    "number": 16,
+    "level": 1,
+    "title": "Let's Learn English Lesson 16"
+  },
+  "videoStatus": "m1-placeholder"
+}

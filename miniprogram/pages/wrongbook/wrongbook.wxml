@@ -1,0 +1,36 @@
+<view class="page">
+  <view class="card">
+    <view class="eyebrow">Review misses</view>
+    <view class="heading">错题本</view>
+    <view class="sub">Wrong quiz answers stay on this device. Answer the same question correctly later and it is removed.</view>
+    <view class="btn-row" wx:if="{{hasItems}}">
+      <button class="btn" bindtap="onClearAll">清除全部</button>
+    </view>
+  </view>
+
+  <view class="card" wx:if="{{!hasItems}}">
+    <view class="empty">暂无错题</view>
+  </view>
+
+  <view class="card" wx:for="{{groups}}" wx:for-item="group" wx:key="lessonId">
+    <view class="heading" style="font-size: 32rpx;">{{group.lessonTitle}}</view>
+    <view class="wrong-card" wx:for="{{group.items}}" wx:for-item="item" wx:key="questionId">
+      <view class="prompt">{{item.prompt}}</view>
+      <view
+        wx:for="{{item.choiceViews}}"
+        wx:for-item="choice"
+        wx:key="index"
+        class="choice {{choice.chosen ? 'is-chosen' : ''}} {{choice.correct ? 'is-correct' : ''}}"
+      >
+        <text>{{choice.text}}</text>
+        <text wx:if="{{choice.mark}}" class="mark">{{choice.mark}}</text>
+      </view>
+      <view class="btn-row">
+        <button class="btn btn-primary" data-id="{{item.lessonId}}" bindtap="onRetry">再练</button>
+        <button class="btn" data-lesson-id="{{item.lessonId}}" data-question-id="{{item.questionId}}" bindtap="onRemove">清除这题</button>
+      </view>
+    </view>
+  </view>
+
+  <view class="card footer">This unofficial study helper is not affiliated with Voice of America. Lesson videos and scripts are in the public domain.</view>
+</view>

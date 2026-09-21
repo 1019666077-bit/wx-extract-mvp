@@ -1,0 +1,9 @@
+{
+  "desc": "M0 scaffold — no indexing required",
+  "rules": [
+    {
+      "action": "disallow",
+      "page": "*"
+    }
+  ]
+}

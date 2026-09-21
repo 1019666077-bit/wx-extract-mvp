@@ -1,0 +1,229 @@
+{
+  "id": "lle2-12",
+  "number": 12,
+  "title": "Let's Learn English Level 2 Lesson 12",
+  "subtitle": "Run! Bees!",
+  "level": 2,
+  "levelId": "lle2",
+  "levelTitle": "Let's Learn English · Level 2",
+  "levelLessonCount": 30,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-12-run-bees/4139015.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 12: Run! Bees! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Wow. Did you know that bees are dying?",
+      "zh": "哇。你知道蜜蜂正在消失吗？"
+    },
+    {
+      "speaker": "Kaveh",
+      "en": "That is bad news. If all the bees died, there would be no food. Bees are very important.",
+      "zh": "那是坏消息。如果所有蜜蜂都死了，就不会有食物。蜜蜂非常重要。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, they are. Speaking of bees, one of our little friends is here now.",
+      "zh": "是的。说到蜜蜂，我们的一位小朋友现在就在这儿。"
+    },
+    {
+      "speaker": "Kaveh",
+      "en": "You know, Anna, if you ignore it, it will fly away. But if you swat it, it might sting you.",
+      "zh": "安娜，如果你不理它，它就会飞走。可如果你拍它，它可能会蛰你。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I’ll ignore it. I can ignore it. See, I’m ignoring it. (she is swatting at the bee)",
+      "zh": "我会不理它。我能不理它。看，我在不理它。（她其实在拍打蜜蜂）"
+    },
+    {
+      "speaker": "Kaveh",
+      "en": "Anna, are you afraid of bees?",
+      "zh": "安娜，你怕蜜蜂吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What makes you say that?",
+      "zh": "你怎么会这么说？"
+    },
+    {
+      "speaker": "Kaveh",
+      "en": "Anna, you should call my friend, Caroline. She is a beekeeper and a bee educator. If you talk to her, she’ll probably help you get over your fear of bees.",
+      "zh": "安娜，你应该给我的朋友卡洛琳打电话。她是养蜂人，也是蜜蜂教育者。如果你跟她谈谈，她大概能帮你克服对蜜蜂的害怕。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I am not afraid of bees.",
+      "zh": "我不怕蜜蜂。"
+    },
+    {
+      "speaker": "Kaveh",
+      "en": "Here’s her card.",
+      "zh": "这是她的名片。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Ahhh!",
+      "zh": "啊——！"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "In this lesson, you can learn about conditionals. They have “if” and “will” or “would.” There are two kinds of conditional sentences in this lesson. Type 1 conditionals have a real event, and a result that probably will happen. The pattern is: If + present tense verb … will + future tense verb. Kaveh uses this when he says: “If you ignore it, it will fly away.” Type 2 conditionals have a possible event and a result that may or may not happen. The pattern is: If + past tense verb … would + infinitive verb. Kaveh uses this when he says, “If all the bees died, there would be no food.” Look for the “if” in a sentence to find more conditionals.",
+      "zh": "这一课可以学条件句。它们有 if，再加上 will 或 would。本课有两种条件句。第一种是真实事件，结果很可能发生。句式是：If + 现在时 … will + 将来时。卡维说：“If you ignore it, it will fly away.” 第二种是可能的事件，结果不一定发生。句式是：If + 过去时 … would + 动词原形。卡维说：“If all the bees died, there would be no food.” 找句子里的 if，就能找到更多条件句。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I think I'm at the wrong address. This does not look like a place where bees are kept. (knocks on door)",
+      "zh": "我好像走错地址了。这儿看起来不像养蜜蜂的地方。（敲门）"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, sorry to bother you. I’m looking for beekeeper Caroline. I’m here to take her “Learn to Love Bees!” class.",
+      "zh": "哦，抱歉打扰。我在找养蜂人卡洛琳。我来上她的“学会爱蜜蜂！”课。"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "You’re in the right place! I’m Caroline!",
+      "zh": "你来对了！我就是卡洛琳！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, nice to meet you! Um, Caroline, I thought this class used real bees and real hives.",
+      "zh": "哦，很高兴认识你！嗯，卡洛琳，我以为这门课用真蜜蜂和真蜂箱。"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "It does! If you look in my backyard, you will see my bees! I’m a home beekeeper!",
+      "zh": "就是用真的！如果你看我的后院，就会看到我的蜜蜂！我是家庭养蜂人！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What? You live with bees? That is really amazing! And at the same time really scary.",
+      "zh": "什么？你跟蜜蜂住一起？太神奇了！同时也好吓人。"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "It’s not scary. If you come, I’ll show you.",
+      "zh": "不可怕。如果你过来，我就给你看。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Caroline, how many bees are in that hive?",
+      "zh": "卡洛琳，那个蜂箱里有多少蜜蜂？"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "About thirty thousand (30,000) in each.",
+      "zh": "每个大约三万只。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What? That's amazing! But, aren’t you afraid that they are gonna come out and kill you?",
+      "zh": "什么？太惊人了！可你不怕它们出来把你蛰死吗？"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "No, not at all, Anna. Even my children help me. Tell me, why are you afraid of bees?",
+      "zh": "一点也不怕，安娜。连我的孩子都帮我。告诉我，你为什么怕蜜蜂？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I don't know. Well, when I was a little girl my mom ran out of honey. And I really wanted honey for my pancakes. So, I climbed high into a tree and hit a beehive with a stick … several times. Then I reached inside with my bare hands to pull the honey out. That’s when I got stung … a lot.",
+      "zh": "我不知道。嗯，我小时候妈妈的蜂蜜用完了。我很想在煎饼上放蜂蜜。所以我爬到很高的树上，用棍子打蜂巢……打了好几次。然后我光着手伸进去掏蜂蜜。那时我就被蛰了……很多次。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Caroline, if you hit a beehive with a stick and reach inside, you might get stung.",
+      "zh": "卡洛琳，如果你用棍子打蜂巢再伸进去，你可能会被蛰。"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "No, Anna. If you do those things, you will get stung.",
+      "zh": "不对，安娜。如果你做那些事，你一定会被蛰。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. I did.",
+      "zh": "是的。我被蛰了。"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "And you know that it was your fault you got stung, don’t you?",
+      "zh": "而且你知道被蛰是你自己的错，对吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. I did.",
+      "zh": "是的。我知道。"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "Bees know your feelings. And if you stay calm, the bees will be calm. If you're nervous, the bees will be nervous. And if bees are nervous, they may sting. So, please be calm.",
+      "zh": "蜜蜂能感觉到你的情绪。如果你保持冷静，蜜蜂也会冷静。如果你紧张，蜜蜂也会紧张。蜜蜂紧张时可能会蛰人。所以，请冷静。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I will be calm. I am calm. Okay, I'm ready. I'm ready",
+      "zh": "我会冷静。我很冷静。好，我准备好了。我准备好了。"
+    },
+    {
+      "speaker": "Caroline",
+      "en": "Great. Let’s get our equipment on.",
+      "zh": "很好。我们穿上装备吧。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Wait! Wait! I’m not ready! I'm nervous! Give me a minute to be calm.",
+      "zh": "等等！等等！我还没准备好！我好紧张！给我一分钟冷静一下。"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "Are you ready for one more conditional sentence? If you are not afraid, you will join us next time to learn more about bees!",
+      "zh": "准备好听再一句条件句了吗？如果你不怕，下次就会跟我们一起继续了解蜜蜂！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What does Kaveh say would happen if all the bees died?",
+      "choices": [
+        "There would be no food",
+        "Honey would be cheaper",
+        "Flowers would grow faster"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q2",
+      "prompt": "Who does Kaveh tell Anna to call?",
+      "choices": [
+        "Ms. Weaver",
+        "Caroline the beekeeper",
+        "Alaskan Albert"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q3",
+      "prompt": "Why did Anna get stung as a little girl?",
+      "choices": [
+        "She ignored a bee at work",
+        "She wore no medals",
+        "She hit a beehive with a stick and reached inside"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle2-11",
+    "number": 11,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 11"
+  },
+  "next": {
+    "id": "lle2-13",
+    "number": 13,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 13"
+  },
+  "videoStatus": "m1-placeholder"
+}

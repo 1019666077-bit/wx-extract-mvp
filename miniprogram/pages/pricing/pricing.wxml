@@ -1,0 +1,52 @@
+<view class="page">
+  <view class="card">
+    <view class="eyebrow">非官方 · 基于 VOA Learning English 公版</view>
+    <view class="heading">开通自学课</view>
+    <view class="sub">免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。微信联系 {{contact}} 付款（¥39 月 / ¥99 季），获兑换码后在本页输入解锁。</view>
+  </view>
+
+  <view class="card">
+    <view class="heading" style="font-size: 32rpx;">方案</view>
+    <view class="plans">
+      <view class="plan">
+        <view class="plan-name">月付</view>
+        <view class="plan-price">¥39</view>
+        <view class="muted">开通后 30 天有效</view>
+      </view>
+      <view class="plan is-featured">
+        <view class="plan-name">季卡</view>
+        <view class="plan-price">¥99</view>
+        <view class="muted">开通后 90 天有效 · 约 ¥33 / 月</view>
+      </view>
+    </view>
+    <view class="perk">解锁全部已上线课程（含 Level 1 + Level 2 已发布课）</view>
+    <view class="perk">打卡日历与连续天数免费使用</view>
+    <view class="perk">错题本免费使用</view>
+    <view class="heading" style="font-size: 28rpx; margin-top: 24rpx;">开通步骤</view>
+    <view class="step">1. 选月付 ¥39 或季卡 ¥99</view>
+    <view class="step">2. 微信联系 {{contact}} 付款</view>
+    <view class="step">3. 收到兑换码后在本页输入解锁</view>
+    <view class="muted" style="margin-top: 12rpx;">收款暂人工，不接入微信支付。确认到账后由运营私聊发放兑换码。</view>
+    <view class="btn-row">
+      <button class="btn btn-primary" bindtap="onCopyContact">复制微信号</button>
+    </view>
+  </view>
+
+  <view class="card">
+    <view class="heading" style="font-size: 32rpx;">用兑换码解锁</view>
+    <view class="unlock-status">{{statusText}}</view>
+    <input
+      class="code-input"
+      placeholder="输入兑换码"
+      value="{{code}}"
+      bindinput="onCodeInput"
+    />
+    <view class="btn-row">
+      <button class="btn btn-primary" bindtap="onRedeem">解锁</button>
+      <button class="btn" wx:if="{{unlocked}}" bindtap="onClear">退出解锁</button>
+    </view>
+    <view class="result">{{resultText}}</view>
+  </view>
+
+  <view class="card footer">This unofficial study helper is not affiliated with Voice of America. Lesson videos and scripts are in the public domain.</view>
+</view>

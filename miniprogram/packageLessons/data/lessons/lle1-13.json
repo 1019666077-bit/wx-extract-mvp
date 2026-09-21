@@ -1,0 +1,124 @@
+{
+  "id": "lle1-13",
+  "number": 13,
+  "title": "Let's Learn English Lesson 13",
+  "subtitle": "Happy Birthday, William Shakespeare!",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-13-happy-birthday-william-shakespeare/3312239.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 13: Happy Birthday, William Shakespeare! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello! In Washington D.C. there are many things to do on a Sunday afternoon. I like to exercise. I like to shop. I like to garden. But today I feel bored. When I feel bored I always look for something unusual to do! I hear music. Let’s go see! What is going on here?",
+      "zh": "嗨！在华盛顿特区，周日下午有很多事可以做。我喜欢锻炼。我喜欢购物。我喜欢园艺。可今天我觉得无聊。无聊的时候，我总是找点特别的事做！我听到音乐了。我们去看看！这里在干什么？"
+    },
+    {
+      "speaker": "Rebecca",
+      "en": "It’s a big birthday party for the writer William Shakespeare.",
+      "zh": "这是作家威廉·莎士比亚的大型生日派对。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is a party for William Shakespeare?",
+      "zh": "这是给威廉·莎士比亚办的派对？"
+    },
+    {
+      "speaker": "Rebecca",
+      "en": "Yes!",
+      "zh": "是的！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Awesome!",
+      "zh": "太棒了！"
+    },
+    {
+      "speaker": "Rebecca",
+      "en": "Awesome!",
+      "zh": "太棒了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is a drum band. I never listen to a drum band. But today I am listening to a drum band because it’s Shakespeare’s birthday!",
+      "zh": "这是鼓乐队。我从来没听过鼓乐队。可今天我在听鼓乐队，因为今天是莎士比亚的生日！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is a puppet show. I never watch puppet shows. But today I am watching a puppet show because it’s Shakespeare’s birthday!",
+      "zh": "这是木偶戏。我从来不看木偶戏。可今天我在看木偶戏，因为今天是莎士比亚的生日！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "My clothes are usual. His clothes are unusual.",
+      "zh": "我的衣服很平常。他的衣服不平常。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "In Washington, D.C. seeing a politician or even the President is usual. Seeing the Queen of England is very unusual! Your majesty!",
+      "zh": "在华盛顿特区，见到政客甚至总统都很平常。见到英国女王就非常不平常！女王陛下！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is sword fighting. I never sword fight. But today I am sword fighting because it’s Shakespeare’s birthday!",
+      "zh": "这是击剑。我从来不击剑。可今天我在击剑，因为今天是莎士比亚的生日！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "There are many things to do in Washington, D.C. -- some usual, some unusual.",
+      "zh": "在华盛顿特区有很多事可以做——有的平常，有的不平常。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Today, I am not bored because … it is William Shakespeare’s birthday!",
+      "zh": "今天我不无聊了，因为……今天是威廉·莎士比亚的生日！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Why is there a big party?",
+      "choices": [
+        "It is Anna's birthday",
+        "It is a birthday party for William Shakespeare",
+        "It is Independence Day"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What does Anna say she never watches?",
+      "choices": [
+        "Puppet shows",
+        "A drum band",
+        "Sword fighting"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What is very unusual in Washington, D.C.?",
+      "choices": [
+        "Seeing a politician",
+        "Seeing the President",
+        "Seeing the Queen of England"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-12",
+    "number": 12,
+    "level": 1,
+    "title": "Let's Learn English Lesson 12"
+  },
+  "next": {
+    "id": "lle1-14",
+    "number": 14,
+    "level": 1,
+    "title": "Let's Learn English Lesson 14"
+  },
+  "videoStatus": "m1-placeholder"
+}

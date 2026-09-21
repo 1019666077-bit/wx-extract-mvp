@@ -1,0 +1,294 @@
+{
+  "id": "lle2-11",
+  "number": 11,
+  "title": "Let's Learn English Level 2 Lesson 11",
+  "subtitle": "The Big Snow",
+  "level": 2,
+  "levelId": "lle2",
+  "levelTitle": "Let's Learn English · Level 2",
+  "levelLessonCount": 30,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-11-the-big-snow/4102755.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 11: The Big Snow (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Kelly",
+      "en": "Hi, Anna. Why do you have all this weather stuff?",
+      "zh": "嗨，安娜。你怎么有这么多气象用品？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I love weather.",
+      "zh": "我喜欢天气。"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "Me too! Weather is so important.",
+      "zh": "我也是！天气非常重要。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "It is. It affects people’s lives!",
+      "zh": "是的。它会影响人们的生活！"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "Have you ever reported on a big weather event?",
+      "zh": "你报道过大型天气事件吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have. I’ve reported on a blizzard.",
+      "zh": "报道过。我报道过一场暴风雪。"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "Do mean the one last weekend?",
+      "zh": "你是说上周末那场吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes! I had been waiting for that blizzard for years. When it came, I was ready.",
+      "zh": "对！那场暴风雪我等了很多年。它来的时候，我准备好了。"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "Welcome to our most perfect lesson! Why is it perfect? Today we are reviewing the present perfect and past perfect verb tenses. These show that an action is completed. Kelly uses the present perfect when she says, “Have you ever reported on a big weather event?” Anna uses the past perfect when she says, “I had been waiting for that blizzard for years.” Listen for “have” or “had” and the past participle to find more sentences with the perfect tense.",
+      "zh": "欢迎来到我们最“完成时”的一课！为什么完美？今天我们复习现在完成时和过去完成时。它们表示一个动作已经完成。凯莉用现在完成时说：“Have you ever reported on a big weather event?” 安娜用过去完成时说：“I had been waiting for that blizzard for years.” 注意听 have 或 had 加上过去分词，找出更多完成时的句子。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have wanted to report on a big weather event my whole life.",
+      "zh": "我一辈子都想报道大型天气事件。"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "Who hasn’t? Did you report all weekend ... by yourself?",
+      "zh": "谁不想呢？你整个周末都自己报道吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, no. I volunteered Pete to help me.",
+      "zh": "没有，没有。我拉皮特来帮我。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Why am I here on a Saturday? Why are you carrying things? Why? Why?",
+      "zh": "我星期六怎么在这儿？你为什么拿这么多东西？为什么？为什么？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, these are my supplies – food, a blanket; warm clothing. Where are your supplies?",
+      "zh": "皮特，这些是我的补给——食物、毯子、保暖衣服。你的补给呢？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, Pete, Pete. This could be the “blizzard of the century.”",
+      "zh": "皮特，皮特，皮特。这可能是“世纪暴风雪”。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "It’ll be fine.",
+      "zh": "不会有事的。"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "How else had you prepared?",
+      "zh": "你还做了什么准备？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Well, I had just bought the latest weather forecasting software. So, I brought it!",
+      "zh": "我刚买了最新的天气预报软件。所以我带来了！"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "Do you mean The Weather Genie Pro?",
+      "zh": "你是说天气精灵专业版？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "You know it. Pete thought it was pretty great too.",
+      "zh": "就是它。皮特也觉得很棒。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Do you have any games on that thing?",
+      "zh": "那东西上有游戏吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes! I have the best weather survival game. Boom!",
+      "zh": "有！我有最好的天气生存游戏。砰！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Sounds fun.",
+      "zh": "听起来好玩。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "It is. But right now, Pete, this computer is a work tool. It will give us the temperature, wind speed, wind direction and amount of snowfall … in real time! Boom, boom!",
+      "zh": "是很好玩。可现在，皮特，这台电脑是工作工具。它会给我们温度、风速、风向和降雪量……实时的！砰，砰！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I can’t wait.",
+      "zh": "我等不及了。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, we need a name for this blizzard.",
+      "zh": "皮特，这场暴风雪得有个名字。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, we don’t.",
+      "zh": "不需要。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "All the great storms have names.",
+      "zh": "所有大风暴都有名字。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, they don’t.",
+      "zh": "才没有。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I know -- “The Big Snow!”",
+      "zh": "我知道了——“大雪！”"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I am not saying “The Big Snow.”",
+      "zh": "我才不说“大雪”。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Welcome to “The Big Snow.”",
+      "zh": "欢迎来到“大雪”。"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "The Big Snow broke all kinds of records, didn’t it?",
+      "zh": "这场大雪打破了各种纪录，对吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes it did. And every time a record was broken, we celebrated!",
+      "zh": "是的。每次破纪录，我们都庆祝！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "So far, in Washington, D.C. 29 inches of snow has fallen. That, my dear listeners, is a record! (Honks horn)",
+      "zh": "到目前为止，华盛顿特区已经下了 29 英寸的雪。亲爱的听众，这是纪录！（按喇叭）"
+    },
+    {
+      "speaker": "Anna",
+      "en": "We just broke the wind speed record! (Honks horn)",
+      "zh": "我们刚打破风速纪录！（按喇叭）"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Snow has been falling for 30 hours straight! That’s another record! (Honks horn. Pete comes into room and breaks the horn.)",
+      "zh": "雪已经连续下了 30 个小时！又是一个纪录！（按喇叭。皮特进来把喇叭弄坏了。）"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "By Saturday night, stores and restaurants had closed. Did you bring enough food?",
+      "zh": "到周六晚上，商店和餐馆都关了。你们带的食物够吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I thought I had brought enough food. But I ran out.",
+      "zh": "我以为带够了。可是吃完了。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hey, Pete, where is my bag of popcorn?",
+      "zh": "嘿，皮特，我那袋爆米花呢？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Maybe you ate it already.",
+      "zh": "也许你已经吃了。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, I didn’t.",
+      "zh": "没有。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I haven't seen it. (Pete has popcorn in his beard. Anna tries to hit him.)",
+      "zh": "我没看见。（皮特胡子里有爆米花。安娜想打他。）"
+    },
+    {
+      "speaker": "Anna",
+      "en": "We had reported together for 48 hours straight!",
+      "zh": "我们连续一起报道了 48 个小时！"
+    },
+    {
+      "speaker": "Kelly",
+      "en": "Wow. That must have been a great team-building exercise for you and Pete.",
+      "zh": "哇。对你和皮特来说，那一定是很好的团队建设。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yeah. You - you could say that.",
+      "zh": "嗯。可以……可以这么说。"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "I hope you found all the sentences with perfect tenses. Learn more on our website!",
+      "zh": "希望你找到了所有完成时的句子。去我们的网站学更多吧！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What weather event does Anna report on?",
+      "choices": [
+        "A blizzard",
+        "A hurricane",
+        "A heat wave"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q2",
+      "prompt": "What name does Anna give the storm?",
+      "choices": [
+        "Winter Storm Kelly",
+        "The Big Snow",
+        "Blizzard Pete"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q3",
+      "prompt": "How long do Anna and Pete report together?",
+      "choices": [
+        "30 hours",
+        "One Saturday morning",
+        "48 hours straight"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle2-10",
+    "number": 10,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 10"
+  },
+  "next": {
+    "id": "lle2-12",
+    "number": 12,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 12"
+  },
+  "videoStatus": "m1-placeholder"
+}

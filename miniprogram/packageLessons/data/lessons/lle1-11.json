@@ -1,0 +1,184 @@
+{
+  "id": "lle1-11",
+  "number": 11,
+  "title": "Let's Learn English Lesson 11",
+  "subtitle": "This Is My Neighborhood",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-11-this-is-my-neighborhood/3293986.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 11: This Is My Neighborhood (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello! DC is a city for walking. In our neighborhood, I can do all my errands. Marsha, before we get ice cream, I need to return three books to the library. Where is the library?",
+      "zh": "嗨！华盛顿特区很适合走路。在我们这个街区，我能办完所有事。玛莎，吃冰淇淋之前，我要先去图书馆还三本书。图书馆在哪里？"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "It is on this street on the corner.",
+      "zh": "就在这条街的拐角。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Awesome!",
+      "zh": "太好了！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Let's go!",
+      "zh": "走吧！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Marsha, I can return the books here.",
+      "zh": "玛莎，我可以在这里还书。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna, what are those in the books?",
+      "zh": "安娜，书里那些是什么？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Marsha, these are letters to my family and friends back home … four letters! Is there a post office near here?",
+      "zh": "玛莎，这些是寄给老家家人和朋友的信……一共四封！这附近有邮局吗？"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Um, no. The post office is far from here. But there is a mailbox across from the store.",
+      "zh": "嗯，没有。邮局离这儿很远。不过商店对面有一个邮筒。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Awesome! Let’s go!",
+      "zh": "太好了！走吧！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Marsha, now I need to buy stamps.",
+      "zh": "玛莎，现在我需要买邮票。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Do you have cash?",
+      "zh": "你有现金吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No. Is there a bank near here?",
+      "zh": "没有。这附近有银行吗？"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "There is a bank behind you.",
+      "zh": "你身后就有一家银行。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thanks, Marsha. You know our neighborhood so well.",
+      "zh": "谢谢，玛莎。你对我们这个街区太熟了。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Now I have cash. I can buy stamps.",
+      "zh": "现在我有现金了。我可以买邮票了。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "That store sells stamps.",
+      "zh": "那家店卖邮票。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Wait here.",
+      "zh": "在这儿等我。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have stamps.",
+      "zh": "我买到邮票了。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Wow, you’re fast.",
+      "zh": "哇，你真快。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thank you, thank you letters, for sending my words… my love … to my family and friends -",
+      "zh": "谢谢你们，信啊，把我的话……我的爱……带给我的家人和朋友——"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Do you have more cash?",
+      "zh": "你还有现金吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I do!",
+      "zh": "有！"
+    },
+    {
+      "speaker": "Marsha and Anna",
+      "en": "Ice cream!!",
+      "zh": "冰淇淋！！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I love my new neighborhood! Everything is near our apartment! Even hair salons, and ice cream!",
+      "zh": "我爱我的新街区！一切都在我们公寓附近！连美发店和冰淇淋都有！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Until next time!",
+      "zh": "下次见！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What does Anna need to do before they get ice cream?",
+      "choices": [
+        "Buy stamps at the bank",
+        "Return three books to the library",
+        "Mail four letters at the post office"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Where is the mailbox?",
+      "choices": [
+        "Across from the store",
+        "On the corner of the library",
+        "Behind the bank"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What do Anna and Marsha want at the end?",
+      "choices": [
+        "More books",
+        "A haircut",
+        "Ice cream"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-10",
+    "number": 10,
+    "level": 1,
+    "title": "Let's Learn English Lesson 10"
+  },
+  "next": {
+    "id": "lle1-12",
+    "number": 12,
+    "level": 1,
+    "title": "Let's Learn English Lesson 12"
+  },
+  "videoStatus": "m1-placeholder"
+}

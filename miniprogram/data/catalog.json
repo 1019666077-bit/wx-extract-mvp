@@ -1,0 +1,677 @@
+{
+  "course": {
+    "title": "Let's Learn English",
+    "pitch": "A small self-study shell for VOA Learning English. Level 1 is complete (52 lessons). Level 2 is complete (30 lessons). Watch the official lesson video, read the English–Chinese dialogue, then check yourself with a short quiz. Your progress stays on this device.",
+    "disclaimer": "This is an unofficial study helper. Lesson videos and scripts come from VOA Learning English and are in the public domain. This site is not affiliated with or endorsed by Voice of America."
+  },
+  "levels": [
+    {
+      "id": "lle1",
+      "title": "Let's Learn English · Level 1",
+      "lessons": [
+        {
+          "id": "lle1-01",
+          "number": 1,
+          "title": "Let's Learn English Lesson 1",
+          "subtitle": "Welcome!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-02",
+          "number": 2,
+          "title": "Let's Learn English Lesson 2",
+          "subtitle": "Hello, I'm Anna!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-03",
+          "number": 3,
+          "title": "Let's Learn English Lesson 3",
+          "subtitle": "I'm Here!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-04",
+          "number": 4,
+          "title": "Let's Learn English Lesson 4",
+          "subtitle": "What Is It?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-05",
+          "number": 5,
+          "title": "Let's Learn English Lesson 5",
+          "subtitle": "Where Are You?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-06",
+          "number": 6,
+          "title": "Let's Learn English Lesson 6",
+          "subtitle": "Where Is the Gym?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-07",
+          "number": 7,
+          "title": "Let's Learn English Lesson 7",
+          "subtitle": "What Are You Doing?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-08",
+          "number": 8,
+          "title": "Let's Learn English Lesson 8",
+          "subtitle": "Are You Busy?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-09",
+          "number": 9,
+          "title": "Let's Learn English Lesson 9",
+          "subtitle": "Is It Cold?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-10",
+          "number": 10,
+          "title": "Let's Learn English Lesson 10",
+          "subtitle": "Come Over to My Place",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-11",
+          "number": 11,
+          "title": "Let's Learn English Lesson 11",
+          "subtitle": "This Is My Neighborhood",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-12",
+          "number": 12,
+          "title": "Let's Learn English Lesson 12",
+          "subtitle": "Meet My Family",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-13",
+          "number": 13,
+          "title": "Let's Learn English Lesson 13",
+          "subtitle": "Happy Birthday, William Shakespeare!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-14",
+          "number": 14,
+          "title": "Let's Learn English Lesson 14",
+          "subtitle": "How About This?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-15",
+          "number": 15,
+          "title": "Let's Learn English Lesson 15",
+          "subtitle": "I Love People-Watching!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-16",
+          "number": 16,
+          "title": "Let's Learn English Lesson 16",
+          "subtitle": "Where Are You From?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-17",
+          "number": 17,
+          "title": "Let's Learn English Lesson 17",
+          "subtitle": "Are You Free on Friday?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-18",
+          "number": 18,
+          "title": "Let's Learn English Lesson 18",
+          "subtitle": "She Always Does That",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-19",
+          "number": 19,
+          "title": "Let's Learn English Lesson 19",
+          "subtitle": "When Do I Start?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-20",
+          "number": 20,
+          "title": "Let's Learn English Lesson 20",
+          "subtitle": "What Can You Do?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-21",
+          "number": 21,
+          "title": "Let's Learn English Lesson 21",
+          "subtitle": "Can You Come to the Party?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-22",
+          "number": 22,
+          "title": "Let's Learn English Lesson 22",
+          "subtitle": "Next Summer...",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-23",
+          "number": 23,
+          "title": "Let's Learn English Lesson 23",
+          "subtitle": "What Do You Want?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-24",
+          "number": 24,
+          "title": "Let's Learn English Lesson 24",
+          "subtitle": "Yesterday Was Amazing!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-25",
+          "number": 25,
+          "title": "Let's Learn English Lesson 25",
+          "subtitle": "Watch Out!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-26",
+          "number": 26,
+          "title": "Let's Learn English Lesson 26",
+          "subtitle": "This Game Is Fun!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-27",
+          "number": 27,
+          "title": "Let's Learn English Lesson 27",
+          "subtitle": "I Can't Come In",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-28",
+          "number": 28,
+          "title": "Let's Learn English Lesson 28",
+          "subtitle": "I Passed It!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-29",
+          "number": 29,
+          "title": "Let's Learn English Lesson 29",
+          "subtitle": "A Long Time Ago",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-30",
+          "number": 30,
+          "title": "Let's Learn English Lesson 30",
+          "subtitle": "Rolling on the River",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-31",
+          "number": 31,
+          "title": "Let's Learn English Lesson 31",
+          "subtitle": "Take Me Out to the Ball Game",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-32",
+          "number": 32,
+          "title": "Let's Learn English Lesson 32",
+          "subtitle": "Welcome to the Treehouse!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-33",
+          "number": 33,
+          "title": "Let's Learn English Lesson 33",
+          "subtitle": "Learning America's Sport",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-34",
+          "number": 34,
+          "title": "Let's Learn English Lesson 34",
+          "subtitle": "What Will I Do?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-35",
+          "number": 35,
+          "title": "Let's Learn English Lesson 35",
+          "subtitle": "Let's Make Dinner!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-36",
+          "number": 36,
+          "title": "Let's Learn English Lesson 36",
+          "subtitle": "I Can Fix This!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-37",
+          "number": 37,
+          "title": "Let's Learn English Lesson 37",
+          "subtitle": "Let's Agree to Disagree",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-38",
+          "number": 38,
+          "title": "Let's Learn English Lesson 38",
+          "subtitle": "She's My Best Friend!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-39",
+          "number": 39,
+          "title": "Let's Learn English Lesson 39",
+          "subtitle": "It's Unbelievable!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-40",
+          "number": 40,
+          "title": "Let's Learn English Lesson 40",
+          "subtitle": "The Woods Are Alive",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-41",
+          "number": 41,
+          "title": "Let's Learn English Lesson 41",
+          "subtitle": "Teamwork Works Best With a Team",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-42",
+          "number": 42,
+          "title": "Let's Learn English Lesson 42",
+          "subtitle": "I Was Minding My Own Business",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-43",
+          "number": 43,
+          "title": "Let's Learn English Lesson 43",
+          "subtitle": "Time for Plan B",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-44",
+          "number": 44,
+          "title": "Let's Learn English Lesson 44",
+          "subtitle": "Making Healthy Choices",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-45",
+          "number": 45,
+          "title": "Let's Learn English Lesson 45",
+          "subtitle": "This Land is Your Land",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-46",
+          "number": 46,
+          "title": "Let's Learn English Lesson 46",
+          "subtitle": "May I Borrow That?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-47",
+          "number": 47,
+          "title": "Let's Learn English Lesson 47",
+          "subtitle": "How Can I Help?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-48",
+          "number": 48,
+          "title": "Let's Learn English Lesson 48",
+          "subtitle": "Have You Ever ...?",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-49",
+          "number": 49,
+          "title": "Let's Learn English Lesson 49",
+          "subtitle": "Operation Spy!",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-50",
+          "number": 50,
+          "title": "Let's Learn English Lesson 50",
+          "subtitle": "Back to School",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-51",
+          "number": 51,
+          "title": "Let's Learn English Lesson 51",
+          "subtitle": "A Good Habit",
+          "level": 1,
+          "levelId": "lle1"
+        },
+        {
+          "id": "lle1-52",
+          "number": 52,
+          "title": "Let's Learn English Lesson 52",
+          "subtitle": "Taking Chances",
+          "level": 1,
+          "levelId": "lle1"
+        }
+      ]
+    },
+    {
+      "id": "lle2",
+      "title": "Let's Learn English · Level 2",
+      "lessons": [
+        {
+          "id": "lle2-01",
+          "number": 1,
+          "title": "Let's Learn English Level 2 Lesson 1",
+          "subtitle": "Budget Cuts",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-02",
+          "number": 2,
+          "title": "Let's Learn English Level 2 Lesson 2",
+          "subtitle": "The Interview",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-03",
+          "number": 3,
+          "title": "Let's Learn English Level 2 Lesson 3",
+          "subtitle": "He Said - She Said",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-04",
+          "number": 4,
+          "title": "Let's Learn English Level 2 Lesson 4",
+          "subtitle": "Run Away With the Circus!",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-05",
+          "number": 5,
+          "title": "Let's Learn English Level 2 Lesson 5",
+          "subtitle": "Greatest Vacation of All Time",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-06",
+          "number": 6,
+          "title": "Let's Learn English Level 2 Lesson 6",
+          "subtitle": "Will It Float?",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-07",
+          "number": 7,
+          "title": "Let's Learn English Level 2 Lesson 7",
+          "subtitle": "Tip Your Tour Guide",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-08",
+          "number": 8,
+          "title": "Let's Learn English Level 2 Lesson 8",
+          "subtitle": "The Best Barbecue",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-09",
+          "number": 9,
+          "title": "Let's Learn English Level 2 Lesson 9",
+          "subtitle": "Pets Are Family, Too!",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-10",
+          "number": 10,
+          "title": "Let's Learn English Level 2 Lesson 10",
+          "subtitle": "Visit to Peru",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-11",
+          "number": 11,
+          "title": "Let's Learn English Level 2 Lesson 11",
+          "subtitle": "The Big Snow",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-12",
+          "number": 12,
+          "title": "Let's Learn English Level 2 Lesson 12",
+          "subtitle": "Run! Bees!",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-13",
+          "number": 13,
+          "title": "Let's Learn English Level 2 Lesson 13",
+          "subtitle": "Save the Bees!",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-14",
+          "number": 14,
+          "title": "Let's Learn English Level 2 Lesson 14",
+          "subtitle": "Made for Each Other",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-15",
+          "number": 15,
+          "title": "Let's Learn English Level 2 Lesson 15",
+          "subtitle": "Before and After",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-16",
+          "number": 16,
+          "title": "Let's Learn English Level 2 Lesson 16",
+          "subtitle": "Find Your Joy!",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-17",
+          "number": 17,
+          "title": "Let's Learn English Level 2 Lesson 17",
+          "subtitle": "Flour Baby, Part 1",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-18",
+          "number": 18,
+          "title": "Let's Learn English Level 2 Lesson 18",
+          "subtitle": "Flour Baby, Part 2",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-19",
+          "number": 19,
+          "title": "Let's Learn English Level 2 Lesson 19",
+          "subtitle": "Movie Night",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-20",
+          "number": 20,
+          "title": "Let's Learn English Level 2 Lesson 20",
+          "subtitle": "The Test Drive",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-21",
+          "number": 21,
+          "title": "Let's Learn English Level 2 Lesson 21",
+          "subtitle": "Trash to Treasure, Part 1",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-22",
+          "number": 22,
+          "title": "Let's Learn English Level 2 Lesson 22",
+          "subtitle": "Trash to Treasure, Part 2",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-23",
+          "number": 23,
+          "title": "Let's Learn English Level 2 Lesson 23",
+          "subtitle": "Rock Star",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-24",
+          "number": 24,
+          "title": "Let's Learn English Level 2 Lesson 24",
+          "subtitle": "I Feel Super!",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-25",
+          "number": 25,
+          "title": "Let's Learn English Level 2 Lesson 25",
+          "subtitle": "Only Human",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-26",
+          "number": 26,
+          "title": "Let's Learn English Level 2 Lesson 26",
+          "subtitle": "Look-alikes",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-27",
+          "number": 27,
+          "title": "Let's Learn English Level 2 Lesson 27",
+          "subtitle": "Fish out of Water",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-28",
+          "number": 28,
+          "title": "Let's Learn English Level 2 Lesson 28",
+          "subtitle": "For the Birds",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-29",
+          "number": 29,
+          "title": "Let's Learn English Level 2 Lesson 29",
+          "subtitle": "Where There's Smoke...",
+          "level": 2,
+          "levelId": "lle2"
+        },
+        {
+          "id": "lle2-30",
+          "number": 30,
+          "title": "Let's Learn English Level 2 Lesson 30",
+          "subtitle": "Dream a Little Dream",
+          "level": 2,
+          "levelId": "lle2"
+        }
+      ]
+    }
+  ]
+}

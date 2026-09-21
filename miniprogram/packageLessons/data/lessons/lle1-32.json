@@ -1,0 +1,279 @@
+{
+  "id": "lle1-32",
+  "number": 32,
+  "title": "Let's Learn English Lesson 32",
+  "subtitle": "Welcome to the Treehouse!",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-32-welcome-treehouse/3547306.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 32: Welcome to the Treehouse! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello! Today is a big day. My first children's show is on television! Woo-hoo! I'm excited and nervous.",
+      "zh": "嗨！今天是重要的一天。我的第一个儿童节目要上电视了！呜呼！我又兴奋又紧张。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Hello, Anna.",
+      "zh": "你好，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello, Ms. Weaver!",
+      "zh": "你好，韦弗女士！"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Some people are going to watch your children's show. After they watch it, they'll tell me what they liked, and what they didn't like.",
+      "zh": "有人要看你的儿童节目。看完后，他们会告诉我喜欢什么，不喜欢什么。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, dear.",
+      "zh": "哦，天哪。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "They're in the conference room. They're in the conference room.",
+      "zh": "他们在会议室。他们在会议室。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello, everyone. I'm Anna, and thanks for coming!",
+      "zh": "大家好。我是安娜，谢谢你们来！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Today you are going to watch my new show. I hope you like it.",
+      "zh": "今天你们要看我的新节目。希望你们喜欢。"
+    },
+    {
+      "speaker": "Coworker 2",
+      "en": "What is the show about?",
+      "zh": "这个节目讲什么？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "It's a children's show.",
+      "zh": "这是一个儿童节目。"
+    },
+    {
+      "speaker": "Coworker 1",
+      "en": "But we are not children!",
+      "zh": "可我们不是孩子！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This children's show is different. I hope.",
+      "zh": "这个儿童节目不一样。我希望是。"
+    },
+    {
+      "speaker": "Coworker 3",
+      "en": "I don't really like children's shows.",
+      "zh": "我其实不太喜欢儿童节目。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Shhh, please. The show is starting!",
+      "zh": "嘘，拜托。节目开始了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, hi! Just give me one minute ….oops! Oh well. I can fix that later.",
+      "zh": "哦，嗨！给我一分钟……哎呀！算了。我以后再修。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello, I'm Anna! Welcome to \"The Time Traveling Treehouse!\" This is not a usual treehouse. It can time travel! That is why it's called \"The Time Traveling Treehouse.\"",
+      "zh": "你好，我是安娜！欢迎来到“时光旅行树屋”！这不是普通的树屋。它可以时光旅行！所以才叫“时光旅行树屋”。"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Anna, do not forget me.",
+      "zh": "安娜，别忘了我。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Of course not! This is my partner, MINDY!",
+      "zh": "当然不会！这是我的搭档，MINDY！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "My name means Massive Information Navigation Device, for You!",
+      "zh": "我的名字是 Massive Information Navigation Device, for You！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "That means we can travel to many places and learn many things. Kids from all over the world ask us questions. We find them answers!",
+      "zh": "意思是我们可以去很多地方，学很多东西。世界各地的孩子问我们问题。我们帮他们找答案！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Woo-hoo! That is right, Anna.",
+      "zh": "呜呼！没错，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "MINDY, what is our first question?",
+      "zh": "MINDY，我们的第一个问题是什么？"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Layla asks us this question.",
+      "zh": "莱拉问我们这个问题。"
+    },
+    {
+      "speaker": "Layla",
+      "en": "Hello, Anna! Hello, MINDY! I'd like to know -- how do you play baseball?",
+      "zh": "你好，安娜！你好，MINDY！我想知道——棒球怎么打？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "That is a great question! MINDY, we need to find her an answer!",
+      "zh": "这是个好问题！MINDY，我们得给她找个答案！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "I know that we can find it, Anna!",
+      "zh": "我知道我们能找到，安娜！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Where am I now? MINDY, now I am on a snowy mountain!",
+      "zh": "我现在在哪里？MINDY，我现在在一座雪山！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "That is a good place to learn how to ski.",
+      "zh": "那是学滑雪的好地方。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, MINDY, but it cannot teach us about baseball! And I don't know how to ski!",
+      "zh": "是的，MINDY，可它教不了棒球！而且我不会滑雪！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Sorry, Anna. Let's try again.",
+      "zh": "抱歉，安娜。我们再试一次。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Where am I now!? MINDY, I am in the ocean! An ocean cannot teach us about baseball!",
+      "zh": "我现在在哪里！？MINDY，我在海里！海教不了棒球！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Please don't yell, Anna. The ocean can teach us about surfing.",
+      "zh": "请别喊，安娜。海可以教冲浪。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, MINDY, it can teach us about surfing … and sharks! Ahhh!",
+      "zh": "是的，MINDY，它可以教冲浪……还有鲨鱼！啊——！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Anna, please wait. I need to fix my navigation device.",
+      "zh": "安娜，请等一下。我得修一下导航装置。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "MINDY, please fix it faster. And get me out of here … now!",
+      "zh": "MINDY，请修快一点。还有，现在就带我离开这儿……立刻！"
+    },
+    {
+      "speaker": "Announcer",
+      "en": "Whoa! Is Anna going to be lost forever? Next week, you can watch part two of \"The Time Traveling Treehouse!\"",
+      "zh": "哇！安娜会永远迷路吗？下周，你可以看“时光旅行树屋”第二集！"
+    },
+    {
+      "speaker": "Coworker 1",
+      "en": "Aw, man! Will the shark eat her?",
+      "zh": "哎呀！鲨鱼会吃掉她吗？"
+    },
+    {
+      "speaker": "Coworker 2",
+      "en": "Will Anna find the answer?",
+      "zh": "安娜会找到答案吗？"
+    },
+    {
+      "speaker": "Coworker 3",
+      "en": "Please tell me the ending!",
+      "zh": "请告诉我结局！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "So, you liked it?",
+      "zh": "所以，你们喜欢吗？"
+    },
+    {
+      "speaker": "Coworkers",
+      "en": "Yes!",
+      "zh": "喜欢！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Well, you can watch the ending next week!",
+      "zh": "好，你们下周可以看结局！"
+    },
+    {
+      "speaker": "Coworkers",
+      "en": "Noooooo!",
+      "zh": "不——！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Don't forget to watch next week!",
+      "zh": "别忘了下周看！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What is Anna's children's show called?",
+      "choices": [
+        "The News",
+        "The Time Traveling Treehouse",
+        "Summer Vacation"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What does Layla want to know?",
+      "choices": [
+        "How to ski",
+        "How to surf",
+        "How to play baseball"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "q3",
+      "prompt": "Where does MINDY send Anna the second time?",
+      "choices": [
+        "The ocean",
+        "A baseball field",
+        "The conference room"
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "prev": {
+    "id": "lle1-31",
+    "number": 31,
+    "level": 1,
+    "title": "Let's Learn English Lesson 31"
+  },
+  "next": {
+    "id": "lle1-33",
+    "number": 33,
+    "level": 1,
+    "title": "Let's Learn English Lesson 33"
+  },
+  "videoStatus": "m1-placeholder"
+}

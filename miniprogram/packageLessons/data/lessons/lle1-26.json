@@ -1,0 +1,184 @@
+{
+  "id": "lle1-26",
+  "number": 26,
+  "title": "Let's Learn English Lesson 26",
+  "subtitle": "This Game Is Fun!",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-26-this-game-is-fun/3457248.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 26: This Game Is Fun! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "This is the Roosevelt Memorial. Where is the symbol?",
+      "zh": "这是罗斯福纪念堂。那个象征在哪里？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yay! I found Uncle Sam and I won another 40 points! What is the Fun Fact?",
+      "zh": "耶！我找到了山姆大叔，又得了 40 分！趣闻是什么？"
+    },
+    {
+      "speaker": "Voice",
+      "en": "Franklin Roosevelt was the first to fly in a plane as president!",
+      "zh": "富兰克林·罗斯福是第一位以总统身份坐飞机的人！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I didn't know that. This is a really beautiful memorial.",
+      "zh": "我以前不知道。这座纪念堂真漂亮。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is the Lincoln Memorial! Where is the symbol?",
+      "zh": "这是林肯纪念堂！那个象征在哪里？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I found it! The Statue of Liberty! Please give me my Fun Fact.",
+      "zh": "找到了！自由女神像！请给我趣闻。"
+    },
+    {
+      "speaker": "Voice",
+      "en": "Abraham Lincoln was a great wrestler!",
+      "zh": "亚伯拉罕·林肯是个很棒的摔跤手！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I didn't know that. Lincoln wanted freedom for all people. So, the Statue of Liberty works well.",
+      "zh": "我以前不知道。林肯希望所有人都自由。所以自由女神像很合适。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "And I won 20 points! Time to find the next symbol.",
+      "zh": "我还得了 20 分！该找下一个象征了。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Hey! Look out!",
+      "zh": "嘿！小心！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sorry. Hey, it's you! Now, I should be more careful.",
+      "zh": "抱歉。嘿，是你！现在我该更小心了。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "That's okay.",
+      "zh": "没关系。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This game is a lot of fun. Hey, what's your name?",
+      "zh": "这个游戏很好玩。嘿，你叫什么名字？"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Dan. What's yours?",
+      "zh": "丹。你呢？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Anna.",
+      "zh": "安娜。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Like Americana!",
+      "zh": "就像 Americana！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yeah, I guess so.",
+      "zh": "嗯，算是吧。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Did you find any symbols?",
+      "zh": "你找到象征了吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, I found three and won 120 points!",
+      "zh": "找到了，我找到三个，得了 120 分！"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Me too. But, did you find the bald eagle?",
+      "zh": "我也是。不过，你找到白头海雕了吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No. Did you?",
+      "zh": "没有。你呢？"
+    },
+    {
+      "speaker": "Dan",
+      "en": "No.",
+      "zh": "没有。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "First one to find it wins?",
+      "zh": "谁先找到谁赢？"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Anna, look out for that tree!",
+      "zh": "安娜，小心那棵树！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I learned a lot about presidents with this game. But I ought to be more careful. Until next time …!",
+      "zh": "这个游戏让我学到很多总统的事。不过我应该更小心。下次见……！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Where does Anna find Uncle Sam?",
+      "choices": [
+        "The Jefferson Memorial",
+        "The Roosevelt Memorial",
+        "The Lincoln Memorial"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What Fun Fact does Anna hear about Abraham Lincoln?",
+      "choices": [
+        "He wrote 19,000 letters",
+        "He was the first to fly as president",
+        "He was a great wrestler"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "q3",
+      "prompt": "How many points does Anna say she won?",
+      "choices": [
+        "40",
+        "100",
+        "120"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-25",
+    "number": 25,
+    "level": 1,
+    "title": "Let's Learn English Lesson 25"
+  },
+  "next": {
+    "id": "lle1-27",
+    "number": 27,
+    "level": 1,
+    "title": "Let's Learn English Lesson 27"
+  },
+  "videoStatus": "m1-placeholder"
+}

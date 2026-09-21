@@ -1,0 +1,89 @@
+.stats {
+  display: flex;
+  justify-content: space-between;
+  gap: 12rpx;
+  margin-bottom: 24rpx;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  background: #f7f4ee;
+  border-radius: 16rpx;
+  padding: 16rpx 8rpx;
+}
+
+.num {
+  display: block;
+  font-size: 36rpx;
+  font-weight: 700;
+  color: #0b6e4f;
+}
+
+.lbl {
+  font-size: 22rpx;
+  color: #5b6b74;
+}
+
+.toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.nav-btn {
+  width: 64rpx;
+  min-height: 64rpx;
+  padding: 0;
+  margin: 0;
+  line-height: 64rpx;
+  background: #f7f4ee;
+  border-radius: 50%;
+  font-size: 36rpx;
+}
+
+.nav-btn::after {
+  border: none;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: 600;
+}
+
+.weekdays,
+.grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8rpx;
+}
+
+.weekday,
+.day {
+  text-align: center;
+  font-size: 22rpx;
+  color: #5b6b74;
+}
+
+.day {
+  height: 64rpx;
+  line-height: 64rpx;
+  border-radius: 12rpx;
+}
+
+.day.is-checked {
+  background: #0b6e4f;
+  color: #fff;
+}
+
+.day.is-today:not(.is-checked) {
+  border: 2rpx solid #0b6e4f;
+  color: #0b6e4f;
+}
+
+.note {
+  margin-top: 16rpx;
+  font-size: 22rpx;
+  color: #5b6b74;
+}

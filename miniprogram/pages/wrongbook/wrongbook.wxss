@@ -1,0 +1,35 @@
+.prompt {
+  font-weight: 650;
+  margin: 16rpx 0;
+}
+
+.choice {
+  display: flex;
+  justify-content: space-between;
+  gap: 12rpx;
+  padding: 12rpx 16rpx;
+  border: 1rpx solid #eee8dc;
+  border-radius: 12rpx;
+  margin-bottom: 8rpx;
+  font-size: 26rpx;
+}
+
+.choice.is-chosen {
+  border-color: #9b3d12;
+}
+
+.choice.is-correct {
+  border-color: #0b6e4f;
+  background: #f3faf6;
+}
+
+.mark {
+  color: #5b6b74;
+  font-size: 22rpx;
+}
+
+.wrong-card + .wrong-card {
+  margin-top: 28rpx;
+  padding-top: 8rpx;
+  border-top: 1rpx solid #eee8dc;
+}

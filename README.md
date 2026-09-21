@@ -96,11 +96,12 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 Opening `index.html` as a file URL will not load the JSON.
 
-Check-in, wrong-book, and unlock helpers can be unit-tested with:
+Check-in, wrong-book, unlock, and miniprogram scaffold helpers can be unit-tested with:
 
 ```bash
-node --test js/study.test.js js/unlock.test.js
+node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js
 bash scripts/check-codes-json.sh
+bash scripts/build-mp-data.sh --check
 ```
 
 Local testing note: there are **no public demo codes**, and `data/codes.json` stays empty in git. Unlock unit tests use their own fixtures. To try the redeem form locally, generate a code with `python3 scripts/gen-codes.py --monthly 1 --quarterly 0` and type it into the form (empty allowlist accepts `LLE-M-*` / `LLE-Q-*` format). Do not commit that code. Do not advertise codes to end users.
@@ -112,6 +113,17 @@ Open on phone or desktop:
 https://1019666077-bit.github.io/wx-extract-mvp/
 
 GitHub Pages is served from `main` at `/` (repo root). A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once.
+
+## WeChat miniprogram (M0)
+
+Native `mp-weixin` scaffold lives in [`miniprogram/`](miniprogram/README.md). GitHub Pages is **not** the launch target. Open that folder (or the repo root) in WeChat DevTools with placeholder AppID `touristappid`. Video is an M1 placeholder — do not point the player at Akamai.
+
+Generate split lesson JSON (catalog + per-lesson, no `videoUrl`):
+
+```bash
+bash scripts/build-mp-data.sh
+node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js
+```
 
 ## Scope
 

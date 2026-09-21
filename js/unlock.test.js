@@ -54,6 +54,7 @@ test("redeem stores localStorage unlock state and opens paid lessons", () => {
     code: "VOA-DEMO-39",
     plan: "monthly",
     unlockedAt: "2026-09-04T02:00:00.000Z",
+    expiresAt: "2026-10-04T02:00:00.000Z",
   });
   assert.equal(state.active, true);
   assert.equal(unlock.isUnlocked(), true);
@@ -135,4 +136,73 @@ test("unknown codes fail and clearUnlock returns the catalog to locked", () => {
   assert.equal(storage.getItem("voa-lle-unlock"), null);
   assert.equal(unlock.isUnlocked(), false);
   assert.equal(unlock.canOpenLesson({ id: "lle1-07", number: 7 }), false);
+});
+
+test("empty allowlist accepts issued LLE-M/Q format and rejects invalid format", () => {
+  const unlock = unlockAt("2026-09-04T02:00:00.000Z");
+  const monthly = unlock.findCode([], " lle-m-aaaaaa ");
+  assert.equal(monthly.plan, "monthly");
+  assert.equal(monthly.code, "LLE-M-AAAAAA");
+  const quarterly = unlock.findCode([], "LLE-Q-ZZZZZ9");
+  assert.equal(quarterly.plan, "quarterly");
+  assert.equal(unlock.findCode([], "VOA-DEMO-39"), null);
+  assert.equal(unlock.findCode([], "LLE-M-SHORT"), null);
+  assert.equal(unlock.findCode([], "LLE-X-AAAAAA"), null);
+  assert.equal(unlock.findCode([], ""), null);
+});
+
+test("non-empty allowlist still only matches listed fixture codes", () => {
+  const unlock = unlockAt("2026-09-04T02:00:00.000Z");
+  assert.equal(unlock.findCode(SAMPLE_CODES, "LLE-M-AAAAAA"), null);
+  assert.equal(unlock.findCode(SAMPLE_CODES, "VOA-DEMO-99").plan, "quarterly");
+});
+
+test("monthly redeem stores expiresAt 30 days later; quarterly 90 days", () => {
+  const storage = createMemoryStorage();
+  const unlock = unlockAt("2026-09-04T02:00:00.000Z", storage);
+  const monthly = unlock.redeem({ code: "VOA-DEMO-39", plan: "monthly" });
+  assert.equal(monthly.expiresAt, "2026-10-04T02:00:00.000Z");
+  unlock.clearUnlock();
+  const quarterly = unlock.redeem({ code: "VOA-DEMO-99", plan: "quarterly" });
+  assert.equal(quarterly.expiresAt, "2026-12-03T02:00:00.000Z");
+});
+
+test("missing plan defaults to 30-day expiry", () => {
+  const storage = createMemoryStorage();
+  const unlock = unlockAt("2026-09-04T02:00:00.000Z", storage);
+  const state = unlock.redeem({ code: "VOA-DEMO-39" });
+  assert.equal(state.plan, "unlocked");
+  assert.equal(state.expiresAt, "2026-10-04T02:00:00.000Z");
+});
+
+test("isUnlocked is false after expiresAt and paid lessons lock again", () => {
+  const storage = createMemoryStorage();
+  const atRedeem = unlockAt("2026-09-04T02:00:00.000Z", storage);
+  atRedeem.redeem({ code: "VOA-DEMO-39", plan: "monthly" });
+  assert.equal(atRedeem.isUnlocked(), true);
+
+  const stillValid = unlockAt("2026-10-04T02:00:00.000Z", storage);
+  assert.equal(stillValid.isUnlocked(), true);
+
+  const expired = unlockAt("2026-10-04T02:00:00.001Z", storage);
+  assert.equal(expired.isUnlocked(), false);
+  assert.equal(expired.canOpenLesson({ id: "lle1-06", number: 6 }), false);
+  assert.equal(storage.getItem("voa-lle-unlock"), null);
+});
+
+test("legacy unlock without expiresAt is treated as expired", () => {
+  const storage = createMemoryStorage();
+  storage.setItem(
+    "voa-lle-unlock",
+    JSON.stringify({
+      active: true,
+      code: "VOA-DEMO-39",
+      plan: "monthly",
+      unlockedAt: "2026-09-04T02:00:00.000Z",
+    })
+  );
+  const unlock = unlockAt("2026-09-04T02:00:00.000Z", storage);
+  assert.equal(unlock.isUnlocked(), false);
+  assert.equal(unlock.canOpenLesson({ id: "lle1-06", number: 6 }), false);
+  assert.equal(storage.getItem("voa-lle-unlock"), null);
 });

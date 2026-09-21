@@ -104,7 +104,11 @@ function readProgress() {
 }
 
 function writeProgress(progress) {
-  localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+  try {
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(progress));
+  } catch (error) {
+    console.warn("Unable to save lesson progress.", error);
+  }
 }
 
 function migrateOldProgress() {
@@ -189,9 +193,9 @@ function catalogNoteText(catalog, unlocked) {
   const l1n = l1 ? l1.lessons.length : 0;
   const l2n = l2 ? l2.lessons.length : 0;
   if (unlocked) {
-    return `已解锁全部已上线课程（Level 1 ${l1n} 课 + Level 2 ${l2n} 课）。免费试学仅 Level 1 第 1–5 课。坚持打卡、复习错题本，把这套课学下去。`;
+    return `已解锁全部已上线课程（Level 1 ${l1n} 课 + Level 2 ${l2n} 课）。打卡日历与错题本免费使用。免费试学仅 Level 1 第 1–5 课。坚持打卡、复习错题本，把这套课学下去。`;
   }
-  return `免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课），并保留打卡与错题本，帮你学得下去。微信联系 ${WECHAT_CONTACT} 付款（¥39 月 / ¥99 季），获兑换码后到开通页输入解锁。`;
+  return `免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。微信联系 ${WECHAT_CONTACT} 付款（¥39 月 / ¥99 季），获兑换码后到开通页输入解锁。`;
 }
 
 function checkinHintText() {
@@ -662,7 +666,7 @@ function renderLessonPaywall(lesson, level) {
   overlay.setAttribute("aria-label", "Paywall");
   overlay.innerHTML = `
     <h2>课程未解锁</h2>
-    <p>免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课），并保留打卡与错题本，帮你学得下去。</p>
+    <p>免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。</p>
     <p>下一步：去开通页看方案，微信联系 <strong>${WECHAT_CONTACT}</strong> 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。</p>
     <div class="quiz-actions">
       <a class="btn primary" href="pricing.html">去开通 · 输入兑换码</a>
@@ -896,15 +900,15 @@ function renderPricingState() {
   }
 
   if (state) {
-    const when = state.unlockedAt ? String(state.unlockedAt).slice(0, 10) : "";
-    status.textContent = `已解锁 · ${VOAUnlock.planLabel(state.plan)}${when ? ` · ${when}` : ""}`;
+    const until = VOAUnlock.formatExpiryDate(state);
+    status.textContent = `已解锁 · ${VOAUnlock.planLabel(state.plan)}${until ? ` · 到期 ${until}` : ""}`;
     if (clearBtn) {
       clearBtn.hidden = false;
     }
     return;
   }
 
-  status.textContent = "当前未解锁。仅 Level 1 第 1–5 课可免费试学。";
+  status.textContent = "当前未解锁或已过期。仅 Level 1 第 1–5 课可免费试学。";
   if (clearBtn) {
     clearBtn.hidden = true;
   }
@@ -932,12 +936,13 @@ async function initPricing() {
           result.textContent = "兑换码无效，请核对后重试。";
           return;
         }
-        VOAUnlock.redeem(match);
+        const state = VOAUnlock.redeem(match);
         if (input) {
           input.value = "";
         }
         renderPricingState();
-        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}。可学习全部已上线课程（含 Level 1 + Level 2 已发布课）。`;
+        const until = VOAUnlock.formatExpiryDate(state);
+        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}${until ? ` · 到期 ${until}` : ""}。可学习全部已上线课程（含 Level 1 + Level 2 已发布课）。`;
       } catch (error) {
         result.textContent = error.message || "解锁失败。";
       }

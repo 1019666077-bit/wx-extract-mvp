@@ -37,7 +37,7 @@
 
 | 顺序 | 文件 | 卡片要点 |
 | --- | --- | --- |
-| 1 | `set-c/01-title.jpg` | 师父说有一种债必须当天还 |
+| 1 | `set-c/01-title.jpg` | 封面单独设计：窗边月光空枕 + 墨蓝底大标题（内页仍是黄纸） |
 | 2 | `set-c/02-what-is-debt.jpg` | 什么是心债 |
 | 3 | `set-c/03-overnight.jpg` | 过夜就变重 |
 | 4 | `set-c/04-not-settling.jpg` | 不是找人算账 |
@@ -46,7 +46,8 @@
 | 7 | `set-c/07-closing.jpg` | 愿你今晚少扛一笔 + 天天敲木鱼小憩 |
 
 文案与研报：`set-c/NOTE.md`  
-预览：`set-c-contact.jpg`
+预览：`set-c-contact.jpg`  
+封面候选：`set-c-cover-candidates.jpg`（正式封面为窗边月光空枕方案）
 
 ## 使用约束
 

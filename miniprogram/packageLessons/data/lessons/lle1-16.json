@@ -1,0 +1,299 @@
+{
+  "id": "lle1-16",
+  "number": 16,
+  "title": "Let's Learn English Lesson 16",
+  "subtitle": "Where Are You From?",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-16-where-are-you-from/3355849.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 16: Where Are You From? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello! Washington, D.C. has many tourists! People from different countries come here. Today, my job is to interview tourists. I have to learn why they come here. This is very exciting! Excuse me. I'm Anna Matteo from The News. Do you have time for an interview?",
+      "zh": "嗨！华盛顿特区有很多游客！不同国家的人都会来这里。今天我的工作是采访游客。我要了解他们为什么来。这很令人兴奋！打扰一下。我是《新闻》的安娜·马特奥。你有时间接受采访吗？"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "Sure, I have time.",
+      "zh": "当然，我有时间。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What is your name?",
+      "zh": "你叫什么名字？"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "My name is Sabrina.",
+      "zh": "我叫萨布丽娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What country are you from?",
+      "zh": "你来自哪个国家？"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "I'm from Bangladesh.",
+      "zh": "我来自孟加拉国。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "So, you are Bangladeshi.",
+      "zh": "所以你是孟加拉人。"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "That's right! My nationality is Bangladeshi.",
+      "zh": "对！我的国籍是孟加拉。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Do you like Washington, D.C.?",
+      "zh": "你喜欢华盛顿特区吗？"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "Yes! The city is very beautiful!",
+      "zh": "喜欢！这座城市很美！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What do you like to do in Washington D.C.?",
+      "zh": "你在华盛顿特区喜欢做什么？"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "I like history. So, I like walking around and looking at all the monuments and memorials. They make history come alive!",
+      "zh": "我喜欢历史。所以我喜欢四处走走，看那些纪念碑和纪念堂。它们让历史活了起来！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Washington has many monuments and memorials. The Washington Monument is behind us! Which is your favorite?",
+      "zh": "华盛顿有很多纪念碑和纪念堂。华盛顿纪念碑就在我们身后！你最喜欢哪一个？"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "I really like Lincoln Memorial. It is very beautiful. And it feels like Abraham Lincoln is still alive.",
+      "zh": "我很喜欢林肯纪念堂。它很漂亮。感觉亚伯拉罕·林肯还活着。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Awesome. Thank you for your time, Sabrina!",
+      "zh": "太好了。谢谢你抽时间，萨布丽娜！"
+    },
+    {
+      "speaker": "Sabrina",
+      "en": "You're welcome.",
+      "zh": "不客气。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Let's find another tourist.",
+      "zh": "我们再找一位游客。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh! Excuse me. I am Anna Matteo from The News. Do you have time for a couple of questions?",
+      "zh": "哦！打扰一下。我是《新闻》的安娜·马特奥。你有时间回答几个问题吗？"
+    },
+    {
+      "speaker": "Louis",
+      "en": "Sure!",
+      "zh": "当然！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Are you from Washington, D.C.?",
+      "zh": "你是华盛顿特区人吗？"
+    },
+    {
+      "speaker": "Louis",
+      "en": "No, I'm not.",
+      "zh": "不是。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What is your name and where are you from?",
+      "zh": "你叫什么名字，来自哪里？"
+    },
+    {
+      "speaker": "Louis",
+      "en": "My name is Louis. And I'm from China.",
+      "zh": "我叫路易斯。我来自中国。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What languages do you speak?",
+      "zh": "你说哪些语言？"
+    },
+    {
+      "speaker": "Louis",
+      "en": "I speak Chinese and English.",
+      "zh": "我说中文和英语。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What do you like about Washington DC?",
+      "zh": "你喜欢华盛顿特区的什么？"
+    },
+    {
+      "speaker": "Louis",
+      "en": "I like the museums. I really like the art museums.",
+      "zh": "我喜欢博物馆。我特别喜欢艺术博物馆。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Many of the museums are free.",
+      "zh": "很多博物馆都是免费的。"
+    },
+    {
+      "speaker": "Louis",
+      "en": "I like that too!",
+      "zh": "这个我也喜欢！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Awesome! Thanks for your time, Louis.",
+      "zh": "太好了！谢谢你抽时间，路易斯。"
+    },
+    {
+      "speaker": "Louis",
+      "en": "You're very welcome. Bye!",
+      "zh": "不客气。再见！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Now, let's find another tourist!",
+      "zh": "现在，我们再找一位游客！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello! I am Anna Matteo from The News. Do you have time to answer a couple of questions?",
+      "zh": "你好！我是《新闻》的安娜·马特奥。你有时间回答几个问题吗？"
+    },
+    {
+      "speaker": "Mehrnoush",
+      "en": "Sure!",
+      "zh": "当然！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What is your name and where're you from?",
+      "zh": "你叫什么名字，来自哪里？"
+    },
+    {
+      "speaker": "Mehrnoush",
+      "en": "My name is Mehrnoush. I am from Iran. I'm Iranian.",
+      "zh": "我叫梅尔努什。我来自伊朗。我是伊朗人。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What language do they speak in Iran? Is it Persian?",
+      "zh": "伊朗人说什么语言？是波斯语吗？"
+    },
+    {
+      "speaker": "Mehrnoush",
+      "en": "They speak Farsi.",
+      "zh": "他们说波斯语（Farsi）。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What do you like to do in Washington DC?",
+      "zh": "你在华盛顿特区喜欢做什么？"
+    },
+    {
+      "speaker": "Mehrnoush",
+      "en": "Well, I like learning about government and politics.",
+      "zh": "嗯，我喜欢了解政府和政治。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Washington has many politicians!",
+      "zh": "华盛顿有很多政客！"
+    },
+    {
+      "speaker": "Mehrnoush",
+      "en": "It does! I want to see the U.S. Capitol.",
+      "zh": "是的！我想去看美国国会大厦。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Look, you are very near.",
+      "zh": "看，你离那儿很近。"
+    },
+    {
+      "speaker": "Mehrnoush",
+      "en": "I am!",
+      "zh": "是啊！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Have fun!",
+      "zh": "玩得开心！"
+    },
+    {
+      "speaker": "Mehrnoush",
+      "en": "Thanks!",
+      "zh": "谢谢！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "There you have it. Tourists from all over the world come to Washington, D.C. They all like doing and seeing different things in the city. This is Anna Matteo reporting for The News. Until next time!",
+      "zh": "就是这样。世界各地的游客都会来华盛顿特区。他们喜欢在城里做的、看的都不一样。我是安娜·马特奥，为《新闻》报道。下次见！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Is that okay? Awesome! Now, I want to do my favorite thing in the city … ride the carousel!",
+      "zh": "这样可以吗？太好了！现在我想做城里我最喜欢的事……坐旋转木马！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Where is Sabrina from?",
+      "choices": [
+        "Bangladesh",
+        "China",
+        "Iran"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q2",
+      "prompt": "What languages does Louis speak?",
+      "choices": [
+        "Farsi and English",
+        "Chinese and English",
+        "Only English"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q3",
+      "prompt": "What does Mehrnoush want to see?",
+      "choices": [
+        "Lincoln Memorial",
+        "An art museum",
+        "The U.S. Capitol"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-15",
+    "number": 15,
+    "level": 1,
+    "title": "Let's Learn English Lesson 15"
+  },
+  "next": {
+    "id": "lle1-17",
+    "number": 17,
+    "level": 1,
+    "title": "Let's Learn English Lesson 17"
+  },
+  "videoStatus": "m1-placeholder"
+}

@@ -1,0 +1,159 @@
+{
+  "id": "lle1-09",
+  "number": 9,
+  "title": "Let's Learn English Lesson 9",
+  "subtitle": "Is It Cold?",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-9-is-it-cold/3261789.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 9: Is It Cold? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Oh, hi, everyone! Here in Washington, DC, the weather changes often.",
+      "zh": "哦，大家好！在华盛顿特区，天气常常变化。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "One day is cold and windy. But the next day is warm and sunny! So, every day I check the forecast.",
+      "zh": "有一天又冷又刮风。可第二天又暖和又晴朗！所以我每天都看天气预报。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello, Phone? What is today’s temperature?",
+      "zh": "喂，手机？今天气温是多少？"
+    },
+    {
+      "speaker": "Phone",
+      "en": "Today it is 18 degrees ...",
+      "zh": "今天是 18 度……"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Eighteen degrees! That is cold!",
+      "zh": "18 度！好冷！"
+    },
+    {
+      "speaker": "Phone",
+      "en": "… eighteen degrees Celsius.",
+      "zh": "……摄氏 18 度。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, Celsius. That is 65 degrees Fahrenheit. That’s warm.",
+      "zh": "哦，是摄氏度。那是华氏 65 度。那很暖和。"
+    },
+    {
+      "speaker": "Phone",
+      "en": "Yes, Anna. It is warm.",
+      "zh": "是的，安娜。天气暖和。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Excuse me, Phone. Is it windy today?",
+      "zh": "不好意思，手机。今天刮风吗？"
+    },
+    {
+      "speaker": "Phone",
+      "en": "No, it is not windy today.",
+      "zh": "不，今天不刮风。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Is it sunny today?",
+      "zh": "今天晴天吗？"
+    },
+    {
+      "speaker": "Phone",
+      "en": "Yes, Anna. It is sunny.",
+      "zh": "是的，安娜。今天是晴天。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Is it snowy today?",
+      "zh": "今天下雪吗？"
+    },
+    {
+      "speaker": "Phone",
+      "en": "No, Anna. It is not snowy.",
+      "zh": "不，安娜。今天不下雪。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Today the weather is warm and sunny -- great for seeing Washington, D.C.",
+      "zh": "今天天气暖和又晴朗——很适合游览华盛顿特区。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Phone! It is not warm and sunny! It is cold and windy and snowy!",
+      "zh": "手机！今天并不暖和晴朗！又冷，又刮风，还下雪！"
+    },
+    {
+      "speaker": "Phone",
+      "en": "Anna, it is not cold, windy, or snowy. It is warm and sunny … in Mexico City, Mexico.",
+      "zh": "安娜，并不冷，也不刮风，更不下雪。暖和又晴朗的是……墨西哥的墨西哥城。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh. I see. Mexico.",
+      "zh": "哦。我明白了。墨西哥。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Washington weather changes often. Remember to check the forecast -- the right forecast.",
+      "zh": "华盛顿的天气常常变化。记得看天气预报——要看正确的预报。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Until next time!",
+      "zh": "下次见！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What is 18 degrees Celsius in Fahrenheit?",
+      "choices": [
+        "18 degrees Fahrenheit",
+        "65 degrees Fahrenheit",
+        "80 degrees Fahrenheit"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What does the phone first say about the weather?",
+      "choices": [
+        "It is cold and snowy",
+        "It is windy",
+        "It is warm and sunny"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "q3",
+      "prompt": "Where is the warm, sunny weather?",
+      "choices": [
+        "Washington, D.C.",
+        "Mexico City, Mexico",
+        "New York City"
+      ],
+      "answerIndex": 1
+    }
+  ],
+  "prev": {
+    "id": "lle1-08",
+    "number": 8,
+    "level": 1,
+    "title": "Let's Learn English Lesson 8"
+  },
+  "next": {
+    "id": "lle1-10",
+    "number": 10,
+    "level": 1,
+    "title": "Let's Learn English Lesson 10"
+  },
+  "videoStatus": "m1-placeholder"
+}

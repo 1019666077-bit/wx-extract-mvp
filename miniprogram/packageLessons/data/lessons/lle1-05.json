@@ -1,0 +1,114 @@
+{
+  "id": "lle1-05",
+  "number": 5,
+  "title": "Let's Learn English Lesson 5",
+  "subtitle": "Where Are You?",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-5-where-are-you/3168971.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 5: Where Are You? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello, everyone! Today my friend Marsha is at her friend's house.",
+      "zh": "大家好！今天我的朋友玛莎在她朋友家里。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "She says it is beautiful. I want to see this house! Here we are!",
+      "zh": "她说那房子很漂亮。我想去看看！我们到了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Marsha, I am in the kitchen! It is a beautiful kitchen!",
+      "zh": "玛莎，我在厨房里！这厨房很漂亮！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "It is beautiful. We cook in the kitchen.",
+      "zh": "是很漂亮。我们在厨房做饭。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I eat in the kitchen.",
+      "zh": "我在厨房吃饭。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "We relax in the living room.",
+      "zh": "我们在客厅休息。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I relax in the living room. Marsha, let’s go upstairs!",
+      "zh": "我在客厅休息。玛莎，我们上楼吧！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna? Where are you?",
+      "zh": "安娜？你在哪里？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Marsha, I am in the bathroom! I wash in the bathroom.",
+      "zh": "玛莎，我在浴室里！我在浴室洗澡。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "I am in the bedroom. We sleep in the bedroom.",
+      "zh": "我在卧室里。我们在卧室睡觉。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I sleep in the bedroom!",
+      "zh": "我在卧室睡觉！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Where is Marsha today?",
+      "choices": [
+        "At her office",
+        "At her friend's house",
+        "At the supermarket"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Where do they cook?",
+      "choices": [
+        "In the living room",
+        "In the bedroom",
+        "In the kitchen"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "q3",
+      "prompt": "Where is Anna when Marsha asks, \"Where are you?\"",
+      "choices": [
+        "In the bathroom",
+        "In the kitchen",
+        "In the living room"
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "prev": {
+    "id": "lle1-04",
+    "number": 4,
+    "level": 1,
+    "title": "Let's Learn English Lesson 4"
+  },
+  "next": {
+    "id": "lle1-06",
+    "number": 6,
+    "level": 1,
+    "title": "Let's Learn English Lesson 6"
+  },
+  "videoStatus": "m1-placeholder"
+}

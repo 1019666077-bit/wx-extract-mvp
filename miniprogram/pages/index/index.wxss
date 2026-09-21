@@ -1,0 +1,104 @@
+.catalog-note {
+  margin: 12rpx 0 20rpx;
+}
+
+.level-switch,
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin: 16rpx 0;
+}
+
+.chip {
+  margin: 0;
+  padding: 0 24rpx;
+  min-height: 64rpx;
+  line-height: 64rpx;
+  font-size: 24rpx;
+  background: #f7f4ee;
+  border-radius: 999rpx;
+  color: #1d2a32;
+}
+
+.chip::after {
+  border: none;
+}
+
+.chip.is-active {
+  background: #0b6e4f;
+  color: #fff;
+}
+
+.progress-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 12rpx;
+  font-size: 24rpx;
+  margin-bottom: 12rpx;
+}
+
+.bar {
+  height: 12rpx;
+  background: #eee8dc;
+  border-radius: 999rpx;
+  overflow: hidden;
+  margin-bottom: 20rpx;
+}
+
+.bar-fill {
+  height: 100%;
+  background: #0b6e4f;
+}
+
+.clear-banner {
+  background: #f7f4ee;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  margin-bottom: 20rpx;
+}
+
+.lesson-card {
+  border-top: 1rpx solid #eee8dc;
+  padding: 24rpx 0;
+}
+
+.lesson-card.is-locked {
+  opacity: 0.92;
+}
+
+.card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.lesson-number {
+  color: #0b6e4f;
+  font-size: 22rpx;
+}
+
+.badge {
+  font-size: 22rpx;
+  color: #5b6b74;
+}
+
+.badge.locked {
+  color: #9b3d12;
+}
+
+.badge.done {
+  color: #0b6e4f;
+}
+
+.lesson-title {
+  font-size: 32rpx;
+  font-weight: 650;
+  margin: 8rpx 0;
+}
+
+.lesson-sub {
+  color: #5b6b74;
+  font-size: 24rpx;
+  margin-bottom: 12rpx;
+}

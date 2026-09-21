@@ -1,6 +1,6 @@
 # VOA Let's Learn English · 微信小程序迁移方案（阶段 1）
 
-**状态**：方案稿，供幕僚长审阅后由 Grok 4.6 执行。**本阶段禁止改业务逻辑**（本文档除外）。  
+**状态**：方案已审过；**M0 脚手架已落地**（`miniprogram/`，无视频）。M1 视频镜像 / M2 提审不在本刀。  
 **仓库**：https://github.com/1019666077-bit/wx-extract-mvp（静态站 `main` 已含 PR#26 付费墙修复：空 `codes.json`、`expiresAt`、运营手册）。  
 **上线定义**：**必须**以同主体微信小程序提审通过并发布；GitHub Pages 仅作开发预览，**不算正式上线**。
 

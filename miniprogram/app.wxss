@@ -1,0 +1,87 @@
+page {
+  background: #f4f1ea;
+  color: #1d2a32;
+  font-size: 28rpx;
+  line-height: 1.55;
+}
+
+.page {
+  padding: 24rpx 24rpx 48rpx;
+  display: flex;
+  flex-direction: column;
+  gap: 24rpx;
+}
+
+.card {
+  background: #ffffff;
+  border: 1rpx solid #d9d3c7;
+  border-radius: 24rpx;
+  padding: 32rpx;
+  box-shadow: 0 12rpx 40rpx rgba(29, 42, 50, 0.06);
+}
+
+.eyebrow {
+  margin: 0 0 8rpx;
+  color: #0b6e4f;
+  font-size: 22rpx;
+  letter-spacing: 1rpx;
+}
+
+.heading {
+  margin: 0 0 8rpx;
+  font-size: 40rpx;
+  font-weight: 700;
+}
+
+.sub {
+  margin: 0;
+  color: #5b6b74;
+  font-size: 26rpx;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 72rpx;
+  padding: 0 28rpx;
+  border-radius: 999rpx;
+  border: 1rpx solid #d9d3c7;
+  background: #fff;
+  color: #1d2a32;
+  font-size: 26rpx;
+  line-height: 1.2;
+}
+
+.btn::after {
+  border: none;
+}
+
+.btn-primary {
+  background: #0b6e4f;
+  border-color: #0b6e4f;
+  color: #ffffff;
+}
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16rpx;
+  margin-top: 20rpx;
+}
+
+.muted {
+  color: #5b6b74;
+}
+
+.footer {
+  color: #5b6b74;
+  font-size: 22rpx;
+}
+
+.empty {
+  margin: 0;
+  color: #5b6b74;
+  text-align: center;
+  padding: 24rpx 0;
+}

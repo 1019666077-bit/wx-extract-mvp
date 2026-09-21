@@ -1,0 +1,279 @@
+{
+  "id": "lle2-19",
+  "number": 19,
+  "title": "Let's Learn English Level 2 Lesson 19",
+  "subtitle": "Movie Night",
+  "level": 2,
+  "levelId": "lle2",
+  "levelTitle": "Let's Learn English · Level 2",
+  "levelLessonCount": 30,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-19/4242927.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 19: Movie Night (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hi, can you tell me how to get to your movie theater?",
+      "zh": "嗨，能告诉我去你们电影院怎么走吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, that’s easy. OK, thank you. Bye.",
+      "zh": "哦，很简单。好，谢谢。再见。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi, Pete! Thanks for the movie invitation.",
+      "zh": "嗨，皮特！谢谢你邀请我看电影。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Yeah, sure Anna.",
+      "zh": "嗯，当然，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I love movies. I love the plot! I love the set design! I love the costumes! I love -",
+      "zh": "我爱电影。我爱剧情！我爱布景！我爱服装！我爱——"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, I take movies very seriously. You’re not one of those people who talks during a movie, are you?",
+      "zh": "安娜，我对电影很认真。你不会是那种看电影时说话的人吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No.",
+      "zh": "不会。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Good.",
+      "zh": "很好。"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "Anna loves movies. And..she loves talking about movies. And Pete doesn’t sound happy about that. But he’s trying to be polite. He can do that with Indirect Questions. We can ask a question directly: Where is your movie theater? or indirectly as Anna does: “Can you tell me how to get to your movie theater?” They have the same meaning. But indirect questions are more polite and a little more formal. Many indirect questions begin with: Can/Could you tell me… Would/Do you mind… Would it be possible… or Do you know… Hmm, do you know if Anna will stop talking? I sure don’t. Keep watching. And, this time look for indirect questions that begin with: Would you mind…",
+      "zh": "安娜爱电影。而且……她爱谈论电影。皮特听起来不太高兴。可他想保持礼貌。他可以用间接疑问句。可以直接问：Where is your movie theater？也可以像安娜那样间接问：“Can you tell me how to get to your movie theater?” 意思一样。但间接疑问句更礼貌，也更正式。很多间接疑问句以这些开头：Can/Could you tell me… Would/Do you mind… Would it be possible… 或 Do you know… 嗯，你知道安娜会不会停下来吗？我可不知道。继续看。这次找以 Would you mind… 开头的间接疑问句。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I love the smell of popcorn. I love seats that rock.",
+      "zh": "我爱爆米花的味道。我爱会摇的座位。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I love when people are quiet.",
+      "zh": "我爱人们安静的时候。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Ooh look, the previews are starting. I love to see what movies are coming out. Oh, this one looks good!",
+      "zh": "哦看，预告片开始了。我爱看有什么新电影要上映。哦，这部看起来不错！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, the previews are part of the movie experience. So, would you mind not talking?",
+      "zh": "安娜，预告片也是看电影的一部分。所以，能不能请你不要说话？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, sure, sure.",
+      "zh": "哦，当然，当然。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, I was wondering: are you almost finished with that?",
+      "zh": "安娜，我想问问：你快喝完了吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No. There’s still a lot of milkshake at the bottom.",
+      "zh": "没有。底部还有很多奶昔。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, do you mind not drinking so loudly?",
+      "zh": "安娜，能不能请你喝的时候小声一点？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I’ll try. But it’s really thick.",
+      "zh": "我试试。可它真的很稠。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, what are you doing?!",
+      "zh": "安娜，你在干什么？！"
+    },
+    {
+      "speaker": "Person in audience",
+      "en": "Shh!",
+      "zh": "嘘！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I’m not the one making all the noise.",
+      "zh": "制造噪音的又不是我。"
+    },
+    {
+      "speaker": "Person in audience",
+      "en": "Shhh!",
+      "zh": "嘘——！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I’m done now.",
+      "zh": "我喝完了。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, would you mind opening that a little bit more quietly?",
+      "zh": "安娜，能不能请你开包装时小声一点？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I’ll try.",
+      "zh": "我试试。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, just give it to me!",
+      "zh": "安娜，把它给我！"
+    },
+    {
+      "speaker": "Person in audience",
+      "en": "Shhh!",
+      "zh": "嘘——！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "It’s not mine. I’m opening it for her. Here.",
+      "zh": "这不是我的。我在帮她开。给。"
+    },
+    {
+      "speaker": "Person in audience",
+      "en": "Shhhhhh!!",
+      "zh": "嘘————！！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Here!",
+      "zh": "给！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thanks, Pete.",
+      "zh": "谢谢，皮特。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Now, would you mind being more quiet?",
+      "zh": "现在，能不能请你安静一点？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Excuse me, would you mind turning down your phone light?",
+      "zh": "不好意思，能不能请你把手机灯光调暗一点？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, sorry! I forgot to turn my phone off.",
+      "zh": "哦，抱歉！我忘了关手机。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh no! I dropped it. Where is it?",
+      "zh": "哦不！我掉了。在哪儿？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Anna, can you please turn off your phone?",
+      "zh": "安娜，能不能请你把手机关了？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Excuse me, would you mind lending me your phone light for a minute?",
+      "zh": "不好意思，能不能把你的手机灯光借我用一分钟？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No! I’ll get it!",
+      "zh": "不行！我来拿！"
+    },
+    {
+      "speaker": "Person in audience",
+      "en": "Shhhhh!",
+      "zh": "嘘——！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Look, people, I’m not the noisy one here! So, you all need to shush the right person. And I should know about shushing! I shush people all the time!!",
+      "zh": "听着，各位，这儿吵的不是我！所以你们该嘘对的人。而且我最懂嘘人！我老是嘘别人！！"
+    },
+    {
+      "speaker": "Security guard",
+      "en": "Excuse me, sir. You can’t yell in a movie theater. Would you mind coming with me?",
+      "zh": "不好意思，先生。电影院里不能大喊。能不能请你跟我走一趟？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "You’re kicking me out? Me? But I’m always the quiet one in the movie!",
+      "zh": "你要把我赶出去？我？可我看电影一向最安静！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete should know better. You have to be quiet in a movie theater. Shh, the movie’s starting!",
+      "zh": "皮特该更懂事。电影院里必须安静。嘘，电影开始了！"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "Well, that’s a surprise! I thought Anna would be the noisy one. Well, she was … with her food. But Pete did all of the talking. At least he tried to be polite by using indirect questions.",
+      "zh": "哇，真意外！我还以为安娜会是吵的那个。嗯，她吃东西是有点吵。可说话的全是皮特。至少他试着用间接疑问句保持礼貌。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What does Pete keep asking Anna to do at the movies?",
+      "choices": [
+        "Stop making noise",
+        "Share her popcorn",
+        "Change seats"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q2",
+      "prompt": "Who gets kicked out of the theater?",
+      "choices": [
+        "Pete",
+        "Anna",
+        "The security guard"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "How does Pete try to be polite?",
+      "choices": [
+        "He uses indirect questions",
+        "He buys Anna more candy",
+        "He turns off Anna's phone"
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "prev": {
+    "id": "lle2-18",
+    "number": 18,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 18"
+  },
+  "next": {
+    "id": "lle2-20",
+    "number": 20,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 20"
+  },
+  "videoStatus": "m1-placeholder"
+}

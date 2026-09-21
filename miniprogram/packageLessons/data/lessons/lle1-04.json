@@ -1,0 +1,179 @@
+{
+  "id": "lle1-04",
+  "number": 4,
+  "title": "Let's Learn English Lesson 4",
+  "subtitle": "What Is It?",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-4/3168920.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 4: What Is It? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Pete, hi! Hi, we are here!",
+      "zh": "皮特，嗨！嗨，我们到了！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Hi, Anna! Hi, Marsha!",
+      "zh": "嗨，安娜！嗨，玛莎！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi!",
+      "zh": "嗨！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "How are you two?",
+      "zh": "你们俩好吗？"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "I am great!",
+      "zh": "我很好！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "You know, Pete, I am new to D.C. The city is big.",
+      "zh": "你知道的，皮特，我刚到华盛顿特区。这座城市很大。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Yeah. But you learn a little more every day. How's the new apartment?",
+      "zh": "是啊。不过你每天都会多学一点。新公寓怎么样？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "The new apartment is great! Let's get coffee!",
+      "zh": "新公寓很棒！我们去喝咖啡吧！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna, do you have a pen?",
+      "zh": "安娜，你有笔吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. I have a pen in my bag.",
+      "zh": "有。我包里有一支笔。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have a …",
+      "zh": "我有一个……"
+    },
+    {
+      "speaker": "Pete",
+      "en": "It is not a pen. It is a book. It is a big book.",
+      "zh": "那不是笔。那是一本书。一本很大的书。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. Yes it is, Pete. I know I have a pen, though…",
+      "zh": "对。是的，皮特。不过我知道我有一支笔……"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have a ....",
+      "zh": "我有一个……"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "It is not a pen, Anna ... a toy?",
+      "zh": "那不是笔，安娜……是玩具？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have a ....",
+      "zh": "我有一个……"
+    },
+    {
+      "speaker": "Pete",
+      "en": "And it is a pillow!",
+      "zh": "那是一个枕头！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, Marsha, I know I have a pen.",
+      "zh": "皮特，玛莎，我知道我有一支笔。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna, it is a map.",
+      "zh": "安娜，那是一张地图。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Why do you have a map of the world?",
+      "zh": "你为什么带着一张世界地图？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, Marsha. Now I know I have a pen.",
+      "zh": "皮特，玛莎。现在我知道我有一支笔了。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "And now you have a lamp.",
+      "zh": "现在你又拿出一盏灯。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna.",
+      "zh": "安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have a pen! Let’s get coffee!",
+      "zh": "我有笔了！我们去喝咖啡吧！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What does Marsha ask Anna for?",
+      "choices": [
+        "A book",
+        "A pen",
+        "A map"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What does Pete say about the first thing from Anna's bag?",
+      "choices": [
+        "It is a pen",
+        "It is a lamp",
+        "It is a book. It is a big book"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "q3",
+      "prompt": "What does Anna finally find?",
+      "choices": [
+        "A pen",
+        "A pillow",
+        "A toy"
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "prev": {
+    "id": "lle1-03",
+    "number": 3,
+    "level": 1,
+    "title": "Let's Learn English Lesson 3"
+  },
+  "next": {
+    "id": "lle1-05",
+    "number": 5,
+    "level": 1,
+    "title": "Let's Learn English Lesson 5"
+  },
+  "videoStatus": "m1-placeholder"
+}

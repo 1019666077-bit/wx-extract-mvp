@@ -1,0 +1,11 @@
+<view class="page">
+  <view class="card">
+    <view class="eyebrow">Self-study streak</view>
+    <view class="heading">打卡日历</view>
+    <view class="sub">Submit any lesson quiz to check in for the day. Dates use Asia/Shanghai.</view>
+  </view>
+  <view class="card">
+    <checkin-calendar />
+  </view>
+  <view class="card footer">This unofficial study helper is not affiliated with Voice of America. Lesson videos and scripts are in the public domain.</view>
+</view>

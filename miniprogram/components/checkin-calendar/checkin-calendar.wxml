@@ -1,0 +1,34 @@
+<view class="checkin">
+  <view class="stats">
+    <view class="stat">
+      <text class="num">{{view.streak}}</text>
+      <text class="lbl">连续天数</text>
+    </view>
+    <view class="stat">
+      <text class="num">{{view.monthCount}}</text>
+      <text class="lbl">当月打卡</text>
+    </view>
+    <view class="stat">
+      <text class="num">{{view.total}}</text>
+      <text class="lbl">累计打卡</text>
+    </view>
+  </view>
+  <view class="toolbar">
+    <button class="nav-btn" bindtap="prevMonth">‹</button>
+    <text class="title">{{view.title}}</text>
+    <button class="nav-btn" bindtap="nextMonth">›</button>
+  </view>
+  <view class="weekdays">
+    <text wx:for="{{view.weekdays}}" wx:key="*this" class="weekday">{{item}}</text>
+  </view>
+  <view class="grid">
+    <view
+      wx:for="{{view.cells}}"
+      wx:key="key"
+      class="day {{item.empty ? 'is-empty' : ''}} {{item.checked ? 'is-checked' : ''}} {{item.today ? 'is-today' : ''}}"
+    >
+      <text wx:if="{{!item.empty}}">{{item.day}}</text>
+    </view>
+  </view>
+  <view class="note">提交任意课程测验即计为当日打卡。日期按 Asia/Shanghai（北京时间）。</view>
+</view>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "checkin-calendar": "../../components/checkin-calendar/checkin-calendar"
+  }
+}

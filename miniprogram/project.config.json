@@ -1,0 +1,29 @@
+{
+  "description": "VOA Let's Learn English · M0 scaffold (no video)",
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "setting": {
+    "urlCheck": true,
+    "es6": true,
+    "enhance": true,
+    "postcss": true,
+    "minified": true,
+    "coverView": true,
+    "minifyWXSS": true,
+    "minifyWXML": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    },
+    "ignoreUploadUnusedFiles": true,
+    "compileWorklet": false
+  },
+  "compileType": "miniprogram",
+  "libVersion": "3.8.0",
+  "appid": "touristappid",
+  "projectname": "voa-lle-mp-m0",
+  "condition": {}
+}

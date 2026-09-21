@@ -1,0 +1,279 @@
+{
+  "id": "lle1-20",
+  "number": 20,
+  "title": "Let's Learn English Lesson 20",
+  "subtitle": "What Can You Do?",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-20-what-can-you-do/3384429.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 20: What Can You Do? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hi, there! Washington, D.C. is a great place to work. Many people here work in government and politics. But there are many other jobs. You can work at a hospital; a university. You can work in a coffee shop. Wait a minute, I think I see a friend of mine. Pete? Is that you?",
+      "zh": "嗨！华盛顿特区是个很好的工作地方。这里很多人在政府和政治领域工作。不过还有很多别的工作。你可以在医院工作；也可以在大学。你还可以在咖啡店工作。等一下，我好像看到一个朋友。皮特？是你吗？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Hi, Anna.",
+      "zh": "嗨，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "You look different. Your beard … is really big.",
+      "zh": "你看起来不一样了。你的胡子……真的很大。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "You don't like it, do you?",
+      "zh": "你不喜欢，对吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, no. You just look … different.",
+      "zh": "不，不。你只是看起来……不一样。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thank you. So, what's wrong? You look sad.",
+      "zh": "谢谢。所以，怎么了？你看起来很难过。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't have a job.",
+      "zh": "我没有工作。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sorry, I can't hear you.",
+      "zh": "抱歉，我听不清。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I do not have a job!",
+      "zh": "我没有工作！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh. I'm sorry to hear that, Pete.",
+      "zh": "哦。听到这个我很难过，皮特。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't have a skill.",
+      "zh": "我没有本事。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Everyone has a skill. You need to find yours.",
+      "zh": "每个人都有本事。你需要找到你的。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't know, Anna.",
+      "zh": "我不知道，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, I am good at asking questions. Let me ask you some.",
+      "zh": "皮特，我擅长提问。让我问你几个。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Really, Anna? Can you help me?",
+      "zh": "真的吗，安娜？你能帮我吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, I can. Let me help.",
+      "zh": "能。让我来帮你。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Sure, Anna. Maybe you can help.",
+      "zh": "好吧，安娜。也许你能帮上忙。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Can you write code?",
+      "zh": "你会写代码吗？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Sure, c-o-l-d. How is this going to help?",
+      "zh": "当然，c-o-l-d。这怎么能帮上忙？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, not \"cold.\" Code; you know, for making phone apps, or websites. You can make tons of money writing code.",
+      "zh": "不是“cold”。是代码；就是做手机应用，或者网站。写代码可以赚很多钱。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Tons of money? But I can't code.",
+      "zh": "很多钱？可是我不会写代码。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Next question. Can you drive?",
+      "zh": "下一个问题。你会开车吗？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Do you mean drive a race car? It's really hard to be a race car driver. First, you need a race car ...",
+      "zh": "你是说开赛车？当赛车手很难。首先，你得有一辆赛车……"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, I mean drive a taxi or drive a bus.",
+      "zh": "不，我是说开出租车或者开公交车。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, I always fall asleep when I drive.",
+      "zh": "不行，我开车总是睡着。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, that's not good. Next question. Can you teach? You can be a teacher in a school.",
+      "zh": "哦，那可不好。下一个问题。你会教书吗？你可以在学校当老师。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, I cannot teach.",
+      "zh": "不，我不会教书。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Can you cook? You can be a chef in a restaurant.",
+      "zh": "你会做饭吗？你可以在餐馆当厨师。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, I can't code! I can't teach! I can't cook! Anna, I can't do anything. This is sad. I'm gonna write about my feelings in my blog.",
+      "zh": "不，我不会写代码！不会教书！不会做饭！安娜，我什么都不会。这太难过了。我要在博客里写写我的感受。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "You write a blog?",
+      "zh": "你写博客？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Yeah, I write a blog.",
+      "zh": "对，我写博客。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "How many followers do you have?",
+      "zh": "你有多少粉丝？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't know … 59,538.",
+      "zh": "我不知道……59,538。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, that's a lot of followers! You can make money writing!",
+      "zh": "皮特，那可是很多粉丝！你可以靠写作赚钱！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Writing is easy. Everyone can write.",
+      "zh": "写作很容易。每个人都会写。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Not everyone can write well. You can be a writer!",
+      "zh": "不是每个人都能写得好。你可以当作家！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I can be a writer. I can be a writer! I can be a writer! Thanks, Anna.",
+      "zh": "我可以当作家。我可以当作家！我可以当作家！谢谢，安娜。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Hi, Pete. Hi, Anna.",
+      "zh": "嗨，皮特。嗨，安娜。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Hi, Marsha. Excuse me, I have to go.",
+      "zh": "嗨，玛莎。不好意思，我得走了。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Where are you going?",
+      "zh": "你要去哪儿？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I'm going to be a writer!",
+      "zh": "我要去当作家！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Good luck, Pete!",
+      "zh": "祝你好运，皮特！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "He does know that it's not easy to be a writer, doesn't he?",
+      "zh": "他知道当作家并不容易，对吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "There are many different jobs you can have in Washington, D.C. Pete wants to be a writer. I wish him luck. Lots of luck. Until next time!",
+      "zh": "在华盛顿特区，你可以做很多不同的工作。皮特想当作家。我祝他好运。很多好运。下次见！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Why is Pete sad?",
+      "choices": [
+        "He lost his beard",
+        "He does not have a job",
+        "He cannot hear Anna"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Why can't Pete drive a taxi or a bus?",
+      "choices": [
+        "He always falls asleep when he drives",
+        "He does not have a race car",
+        "He cannot write code"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What job does Anna say Pete can do?",
+      "choices": [
+        "Teacher",
+        "Chef",
+        "Writer"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-19",
+    "number": 19,
+    "level": 1,
+    "title": "Let's Learn English Lesson 19"
+  },
+  "next": {
+    "id": "lle1-21",
+    "number": 21,
+    "level": 1,
+    "title": "Let's Learn English Lesson 21"
+  },
+  "videoStatus": "m1-placeholder"
+}

@@ -1,0 +1,139 @@
+{
+  "id": "lle1-10",
+  "number": 10,
+  "title": "Let's Learn English Lesson 10",
+  "subtitle": "Come Over to My Place",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-10/3285228.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 10: Come Over to My Place (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hi! Today, my friend Ashley, is coming over. I am showing her my new apartment!",
+      "zh": "嗨！今天我的朋友阿什莉要来。我要带她看看我的新公寓！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh! That’s Ashley calling.",
+      "zh": "哦！是阿什莉打来的。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi Ashley!",
+      "zh": "嗨，阿什莉！"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Hi Anna! I’m coming to your apartment. Where is your apartment?",
+      "zh": "嗨，安娜！我正去你的公寓。你的公寓在哪里？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "My apartment is near the Columbia Heights Metro.",
+      "zh": "我的公寓在哥伦比亚高地地铁站附近。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "It is near the Columbia Heights Metro?",
+      "zh": "是在哥伦比亚高地地铁站附近吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. Exit the Metro and turn right. Then at the bus station turn left. Then walk straight ahead.",
+      "zh": "对。出地铁后向右转。然后在公交站向左转。接着一直往前走。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Okay. Exit Metro, turn right, turn left, then go straight ahead?",
+      "zh": "好的。出地铁，右转，左转，然后一直往前走？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes. My apartment is near a coffee shop.",
+      "zh": "对。我的公寓在一家咖啡店附近。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Okay. See you soon!",
+      "zh": "好的。一会儿见！"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Anna, Which coffee shop? There are three coffee shops.",
+      "zh": "安娜，哪家咖啡店？这里有三家咖啡店。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Okay, my apartment is across from a big department store.",
+      "zh": "好的，我的公寓在一家大百货商店对面。"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "A big department store? Ah, I see it!",
+      "zh": "一家大百货商店？啊，我看到了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Ashley! Over here! It’s Anna!",
+      "zh": "阿什莉！这边！是我，安娜！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I love having my friends over. Come on!",
+      "zh": "我喜欢请朋友来家里。来吧！"
+    },
+    {
+      "speaker": "Ashley",
+      "en": "Great!",
+      "zh": "太好了！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Where is Anna's apartment?",
+      "choices": [
+        "Near the Columbia Heights Metro",
+        "Next to the bus station",
+        "Behind the supermarket"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q2",
+      "prompt": "What does Anna tell Ashley to do after she exits the Metro?",
+      "choices": [
+        "Turn left, then turn right",
+        "Turn right, then at the bus station turn left",
+        "Walk straight, then turn left"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q3",
+      "prompt": "What is Anna's apartment across from?",
+      "choices": [
+        "The Metro",
+        "A coffee shop",
+        "A big department store"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-09",
+    "number": 9,
+    "level": 1,
+    "title": "Let's Learn English Lesson 9"
+  },
+  "next": {
+    "id": "lle1-11",
+    "number": 11,
+    "level": 1,
+    "title": "Let's Learn English Lesson 11"
+  },
+  "videoStatus": "m1-placeholder"
+}

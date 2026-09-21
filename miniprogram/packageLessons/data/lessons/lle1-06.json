@@ -1,0 +1,164 @@
+{
+  "id": "lle1-06",
+  "number": 6,
+  "title": "Let's Learn English Lesson 6",
+  "subtitle": "Where Is the Gym?",
+  "level": 1,
+  "levelId": "lle1",
+  "levelTitle": "Let's Learn English · Level 1",
+  "levelLessonCount": 52,
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-6-where-is-the-gym/3225958.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 6: Where Is the Gym? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hi there! I’m Anna and I live in Washington, D.C.",
+      "zh": "大家好！我是安娜，住在华盛顿特区。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Every day I learn more about this great city. People in Washington like to work out!",
+      "zh": "我每天都对这座很棒的城市了解得更多。华盛顿的人喜欢锻炼！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, hi, Pete. How’s it going?",
+      "zh": "哦，嗨，皮特。最近怎么样？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Hi, Anna. It’s going great. How’s it going with you?",
+      "zh": "嗨，安娜。很好。你怎么样？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Things are awesome! Pete, I want to work out. Where is the gym?",
+      "zh": "棒极了！皮特，我想去锻炼。健身房在哪里？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "The gym is across from the lounge. It’s next to the mailroom. Go that way.",
+      "zh": "健身房在休息厅对面。就在收发室旁边。走那边。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thanks, Pete!",
+      "zh": "谢谢，皮特！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, Anna! Not that way! Go that way!",
+      "zh": "不，安娜！不是那边！走这边！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, Pete. This is not the gym.",
+      "zh": "哦，皮特。这不是健身房。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "That’s right, Anna. This is the mailroom.",
+      "zh": "没错，安娜。这是收发室。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "The gym is across from … what?",
+      "zh": "健身房在……什么对面？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "The gym is across from the lounge.",
+      "zh": "健身房在休息厅对面。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Across from the lounge. Right. Thanks!",
+      "zh": "在休息厅对面。对。谢谢！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete! This is not the gym!",
+      "zh": "皮特！这不是健身房！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "The gym is across from the lounge. It is behind the lobby.",
+      "zh": "健身房在休息厅对面。它在大堂后面。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Right. Right. See you.",
+      "zh": "对。对。再见。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "See you, Anna!",
+      "zh": "再见，安娜！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is not the gym. This is a parking garage.",
+      "zh": "这不是健身房。这是停车场。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is not a gym. This is a rooftop.",
+      "zh": "这不是健身房。这是屋顶。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I want to work out too! Join me!",
+      "zh": "我也想锻炼！一起来吧！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I’m good.",
+      "zh": "我就算了。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What does Anna want to do?",
+      "choices": [
+        "Get coffee",
+        "Work out",
+        "Cook dinner"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Where is the gym?",
+      "choices": [
+        "Across from the lounge, next to the mailroom",
+        "Next to the rooftop",
+        "Across from the parking garage"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What does Pete say when Anna finds the gym?",
+      "choices": [
+        "This is the mailroom",
+        "See you later",
+        "I want to work out too! Join me!"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-05",
+    "number": 5,
+    "level": 1,
+    "title": "Let's Learn English Lesson 5"
+  },
+  "next": {
+    "id": "lle1-07",
+    "number": 7,
+    "level": 1,
+    "title": "Let's Learn English Lesson 7"
+  },
+  "videoStatus": "m1-placeholder"
+}

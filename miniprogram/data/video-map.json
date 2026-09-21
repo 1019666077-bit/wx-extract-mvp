@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "baseUrl": "https://media.example.com",
+  "objectPrefix": "lle/mp4",
+  "generatedAt": "2026-09-21T00:00:00+08:00",
+  "note": "D1 placeholder. Operators replace baseUrl after COS + ICP. Never point at Akamai.",
+  "lessons": {
+    "lle1-01": "https://media.example.com/lle/mp4/lle1-01.mp4",
+    "lle1-02": "https://media.example.com/lle/mp4/lle1-02.mp4",
+    "lle1-03": "https://media.example.com/lle/mp4/lle1-03.mp4",
+    "lle1-04": "https://media.example.com/lle/mp4/lle1-04.mp4",
+    "lle1-05": "https://media.example.com/lle/mp4/lle1-05.mp4"
+  }
+}

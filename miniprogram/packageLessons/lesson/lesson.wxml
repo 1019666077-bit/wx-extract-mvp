@@ -21,10 +21,27 @@
   </view>
 
   <block wx:if="{{!paywall}}">
-    <view class="card video-placeholder">
-      <view class="eyebrow">视频 · M1</view>
-      <view class="heading" style="font-size: 32rpx;">视频将在 M1 接入</view>
-      <view class="sub">本课不播放 VOA Akamai CDN。小程序无法把 voa-video-ns.akamaized.net 配成合法域名，硬接会失败。M1 将镜像到国内 COS 后再用 downloadFile 域名播放。</view>
+    <view class="card video-card">
+      <view class="eyebrow">视频</view>
+      <view class="video-wrap" wx:if="{{videoSrc}}">
+        <video
+          id="lessonVideo"
+          src="{{videoSrc}}"
+          controls
+          show-center-play-btn
+          enable-play-gesture
+          object-fit="contain"
+          binderror="onVideoError"
+          bindloadedmetadata="onVideoReady"
+        ></video>
+      </view>
+      <view class="video-fallback" wx:if="{{videoErrorCopy}}">
+        <view class="sub">{{videoErrorCopy}}</view>
+      </view>
+      <view class="video-fallback" wx:if="{{videoSourceHint}}">
+        <view class="sub">{{videoSourceHint}}</view>
+        <text class="video-source" selectable="{{true}}">{{videoSourceUrl}}</text>
+      </view>
     </view>
 
     <view class="card">

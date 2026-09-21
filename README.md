@@ -96,12 +96,13 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 Opening `index.html` as a file URL will not load the JSON.
 
-Check-in, wrong-book, unlock, and miniprogram scaffold helpers can be unit-tested with:
+Check-in, wrong-book, unlock, miniprogram, and video-map helpers can be unit-tested with:
 
 ```bash
-node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js
+node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js js/video.test.js
 bash scripts/check-codes-json.sh
 bash scripts/build-mp-data.sh --check
+bash scripts/sync-voa-videos.sh --dry-run
 ```
 
 Local testing note: there are **no public demo codes**, and `data/codes.json` stays empty in git. Unlock unit tests use their own fixtures. To try the redeem form locally, generate a code with `python3 scripts/gen-codes.py --monthly 1 --quarterly 0` and type it into the form (empty allowlist accepts `LLE-M-*` / `LLE-Q-*` format). Do not commit that code. Do not advertise codes to end users.
@@ -114,15 +115,18 @@ https://1019666077-bit.github.io/wx-extract-mvp/
 
 GitHub Pages is served from `main` at `/` (repo root). A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once.
 
-## WeChat miniprogram (M0)
+## WeChat miniprogram (M0 + M1 wiring)
 
-Native `mp-weixin` scaffold lives in [`miniprogram/`](miniprogram/README.md). GitHub Pages is **not** the launch target. Open that folder (or the repo root) in WeChat DevTools with placeholder AppID `touristappid`. Video is an M1 placeholder — do not point the player at Akamai.
+Native `mp-weixin` app lives in [`miniprogram/`](miniprogram/README.md). GitHub Pages is **not** the launch target. Open that folder (or the repo root) in WeChat DevTools with placeholder AppID `touristappid`.
+
+Lesson `<video>` reads **`miniprogram/data/video-map.json`** (D1 placeholder: L1 lessons 1–5 on `media.example.com`). Do **not** point the player at Akamai. COS keys stay off-repo (`.env.cos` / `mirror/` are gitignored). See the miniprogram README for the DevTools “don’t verify legal domain” switch.
 
 Generate split lesson JSON (catalog + per-lesson, no `videoUrl`):
 
 ```bash
 bash scripts/build-mp-data.sh
-node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js
+bash scripts/sync-voa-videos.sh --dry-run
+node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js js/video.test.js
 ```
 
 ## Scope

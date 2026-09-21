@@ -37,7 +37,7 @@
 
 | 顺序 | 文件 | 卡片要点 |
 | --- | --- | --- |
-| 1 | `set-d/01-title.jpg` | 封面：窗台铜铃 + 黛青底；口过不过夜（很多人不当回事） |
+| 1 | `set-d/01-title.jpg` | 封面：近景铃舌 + 黛青底；口过不过夜（很多人不当回事） |
 | 2 | `set-d/02-kou-guo.jpg` | 口过不过夜 |
 | 3 | `set-d/03-night-turns.jpg` | 白天说出去的话，夜里还在心里转 |
 | 4 | `set-d/04-no-second-cut.jpg` | 不是收回声音，今晚不再补那一刀 |
@@ -47,7 +47,7 @@
 
 文案与研报：`set-d/NOTE.md`  
 预览：`set-d-contact.jpg`  
-封面候选：`set-d-cover-candidates.jpg`（正式封面为窗台细雨铜铃 v1c）
+封面候选：`set-d-cover-candidates.jpg`（正式封面为近景铃舌 v1a）
 
 ## 使用约束
 

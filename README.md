@@ -39,7 +39,7 @@ Dates use **Asia/Shanghai** (`YYYY-MM-DD`). There is no account; clearing site d
 | `voa-lle-progress` | `{ [lessonId]: { score, total, completed, savedAt, answers, resultText } }` | Opening a lesson marks it in progress; submitting a quiz stores the score |
 | `voa-lle-checkins` | `string[]` of `YYYY-MM-DD` | Any lesson quiz submit records today (deduped) |
 | `voa-lle-wrongbook` | `{ lessonId, lessonTitle, questionId, prompt, choices, correctIndex, chosenIndex, savedAt }[]` | Wrong answers are upserted by `lessonId + questionId`. A later correct answer removes that item |
-| `voa-lle-unlock` | `{ active, code, plan, unlockedAt }` | Set after a valid redeem code. While `active`, all lessons open |
+| `voa-lle-unlock` | `{ active, code, plan, unlockedAt, expiresAt }` | Set after a valid redeem code. While `active` and `expiresAt` is in the future, paid lessons open. Missing `expiresAt` counts as expired. |
 
 A day counts as checked-in when the learner **submits a lesson quiz that day**. Current streak is consecutive Shanghai dates ending today, or yesterday if today is not yet checked in.
 
@@ -50,17 +50,17 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
 5. Open **错题本** to review misses. **再练** returns to `lesson.html?id=...`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
-6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 ¥39 or 季卡 ¥99, pay via WeChat **15232188653**, then enter the redeem code you receive. Nav shows **已解锁** afterward. Use **退出解锁** on the pricing page to reset this browser.
+6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 ¥39（30 天） or 季卡 ¥99（90 天）, pay via WeChat **15232188653**, then enter the redeem code you receive. Nav shows **已解锁** afterward. Use **退出解锁** on the pricing page to reset this browser.
 
 ## Paywall / redeem codes
 
-This is a frontend-only MVP. There is **no payment API, login, or backend**. Learners pay manually on WeChat; the operator sends a redeem code. The browser checks the code against `data/codes.json`.
+This is a frontend-only MVP. There is **no payment API, login, or backend**. Learners pay manually on WeChat; the operator sends a redeem code.
 
-This allowlist is **not security**. Anyone who can read the public repo can redeem or skip the lock. Treat unused codes as burnable inventory and rotate them if they leak.
+`data/codes.json` in this public repo **must stay** `{"codes":[]}`. Do not commit unused codes. When that allowlist is empty, the browser accepts codes matching `LLE-M-XXXXXX` (monthly, 30 days) or `LLE-Q-XXXXXX` (quarterly, 90 days). That format check is **not security**. Anyone who can guess the pattern or skip the lock in DevTools can still open paid lesson pages.
 
-**Operators:** follow [`docs/ops-redeem.md`](docs/ops-redeem.md) (sales copy, WeChat 15232188653, how to issue codes, how to generate a new batch with `scripts/gen-codes.py`). Do not publish unused codes on Moments, Xiaohongshu, or this README.
+**Operators:** follow [`docs/ops-redeem.md`](docs/ops-redeem.md). Generate with `python3 scripts/gen-codes.py`, send **only in WeChat private chat**, never commit the output. Before merge, run `bash scripts/check-codes-json.sh` (fails if `codes.length > 0`).
 
-Site copy: 免费试学仅 Level 1 第 1–5 课 · 开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课） · 微信联系 15232188653 人工付款后获兑换码。
+Site copy: 免费试学仅 Level 1 第 1–5 课 · 打卡日历与错题本免费使用 · 开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）· 月付 30 天 / 季卡 90 天 · 微信联系 15232188653 人工付款后获兑换码。
 
 ## Lesson data
 
@@ -100,9 +100,10 @@ Check-in, wrong-book, and unlock helpers can be unit-tested with:
 
 ```bash
 node --test js/study.test.js js/unlock.test.js
+bash scripts/check-codes-json.sh
 ```
 
-Local testing note: there are **no public demo codes**. Unlock unit tests use their own fixtures. To try the redeem form locally, take a code from `data/codes.json` on your machine, or generate extras with `python3 scripts/gen-codes.py --monthly 1 --quarterly 1` and append them. Do not advertise those codes to end users.
+Local testing note: there are **no public demo codes**, and `data/codes.json` stays empty in git. Unlock unit tests use their own fixtures. To try the redeem form locally, generate a code with `python3 scripts/gen-codes.py --monthly 1 --quarterly 0` and type it into the form (empty allowlist accepts `LLE-M-*` / `LLE-Q-*` format). Do not commit that code. Do not advertise codes to end users.
 
 ## Public preview
 

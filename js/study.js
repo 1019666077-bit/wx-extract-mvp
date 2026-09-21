@@ -82,7 +82,11 @@ function createStudy(options = {}) {
   }
 
   function writeJson(key, value) {
-    storage.setItem(key, JSON.stringify(value));
+    try {
+      storage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.warn("Unable to save study data.", error);
+    }
   }
 
   function readCheckins() {

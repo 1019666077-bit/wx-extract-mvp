@@ -1,8 +1,10 @@
 #!/usr/bin/env python3
 """Generate miniprogram catalog + per-lesson JSON from data/lessons.json.
 
-M0 rules:
+M1 rules:
 - Do not copy videoUrl / youtubeId (no Akamai in the mini program).
+- Mirror URLs live only in miniprogram/data/video-map.json (written by
+  scripts/sync-voa-videos.sh). This generator never overwrites that file.
 - Keep catalog small for cold start; full dialogue/quiz live in per-lesson files
   under the lessons subpackage.
 """
@@ -21,6 +23,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SOURCE = ROOT / "data" / "lessons.json"
 MP = ROOT / "miniprogram"
 CATALOG_PATH = MP / "data" / "catalog.json"
+VIDEO_MAP_PATH = MP / "data" / "video-map.json"
 LESSON_DIR = MP / "packageLessons" / "data" / "lessons"
 LOADER_PATH = MP / "packageLessons" / "data" / "load-lesson.js"
 UTILS = MP / "utils"
@@ -28,6 +31,7 @@ UTILS = MP / "utils"
 CATALOG_WARN_BYTES = 100 * 1024
 LESSON_WARN_BYTES = 150 * 1024
 FORBIDDEN_SNIPPETS = ("akamaized", "akamai", "videoUrl", "youtubeId")
+TRIAL_LESSON_IDS = [f"lle1-{index:02d}" for index in range(1, 6)]
 
 
 def lesson_level_num(level_id: str, lesson: dict) -> int:
@@ -79,6 +83,30 @@ def lesson_payload(level: dict, lesson: dict, prev_lesson: dict | None, next_les
         "next": neighbor_ref(level_id, next_lesson),
         "videoStatus": "m1-placeholder",
     }
+
+
+def validate_video_map() -> list[str]:
+    problems: list[str] = []
+    if not VIDEO_MAP_PATH.exists():
+        return ["miniprogram/data/video-map.json is missing"]
+    payload = json.loads(VIDEO_MAP_PATH.read_text(encoding="utf-8"))
+    blob = json.dumps(payload).lower()
+    if "akamai" in blob:
+        problems.append("video-map.json must not name Akamai hosts")
+    if not isinstance(payload, dict) or payload.get("version") != 1:
+        problems.append("video-map.json version must be 1")
+    base = payload.get("baseUrl") if isinstance(payload, dict) else ""
+    if not isinstance(base, str) or not base.startswith("https://"):
+        problems.append("video-map.json baseUrl must be https")
+    lessons = payload.get("lessons") if isinstance(payload, dict) else None
+    if not isinstance(lessons, dict):
+        problems.append("video-map.json lessons must be an object")
+        return problems
+    for lesson_id in TRIAL_LESSON_IDS:
+        url = lessons.get(lesson_id)
+        if not isinstance(url, str) or not url.startswith("https://") or "akamai" in url.lower():
+            problems.append(f"video-map.json missing https mirror for trial lesson {lesson_id}")
+    return problems
 
 
 def assert_no_video(blob: str, label: str) -> None:
@@ -229,6 +257,7 @@ def check() -> int:
         problems.append("miniprogram/utils/unlock.js is out of sync with js/unlock.js")
     if summary["lessonCount"] != 82:
         problems.append(f"expected 82 lessons, got {summary['lessonCount']}")
+    problems.extend(validate_video_map())
     if problems:
         for item in problems:
             print(item, file=sys.stderr)

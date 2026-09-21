@@ -5,11 +5,13 @@ const path = require("node:path");
 
 const catalog = require("../miniprogram/data/catalog.json");
 const loadLesson = require("../miniprogram/packageLessons/data/load-lesson.js");
+const videoMap = require("../miniprogram/data/video-map.json");
 const { createStudy, createMemoryStorage } = require("./study.js");
 const { createUnlock } = require("./unlock.js");
 const { createWxStorage, KEYS } = require("../miniprogram/utils/storage.js");
 const { createProgress } = require("../miniprogram/utils/progress.js");
 const { catalogNoteText, lessonPath, selectedLevelId } = require("../miniprogram/utils/catalog.js");
+const { getMirrorUrl, videoStatusFor, TRIAL_LESSON_IDS } = require("../miniprogram/utils/video.js");
 
 const ROOT = path.join(__dirname, "..");
 
@@ -107,13 +109,28 @@ test("empty codes allowlist still accepts LLE format (same as H5)", () => {
   assert.equal(state.expiresAt.slice(0, 10), "2026-10-21");
 });
 
-test("M0 pages do not mount a video src or requestPayment", () => {
+test("D1 video-map is allowed; per-lesson JSON still has no Akamai or videoUrl", () => {
+  TRIAL_LESSON_IDS.forEach((id) => {
+    assert.equal(videoStatusFor(id, videoMap), "mirror");
+    assert.match(getMirrorUrl(id, videoMap), /^https:\/\/media\.example\.com\/lle\/mp4\/lle1-0[1-5]\.mp4$/);
+  });
+  assert.equal(videoStatusFor("lle1-06", videoMap), "pending");
+  assert.equal(JSON.stringify(videoMap).toLowerCase().includes("akamai"), false);
+  assert.equal("videoUrl" in loadLesson["lle1-01"], false);
+  assert.equal(loadLesson["lle1-01"].videoStatus, "m1-placeholder");
+});
+
+test("lesson page mounts <video> from video-map and never requestPayment", () => {
   const lessonJs = read("miniprogram/packageLessons/lesson/lesson.js");
   const lessonWxml = read("miniprogram/packageLessons/lesson/lesson.wxml");
   const pricingJs = read("miniprogram/pages/pricing/pricing.js");
-  assert.match(lessonWxml, /视频将在 M1 接入/);
-  assert.equal(lessonWxml.includes("<video"), false);
+  assert.match(lessonWxml, /<video/);
+  assert.match(lessonWxml, /binderror="onVideoError"/);
+  assert.match(lessonWxml, /本课视频正在同步到国内线路|videoErrorCopy/);
+  assert.equal(lessonWxml.includes("视频将在 M1 接入"), false);
   assert.equal(lessonJs.includes("akamaized"), false);
   assert.equal(lessonJs.includes("videoUrl"), false);
+  assert.match(lessonJs, /video-map\.json/);
+  assert.match(lessonJs, /resolveLessonVideo/);
   assert.equal(pricingJs.includes("requestPayment"), false);
 });

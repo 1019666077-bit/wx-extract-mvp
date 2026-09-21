@@ -1,7 +1,9 @@
 const loadLesson = require("../data/load-lesson.js");
 const catalog = require("../../data/catalog.json");
+const videoMap = require("../../data/video-map.json");
 const { lessonPath } = require("../../utils/catalog.js");
 const { WECHAT_CONTACT } = require("../../utils/progress.js");
+const video = require("../../utils/video.js");
 
 function neighborLabel(kind, neighbor, locked) {
   if (!neighbor) {
@@ -24,6 +26,16 @@ function toQuestions(quiz, storedAnswers) {
   }));
 }
 
+function emptyVideo() {
+  return {
+    videoSrc: "",
+    videoState: "idle",
+    videoErrorCopy: "",
+    videoSourceUrl: "",
+    videoSourceHint: "",
+  };
+}
+
 Page({
   data: {
     ready: false,
@@ -36,6 +48,11 @@ Page({
     next: null,
     prevLabel: "",
     nextLabel: "",
+    videoSrc: "",
+    videoState: "idle",
+    videoErrorCopy: "",
+    videoSourceUrl: "",
+    videoSourceHint: "",
   },
 
   onLoad(query) {
@@ -48,7 +65,9 @@ Page({
     const lesson = loadLesson[this.lessonId];
     if (!lesson) {
       wx.showToast({ title: "未找到该课", icon: "none" });
-      this.setData({ ready: true, paywall: true, lesson: { title: this.lessonId, subtitle: "未找到", attribution: "" } });
+      this.setData(
+        Object.assign({ ready: true, paywall: true, lesson: { title: this.lessonId, subtitle: "未找到", attribution: "" } }, emptyVideo())
+      );
       return;
     }
 
@@ -58,22 +77,28 @@ Page({
     const paywall = !app.unlock.canOpenLesson(lesson);
 
     if (paywall) {
-      this.setData({
-        ready: true,
-        paywall: true,
-        lesson,
-        prev: lesson.prev,
-        next: lesson.next,
-        prevLabel: neighborLabel("prev", lesson.prev, prevLocked),
-        nextLabel: neighborLabel("next", lesson.next, nextLocked),
-        questions: [],
-        resultText: "",
-      });
+      this.setData(
+        Object.assign(
+          {
+            ready: true,
+            paywall: true,
+            lesson,
+            prev: lesson.prev,
+            next: lesson.next,
+            prevLabel: neighborLabel("prev", lesson.prev, prevLocked),
+            nextLabel: neighborLabel("next", lesson.next, nextLocked),
+            questions: [],
+            resultText: "",
+          },
+          emptyVideo()
+        )
+      );
       return;
     }
 
     app.progress.markLessonStarted(lesson.id);
     const stored = app.progress.readProgress()[lesson.id] || {};
+    const resolved = video.resolveLessonVideo(lesson.id, videoMap, lesson.sourceUrl);
     this.setData({
       ready: true,
       paywall: false,
@@ -84,7 +109,25 @@ Page({
       next: lesson.next,
       prevLabel: neighborLabel("prev", lesson.prev, prevLocked),
       nextLabel: neighborLabel("next", lesson.next, nextLocked),
+      videoSrc: resolved.videoSrc,
+      videoState: resolved.videoState,
+      videoErrorCopy: resolved.videoErrorCopy,
+      videoSourceUrl: resolved.sourceUrl,
+      videoSourceHint: resolved.sourceHint,
     });
+  },
+
+  onVideoError() {
+    const failed = video.onVideoError(this.data.videoSourceUrl);
+    this.setData({
+      videoState: failed.videoState,
+      videoErrorCopy: failed.videoErrorCopy,
+      videoSourceHint: failed.sourceHint,
+    });
+  },
+
+  onVideoReady() {
+    this.setData(video.onVideoReady());
   },
 
   onAnswer(event) {

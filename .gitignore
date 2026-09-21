@@ -3,3 +3,13 @@ project.private.config.json
 miniprogram/project.private.config.json
 miniprogram/miniprogram_npm/
 .DS_Store
+
+# M1 视频镜像：本机下载与 COS 密钥，不进仓
+mirror/
+*.mp4
+.env.cos
+.cos.yaml
+.cos.credentials
+*.cos.credentials
+.cos.conf
+

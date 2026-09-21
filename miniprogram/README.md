@@ -1,6 +1,6 @@
-# 微信小程序 M0 脚手架（无视频）
+# 微信小程序（M0 壳 + M1 视频接线）
 
-本目录是 VOA Let's Learn English 的 **原生 `mp-weixin` M0 壳**：四 Tab + 课页可点，对话/测验/付费墙可用。**视频是占位，不接 Akamai。**
+本目录是 VOA Let's Learn English 的 **原生 `mp-weixin`** 工程：四 Tab + 课页可点，对话/测验/付费墙可用。**视频只读国内镜像 URL**（`data/video-map.json`），**不接** Akamai。
 
 ## 用微信开发者工具打开
 
@@ -17,7 +17,6 @@
    - 仓库根目录（根上 `project.config.json` 的 `miniprogramRoot` 为 `miniprogram/`）
    - 或直接选本目录 `miniprogram/`
 3. AppID 保持 **测试号 / 游客模式**（`touristappid`）。工具可能提示「未绑定 AppID」，选测试号即可预览。
-4. M0 **没有** `wx.request` / 播放器域名依赖；不必勾选「不校验合法域名」也能走通课表→测验→打卡。
 
 ### 方式 B：换成正式 AppID（注册完成后再做）
 
@@ -29,6 +28,44 @@
 4. 用开发者工具重新打开项目，或在「详情 → 基本信息」里核对 AppID。
 5. **不要**把 AppSecret 写进仓库。本地如出现 `project.private.config.json`，已在 `.gitignore`。
 
+## M1 视频：镜像 URL 与开发者工具调试
+
+课页 `<video src="{{videoSrc}}">` 只读 **`miniprogram/data/video-map.json`**。当前仓内是 **D1 占位**：仅 `lle1-01`–`lle1-05`，`baseUrl` 为 `https://media.example.com`。真机要播，须由运营换成已备案 COS 域名并上传 MP4。
+
+### 失败态
+
+| 场景 | 文案 |
+| --- | --- |
+| map 无该课 | 本课视频正在同步到国内线路，请稍后再试。 |
+| 有 URL 但 `binderror` | 视频加载失败。请检查网络；若仅开发者工具失败，请在真机预览或联系客服。 |
+| 兜底 | 也可在浏览器打开 VOA 官网观看（公版）。（展示 `sourceUrl` 文本，**不** `web-view`） |
+
+付费课未解锁仍先见付费墙，不挂播放器。
+
+### 开发者工具：「不校验合法域名」
+
+`media.example.com` **不是**真域名；未在微信后台配置 downloadFile 合法域名时，默认校验会失败。本地只验证 UI / 事件时：
+
+1. 打开微信开发者工具 → 右上角 **详情**。
+2. **本地设置** → 勾选 **「不校验合法域名、web-view（业务域名）、TLS 版本以及 HTTPS 证书」**。
+3. 重新编译 → 进入 `lle1-01`。占位 URL 仍会 404，但应走到失败态文案而不是白屏。
+4. COS 上传并把 `baseUrl` 换成真实备案域后，勾选此项可在工具内试播。
+5. **取消勾选** 后应恢复域名失败（回归用）。
+
+**提审 / 幕僚长验收以真机为准。** 工具勾选不能替代 downloadFile 域名配置。
+
+### 运营本机同步（密钥不进仓）
+
+```bash
+# 仓库根。先 dry-run，再按需下载。上传在未配置 COS 时 skip 并 exit 0。
+bash scripts/sync-voa-videos.sh --dry-run
+bash scripts/sync-voa-videos.sh --only lle1-01,lle1-02,lle1-03,lle1-04,lle1-05 --skip-upload
+```
+
+凭据只放本机 `.env.cos` 或 `~/.cos.yaml`（已 gitignore）。**不要**把 SecretId / SecretKey 写进仓库或 CI。
+
+微信后台（运营操作，不在本仓）：开发管理 → 服务器域名 → **downloadFile 合法域名** 填备案主机名（无 `https://`、无路径）。
+
 ## 生成课表数据
 
 课正文 SSOT 仍是仓库根 `data/lessons.json`。小程序**不**整包加载 764KB：
@@ -36,7 +73,7 @@
 ```bash
 # 在仓库根目录
 bash scripts/build-mp-data.sh
-bash scripts/build-mp-data.sh --check   # 生成物过期则失败
+bash scripts/build-mp-data.sh --check   # 生成物过期或 video-map 不合规则失败
 ```
 
 产物：
@@ -44,9 +81,11 @@ bash scripts/build-mp-data.sh --check   # 生成物过期则失败
 | 文件 | 包 | 内容 |
 | --- | --- | --- |
 | `miniprogram/data/catalog.json` | 主包 | 课表索引（无对话/测验/视频） |
+| `miniprogram/data/video-map.json` | 主包 | 镜像 HTTPS URL（仅此文件；构建脚本不覆盖） |
 | `miniprogram/packageLessons/data/lessons/*.json` | 分包 `packageLessons` | 单课对话 + 测验，**无 `videoUrl`** |
 | `miniprogram/packageLessons/data/load-lesson.js` | 分包 | 静态 `require` 表（微信不允许动态路径） |
 | `miniprogram/utils/study.js` / `unlock.js` | 主包 | 从 `js/study.js`、`js/unlock.js` **原样复制**，勿手改 |
+| `miniprogram/utils/video.js` | 主包 | 解析 `video-map` 的纯函数 |
 
 逻辑层：`createStudy` / `createUnlock` 注入 `utils/storage.js`（`wx.setStorageSync`，键名与 H5 一致）。
 
@@ -54,7 +93,7 @@ bash scripts/build-mp-data.sh --check   # 生成物过期则失败
 
 1. 编译预览 → Tab **课表**。
 2. 打开 **Lesson 1 / lle1-01**（免费试学）。
-3. 视频区应写 **「视频将在 M1 接入」**，没有 `<video>`，没有 akamai 地址。
+3. 视频区应有 `<video>`（src 来自 `video-map`）。占位域未上传时显示失败态，**没有** akamai 地址。
 4. 读对话，答测验，点 **Check answers**。
 5. 切到 Tab **打卡**，当日格子应已打卡。
 
@@ -63,11 +102,12 @@ bash scripts/build-mp-data.sh --check   # 生成物过期则失败
 ## 单测（仓库根）
 
 ```bash
-node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js
+node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js js/video.test.js
 bash scripts/build-mp-data.sh --check
 bash scripts/check-codes-json.sh
+bash scripts/sync-voa-videos.sh --dry-run
 ```
 
-## M0 不做
+## 本刀不做
 
-COS / 视频域名、`requestPayment`、改 H5 付费逻辑、web-view 套壳、L3。
+真上传 COS、改微信后台域名、密钥进仓、`requestPayment`、改 H5 付费逻辑、web-view 套壳、L3。

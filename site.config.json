@@ -1,6 +1,7 @@
 {
   "origin": "https://1019666077-bit.github.io/wx-extract-mvp",
   "contactEmail": "contact@example.com",
+  "termsVersion": "2026-09-28-norefund",
   "payment": {
     "waffo": {
       "monthlyUrl": "",

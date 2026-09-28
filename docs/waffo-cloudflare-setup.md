@@ -117,7 +117,7 @@ https://<Worker 主机名>/api/waffo/webhook
 
 退款没有单独的「处理中」事件。工单在审核或处理时不会发 webhook；只有渠道把结果定下来才发。`refund.succeeded` 才作废，`refund.failed` 不作废。文档：[Webhooks](https://docs.waffo.ai/api-reference/webhooks.md) 的 Refund Lifecycle。
 
-店内审核按退款政策，不是 Worker 计时：首次购买付款后 7 天内可全额退，每个付款邮箱一次；超过 7 天或再次购买不退。买家发邮件到 `site.config.json` 的 `contactEmail` 并附订单号，或在买家门户 [https://pancake.waffo.ai/consumer/portal/login](https://pancake.waffo.ai/consumer/portal/login) 提交。平台允许一次性商品在付款后 14 天内创建退款工单；超过本店 7 天，或属于再次购买的，按政策拒绝。见 [Refunds](https://docs.waffo.ai/features/refunds.md)。
+本店政策是数字内容购买后立即开通，不予退款，除非适用法律或 Waffo Pancake 的规则强制要求。结账请求必须带上同意标记；Worker 把同意时间和 `TERMS_VERSION` 写进该订单。`refund.succeeded` 仍然作废凭证。Pancake 文档里的退款窗口见 [Refunds](https://docs.waffo.ai/features/refunds.md) 和 [Billing Questions](https://docs.waffo.ai/customers/billing.md)，那是平台规则，不是本店给出的退款期。
 
 拒付没有 webhook。Pancake 发邮件通知，回复寄到 `chargebacks@waffo.ai`。Worker 不会因为一封拒付邮件自动作废。见 [Chargebacks](https://docs.waffo.ai/mor/chargebacks.md)。
 

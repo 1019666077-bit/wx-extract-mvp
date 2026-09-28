@@ -10,6 +10,27 @@ test("empty worker config makes no network calls", async () => {
   };
   assert.equal(await startCheckout({ baseUrl: "", plan: "monthly", fetchImpl }), null);
   assert.equal(await startCheckout({ baseUrl: "   ", plan: "quarterly", fetchImpl }), null);
+  assert.equal(
+    await startCheckout({
+      baseUrl: "https://pay.example",
+      plan: "monthly",
+      email: "buyer@example.com",
+      termsAccepted: false,
+      termsVersion: "2026-09-28-norefund",
+      fetchImpl,
+    }),
+    null
+  );
+  assert.equal(
+    await startCheckout({
+      baseUrl: "https://pay.example",
+      plan: "monthly",
+      email: "buyer@example.com",
+      termsAccepted: true,
+      fetchImpl,
+    }),
+    null
+  );
   assert.deepEqual(await pollClaim({ baseUrl: "", orderId: "m12345678", fetchImpl, attempts: 3 }), {
     status: "unconfigured",
   });

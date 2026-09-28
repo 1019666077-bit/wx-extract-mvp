@@ -47,6 +47,10 @@
           <input id="checkout-email" name="email" type="email" autocomplete="email" maxlength="64" />
         </label>
       </div>
+      <label class="terms-consent">
+        <input id="terms-consent" name="termsAccepted" type="checkbox" />
+        <span>我同意购买后立即开通数字内容，并知悉在适用法律允许的范围内由此放弃撤销权和退款权。<a href="terms.html">服务条款</a> · <a href="refund.html">退款政策</a></span>
+      </label>
       <!--waffo-plans:start-->
 <div class="plan-grid">
         <article class="plan-card">
@@ -70,8 +74,9 @@
       </ul>
       <h3 class="pay-steps-title">付款之后</h3>
       <ol class="pay-steps">
+        <li>勾选同意立即开通数字内容，并知悉在适用法律允许的范围内放弃撤销权和退款权</li>
         <li>选月付 US$5.99（30 天）或季卡 US$13.99（90 天）。一次性付款，不自动续费</li>
-        <li>点方案上的 Waffo 付款按钮</li>
+        <li>点方案上的 Waffo 付款按钮。未勾选时按钮不能点，也不会向付款服务发请求</li>
         <li>付完回到本站，确认到账后自动开通</li>
       </ol>
       <p class="pay-note">付款按钮还没接上时会显示「即将开放」。接上之后，付完即开通，不用再做别的操作。</p>

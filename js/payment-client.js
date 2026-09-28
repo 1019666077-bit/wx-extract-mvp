@@ -18,15 +18,15 @@ async function readJson(response) {
   }
 }
 
-export async function startCheckout({ baseUrl, plan, script, email, fetchImpl }) {
-  if (!configured(baseUrl)) {
+export async function startCheckout({ baseUrl, plan, script, email, termsAccepted, termsVersion, fetchImpl }) {
+  if (!configured(baseUrl) || termsAccepted !== true || typeof termsVersion !== "string" || !termsVersion) {
     return null;
   }
   const fetchFn = fetchImpl || fetch;
   const response = await fetchFn(endpoint(baseUrl, "/api/checkout"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ plan, script, email }),
+    body: JSON.stringify({ plan, script, email, termsAccepted: true, termsVersion }),
   });
   const body = await readJson(response);
   if (!response.ok || !body || typeof body.checkoutUrl !== "string") {

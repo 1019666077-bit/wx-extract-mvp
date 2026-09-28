@@ -89,6 +89,9 @@ function missingConfig(env) {
   if (!env.ORDERS) {
     return "ORDERS";
   }
+  if (typeof env.TERMS_VERSION !== "string" || !/^[A-Za-z0-9._-]{4,64}$/.test(env.TERMS_VERSION)) {
+    return "TERMS_VERSION";
+  }
   return "";
 }
 
@@ -207,6 +210,9 @@ async function handleCheckout(request, env, deps) {
   if (!email || email.endsWith("@examples.com")) {
     return json({ error: "invalid_email" }, 400, headers);
   }
+  if (body.termsAccepted !== true || body.termsVersion !== env.TERMS_VERSION) {
+    return json({ error: "terms_required" }, 400, headers);
+  }
   const script = body.script === "zh-Hant" ? "zh-Hant" : "zh-Hans";
   const origin = env.ALLOWED_ORIGIN.replace(/\/$/, "");
   const merchantOrderId = `m${randomHex(16)}`;
@@ -222,6 +228,8 @@ async function handleCheckout(request, env, deps) {
     claimed: false,
     emailHash: await sha256Hex(email),
     emailSource: "checkout",
+    termsAcceptedAt: requestedAt,
+    termsVersion: env.TERMS_VERSION,
     pancakeOrderId: "",
     sessionId: "",
     createdAt: requestedAt,

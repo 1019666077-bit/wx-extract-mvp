@@ -120,7 +120,16 @@ function loadWaffoLinks(root) {
     monthlyProductId: normalizeProductId(pancake.monthlyProductId, "payment.pancake.monthlyProductId"),
     quarterlyProductId: normalizeProductId(pancake.quarterlyProductId, "payment.pancake.quarterlyProductId"),
     domainVerify: normalizeDomainVerify(pancake.domainVerify),
+    termsVersion: normalizeTermsVersion(config.termsVersion),
   };
+}
+
+function normalizeTermsVersion(value) {
+  const text = String(value || "").trim();
+  if (!/^[A-Za-z0-9._-]{4,64}$/.test(text)) {
+    throw new Error("site.config.json termsVersion must be 4–64 letters, digits, dots, underscores, or hyphens");
+  }
+  return text;
 }
 
 function normalizeProductId(value, label) {
@@ -151,7 +160,8 @@ function paymentReady(links) {
       links.workerBaseUrl &&
       links.unlockPublicKey &&
       links.monthlyProductId &&
-      links.quarterlyProductId
+      links.quarterlyProductId &&
+      links.termsVersion
   );
 }
 
@@ -175,7 +185,7 @@ function paymentButton(locale, plan, label, live) {
   if (!live) {
     return `<button type="button" class="btn waffo-pay" disabled>${escapeHtml(tx("即将开放", locale))}</button>`;
   }
-  return `<button type="button" class="btn primary waffo-pay" data-plan="${plan}">${escapeHtml(tx(label, locale))}</button>`;
+  return `<button type="button" class="btn primary waffo-pay" data-plan="${plan}" disabled>${escapeHtml(tx(label, locale))}</button>`;
 }
 
 function waffoPlansHtml(locale, links) {
@@ -218,6 +228,7 @@ function buildPaymentConfigScript(links) {
     unlockPublicKey: (links && links.unlockPublicKey) || "",
     monthlyProductId: (links && links.monthlyProductId) || "",
     quarterlyProductId: (links && links.quarterlyProductId) || "",
+    termsVersion: (links && links.termsVersion) || "",
   };
   return `window.VOA_PAYMENT=${JSON.stringify(payload)};\n`;
 }
@@ -1035,6 +1046,7 @@ function syncWorkerOrigin(root) {
   text = replaceTomlString(text, "ALLOWED_ORIGIN", origin);
   text = replaceTomlString(text, "PANCAKE_PRODUCT_MONTHLY", links.monthlyProductId);
   text = replaceTomlString(text, "PANCAKE_PRODUCT_QUARTERLY", links.quarterlyProductId);
+  text = replaceTomlString(text, "TERMS_VERSION", links.termsVersion);
   if (text !== fs.readFileSync(file, "utf8")) {
     fs.writeFileSync(file, text);
   }
@@ -1174,6 +1186,90 @@ function iterLessons(levels) {
   return rows;
 }
 
+function englishPayButton(plan, label, live) {
+  if (!live) {
+    return `<button type="button" class="btn waffo-pay" disabled>Coming soon</button>`;
+  }
+  return `<button type="button" class="btn primary waffo-pay" data-plan="${plan}" disabled>${escapeHtml(label)}</button>`;
+}
+
+function buildEnglishPricingPage(origin, links) {
+  const live = paymentReady(links);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Pricing | unofficial study tool</title>
+  <meta name="description" content="One-time access: 30 days for US$5.99 or 90 days for US$13.99. Payment does not auto-renew. Digital content opens immediately and is not refundable, except where the law or Waffo Pancake requires it." />
+  <link rel="canonical" href="${escapeHtml(origin)}/en/pricing.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="${escapeHtml(origin)}/pricing.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(origin)}/zh-hant/pricing.html" />
+  <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/pricing.html" />
+  <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin)}/pricing.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b6e4f" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body data-page="pricing">
+  <div class="page">
+    <nav class="site-nav" aria-label="Site">
+      <a href="../index.html">Lessons</a>
+      <a href="pricing.html" aria-current="page">Pricing</a>
+      <nav class="script-switch" aria-label="Language"><a href="../pricing.html" hreflang="zh-Hans" lang="zh-Hans">简</a><a href="../zh-hant/pricing.html" hreflang="zh-Hant" lang="zh-Hant">繁</a><a href="pricing.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
+    </nav>
+    <header class="header">
+      <p class="eyebrow">Unofficial study tool</p>
+      <h1>Unlock the course</h1>
+      <p class="subtitle">Level 1 lessons 1–5 stay free. One-time payment: US$5.99 for 30 days or US$13.99 for 90 days. One-time payment, no automatic renewal. Digital content opens immediately after payment.</p>
+    </header>
+    <section class="pricing-section" aria-label="Plans">
+      <h2>Plans</h2>
+      <div class="redeem-form">
+        <label for="checkout-email">Email for this payment
+          <input id="checkout-email" name="email" type="email" autocomplete="email" maxlength="64" />
+        </label>
+      </div>
+      <label class="terms-consent">
+        <input id="terms-consent" name="termsAccepted" type="checkbox" />
+        <span>I agree to immediate access to this digital content, and I understand that, to the extent permitted by applicable law, I waive the right of withdrawal and any right to a refund. <a href="terms.html">Terms</a> · <a href="refund.html">Refunds</a></span>
+      </label>
+      <div class="plan-grid">
+        <article class="plan-card">
+          <p class="plan-name">30 days</p>
+          <p class="plan-price">US$5.99</p>
+          <p class="plan-note">Valid for 30 days · one-time payment, no automatic renewal</p>
+          ${englishPayButton("monthly", "Pay US$5.99 with Waffo", live)}
+        </article>
+        <article class="plan-card is-featured">
+          <p class="plan-name">90 days</p>
+          <p class="plan-price">US$13.99</p>
+          <p class="plan-note">Valid for 90 days · one-time payment, no automatic renewal</p>
+          ${englishPayButton("quarterly", "Pay US$13.99 with Waffo", live)}
+        </article>
+      </div>
+      <p class="pay-note">The pay buttons stay off until this box is checked. They do not call the payment service before that.</p>
+    </section>
+    <footer class="footer">
+      <p>This site is an unofficial study tool and is not affiliated with Voice of America.</p>
+      <nav class="legal-links" aria-label="Policies">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="refund.html">Refunds</a>
+      </nav>
+    </footer>
+  </div>
+  <script type="module" src="../js/study.js"></script>
+  <script type="module" src="../js/unlock.js"></script>
+  <script type="module" src="../js/payment-client.js"></script>
+  <script src="../js/payment-config.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>
+`;
+}
+
 function expectedFiles(root, payload, lastmod) {
   const levels = normalizeLevels(payload);
   validateCopy(levels);
@@ -1208,6 +1304,7 @@ function expectedFiles(root, payload, lastmod) {
     files.set(`zh-hant/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hant", SITE, convertToHant, contactEmail));
     files.set(`en/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "en", SITE, (text) => text, contactEmail));
   }
+  files.set("en/pricing.html", buildEnglishPricingPage(SITE, waffo));
   files.set("sitemap.xml", buildSitemap(levels, lastmod, SITE, waffo));
   files.set("robots.txt", buildRobots());
   return files;
@@ -1274,6 +1371,9 @@ function checkAll(root) {
     }
     if (!wrangler.includes(`PANCAKE_PRODUCT_QUARTERLY = "${links.quarterlyProductId}"`)) {
       problems.push("worker/wrangler.toml PANCAKE_PRODUCT_QUARTERLY does not match site.config.json");
+    }
+    if (!wrangler.includes(`TERMS_VERSION = "${links.termsVersion}"`)) {
+      problems.push("worker/wrangler.toml TERMS_VERSION does not match site.config.json");
     }
   } catch (error) {
     problems.push(error.message);

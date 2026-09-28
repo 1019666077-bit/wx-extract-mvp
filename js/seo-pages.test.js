@@ -303,10 +303,11 @@ test("empty Waffo links render disabled soon buttons", () => {
     monthlyProductId: "",
     quarterlyProductId: "",
     domainVerify: "",
+    termsVersion: "2026-09-28-norefund",
   });
   assert.equal(
     buildPaymentConfigScript(loadWaffoLinks(root)),
-    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":""};\n'
+    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":"","termsVersion":"2026-09-28-norefund"};\n'
   );
   assert.equal(convertToHant("即将开放"), "即將開放");
   const { MESSAGES, buildI18nScript } = require("./messages.js");
@@ -335,10 +336,17 @@ test("empty Waffo links render disabled soon buttons", () => {
     assert.match(fs.readFileSync(path.join(root, rel), "utf8"), new RegExp(contactEmail.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   }
   const refund = fs.readFileSync(path.join(root, "refund.html"), "utf8");
-  assert.match(refund, /7 天/);
-  assert.match(refund, /每个付款邮箱限一次/);
-  assert.match(refund, /pancake\.waffo\.ai\/consumer\/portal\/login/);
-  assert.doesNotMatch(refund, /14 天/);
+  const refundEn = fs.readFileSync(path.join(root, "en/refund.html"), "utf8");
+  assert.match(refund, /不予退款/);
+  assert.match(refund, /数字内容/);
+  assert.match(refundEn, /non-refundable/);
+  assert.doesNotMatch(refund, /7 天/);
+  assert.doesNotMatch(refund, /每个付款邮箱限一次/);
+  assert.doesNotMatch(refundEn, /7 days/);
+  assert.match(fs.readFileSync(path.join(root, "terms.html"), "utf8"), /不予退款/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /id="terms-consent"/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /放棄撤銷權和退款權/);
+  assert.match(fs.readFileSync(path.join(root, "en/pricing.html"), "utf8"), /waive the right of withdrawal/);
   assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /一次性付款，不自动续费/);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /一次性付款，不自動續費/);
   assert.equal(fs.readFileSync(path.join(root, "index.html"), "utf8").includes('name="waffo-verify"'), false);
@@ -375,6 +383,7 @@ test("worker config enables checkout buttons without a static href", () => {
     unlockPublicKey: "A".repeat(44),
     monthlyProductId: "PROD_monthly",
     quarterlyProductId: "PROD_quarterly",
+    termsVersion: "2026-09-28-norefund",
   });
   const missingProduct = waffoPlansHtml(HANS, {
     workerBaseUrl: "https://pay.example",
@@ -385,7 +394,7 @@ test("worker config enables checkout buttons without a static href", () => {
   assert.match(html, /data-plan="quarterly"/);
   assert.match(html, /用 Waffo 支付 US\$5\.99/);
   assert.match(html, /用 Waffo 支付 US\$13\.99/);
-  assert.doesNotMatch(html, /disabled/);
+  assert.match(html, /data-plan="monthly" disabled/);
   assert.doesNotMatch(html, /即将开放/);
   assert.doesNotMatch(html, /href=/);
   assert.doesNotMatch(html, /github\.io/);

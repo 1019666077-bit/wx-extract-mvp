@@ -96,8 +96,17 @@ function envFor(fixtures, kv) {
     PANCAKE_PRODUCT_MONTHLY: MONTHLY_PRODUCT,
     PANCAKE_PRODUCT_QUARTERLY: QUARTERLY_PRODUCT,
     ALLOWED_ORIGIN: ORIGIN,
+    TERMS_VERSION: "2026-09-28-norefund",
     ORDERS: kv,
   };
+}
+
+function checkoutBody(fields) {
+  return JSON.stringify({
+    termsAccepted: true,
+    termsVersion: "2026-09-28-norefund",
+    ...fields,
+  });
 }
 
 function request(url, { method = "GET", body, origin = ORIGIN, waffoSignature, ip } = {}) {
@@ -185,7 +194,7 @@ test("checkout uses the dashboard product, webhook signature, claim once, refund
   const checkout = await handleRequest(
     request("https://voa-lle-unlock.example/api/checkout", {
       method: "POST",
-      body: JSON.stringify({
+      body: checkoutBody({
         plan: "monthly",
         amount: "0.01",
         productId: "PROD_attacker",
@@ -208,6 +217,9 @@ test("checkout uses the dashboard product, webhook signature, claim once, refund
   assert.equal("priceSnapshot" in createBody, false);
   assert.equal("amount" in createBody, false);
   assert.match(createBody.successUrl, /\/pricing-return\.html\?order=/);
+  const pending = JSON.parse(kv.dump().get(`order:${checkoutJson.merchantOrderId}`));
+  assert.equal(pending.termsVersion, "2026-09-28-norefund");
+  assert.equal(pending.termsAcceptedAt, now.toISOString());
   const orderId = checkoutJson.merchantOrderId;
   const storedCheckout = JSON.parse(kv.dump().get(`order:${orderId}`));
   assert.equal(storedCheckout.emailSource, "checkout");
@@ -409,7 +421,7 @@ test("checkout uses the dashboard product, webhook signature, claim once, refund
   const quarterly = await handleRequest(
     request("https://voa-lle-unlock.example/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ plan: "quarterly", script: "zh-Hant", email: "buyer@example.com" }),
+      body: checkoutBody({ plan: "quarterly", script: "zh-Hant", email: "buyer@example.com" }),
     }),
     env,
     {
@@ -484,7 +496,7 @@ async function paidOrder(fixtures, env, now, email, dataExtra = {}) {
   const checkout = await handleRequest(
     request("https://voa-lle-unlock.example/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ plan: "monthly", email }),
+      body: checkoutBody({ plan: "monthly", email }),
     }),
     env,
     {
@@ -574,7 +586,7 @@ test("recover reissues only when the order and email match", async () => {
   const unpaid = await handleRequest(
     request("https://voa-lle-unlock.example/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ plan: "monthly", email: "waiting@example.com" }),
+      body: checkoutBody({ plan: "monthly", email: "waiting@example.com" }),
     }),
     env,
     {
@@ -661,6 +673,39 @@ test("recover is limited per IP, per order window, and five times per order", as
   const ipBlocked = await postRecover(env, { order: "missing9xxxx", email: "buyer@example.com" }, now, "198.51.100.8");
   assert.equal(ipBlocked.status, 429);
   assert.deepEqual(ipBlocked.json, { error: "recover_limited" });
+});
+
+test("checkout without terms consent does not call Waffo or store an order", async () => {
+  const fixtures = await generateFixtures();
+  const { handleRequest } = await import("./src/app.js");
+  const kv = memoryKv();
+  const env = envFor(fixtures, kv);
+  let called = false;
+  const bodies = [
+    { plan: "monthly", email: "buyer@example.com" },
+    { plan: "monthly", email: "buyer@example.com", termsAccepted: false, termsVersion: "2026-09-28-norefund" },
+    { plan: "monthly", email: "buyer@example.com", termsAccepted: true, termsVersion: "other-version" },
+  ];
+  for (const body of bodies) {
+    const response = await handleRequest(
+      request("https://voa-lle-unlock.example/api/checkout", {
+        method: "POST",
+        body: JSON.stringify(body),
+      }),
+      env,
+      {
+        fetch: async () => {
+          called = true;
+          return new Response("{}", { status: 200 });
+        },
+        now: () => new Date("2026-09-28T00:00:00.000Z"),
+      }
+    );
+    assert.equal(response.status, 400);
+    assert.deepEqual(await response.json(), { error: "terms_required" });
+  }
+  assert.equal(called, false);
+  assert.equal([...kv.dump().keys()].some((key) => String(key).startsWith("order:")), false);
 });
 
 test("empty product ids keep checkout closed", async () => {

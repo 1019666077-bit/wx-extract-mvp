@@ -31,10 +31,10 @@ const PAGES = {
     file: "refund.html",
     hansTitle: "退款政策｜非官方慢速英文自学",
     hansDescription:
-      "本站退款政策。首次购买 7 天内可申请全额退款，每个邮箱限一次。退款成功后凭证作废，由 Waffo 原路退回。",
+      "本站退款政策。本产品为数字内容，购买后立即开通。所有销售最终有效、不予退款。法律或 Waffo Pancake 规则强制要求的除外。",
     enTitle: "Refund policy | unofficial study tool",
     enDescription:
-      "Refund policy. A first purchase can be refunded in full within 7 days, once per email. A completed refund revokes the credential.",
+      "Refund policy. This is digital content and opens immediately. All sales are final and non-refundable, except where the law or Waffo Pancake requires a refund.",
   },
 };
 
@@ -54,6 +54,7 @@ function termsBody(lang, email) {
     <p>This site is an unofficial study tool. It is not Voice of America, and VOA does not run or endorse it. Lesson videos and scripts come from VOA Learning English public resources.</p>
     <h2>What the fee pays for</h2>
     <p>The fee is for this study tool and for opening the course. The tool includes check-in, the wrong-answer notebook, and progress, together with access to the lessons that are already published. The only products are one-time purchases: 30 days for US$5.99 and 90 days for US$13.99. Payment is one-time and does not auto-renew. There is no trial period. The free Level 1 lessons 1–5 are the trial.</p>
+    <p>This product is digital content and access starts immediately after purchase. All sales are final and non-refundable, except where applicable law or the rules of the payment service provider (Waffo Pancake) require otherwise. Before checkout you must agree to immediate access and acknowledge that, to the extent permitted by applicable law, you waive the right of withdrawal and any right to a refund.</p>
     <h2>The unlock credential</h2>
     <p>After payment is confirmed, an unlock credential is stored in this browser (local storage). It is checked in the browser. Clearing site data, or using another browser, removes it from that browser. You can restore it on the pricing page with the order id and the email used at checkout. Restoring does not start the 30 or 90 days over.</p>
     <h2>Payment and the operator</h2>
@@ -76,6 +77,7 @@ function termsBody(lang, email) {
     <p>本站是非官方自学工具，不是美国之音（Voice of America），也没有得到美国之音的运营或背书。课文视频和脚本来自 VOA Learning English 的公开资源。</p>
     <h2>收费买的是什么</h2>
     <p>收费的是本站学习工具和课程开放。学习工具包括打卡、错题本和进度，以及已经上线课程的开放。只做一次性购买：30 天 US$5.99、90 天 US$13.99。一次性付款，不自动续费。不设试用期。免费的 Level 1 第 1–5 课就是试用。</p>
+    <p>本产品为数字内容，购买后立即开通。所有销售最终有效、不予退款。适用法律或支付服务商（Waffo Pancake）规则强制要求的除外。结账前须勾选同意立即开通，并知悉在适用法律允许的范围内由此放弃撤销权和退款权。</p>
     <h2>开通凭证</h2>
     <p>付款确认后，开通凭证保存在你这台浏览器里（本地存储），并由浏览器核验。清除本站数据，或换一台浏览器，这台浏览器里的凭证就没有了。可以在开通页用订单号和付款时的邮箱找回。找回不会把 30 天或 90 天重新起算。</p>
     <h2>付款与经营者</h2>
@@ -126,20 +128,16 @@ function refundBody(lang, email) {
   const contact = contactPhrase(lang, email);
   if (lang === "en") {
     return `
-    <h2>When a refund is available</h2>
-    <p>A first purchase may be refunded in full within 7 days after payment, once per payer email. After 7 days, or on a later purchase, there is no refund. Mandatory consumer rights under local law are not affected. Level 1 lessons 1–5 are free and are not a purchase.</p>
-    <h2>How the money is returned</h2>
-    <p>Waffo, as merchant of record, returns an approved refund to the original payment method. When Waffo reports that the refund has succeeded and the funds have been returned, the unlock credential for that order is revoked. A refund that is still in progress, or a refund that fails and moves no money, does not revoke access. This site does not receive a chargeback webhook; a card chargeback is handled from Waffo's email notice, not by an automatic event.</p>
-    <h2>How to ask</h2>
-    <p>Email ${contact} and include the order id. You can also submit a refund request in the Pancake buyer portal at <a href="https://pancake.waffo.ai/consumer/portal/login">https://pancake.waffo.ai/consumer/portal/login</a>. The portal emails a sign-in link to the purchase address (from auth@waffo.ai). Waffo's refund documentation says buyers may request a refund through that portal, and the merchant reviews the request: <a href="https://docs.waffo.ai/features/refunds.md">https://docs.waffo.ai/features/refunds.md</a>. We approve or decline under this policy. The operator is ${escapeHtml(OPERATOR_EN)}.</p>`;
+    <h2>No refunds</h2>
+    <p>This product is digital content, and access starts immediately after purchase. All sales are final and non-refundable, except where applicable law or the rules of the payment service provider (Waffo Pancake) require otherwise. Before checkout you must agree to immediate access and acknowledge that, to the extent permitted by applicable law, you waive the right of withdrawal and any right to a refund. Level 1 lessons 1–5 are free and are not a purchase.</p>
+    <h2>If a refund or chargeback still happens</h2>
+    <p>The merchant or Waffo may still refund a payment, and a cardholder may still raise a chargeback. Waffo, as merchant of record, returns a completed refund to the original payment method. When Waffo reports that the refund has succeeded and the funds have been returned, the unlock credential for that order is revoked. A refund that is still in progress, or a refund that fails and moves no money, does not revoke access. This site does not receive a chargeback webhook; a card chargeback is handled from Waffo's email notice, not by an automatic event. The operator is ${escapeHtml(OPERATOR_EN)}. Contact: ${contact}</p>`;
   }
   return `
-    <h2>什么时候可以退</h2>
-    <p>首次购买可在付款后 7 天内申请全额退款，每个付款邮箱限一次。超过 7 天，或再次购买（续买），不予退款。当地法律强制规定的消费者权利不受影响。Level 1 第 1–5 课是免费的，不是一笔购买。</p>
-    <h2>钱怎么退回</h2>
-    <p>退款由 Waffo（商户代收方）原路退回。Waffo 通知退款已经成功、款项已经退回时，该订单的开通凭证作废。还在处理中的退款，或没有退成、没有发生资金变动的退款，不会取消开通。本站收不到拒付的 webhook；银行卡拒付按 Waffo 的邮件通知处理，没有自动事件。</p>
-    <h2>怎么申请</h2>
-    <p>发邮件到 ${contact}，并附上订单号。也可以在 Pancake 买家门户提交退款申请：<a href="https://pancake.waffo.ai/consumer/portal/login">https://pancake.waffo.ai/consumer/portal/login</a>。门户会把登录链接寄到付款邮箱（发件人为 auth@waffo.ai）。Waffo 的退款文档写明，买家可通过该门户提交申请，由商户在后台审核：<a href="https://docs.waffo.ai/features/refunds.md">https://docs.waffo.ai/features/refunds.md</a>。我们按本政策决定是否批准。经营者是${escapeHtml(OPERATOR_HANS)}。</p>`;
+    <h2>不予退款</h2>
+    <p>本产品为数字内容，购买后立即开通。所有销售最终有效、不予退款。适用法律或支付服务商（Waffo Pancake）规则强制要求的除外。结账前须勾选同意立即开通，并知悉在适用法律允许的范围内由此放弃撤销权和退款权。Level 1 第 1–5 课是免费的，不是一笔购买。</p>
+    <h2>若仍然发生退款或拒付</h2>
+    <p>商户或 Waffo 仍可能主动退款，持卡人仍可能拒付。退款由 Waffo（商户代收方）原路退回。Waffo 通知退款已经成功、款项已经退回时，该订单的开通凭证作废。还在处理中的退款，或没有退成、没有发生资金变动的退款，不会取消开通。本站收不到拒付的 webhook；银行卡拒付按 Waffo 的邮件通知处理，没有自动事件。经营者是${escapeHtml(OPERATOR_HANS)}。联系邮箱：${contact}</p>`;
 }
 
 function bodyFor(kind, lang, email) {
@@ -173,7 +171,7 @@ function buildLegalPage(kind, lang, origin, convert, contactEmail) {
   const htmlLang = lang === "en" ? "en" : lang === "zh-Hant" ? "zh-Hant" : "zh-CN";
   const prefix = lang === "zh-Hans" ? "" : "../";
   const home = lang === "en" ? "../index.html" : "index.html";
-  const pricing = lang === "en" ? "../pricing.html" : "pricing.html";
+  const pricing = lang === "en" ? "pricing.html" : "pricing.html";
   const canonical =
     lang === "en" ? `${origin}/en/${spec.file}` : lang === "zh-Hant" ? `${origin}/zh-hant/${spec.file}` : `${origin}/${spec.file}`;
   const hansUrl = `${origin}/${spec.file}`;

@@ -229,7 +229,8 @@ function paymentChannelReady(payment) {
       payment.workerBaseUrl &&
       payment.unlockPublicKey &&
       payment.monthlyProductId &&
-      payment.quarterlyProductId
+      payment.quarterlyProductId &&
+      payment.termsVersion
   );
 }
 
@@ -1160,11 +1161,26 @@ async function refreshRevocation() {
 
 function wireCheckoutButtons() {
   const payment = paymentConfig();
+  const consent = document.getElementById("terms-consent");
+  const payButtons = () => Array.from(document.querySelectorAll("button[data-plan]"));
+  function syncConsent() {
+    const agreed = Boolean(consent && consent.checked);
+    payButtons().forEach((button) => {
+      button.disabled = !agreed;
+    });
+  }
   if (!paymentChannelReady(payment) || typeof VOAPayment === "undefined") {
     return;
   }
-  document.querySelectorAll("button[data-plan]").forEach((button) => {
+  if (consent) {
+    consent.addEventListener("change", syncConsent);
+  }
+  syncConsent();
+  payButtons().forEach((button) => {
     button.addEventListener("click", async () => {
+      if (!consent || !consent.checked) {
+        return;
+      }
       const resultEl = document.getElementById("redeem-result");
       const emailInput = document.getElementById("checkout-email");
       const email = emailInput ? emailInput.value.trim() : "";
@@ -1184,6 +1200,8 @@ function wireCheckoutButtons() {
           plan: button.dataset.plan,
           script: currentScript(),
           email,
+          termsAccepted: true,
+          termsVersion: payment.termsVersion,
         });
         if (result && result.checkoutUrl) {
           window.location.href = result.checkoutUrl;
@@ -1197,7 +1215,7 @@ function wireCheckoutButtons() {
           resultEl.textContent = t("checkoutFail");
         }
       }
-      button.disabled = false;
+      syncConsent();
     });
   });
 }

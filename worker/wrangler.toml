@@ -1,0 +1,14 @@
+# No secrets in this file. API keys and private keys are Worker secrets.
+# The KV id below is a placeholder until `wrangler kv namespace create`.
+name = "voa-lle-unlock"
+main = "src/index.js"
+compatibility_date = "2026-09-28"
+
+[vars]
+WAFFO_API_BASE = "https://api-sandbox.waffo.com"
+ALLOWED_ORIGIN = "https://1019666077-bit.github.io/wx-extract-mvp"
+
+[[kv_namespaces]]
+binding = "ORDERS"
+id = "replace_me"
+preview_id = "replace_me"

@@ -51,7 +51,7 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
 5. Open **错题本** to review misses. **再练** returns to `lessons/<id>.html#quiz`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
-6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 US$5.99（30 天） or 季卡 US$13.99（90 天） and pay with the Waffo button. Until `payment.waffo.monthlyUrl` / `quarterlyUrl` in `site.config.json` are filled, those buttons stay disabled and say 即将开放 / 即將開放. After payment, Waffo should send the buyer back to `pricing-return.html`; unlock is meant to happen automatically once a backend confirms the payment. That backend is not deployed. `payment.waffo.returnUrl` stays empty, so the return page is `noindex` and says the channel is not open yet. Use **退出解锁** on the pricing page to reset this browser.
+6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 US$5.99（30 天） or 季卡 US$13.99（90 天）. The buttons call the Cloudflare Worker in `worker/` only after `payment.worker.baseUrl` and `payment.worker.unlockPublicKey` in `site.config.json` are both set and the pages are rebuilt. While either is empty, the buttons stay disabled and say 即将开放 / 即將開放, and the page does not call the network. Setup steps are in `docs/waffo-cloudflare-setup.md`. Nothing here is deployed. Use **退出解锁** on the pricing page to reset this browser. Unlock is kept only when `localStorage` holds a signed, unexpired credential.
 
 ## Paywall / redeem codes
 

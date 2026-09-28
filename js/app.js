@@ -218,13 +218,8 @@ function selectedLevelId(catalog) {
   return catalog.levels[0].id;
 }
 
-async function loadCodes() {
-  const response = await fetch(sitePath("data/codes.json"));
-  if (!response.ok) {
-    throw new Error(t("loadCodesError"));
-  }
-  const payload = await response.json();
-  return Array.isArray(payload.codes) ? payload.codes : [];
+function paymentConfig() {
+  return window.VOA_PAYMENT || {};
 }
 
 function readProgress() {
@@ -1130,44 +1125,71 @@ function renderPricingState() {
   }
 }
 
-async function initPricing() {
-  updateWrongbookNavCount();
-  renderPricingState();
+async function refreshRevocation() {
+  const payment = paymentConfig();
+  if (!payment.workerBaseUrl || typeof VOAPayment === "undefined" || typeof VOAUnlock === "undefined") {
+    return;
+  }
+  const state = VOAUnlock.readUnlock();
+  if (!state || !state.orderId) {
+    return;
+  }
+  try {
+    const status = await VOAPayment.readStatus({
+      baseUrl: payment.workerBaseUrl,
+      orderId: state.orderId,
+    });
+    if (status && status.state === "revoked") {
+      VOAUnlock.clearUnlock();
+    }
+  } catch (error) {
+    /* keep the local unlock when the status call fails */
+  }
+}
 
-  const form = document.getElementById("redeem-form");
-  const result = document.getElementById("redeem-result");
-  const clearBtn = document.getElementById("clear-unlock");
-
-  if (form) {
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      result.textContent = "";
-      const input = document.getElementById("redeem-code");
-      const raw = input ? input.value : "";
-
+function wireCheckoutButtons() {
+  const payment = paymentConfig();
+  if (!payment.workerBaseUrl || !payment.unlockPublicKey || typeof VOAPayment === "undefined") {
+    return;
+  }
+  document.querySelectorAll("button[data-plan]").forEach((button) => {
+    button.addEventListener("click", async () => {
+      const resultEl = document.getElementById("redeem-result");
+      if (resultEl) {
+        resultEl.textContent = t("checkoutWait");
+      }
+      button.disabled = true;
       try {
-        const codes = await loadCodes();
-        const match = VOAUnlock.findCode(codes, raw);
-        if (!match) {
-          result.textContent = t("redeemInvalid");
+        const result = await VOAPayment.startCheckout({
+          baseUrl: payment.workerBaseUrl,
+          plan: button.dataset.plan,
+          script: currentScript(),
+        });
+        if (result && result.checkoutUrl) {
+          window.location.href = result.checkoutUrl;
           return;
         }
-        const state = VOAUnlock.redeem(match);
-        if (input) {
-          input.value = "";
+        if (resultEl) {
+          resultEl.textContent = t("checkoutFail");
         }
-        renderPricingState();
-        const until = VOAUnlock.formatExpiryDate(state);
-        result.textContent = t("redeemOk", {
-          plan: localizedPlan(match.plan),
-          until: until ? t("untilSuffix", { date: until }) : "",
-        });
       } catch (error) {
-        result.textContent = error.message === "兑换码无效" ? t("redeemInvalidShort") : error.message || t("redeemFail");
+        if (resultEl) {
+          resultEl.textContent = t("checkoutFail");
+        }
       }
+      button.disabled = false;
     });
-  }
+  });
+}
 
+async function initPricing() {
+  updateWrongbookNavCount();
+  await refreshRevocation();
+  renderPricingState();
+  wireCheckoutButtons();
+
+  const result = document.getElementById("redeem-result");
+  const clearBtn = document.getElementById("clear-unlock");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       VOAUnlock.clearUnlock();
@@ -1204,12 +1226,25 @@ function initWrongbook() {
   }
 }
 
-function init() {
+async function bootUnlock() {
+  if (typeof VOAUnlock === "undefined" || typeof VOAUnlock.restore !== "function") {
+    return;
+  }
+  const payment = paymentConfig();
+  try {
+    await VOAUnlock.restore(payment.unlockPublicKey || "");
+  } catch (error) {
+    /* stay locked */
+  }
+}
+
+async function init() {
   syncSwitcherLinks();
   rememberScriptChoice();
   if (applyScriptPreference()) {
     return;
   }
+  await bootUnlock();
   const page = document.body.dataset.page;
   if (page === "catalog") {
     initCatalog();
@@ -1228,23 +1263,75 @@ function init() {
     return;
   }
   if (page === "pricing") {
-    initPricing();
+    await initPricing();
     return;
   }
   if (page === "pricing-return") {
-    initPricingReturn();
+    await initPricingReturn();
   }
 }
 
-function initPricingReturn() {
+function unlockStatusText(state, key) {
+  const until = VOAUnlock.formatExpiryDate(state);
+  return t(key, {
+    plan: localizedPlan(state.plan),
+    until: until ? t("untilSuffix", { date: until }) : "",
+  });
+}
+
+async function initPricingReturn() {
   const status = document.getElementById("return-status");
   if (!status || status.dataset.live !== "true") {
     return;
   }
-  const orderId = new URLSearchParams(window.location.search).get("merchantOrderId");
-  if (orderId) {
-    status.textContent = t("returnChecking");
+  const payment = paymentConfig();
+  const orderId = new URLSearchParams(window.location.search).get("order") || new URLSearchParams(window.location.search).get("merchantOrderId");
+  if (!payment.workerBaseUrl || !payment.unlockPublicKey || typeof VOAPayment === "undefined") {
+    if (orderId) {
+      status.textContent = t("returnChecking");
+    }
+    return;
   }
+  await refreshRevocation();
+  if (!orderId) {
+    return;
+  }
+  const local = VOAUnlock.readUnlock();
+  if (local && local.orderId === orderId) {
+    status.textContent = unlockStatusText(local, "returnUnlocked");
+    return;
+  }
+  status.textContent = t("returnChecking");
+  const outcome = await VOAPayment.pollClaim({
+    baseUrl: payment.workerBaseUrl,
+    orderId,
+  });
+  if (outcome.status === "paid" && outcome.credential) {
+    try {
+      const state = await VOAUnlock.saveVerifiedCredential(outcome.credential, payment.unlockPublicKey);
+      status.textContent = unlockStatusText(state, "returnUnlocked");
+      renderUnlockNav();
+    } catch (error) {
+      status.textContent = t("checkoutFail");
+    }
+    return;
+  }
+  if (outcome.status === "claimed") {
+    const again = VOAUnlock.readUnlock();
+    if (again && again.orderId === orderId) {
+      status.textContent = unlockStatusText(again, "returnUnlocked");
+      return;
+    }
+    status.textContent = t("returnAlreadyClaimed");
+    return;
+  }
+  if (outcome.status === "revoked") {
+    VOAUnlock.clearUnlock();
+    renderUnlockNav();
+    status.textContent = t("returnRevoked");
+    return;
+  }
+  status.textContent = t("returnTimeout");
 }
 
 init();

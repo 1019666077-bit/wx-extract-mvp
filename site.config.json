@@ -5,6 +5,10 @@
       "monthlyUrl": "",
       "quarterlyUrl": "",
       "returnUrl": ""
+    },
+    "worker": {
+      "baseUrl": "",
+      "unlockPublicKey": ""
     }
   }
 }

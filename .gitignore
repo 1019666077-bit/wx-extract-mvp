@@ -15,3 +15,12 @@ mirror/
 *.cos.credentials
 .cos.conf
 
+# Waffo / Cloudflare local secrets. Never commit key material.
+worker/.dev.vars
+worker/.wrangler/
+*.pem
+merchant_private_key.base64
+merchant_public_key.base64
+unlock_private_key.base64
+unlock_public_key.base64
+

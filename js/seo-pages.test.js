@@ -22,6 +22,7 @@ const {
   loadWaffoLinks,
   waffoPlansHtml,
   returnStatusHtml,
+  buildPaymentConfigScript,
   sourceLastmod,
   checkAll,
   HANT,
@@ -273,7 +274,17 @@ test("site origin comes only from site.config.json", () => {
 });
 
 test("empty Waffo links render disabled soon buttons", () => {
-  assert.deepEqual(loadWaffoLinks(root), { monthlyUrl: "", quarterlyUrl: "", returnUrl: "" });
+  assert.deepEqual(loadWaffoLinks(root), {
+    monthlyUrl: "",
+    quarterlyUrl: "",
+    returnUrl: "",
+    workerBaseUrl: "",
+    unlockPublicKey: "",
+  });
+  assert.equal(
+    buildPaymentConfigScript(loadWaffoLinks(root)),
+    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":""};\n'
+  );
   assert.equal(convertToHant("即将开放"), "即將開放");
   const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });
   const hant = waffoPlansHtml(HANT, { monthlyUrl: "", quarterlyUrl: "   " });
@@ -301,18 +312,25 @@ test("empty Waffo links render disabled soon buttons", () => {
   assert.doesNotMatch(hansPage, /class="btn waffo-pay"[^>]*href/);
 });
 
-test("configured Waffo links become the payment button hrefs", () => {
-  const monthly = "https://pay.example/waffo/monthly";
-  const quarterly = "https://pay.example/waffo/quarterly";
-  const html = waffoPlansHtml(HANS, { monthlyUrl: monthly, quarterlyUrl: quarterly });
-  assert.match(html, new RegExp(`href="${monthly.replaceAll("/", "\\/")}"`));
-  assert.match(html, new RegExp(`href="${quarterly.replaceAll("/", "\\/")}"`));
-  assert.match(html, /target="_blank" rel="noopener noreferrer"/);
+test("worker config enables checkout buttons without a static href", () => {
+  const html = waffoPlansHtml(HANS, {
+    workerBaseUrl: "https://pay.example",
+    unlockPublicKey: "A".repeat(44),
+  });
+  assert.match(html, /data-plan="monthly"/);
+  assert.match(html, /data-plan="quarterly"/);
   assert.match(html, /用 Waffo 支付 US\$5\.99/);
   assert.match(html, /用 Waffo 支付 US\$13\.99/);
   assert.doesNotMatch(html, /disabled/);
   assert.doesNotMatch(html, /即将开放/);
+  assert.doesNotMatch(html, /href=/);
   assert.doesNotMatch(html, /github\.io/);
+  const staticOnly = waffoPlansHtml(HANS, {
+    monthlyUrl: "https://pay.example/waffo/monthly",
+    quarterlyUrl: "https://pay.example/waffo/quarterly",
+  });
+  assert.match(staticOnly, /disabled>即将开放</);
+  assert.doesNotMatch(staticOnly, /href=/);
   const level = levels.find((item) => item.id === "lle1");
   const lesson = level.lessons.find((item) => item.id === "lle1-06");
   const locked = buildLessonPage(level, lesson, level.lessons[4], level.lessons[6]);

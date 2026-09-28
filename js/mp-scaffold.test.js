@@ -48,9 +48,12 @@ test("per-lesson JSON is loaded by id and never includes Akamai URLs", () => {
   });
 });
 
-test("miniprogram study/unlock copies stay byte-identical to js/", () => {
+test("miniprogram study copy stays byte-identical; web unlock is separate", () => {
   assert.equal(read("miniprogram/utils/study.js"), read("js/study.js"));
-  assert.equal(read("miniprogram/utils/unlock.js"), read("js/unlock.js"));
+  assert.notEqual(read("miniprogram/utils/unlock.js"), read("js/unlock.js"));
+  assert.match(read("miniprogram/utils/unlock.js"), /ISSUED_CODE_PATTERN/);
+  assert.doesNotMatch(read("js/unlock.js"), /ISSUED_CODE_PATTERN/);
+  assert.doesNotMatch(read("js/unlock.js"), /¥39|¥99/);
 });
 
 test("storage adapter falls back without wx and keeps localStorage-like keys", () => {
@@ -100,12 +103,19 @@ test("catalog → lle1-01 quiz submit writes progress, checkin, and wrongbook", 
   assert.equal(unlock.isUnlocked(), false);
 });
 
-test("empty codes allowlist still accepts LLE format (same as H5)", () => {
+test("web unlock rejects format-only codes; miniprogram copy still accepts them", () => {
   const unlock = createUnlock({ storage: createMemoryStorage(), now: () => new Date("2026-09-21T02:00:00.000Z") });
-  const match = unlock.findCode([], "LLE-M-ABC123");
+  assert.equal(unlock.findCode([], "LLE-M-ABC123"), null);
+  assert.equal(unlock.isUnlocked(), false);
+  const mp = require("../miniprogram/utils/unlock.js");
+  const mpUnlock = mp.createUnlock({
+    storage: createMemoryStorage(),
+    now: () => new Date("2026-09-21T02:00:00.000Z"),
+  });
+  const match = mpUnlock.findCode([], "LLE-M-ABC123");
   assert.equal(match.plan, "monthly");
-  const state = unlock.redeem(match);
-  assert.equal(unlock.isUnlocked(), true);
+  const state = mpUnlock.redeem(match);
+  assert.equal(mpUnlock.isUnlocked(), true);
   assert.equal(state.expiresAt.slice(0, 10), "2026-10-21");
 });
 

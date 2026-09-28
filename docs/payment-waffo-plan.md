@@ -1,16 +1,16 @@
-# Waffo 付款后自动开通（方案，未部署后端）
+# Waffo 付款后自动开通
 
-本文只根据 2026-09-28 能打开的 Waffo 公开文档。入口是 [https://waffo.com/docs/llms.txt](https://waffo.com/docs/llms.txt)。写「公开文档没有写」的地方，就是这次没有核到的内容，不要当成已经存在的接口。
+代码已经按本文的主方案写在 `worker/`，前端在 `js/unlock.js` 和开通页 / 返回页。**还没有部署，仓库里也没有 Waffo 或 Cloudflare 密钥。** 站长按 [waffo-cloudflare-setup.md](waffo-cloudflare-setup.md) 在浏览器里配完，把 Worker 地址和解锁公钥填进 `site.config.json` 并重新构建之后，按钮才会从「即将开放」变成可点。
 
-网站上的按钮已经是 Waffo、美元价。`payment.waffo.monthlyUrl` 和 `quarterlyUrl` 还是空字符串，所以按钮禁用，文案是「即将开放 / 即將開放」。`payment.waffo.returnUrl` 也是空的，所以 `pricing-return.html` 带 `noindex`，并且不进 sitemap。**这一步还不能收款，也不能防白嫖。** 下面的服务器没有部署。
+本文其余部分只根据 2026-09-28 能打开的 Waffo 公开文档。入口是 [https://waffo.com/docs/llms.txt](https://waffo.com/docs/llms.txt)。写「公开文档没有写」的地方，就是这次没有核到的内容，不要当成已经存在的接口。
+
+`payment.worker.baseUrl` 和 `payment.worker.unlockPublicKey` 现在是空字符串，所以按钮禁用，文案是「即将开放 / 即將開放」，页面不请求 Worker。`pricing-return.html` 因此仍是 `noindex`，并且不进 sitemap。
 
 付款之后不要再让用户做任何事：不要加微信，不要等人工发码，不要自己把码粘进页面。付完就回到站点，确认到账后自动开通。
 
 ## 现在为什么能白嫖
 
-`data/codes.json` 必须保持 `{"codes":[]}`。白名单为空时，静态页接受任意格式正确的 `LLE-M-XXXXXX`（30 天）或 `LLE-Q-XXXXXX`（90 天）。这套格式校验还在 `js/unlock.js` 里，这次没改。它不是安全系统。猜到格式，或改 `localStorage` 的 `voa-lle-unlock`，就能打开付费课。
-
-所以自动开通不能靠「格式看起来对」。服务器只有在验过 Waffo 的付款通知之后，才签发一张签名凭证。静态页用公钥验证这张凭证。在把 `unlock.js` 改成「没有有效签名就不开通」之前，格式码的洞还在。那次改动要和服务器一起上，不在本 PR。
+`data/codes.json` 必须保持 `{"codes":[]}`。网页版 `js/unlock.js` 已经不再接受 `LLE-M-*` / `LLE-Q-*` 这种只看格式的码，也只认带有效签名且未过期的凭证。没有签名的旧 `localStorage`（包括以前微信付款写进去的状态）打开网页后会失效，这次没有留后门。`miniprogram/` 里的那份 `unlock.js` 没改，小程序仍是旧逻辑。
 
 ## 公开文档里核实过的能力
 
@@ -54,12 +54,13 @@ Webhook（[overview](https://waffo.com/docs/en/developer-docs/webhook/overview.m
 
 防白嫖靠第 4 步和第 6 步：没验过的通知不会签发，返回页不相信跳转。把同一张已付款凭证拷给别人，仍然可以在对方浏览器里开通一次。要挡住转发，兑换时再让 Worker 把该 `merchantOrderId` 标成已使用，第二台设备拿不到凭证。这仍然是同一个 Worker，不需要第二套系统。格式码 `LLE-M-*` / `LLE-Q-*` 必须在同一次上线里从 `unlock.js` 去掉，否则猜格式的洞还在。
 
-### 本 PR 已经备好的前端
+### 这次代码已经接上的前端
 
-- 开通页只有两个 Waffo 按钮。链接为空时是禁用按钮，没有 `href`。
-- `pricing-return.html`（繁体在 `zh-hant/pricing-return.html`）说明付完会自动开通。
-- `returnUrl` 为空时，该页 `noindex`、不进 sitemap，状态句是「付款通道尚未开放。现在打开本页不会解锁课程。」页面不请求任何付款接口，所以不会因为后端不存在而在控制台报错。
-- `returnUrl` 写成 https 地址并重新构建后，该页进入 sitemap，状态句改为付完回到本页就会自动开通。若地址里带 `merchantOrderId`，页面把这句话换成「正在等待付款确认」。真正的轮询要等 Worker 的地址存在后再接，避免现在去请求一个不存在的接口。
+- 开通页两个按钮在 `payment.worker.baseUrl` 和 `unlockPublicKey` 都为空时是禁用的「即将开放」，没有 `href`，也不发请求。两者都填上并重新构建后，按钮变成 `data-plan="monthly|quarterly"`，点击 `POST /api/checkout`。
+- `pricing-return.html` 在 Worker 地址和解锁公钥都有值时轮询 `GET /api/claim?order=`，用 WebCrypto 验签，通过后写入 `voa-lle-unlock`。
+- 领取是一次性的：第二次 `claim`（包括同一浏览器）返回 409，不再发凭证。返回页必须在第一次 200 时立刻写入本机。刷新时如果本机这张凭证还能验过，仍显示已开通；如果 409 且本机没有，页面说明已经交付过一次，不能再次发放。
+- 开通页和返回页加载时会问 `/api/status`。状态是 `revoked` 就清掉本机解锁。
+- Worker 地址和解锁公钥仍为空时，返回页保持 `noindex`、不进 sitemap，也不轮询。
 
 ## 备选
 

@@ -72,48 +72,78 @@ function normalizePaymentUrl(value, key) {
   return value.trim();
 }
 
+function normalizeOptionalHttps(value, key) {
+  if (value == null || value === "") {
+    return "";
+  }
+  if (typeof value !== "string" || !/^https:\/\/\S+$/.test(value.trim()) || /\s/.test(value)) {
+    throw new Error(`site.config.json ${key} must be an empty string or an https URL`);
+  }
+  return value.trim();
+}
+
+function normalizeUnlockPublicKey(value) {
+  if (value == null || value === "") {
+    return "";
+  }
+  if (typeof value !== "string" || !/^[A-Za-z0-9+/=]+$/.test(value) || value.length < 40 || value.length > 200) {
+    throw new Error("site.config.json payment.worker.unlockPublicKey must be empty or one-line SPKI base64");
+  }
+  return value;
+}
+
 function loadWaffoLinks(root) {
   const config = loadSiteConfig(root);
   const waffo = config.payment && config.payment.waffo;
   if (!waffo || typeof waffo !== "object") {
     throw new Error("site.config.json needs payment.waffo.monthlyUrl and quarterlyUrl");
   }
+  const worker = (config.payment && config.payment.worker) || {};
   return {
     monthlyUrl: normalizePaymentUrl(waffo.monthlyUrl, "monthlyUrl"),
     quarterlyUrl: normalizePaymentUrl(waffo.quarterlyUrl, "quarterlyUrl"),
     returnUrl: normalizePaymentUrl(waffo.returnUrl, "returnUrl"),
+    workerBaseUrl: normalizeOptionalHttps(worker.baseUrl, "payment.worker.baseUrl"),
+    unlockPublicKey: normalizeUnlockPublicKey(worker.unlockPublicKey),
   };
 }
 
+function paymentReady(links) {
+  return Boolean(links && links.workerBaseUrl && links.unlockPublicKey);
+}
+
+function channelLive(links) {
+  return paymentReady(links) || Boolean(links && links.returnUrl);
+}
+
 function returnStatusText(links) {
-  if (links && links.returnUrl) {
+  if (channelLive(links)) {
     return "付完款会回到本页。确认到账后自动开通，不用再做别的操作。";
   }
   return "付款通道尚未开放。现在打开本页不会解锁课程。";
 }
 
 function returnStatusHtml(locale, links) {
-  const live = Boolean(links && links.returnUrl);
+  const live = channelLive(links);
   return `<p id="return-status" class="pay-note" data-live="${live ? "true" : "false"}">${escapeHtml(tx(returnStatusText(links), locale))}</p>`;
 }
 
-function paymentButton(locale, url, label) {
-  const href = typeof url === "string" ? url.trim() : "";
-  if (!href) {
+function paymentButton(locale, plan, label, live) {
+  if (!live) {
     return `<button type="button" class="btn waffo-pay" disabled>${escapeHtml(tx("即将开放", locale))}</button>`;
   }
-  return `<a class="btn primary waffo-pay" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(tx(label, locale))}</a>`;
+  return `<button type="button" class="btn primary waffo-pay" data-plan="${plan}">${escapeHtml(tx(label, locale))}</button>`;
 }
 
 function waffoPlansHtml(locale, links) {
-  const source = links || {};
+  const live = paymentReady(links);
   const plans = [
     {
       name: "月付",
       price: "US$5.99",
       note: "开通后 30 天有效",
       featured: false,
-      url: source.monthlyUrl,
+      plan: "monthly",
       label: "用 Waffo 支付 US$5.99",
     },
     {
@@ -121,7 +151,7 @@ function waffoPlansHtml(locale, links) {
       price: "US$13.99",
       note: "开通后 90 天有效 · 约 US$4.66 / 月",
       featured: true,
-      url: source.quarterlyUrl,
+      plan: "quarterly",
       label: "用 Waffo 支付 US$13.99",
     },
   ];
@@ -132,11 +162,19 @@ function waffoPlansHtml(locale, links) {
           <p class="plan-name">${escapeHtml(tx(plan.name, locale))}</p>
           <p class="plan-price">${escapeHtml(plan.price)}</p>
           <p class="plan-note">${escapeHtml(tx(plan.note, locale))}</p>
-          ${paymentButton(locale, plan.url, plan.label)}
+          ${paymentButton(locale, plan.plan, plan.label, live)}
         </article>`;
     })
     .join("\n");
   return `<div class="plan-grid">\n${cards}\n      </div>`;
+}
+
+function buildPaymentConfigScript(links) {
+  const payload = {
+    workerBaseUrl: (links && links.workerBaseUrl) || "",
+    unlockPublicKey: (links && links.unlockPublicKey) || "",
+  };
+  return `window.VOA_PAYMENT=${JSON.stringify(payload)};\n`;
 }
 
 const SITE = loadSiteOrigin(path.join(__dirname, ".."));
@@ -788,6 +826,7 @@ ${pager}
   <script type="application/json" id="lesson-nav">${navJson}</script>
 ${dataScript}  <script type="module" src="${asset}js/study.js"></script>
   <script type="module" src="${asset}js/unlock.js"></script>
+  <script src="${asset}js/payment-config.js" defer></script>
   <script src="${asset}js/i18n.js" defer></script>
   <script src="${asset}js/app.js" defer></script>
 </body>
@@ -840,7 +879,7 @@ function buildSitemap(levels, lastmod, origin = SITE, waffo = null) {
   const links = waffo || { returnUrl: "" };
   const pages = [
     ...keyPages(origin).map((page) => ({ rel: page.file, priority: page.priority })),
-    ...(links.returnUrl ? [{ rel: "pricing-return.html", priority: "0.3" }] : []),
+    ...(channelLive(links) ? [{ rel: "pricing-return.html", priority: "0.3" }] : []),
     ...levels.flatMap((level) =>
       level.lessons.map((lesson) => ({
         rel: `lessons/${lesson.id}.html`,
@@ -916,7 +955,7 @@ function patchSitePage(html, page, levels, locale = HANS, origin = SITE, waffo =
   const canonical = absoluteUrl(locale, page.file, origin);
   const title = tx(page.title, locale);
   const description = tx(page.description, locale);
-  const robots = page.id === "return" && !(waffo && waffo.returnUrl) ? "noindex" : "";
+  const robots = page.id === "return" && !channelLive(waffo) ? "noindex" : "";
   let next = replaceMarked(
     html,
     "seo",
@@ -1018,6 +1057,7 @@ function expectedFiles(root, payload, lastmod) {
   const waffo = loadWaffoLinks(root);
   const files = new Map();
   files.set("js/i18n.js", buildI18nScript(convertToHant));
+  files.set("js/payment-config.js", buildPaymentConfigScript(waffo));
   for (const locale of LOCALES) {
     for (const row of iterLessons(levels)) {
       files.set(
@@ -1135,6 +1175,8 @@ module.exports = {
   scriptSwitcher,
   loadWaffoLinks,
   paymentButton,
+  paymentReady,
+  buildPaymentConfigScript,
   waffoPlansHtml,
   returnStatusHtml,
   returnPage,

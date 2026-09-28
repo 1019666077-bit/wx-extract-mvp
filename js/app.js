@@ -1,28 +1,120 @@
 const PROGRESS_KEY = "voa-lle-progress";
 const OLD_QUIZ_KEY = "voa-lle1-01-quiz";
 const CATALOG_LEVEL_KEY = "voa-lle-catalog-level";
+const SCRIPT_PREF_KEY = "voa-lle-script";
 const WECHAT_CONTACT = "15232188653";
 
 function siteRoot() {
   const path = window.location.pathname;
-  const marker = "/lessons/";
-  const at = path.lastIndexOf(marker);
-  if (at !== -1) {
-    return path.slice(0, at + 1);
+  const markers = ["/zh-hant/lessons/", "/lessons/", "/zh-hant/"];
+  for (let i = 0; i < markers.length; i += 1) {
+    const at = path.lastIndexOf(markers[i]);
+    if (at !== -1) {
+      return path.slice(0, at + 1);
+    }
   }
-  if (path.endsWith("/")) {
-    return path;
+  let bare = path;
+  if (bare.endsWith("/zh-hant")) {
+    bare = bare.slice(0, -"/zh-hant".length);
   }
-  const segment = path.slice(path.lastIndexOf("/") + 1);
+  if (bare.endsWith("/")) {
+    return bare || "/";
+  }
+  const segment = bare.slice(bare.lastIndexOf("/") + 1);
   if (segment.includes(".")) {
-    return path.slice(0, path.lastIndexOf("/") + 1);
+    return bare.slice(0, bare.lastIndexOf("/") + 1);
   }
-  return `${path}/`;
+  return `${bare}/`;
+}
+
+function t(key, vars) {
+  const packs = window.VOA_I18N || {};
+  const lang = document.documentElement.lang === "zh-Hant" ? "zh-Hant" : "zh-Hans";
+  const pack = packs[lang] || packs["zh-Hans"] || {};
+  let text = pack[key];
+  if (text == null) {
+    text = (packs["zh-Hans"] || {})[key] || key;
+  }
+  if (vars) {
+    text = String(text).replace(/\{(\w+)\}/g, (_, name) => (vars[name] == null ? "" : String(vars[name])));
+  }
+  return text;
+}
+
+function localizedPlan(plan) {
+  if (plan === "monthly") {
+    return t("planMonthly");
+  }
+  if (plan === "quarterly") {
+    return t("planQuarterly");
+  }
+  return t("planOpened");
+}
+
+function webDataDir() {
+  if (document.documentElement.lang === "zh-Hant") {
+    return "data/web/zh-hant/";
+  }
+  return "data/web/";
+}
+
+function currentScript() {
+  return document.documentElement.lang === "zh-Hant" ? "zh-Hant" : "zh-Hans";
+}
+
+function syncSwitcherLinks() {
+  document.querySelectorAll("[data-script]").forEach((link) => {
+    const url = new URL(link.getAttribute("href"), window.location.href);
+    url.search = window.location.search;
+    url.hash = window.location.hash;
+    link.href = `${url.pathname}${url.search}${url.hash}`;
+  });
+}
+
+function rememberScriptChoice() {
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("[data-script]");
+    if (!link) {
+      return;
+    }
+    try {
+      localStorage.setItem(SCRIPT_PREF_KEY, link.getAttribute("data-script"));
+    } catch (error) {
+      /* ignore quota / private mode */
+    }
+  });
+}
+
+function applyScriptPreference() {
+  let pref = "";
+  try {
+    pref = localStorage.getItem(SCRIPT_PREF_KEY) || "";
+  } catch (error) {
+    return false;
+  }
+  if (pref !== "zh-Hans" && pref !== "zh-Hant") {
+    return false;
+  }
+  if (pref === currentScript()) {
+    return false;
+  }
+  const link = document.querySelector(`[data-script="${pref}"]`);
+  if (!link) {
+    return false;
+  }
+  window.location.replace(link.href);
+  return true;
 }
 
 function sitePath(relative) {
   const clean = String(relative || "").replace(/^\//, "");
   return `${siteRoot()}${clean}`;
+}
+
+function pagePath(relative) {
+  const clean = String(relative || "").replace(/^\//, "");
+  const prefix = document.documentElement.lang === "zh-Hant" ? "zh-hant/" : "";
+  return sitePath(`${prefix}${clean}`);
 }
 
 function readJsonScript(id) {
@@ -55,9 +147,9 @@ async function loadLessons() {
   if (embedded && Array.isArray(embedded.levels)) {
     return embedded;
   }
-  const response = await fetch(sitePath("data/web/catalog.json"));
+  const response = await fetch(sitePath(`${webDataDir()}catalog.json`));
   if (!response.ok) {
-    throw new Error("课程数据暂时加载不上，请刷新再试。");
+    throw new Error(t("loadLessonsError"));
   }
   return response.json();
 }
@@ -130,7 +222,7 @@ function selectedLevelId(catalog) {
 async function loadCodes() {
   const response = await fetch(sitePath("data/codes.json"));
   if (!response.ok) {
-    throw new Error("兑换码列表暂时加载不上，请稍后再试。");
+    throw new Error(t("loadCodesError"));
   }
   const payload = await response.json();
   return Array.isArray(payload.codes) ? payload.codes : [];
@@ -195,22 +287,22 @@ function getLessonStatus(entry) {
 
 function statusLabel(status) {
   if (status === "done") {
-    return "已完成";
+    return t("statusDone");
   }
   if (status === "in-progress") {
-    return "学习中";
+    return t("statusInProgress");
   }
-  return "未开始";
+  return t("statusNotStarted");
 }
 
 function actionLabel(status) {
   if (status === "done") {
-    return "复习";
+    return t("actionReview");
   }
   if (status === "in-progress") {
-    return "继续";
+    return t("actionContinue");
   }
-  return "开始";
+  return t("actionStart");
 }
 
 function completedCount(lessons, progress) {
@@ -235,9 +327,9 @@ function catalogNoteText(catalog, unlocked) {
   const l1n = l1 ? l1.lessons.length : 0;
   const l2n = l2 ? l2.lessons.length : 0;
   if (unlocked) {
-    return `已解锁全部已上线课程（Level 1 ${l1n} 课 + Level 2 ${l2n} 课）。打卡日历与错题本免费使用。免费试学仅 Level 1 第 1–5 课。坚持打卡、复习错题本，把这套课学下去。`;
+    return t("catalogNoteUnlocked", { l1: l1n, l2: l2n });
   }
-  return `免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。微信联系 ${WECHAT_CONTACT} 付款（¥39 月 / ¥99 季），获兑换码后到开通页输入解锁。`;
+  return t("catalogNoteLocked", { wechat: WECHAT_CONTACT });
 }
 
 function checkinHintText() {
@@ -246,12 +338,12 @@ function checkinHintText() {
   const streak = VOAStudy.currentStreak(dates);
   const checkedToday = dates.includes(today);
   if (checkedToday) {
-    return streak > 1 ? `今日已打卡 · 连续 ${streak} 天` : "今日已打卡";
+    return streak > 1 ? t("checkinTodayStreak", { streak }) : t("checkinToday");
   }
   if (streak > 0) {
-    return `连续打卡 ${streak} 天，今天还没打`;
+    return t("checkinStreakPending", { streak });
   }
-  return "提交测验即可打卡";
+  return t("checkinPrompt");
 }
 
 function markLessonStarted(lessonId) {
@@ -268,7 +360,7 @@ function markLessonStarted(lessonId) {
 function renderUnlockNav() {
   const unlocked = VOAUnlock.isUnlocked();
   document.querySelectorAll("[data-unlock-status]").forEach((el) => {
-    el.textContent = unlocked ? "已解锁" : "开通";
+    el.textContent = unlocked ? t("navUnlocked") : t("navUnlock");
     el.classList.toggle("is-unlocked", unlocked);
   });
 }
@@ -304,13 +396,13 @@ function renderCatalog(catalog, levelId) {
       const status = getLessonStatus(entry);
       const scoreText =
         !locked && status === "done" && typeof entry.score === "number"
-          ? `测验 ${entry.score} / ${entry.total}`
+          ? t("scoreText", { score: entry.score, total: entry.total })
           : "";
-      const href = sitePath(`lessons/${encodeURIComponent(lesson.id)}.html`);
-      const buttonLabel = locked ? "开通解锁" : actionLabel(status);
+      const href = pagePath(`lessons/${encodeURIComponent(lesson.id)}.html`);
+      const buttonLabel = locked ? t("buttonUnlock") : actionLabel(status);
       const badge = locked
-        ? `<p class="status-badge status-locked">未解锁</p>`
-        : `<p class="status-badge status-${status}">${statusLabel(status)}</p>`;
+        ? `<p class="status-badge status-locked">${escapeHtml(t("badgeLocked"))}</p>`
+        : `<p class="status-badge status-${status}">${escapeHtml(statusLabel(status))}</p>`;
 
       return `
         <article class="lesson-card${locked ? " is-locked" : ""}" data-status="${locked ? "locked" : status}">
@@ -381,10 +473,10 @@ function renderLevelProgress(level, progress) {
   root.hidden = false;
   root.innerHTML = `
     <div class="level-progress-row">
-      <p class="level-progress-count">已完成 <strong>${done}</strong> / ${total}</p>
-      <p class="level-progress-hint">${escapeHtml(checkinHintText())} · <a href="${sitePath("progress.html")}">打开打卡</a></p>
+      <p class="level-progress-count">${escapeHtml(t("progressDone"))} <strong>${done}</strong> / ${total}</p>
+      <p class="level-progress-hint">${escapeHtml(checkinHintText())} · <a href="${pagePath("progress.html")}">${escapeHtml(t("openCheckin"))}</a></p>
     </div>
-    <div class="level-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="${escapeHtml(label)} 完成进度">
+    <div class="level-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="${escapeHtml(t("progressAria", { label }))}">
       <span style="width: ${percent}%"></span>
     </div>
   `;
@@ -404,16 +496,16 @@ function renderLevelClear(level, progress, unlocked) {
   }
 
   const cta = unlocked
-    ? `<a class="btn primary" href="${sitePath("progress.html")}">继续打卡</a>
-       <a class="btn" href="${sitePath("wrongbook.html")}">复习错题本</a>`
-    : `<a class="btn primary" href="${sitePath("pricing.html")}">开通解锁，把习惯学下去</a>
-       <a class="btn" href="${sitePath("wrongbook.html")}">复习错题本</a>`;
+    ? `<a class="btn primary" href="${pagePath("progress.html")}">${escapeHtml(t("continueCheckin"))}</a>
+       <a class="btn" href="${pagePath("wrongbook.html")}">${escapeHtml(t("reviewWrongbook"))}</a>`
+    : `<a class="btn primary" href="${pagePath("pricing.html")}">${escapeHtml(t("unlockHabit"))}</a>
+       <a class="btn" href="${pagePath("wrongbook.html")}">${escapeHtml(t("reviewWrongbook"))}</a>`;
 
   root.hidden = false;
   root.innerHTML = `
     <p class="eyebrow">Level 1</p>
-    <h2>通关！你学完了这一级</h2>
-    <p>恭喜完成全部 ${lessons.length} 课测验。坚持学完不容易——接下来用打卡保持节奏，用错题本把漏掉的句子补上。</p>
+    <h2>${escapeHtml(t("clearTitle"))}</h2>
+    <p>${escapeHtml(t("clearBody", { count: lessons.length }))}</p>
     <div class="quiz-actions">${cta}</div>
   `;
 }
@@ -452,13 +544,13 @@ function bindCatalogFilters(root, unlocked) {
   }
 
   const chips = [
-    { id: "all", label: "全部" },
-    { id: "not-started", label: "未学" },
-    { id: "in-progress", label: "进行中" },
-    { id: "done", label: "已完成" },
+    { id: "all", label: t("filterAll") },
+    { id: "not-started", label: t("filterNotStarted") },
+    { id: "in-progress", label: t("filterInProgress") },
+    { id: "done", label: t("filterDone") },
   ];
   if (!unlocked) {
-    chips.push({ id: "locked", label: "未解锁" });
+    chips.push({ id: "locked", label: t("filterLocked") });
   }
 
   toolbar.hidden = false;
@@ -558,12 +650,12 @@ function collectAnswers(questions) {
 function updateWrongbookNavCount() {
   const count = VOAStudy.readWrongbook().length;
   document.querySelectorAll("[data-wrongbook-count]").forEach((el) => {
-    el.textContent = count ? `错题本 (${count})` : "错题本";
+    el.textContent = count ? t("wrongbookCount", { count }) : t("wrongbook");
   });
 }
 
 function monthTitle(year, month) {
-  return `${year}年${month}月`;
+  return t("monthTitle", { year, month });
 }
 
 function renderCheckinCalendar(root, view) {
@@ -589,27 +681,27 @@ function renderCheckinCalendar(root, view) {
       const classes = ["cal-day"];
       if (cell.checked) classes.push("is-checked");
       if (cell.today) classes.push("is-today");
-      const label = cell.checked ? `${cell.day}，已打卡` : `${cell.day}`;
+      const label = cell.checked ? t("dayChecked", { day: cell.day }) : `${cell.day}`;
       return `<span class="${classes.join(" ")}" aria-label="${escapeHtml(label)}">${cell.day}</span>`;
     })
     .join("");
 
   root.innerHTML = `
     <div class="checkin-stats">
-      <p><strong>${streak}</strong><span>连续天数</span></p>
-      <p><strong>${monthCount}</strong><span>当月打卡</span></p>
-      <p><strong>${dates.length}</strong><span>累计打卡</span></p>
+      <p><strong>${streak}</strong><span>${escapeHtml(t("statStreak"))}</span></p>
+      <p><strong>${monthCount}</strong><span>${escapeHtml(t("statMonth"))}</span></p>
+      <p><strong>${dates.length}</strong><span>${escapeHtml(t("statTotal"))}</span></p>
     </div>
     <div class="cal-toolbar">
-      <button type="button" class="btn cal-nav" data-cal-dir="-1" aria-label="上一月">‹</button>
+      <button type="button" class="btn cal-nav" data-cal-dir="-1" aria-label="${escapeHtml(t("prevMonth"))}">‹</button>
       <h3 class="cal-title">${escapeHtml(monthTitle(year, month))}</h3>
-      <button type="button" class="btn cal-nav" data-cal-dir="1" aria-label="下一月">›</button>
+      <button type="button" class="btn cal-nav" data-cal-dir="1" aria-label="${escapeHtml(t("nextMonth"))}">›</button>
     </div>
-    <div class="cal-grid" role="grid" aria-label="${escapeHtml(monthTitle(year, month))}打卡日历">
+    <div class="cal-grid" role="grid" aria-label="${escapeHtml(t("calendarAria", { title: monthTitle(year, month) }))}">
       ${weekdays}
       ${grid}
     </div>
-    <p class="checkin-note">提交任意课程测验即计为当日打卡。日期按 Asia/Shanghai（北京时间）。</p>
+    <p class="checkin-note">${escapeHtml(t("checkinNote"))}</p>
   `;
 
   root.querySelectorAll("[data-cal-dir]").forEach((button) => {
@@ -652,12 +744,12 @@ function gradeQuiz(lesson, level = null) {
   writeProgress(progress);
 
   const result = document.getElementById("quiz-result");
-  let summary = `${resultText} · 已打卡 ${VOAStudy.todayKey()}`;
+  let summary = t("quizChecked", { score, total: lesson.quiz.length, day: VOAStudy.todayKey() });
   if (wrongCount) {
-    summary += ` · 错题本 ${wrongCount} 题`;
+    summary += t("quizWrongSuffix", { count: wrongCount });
   }
   if (isLastIncomplete && level?.id === "lle1" && levelLessons.length) {
-    result.innerHTML = `${escapeHtml(summary)}<span class="clear-note">Level 1 通关！你完成了全部 ${levelLessons.length} 课测验。<a href="${sitePath("index.html?level=lle1")}">回课表看通关纪念</a></span>`;
+    result.innerHTML = `${escapeHtml(summary)}<span class="clear-note">${escapeHtml(t("levelClearNote", { count: levelLessons.length }))}<a href="${pagePath("index.html?level=lle1")}">${escapeHtml(t("backToClear"))}</a></span>`;
     return;
   }
   result.textContent = summary;
@@ -711,18 +803,18 @@ function renderLessonPaywall(lesson, level) {
     return;
   }
 
-  const backHref = sitePath(`index.html?level=${encodeURIComponent(level?.id || "lle1")}`);
+  const backHref = pagePath(`index.html?level=${encodeURIComponent(level?.id || "lle1")}`);
   const overlay = document.createElement("section");
   overlay.id = "lesson-paywall";
   overlay.className = "paywall-section";
-  overlay.setAttribute("aria-label", "开通后学习");
+  overlay.setAttribute("aria-label", t("paywallAria"));
   overlay.innerHTML = `
-    <h2>课程未解锁</h2>
-    <p>免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。</p>
-    <p>下一步：去开通页看方案，微信联系 <strong>${WECHAT_CONTACT}</strong> 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。</p>
+    <h2>${escapeHtml(t("paywallTitle"))}</h2>
+    <p>${escapeHtml(t("paywallBody"))}</p>
+    <p>${escapeHtml(t("paywallNext", { wechat: WECHAT_CONTACT })).replace(WECHAT_CONTACT, `<strong>${WECHAT_CONTACT}</strong>`)}</p>
     <div class="quiz-actions">
-      <a class="btn primary" href="${sitePath("pricing.html")}">去开通 · 输入兑换码</a>
-      <a class="btn" href="${backHref}">返回课表</a>
+      <a class="btn primary" href="${pagePath("pricing.html")}">${escapeHtml(t("paywallCta"))}</a>
+      <a class="btn" href="${backHref}">${escapeHtml(t("backCatalog"))}</a>
     </div>
   `;
   const header = document.querySelector(".header");
@@ -743,15 +835,16 @@ function renderLessonPager(lessons, current) {
   const { prev, next } = neighborLessons(lessons, current.id);
   const linkFor = (lesson, kind) => {
     if (!lesson) {
-      const label = kind === "prev" ? "已是第一课" : "已是最后一课";
-      return `<span class="pager-placeholder">${label}</span>`;
+      const label = kind === "prev" ? t("pagerFirst") : t("pagerLast");
+      return `<span class="pager-placeholder">${escapeHtml(label)}</span>`;
     }
     const locked = !VOAUnlock.canOpenLesson(lesson);
-    const href = sitePath(`lessons/${encodeURIComponent(lesson.id)}.html`);
+    const href = pagePath(`lessons/${encodeURIComponent(lesson.id)}.html`);
+    const lockedMark = locked ? t("lockedSuffix") : "";
     const label =
       kind === "prev"
-        ? `← 上一课 · ${lesson.number}${locked ? "（未解锁）" : ""}`
-        : `下一课 · ${lesson.number}${locked ? "（未解锁）" : ""} →`;
+        ? `${t("pagerPrev", { n: lesson.number })}${lockedMark}`
+        : `${t("pagerNext", { n: lesson.number })}${lockedMark}`;
     const cls = ["btn"];
     if (!locked && kind === "next") {
       cls.push("primary");
@@ -772,19 +865,20 @@ function renderLesson(lesson) {
   const heading = document.getElementById("lesson-title");
   if (heading) {
     const sub = lesson.subtitle ? ` ${lesson.subtitle}` : "";
-    heading.textContent = `VOA慢速英语第${lesson.number}课${sub}`;
+    heading.textContent = t("lessonHeading", { n: lesson.number, sub });
   }
   const subtitle = document.getElementById("lesson-subtitle");
   if (subtitle) {
     const levelName = Number(lesson.level) === 2 || lesson.levelId === "lle2" ? "Level 2" : "Level 1";
-    subtitle.textContent = `${levelName} · 第${lesson.number}课`;
+    subtitle.textContent = t("lessonMeta", { level: levelName, n: lesson.number });
   }
 
   const video = document.getElementById("lesson-video");
   if (video) {
     video.preload = "none";
     if (!video.getAttribute("poster")) {
-      video.poster = sitePath("img/poster.svg");
+      const poster = document.documentElement.lang === "zh-Hant" ? "img/poster-hant.svg" : "img/poster.svg";
+      video.poster = sitePath(poster);
     }
     if (lesson.videoUrl && video.getAttribute("src") !== lesson.videoUrl) {
       video.src = lesson.videoUrl;
@@ -826,7 +920,7 @@ function renderWrongbookPage() {
   }
 
   if (!items.length) {
-    root.innerHTML = `<p class="empty-state">暂无错题</p>`;
+    root.innerHTML = `<p class="empty-state">${escapeHtml(t("emptyWrong"))}</p>`;
     return;
   }
 
@@ -841,9 +935,9 @@ function renderWrongbookPage() {
               if (index === item.correctIndex) classes.push("is-correct");
               const mark =
                 index === item.correctIndex
-                  ? "正确答案"
+                  ? t("markCorrect")
                   : index === item.chosenIndex
-                    ? "你的选择"
+                    ? t("markChosen")
                     : "";
               return `
                 <li class="${classes.join(" ")}">
@@ -859,8 +953,8 @@ function renderWrongbookPage() {
               <p class="wrong-prompt">${escapeHtml(item.prompt)}</p>
               <ul class="wrong-choices">${choices}</ul>
               <div class="wrong-actions">
-                <a class="btn primary" href="${sitePath(`lessons/${encodeURIComponent(item.lessonId)}.html`)}#quiz">再练</a>
-                <button type="button" class="btn" data-remove-wrong>清除这题</button>
+                <a class="btn primary" href="${pagePath(`lessons/${encodeURIComponent(item.lessonId)}.html`)}#quiz">${escapeHtml(t("practiceAgain"))}</a>
+                <button type="button" class="btn" data-remove-wrong>${escapeHtml(t("removeWrong"))}</button>
               </div>
             </article>
           `;
@@ -942,8 +1036,8 @@ function bindLessonChrome(lesson) {
   const backLink = document.querySelector(".back-link");
   if (backLink) {
     const label = levelId === "lle2" ? "Level 2" : "Level 1";
-    backLink.href = sitePath(`index.html?level=${encodeURIComponent(levelId)}`);
-    backLink.textContent = `← ${label} · 课表`;
+    backLink.href = pagePath(`index.html?level=${encodeURIComponent(levelId)}`);
+    backLink.textContent = t("backToLevel", { level: label });
   }
 }
 
@@ -952,9 +1046,9 @@ async function loadLessonDocument(lessonId) {
   if (embedded && embedded.id === lessonId) {
     return embedded;
   }
-  const response = await fetch(sitePath(`data/web/lessons/${encodeURIComponent(lessonId)}.json`));
+  const response = await fetch(sitePath(`${webDataDir()}lessons/${encodeURIComponent(lessonId)}.json`));
   if (!response.ok) {
-    throw new Error(`找不到课程 ${lessonId}。`);
+    throw new Error(t("lessonMissing", { id: lessonId }));
   }
   return response.json();
 }
@@ -964,14 +1058,14 @@ async function initLesson() {
   const params = new URLSearchParams(window.location.search);
   const queryId = params.get("id");
   if (!document.body.dataset.lessonId && queryId && /^lle[12]-\d{2}$/.test(queryId)) {
-    window.location.replace(`${sitePath(`lessons/${queryId}.html`)}${window.location.hash}`);
+    window.location.replace(`${pagePath(`lessons/${queryId}.html`)}${window.location.hash}`);
     return;
   }
 
   const stub = lessonStub();
   if (!stub.id) {
     if (result) {
-      result.textContent = "请从课表选择一课。";
+      result.textContent = t("pickLesson");
     }
     return;
   }
@@ -1021,14 +1115,17 @@ function renderPricingState() {
 
   if (state) {
     const until = VOAUnlock.formatExpiryDate(state);
-    status.textContent = `已解锁 · ${VOAUnlock.planLabel(state.plan)}${until ? ` · 到期 ${until}` : ""}`;
+    status.textContent = t("unlockStatus", {
+      plan: localizedPlan(state.plan),
+      until: until ? t("untilSuffix", { date: until }) : "",
+    });
     if (clearBtn) {
       clearBtn.hidden = false;
     }
     return;
   }
 
-  status.textContent = "当前未解锁或已过期。仅 Level 1 第 1–5 课可免费试学。";
+  status.textContent = t("unlockLocked");
   if (clearBtn) {
     clearBtn.hidden = true;
   }
@@ -1053,7 +1150,7 @@ async function initPricing() {
         const codes = await loadCodes();
         const match = VOAUnlock.findCode(codes, raw);
         if (!match) {
-          result.textContent = "兑换码无效，请核对后重试。";
+          result.textContent = t("redeemInvalid");
           return;
         }
         const state = VOAUnlock.redeem(match);
@@ -1062,9 +1159,12 @@ async function initPricing() {
         }
         renderPricingState();
         const until = VOAUnlock.formatExpiryDate(state);
-        result.textContent = `解锁成功：${VOAUnlock.planLabel(match.plan)}${until ? ` · 到期 ${until}` : ""}。可学习全部已上线课程（含 Level 1 + Level 2 已发布课）。`;
+        result.textContent = t("redeemOk", {
+          plan: localizedPlan(match.plan),
+          until: until ? t("untilSuffix", { date: until }) : "",
+        });
       } catch (error) {
-        result.textContent = error.message || "解锁失败。";
+        result.textContent = error.message === "兑换码无效" ? t("redeemInvalidShort") : error.message || t("redeemFail");
       }
     });
   }
@@ -1074,7 +1174,7 @@ async function initPricing() {
       VOAUnlock.clearUnlock();
       renderPricingState();
       if (result) {
-        result.textContent = "已退出解锁。除 Level 1 第 1–5 课外再次锁定。";
+        result.textContent = t("redeemCleared");
       }
     });
   }
@@ -1096,7 +1196,7 @@ function initWrongbook() {
       if (VOAStudy.readWrongbook().length === 0) {
         return;
       }
-      if (window.confirm("清除全部错题？")) {
+      if (window.confirm(t("confirmClearWrong"))) {
         VOAStudy.clearWrongbook();
         updateWrongbookNavCount();
         renderWrongbookPage();
@@ -1106,6 +1206,11 @@ function initWrongbook() {
 }
 
 function init() {
+  syncSwitcherLinks();
+  rememberScriptChoice();
+  if (applyScriptPreference()) {
+    return;
+  }
   const page = document.body.dataset.page;
   if (page === "catalog") {
     initCatalog();

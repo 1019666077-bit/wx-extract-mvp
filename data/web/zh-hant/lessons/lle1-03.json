@@ -1,0 +1,224 @@
+{
+  "id": "lle1-03",
+  "number": 3,
+  "level": 1,
+  "levelId": "lle1",
+  "title": "Let's Learn English Lesson 3",
+  "subtitle": "I'm Here!",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/0/0d/0d8a07f4-87eb-469e-8e2b-3f641f360aae_720p.mp4",
+  "youtubeId": "IEA9LMy-N3M",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-3-i-am-here/3126527.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 3: I'm Here! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "I am in my new apartment! Great!",
+      "zh": "我在我的新公寓裡了！太好了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I live with Marsha. We’re roommates.",
+      "zh": "我和瑪莎住在一起。我們是室友。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I want to cook dinner. Oh! Hmmm. Is there a supermarket near here?",
+      "zh": "我想做晚飯。哦！嗯……這附近有超市嗎？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Marsha knows. Marsha's work number is 555-8986.",
+      "zh": "瑪莎知道。瑪莎上班的電話是 555-8986。"
+    },
+    {
+      "speaker": "Man",
+      "en": "Hello.",
+      "zh": "喂。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello. Is this Marsha? It is Anna.",
+      "zh": "你好。是瑪莎嗎？我是安娜。"
+    },
+    {
+      "speaker": "Man",
+      "en": "I am sorry. You have the wrong number.",
+      "zh": "對不起。你打錯電話了。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh. Is this 555-8986?",
+      "zh": "哦。這是 555-8986 嗎？"
+    },
+    {
+      "speaker": "Man",
+      "en": "No. This is 555-8689.",
+      "zh": "不是。這是 555-8689。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh. Excuse me!",
+      "zh": "哦。不好意思！"
+    },
+    {
+      "speaker": "Man",
+      "en": "Okay. 'Bye.",
+      "zh": "好的。再見。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "One more time. 555-8986. Please be Marsha.",
+      "zh": "再打一次。555-8986。希望是瑪莎。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Hello. This is Marsha.",
+      "zh": "喂。我是瑪莎。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, Marsha. I want to cook dinner.",
+      "zh": "是的，瑪莎。我想做晚飯。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Excuse me? Anna? Is that you?",
+      "zh": "什麼？安娜？是你嗎？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, yes. I am here!",
+      "zh": "哦，是的。我到了！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Good. You are there.",
+      "zh": "很好。你在那裡。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I want to find a supermarket.",
+      "zh": "我想找一家超市。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Oh, okay. The supermarket is at 1500 Irving Street. It is near the apartment.",
+      "zh": "哦，好的。超市在歐文街 1500 號。就在公寓附近。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Great! Goodbye!",
+      "zh": "太好了！再見！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Goodbye, Anna.",
+      "zh": "再見，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "There is a big supermarket on our street. And Marsha says I am a good cook! Until next time! Bye!",
+      "zh": "我們這條街上有一家很大的超市。瑪莎還說我很會做飯！下次見！再見！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What does Anna say about Marsha?",
+      "choices": [
+        "Marsha is her best friend",
+        "She and Marsha are roommates",
+        "Marsha lives on another street"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Why does the man say he is sorry?",
+      "choices": [
+        "Anna has the wrong number",
+        "Marsha is not at work",
+        "He does not know Anna"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What does Marsha say about the supermarket?",
+      "choices": [
+        "It is on another street",
+        "It is at 1500 Main Street",
+        "It is at 1500 Irving Street, near the apartment"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-02",
+    "number": 2,
+    "level": 1,
+    "title": "Let's Learn English Lesson 2",
+    "subtitle": "Hello, I'm Anna!"
+  },
+  "next": {
+    "id": "lle1-04",
+    "number": 4,
+    "level": 1,
+    "title": "Let's Learn English Lesson 4",
+    "subtitle": "What Is It?"
+  },
+  "levelLessonIds": [
+    "lle1-01",
+    "lle1-02",
+    "lle1-03",
+    "lle1-04",
+    "lle1-05",
+    "lle1-06",
+    "lle1-07",
+    "lle1-08",
+    "lle1-09",
+    "lle1-10",
+    "lle1-11",
+    "lle1-12",
+    "lle1-13",
+    "lle1-14",
+    "lle1-15",
+    "lle1-16",
+    "lle1-17",
+    "lle1-18",
+    "lle1-19",
+    "lle1-20",
+    "lle1-21",
+    "lle1-22",
+    "lle1-23",
+    "lle1-24",
+    "lle1-25",
+    "lle1-26",
+    "lle1-27",
+    "lle1-28",
+    "lle1-29",
+    "lle1-30",
+    "lle1-31",
+    "lle1-32",
+    "lle1-33",
+    "lle1-34",
+    "lle1-35",
+    "lle1-36",
+    "lle1-37",
+    "lle1-38",
+    "lle1-39",
+    "lle1-40",
+    "lle1-41",
+    "lle1-42",
+    "lle1-43",
+    "lle1-44",
+    "lle1-45",
+    "lle1-46",
+    "lle1-47",
+    "lle1-48",
+    "lle1-49",
+    "lle1-50",
+    "lle1-51",
+    "lle1-52"
+  ]
+}

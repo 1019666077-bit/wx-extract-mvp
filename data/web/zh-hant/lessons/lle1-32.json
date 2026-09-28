@@ -1,0 +1,334 @@
+{
+  "id": "lle1-32",
+  "number": 32,
+  "level": 1,
+  "levelId": "lle1",
+  "title": "Let's Learn English Lesson 32",
+  "subtitle": "Welcome to the Treehouse!",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/8/8e/8e1a9678-e224-4d51-b9ac-fa05d9991d16_720p.mp4",
+  "youtubeId": "",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-32-welcome-treehouse/3547306.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 32: Welcome to the Treehouse! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello! Today is a big day. My first children's show is on television! Woo-hoo! I'm excited and nervous.",
+      "zh": "嗨！今天是重要的一天。我的第一個兒童節目要上電視了！嗚呼！我又興奮又緊張。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Hello, Anna.",
+      "zh": "你好，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello, Ms. Weaver!",
+      "zh": "你好，韋弗女士！"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Some people are going to watch your children's show. After they watch it, they'll tell me what they liked, and what they didn't like.",
+      "zh": "有人要看你的兒童節目。看完後，他們會告訴我喜歡什麼，不喜歡什麼。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, dear.",
+      "zh": "哦，天哪。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "They're in the conference room. They're in the conference room.",
+      "zh": "他們在會議室。他們在會議室。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello, everyone. I'm Anna, and thanks for coming!",
+      "zh": "大家好。我是安娜，謝謝你們來！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Today you are going to watch my new show. I hope you like it.",
+      "zh": "今天你們要看我的新節目。希望你們喜歡。"
+    },
+    {
+      "speaker": "Coworker 2",
+      "en": "What is the show about?",
+      "zh": "這個節目講什麼？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "It's a children's show.",
+      "zh": "這是一個兒童節目。"
+    },
+    {
+      "speaker": "Coworker 1",
+      "en": "But we are not children!",
+      "zh": "可我們不是孩子！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This children's show is different. I hope.",
+      "zh": "這個兒童節目不一樣。我希望是。"
+    },
+    {
+      "speaker": "Coworker 3",
+      "en": "I don't really like children's shows.",
+      "zh": "我其實不太喜歡兒童節目。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Shhh, please. The show is starting!",
+      "zh": "噓，拜託。節目開始了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, hi! Just give me one minute ….oops! Oh well. I can fix that later.",
+      "zh": "哦，嗨！給我一分鐘……哎呀！算了。我以後再修。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hello, I'm Anna! Welcome to \"The Time Traveling Treehouse!\" This is not a usual treehouse. It can time travel! That is why it's called \"The Time Traveling Treehouse.\"",
+      "zh": "你好，我是安娜！歡迎來到“時光旅行樹屋”！這不是普通的樹屋。它可以時光旅行！所以才叫“時光旅行樹屋”。"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Anna, do not forget me.",
+      "zh": "安娜，別忘了我。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Of course not! This is my partner, MINDY!",
+      "zh": "當然不會！這是我的搭檔，MINDY！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "My name means Massive Information Navigation Device, for You!",
+      "zh": "我的名字是 Massive Information Navigation Device, for You！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "That means we can travel to many places and learn many things. Kids from all over the world ask us questions. We find them answers!",
+      "zh": "意思是我們可以去很多地方，學很多東西。世界各地的孩子問我們問題。我們幫他們找答案！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Woo-hoo! That is right, Anna.",
+      "zh": "嗚呼！沒錯，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "MINDY, what is our first question?",
+      "zh": "MINDY，我們的第一個問題是什麼？"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Layla asks us this question.",
+      "zh": "萊拉問我們這個問題。"
+    },
+    {
+      "speaker": "Layla",
+      "en": "Hello, Anna! Hello, MINDY! I'd like to know -- how do you play baseball?",
+      "zh": "你好，安娜！你好，MINDY！我想知道——棒球怎麼打？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "That is a great question! MINDY, we need to find her an answer!",
+      "zh": "這是個好問題！MINDY，我們得給她找個答案！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "I know that we can find it, Anna!",
+      "zh": "我知道我們能找到，安娜！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Where am I now? MINDY, now I am on a snowy mountain!",
+      "zh": "我現在在哪裡？MINDY，我現在在一座雪山！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "That is a good place to learn how to ski.",
+      "zh": "那是學滑雪的好地方。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, MINDY, but it cannot teach us about baseball! And I don't know how to ski!",
+      "zh": "是的，MINDY，可它教不了棒球！而且我不會滑雪！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Sorry, Anna. Let's try again.",
+      "zh": "抱歉，安娜。我們再試一次。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Where am I now!? MINDY, I am in the ocean! An ocean cannot teach us about baseball!",
+      "zh": "我現在在哪裡！？MINDY，我在海里！海教不了棒球！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Please don't yell, Anna. The ocean can teach us about surfing.",
+      "zh": "請別喊，安娜。海可以教衝浪。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, MINDY, it can teach us about surfing … and sharks! Ahhh!",
+      "zh": "是的，MINDY，它可以教衝浪……還有鯊魚！啊——！"
+    },
+    {
+      "speaker": "MINDY",
+      "en": "Anna, please wait. I need to fix my navigation device.",
+      "zh": "安娜，請等一下。我得修一下導航裝置。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "MINDY, please fix it faster. And get me out of here … now!",
+      "zh": "MINDY，請修快一點。還有，現在就帶我離開這兒……立刻！"
+    },
+    {
+      "speaker": "Announcer",
+      "en": "Whoa! Is Anna going to be lost forever? Next week, you can watch part two of \"The Time Traveling Treehouse!\"",
+      "zh": "哇！安娜會永遠迷路嗎？下週，你可以看“時光旅行樹屋”第二集！"
+    },
+    {
+      "speaker": "Coworker 1",
+      "en": "Aw, man! Will the shark eat her?",
+      "zh": "哎呀！鯊魚會吃掉她嗎？"
+    },
+    {
+      "speaker": "Coworker 2",
+      "en": "Will Anna find the answer?",
+      "zh": "安娜會找到答案嗎？"
+    },
+    {
+      "speaker": "Coworker 3",
+      "en": "Please tell me the ending!",
+      "zh": "請告訴我結局！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "So, you liked it?",
+      "zh": "所以，你們喜歡嗎？"
+    },
+    {
+      "speaker": "Coworkers",
+      "en": "Yes!",
+      "zh": "喜歡！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Well, you can watch the ending next week!",
+      "zh": "好，你們下週可以看結局！"
+    },
+    {
+      "speaker": "Coworkers",
+      "en": "Noooooo!",
+      "zh": "不——！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Don't forget to watch next week!",
+      "zh": "別忘了下週看！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What is Anna's children's show called?",
+      "choices": [
+        "The News",
+        "The Time Traveling Treehouse",
+        "Summer Vacation"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What does Layla want to know?",
+      "choices": [
+        "How to ski",
+        "How to surf",
+        "How to play baseball"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "q3",
+      "prompt": "Where does MINDY send Anna the second time?",
+      "choices": [
+        "The ocean",
+        "A baseball field",
+        "The conference room"
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "prev": {
+    "id": "lle1-31",
+    "number": 31,
+    "level": 1,
+    "title": "Let's Learn English Lesson 31",
+    "subtitle": "Take Me Out to the Ball Game"
+  },
+  "next": {
+    "id": "lle1-33",
+    "number": 33,
+    "level": 1,
+    "title": "Let's Learn English Lesson 33",
+    "subtitle": "Learning America's Sport"
+  },
+  "levelLessonIds": [
+    "lle1-01",
+    "lle1-02",
+    "lle1-03",
+    "lle1-04",
+    "lle1-05",
+    "lle1-06",
+    "lle1-07",
+    "lle1-08",
+    "lle1-09",
+    "lle1-10",
+    "lle1-11",
+    "lle1-12",
+    "lle1-13",
+    "lle1-14",
+    "lle1-15",
+    "lle1-16",
+    "lle1-17",
+    "lle1-18",
+    "lle1-19",
+    "lle1-20",
+    "lle1-21",
+    "lle1-22",
+    "lle1-23",
+    "lle1-24",
+    "lle1-25",
+    "lle1-26",
+    "lle1-27",
+    "lle1-28",
+    "lle1-29",
+    "lle1-30",
+    "lle1-31",
+    "lle1-32",
+    "lle1-33",
+    "lle1-34",
+    "lle1-35",
+    "lle1-36",
+    "lle1-37",
+    "lle1-38",
+    "lle1-39",
+    "lle1-40",
+    "lle1-41",
+    "lle1-42",
+    "lle1-43",
+    "lle1-44",
+    "lle1-45",
+    "lle1-46",
+    "lle1-47",
+    "lle1-48",
+    "lle1-49",
+    "lle1-50",
+    "lle1-51",
+    "lle1-52"
+  ]
+}

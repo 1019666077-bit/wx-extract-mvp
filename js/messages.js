@@ -1,0 +1,104 @@
+/**
+ * Simplified Chinese UI strings. The page build writes js/i18n.js with this
+ * pack plus a Traditional (Taiwan) pack. English lesson text is not here.
+ */
+const MESSAGES = {
+  loadLessonsError: "课程数据暂时加载不上，请刷新再试。",
+  loadCodesError: "兑换码列表暂时加载不上，请稍后再试。",
+  statusDone: "已完成",
+  statusInProgress: "学习中",
+  statusNotStarted: "未开始",
+  actionReview: "复习",
+  actionContinue: "继续",
+  actionStart: "开始",
+  catalogNoteUnlocked:
+    "已解锁全部已上线课程（Level 1 {l1} 课 + Level 2 {l2} 课）。打卡日历与错题本免费使用。免费试学仅 Level 1 第 1–5 课。坚持打卡、复习错题本，把这套课学下去。",
+  catalogNoteLocked:
+    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。微信联系 {wechat} 付款（¥39 月 / ¥99 季），获兑换码后到开通页输入解锁。",
+  checkinTodayStreak: "今日已打卡 · 连续 {streak} 天",
+  checkinToday: "今日已打卡",
+  checkinStreakPending: "连续打卡 {streak} 天，今天还没打",
+  checkinPrompt: "提交测验即可打卡",
+  navUnlocked: "已解锁",
+  navUnlock: "开通",
+  scoreText: "测验 {score} / {total}",
+  badgeLocked: "未解锁",
+  buttonUnlock: "开通解锁",
+  progressDone: "已完成",
+  openCheckin: "打开打卡",
+  progressAria: "{label} 完成进度",
+  continueCheckin: "继续打卡",
+  reviewWrongbook: "复习错题本",
+  unlockHabit: "开通解锁，把习惯学下去",
+  clearTitle: "通关！你学完了这一级",
+  clearBody:
+    "恭喜完成全部 {count} 课测验。坚持学完不容易——接下来用打卡保持节奏，用错题本把漏掉的句子补上。",
+  filterAll: "全部",
+  filterNotStarted: "未学",
+  filterInProgress: "进行中",
+  filterDone: "已完成",
+  filterLocked: "未解锁",
+  wrongbookCount: "错题本 ({count})",
+  wrongbook: "错题本",
+  monthTitle: "{year}年{month}月",
+  dayChecked: "{day}，已打卡",
+  statStreak: "连续天数",
+  statMonth: "当月打卡",
+  statTotal: "累计打卡",
+  prevMonth: "上一月",
+  nextMonth: "下一月",
+  calendarAria: "{title}打卡日历",
+  checkinNote: "提交任意课程测验即计为当日打卡。日期按 Asia/Shanghai（UTC+8）。",
+  quizChecked: "Score: {score} / {total} · 已打卡 {day}",
+  quizWrongSuffix: " · 错题本 {count} 题",
+  levelClearNote: "Level 1 通关！你完成了全部 {count} 课测验。",
+  backToClear: "回课表看通关纪念",
+  paywallAria: "开通后学习",
+  paywallTitle: "课程未解锁",
+  paywallBody:
+    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。",
+  paywallNext:
+    "下一步：去开通页看方案，微信联系 {wechat} 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。",
+  paywallCta: "去开通 · 输入兑换码",
+  backCatalog: "返回课表",
+  pagerFirst: "已是第一课",
+  pagerLast: "已是最后一课",
+  pagerPrev: "← 上一课 · {n}",
+  pagerNext: "下一课 · {n} →",
+  lockedSuffix: "（未解锁）",
+  lessonHeading: "VOA慢速英文第{n}课{sub}",
+  lessonMeta: "{level} · 第{n}课",
+  emptyWrong: "暂无错题",
+  markCorrect: "正确答案",
+  markChosen: "你的选择",
+  practiceAgain: "再练",
+  removeWrong: "清除这题",
+  backToLevel: "← {level} · 课表",
+  lessonMissing: "找不到课程 {id}。",
+  pickLesson: "请从课表选择一课。",
+  unlockStatus: "已解锁 · {plan}{until}",
+  untilSuffix: " · 到期 {date}",
+  unlockLocked: "当前未解锁或已过期。仅 Level 1 第 1–5 课可免费试学。",
+  redeemInvalid: "兑换码无效，请核对后重试。",
+  redeemInvalidShort: "兑换码无效",
+  redeemOk: "解锁成功：{plan}{until}。可学习全部已上线课程（含 Level 1 + Level 2 已发布课）。",
+  redeemFail: "解锁失败。",
+  redeemCleared: "已退出解锁。除 Level 1 第 1–5 课外再次锁定。",
+  confirmClearWrong: "清除全部错题？",
+  planMonthly: "月付 ¥39",
+  planQuarterly: "季卡 ¥99",
+  planOpened: "已开通",
+};
+
+function buildI18nScript(convert) {
+  const hant = {};
+  for (const [key, value] of Object.entries(MESSAGES)) {
+    hant[key] = convert(value);
+  }
+  return `window.VOA_I18N=${JSON.stringify({ "zh-Hans": MESSAGES, "zh-Hant": hant })};\n`;
+}
+
+module.exports = {
+  MESSAGES,
+  buildI18nScript,
+};

@@ -1,0 +1,334 @@
+{
+  "id": "lle1-20",
+  "number": 20,
+  "level": 1,
+  "levelId": "lle1",
+  "title": "Let's Learn English Lesson 20",
+  "subtitle": "What Can You Do?",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/7/71/718a1e4c-2092-458b-a29c-0780d2daaf0f_720p.mp4",
+  "youtubeId": "",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-20-what-can-you-do/3384429.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 20: What Can You Do? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hi, there! Washington, D.C. is a great place to work. Many people here work in government and politics. But there are many other jobs. You can work at a hospital; a university. You can work in a coffee shop. Wait a minute, I think I see a friend of mine. Pete? Is that you?",
+      "zh": "嗨！華盛頓特區是個很好的工作地方。這裡很多人在政府和政治領域工作。不過還有很多別的工作。你可以在醫院工作；也可以在大學。你還可以在咖啡店工作。等一下，我好像看到一個朋友。皮特？是你嗎？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Hi, Anna.",
+      "zh": "嗨，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "You look different. Your beard … is really big.",
+      "zh": "你看起來不一樣了。你的鬍子……真的很大。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "You don't like it, do you?",
+      "zh": "你不喜歡，對吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, no. You just look … different.",
+      "zh": "不，不。你只是看起來……不一樣。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thank you. So, what's wrong? You look sad.",
+      "zh": "謝謝。所以，怎麼了？你看起來很難過。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't have a job.",
+      "zh": "我沒有工作。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sorry, I can't hear you.",
+      "zh": "抱歉，我聽不清。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I do not have a job!",
+      "zh": "我沒有工作！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh. I'm sorry to hear that, Pete.",
+      "zh": "哦。聽到這個我很難過，皮特。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't have a skill.",
+      "zh": "我沒有本事。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Everyone has a skill. You need to find yours.",
+      "zh": "每個人都有本事。你需要找到你的。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't know, Anna.",
+      "zh": "我不知道，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, I am good at asking questions. Let me ask you some.",
+      "zh": "皮特，我擅長提問。讓我問你幾個。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Really, Anna? Can you help me?",
+      "zh": "真的嗎，安娜？你能幫我嗎？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, I can. Let me help.",
+      "zh": "能。讓我來幫你。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Sure, Anna. Maybe you can help.",
+      "zh": "好吧，安娜。也許你能幫上忙。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Can you write code?",
+      "zh": "你會寫程式碼嗎？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Sure, c-o-l-d. How is this going to help?",
+      "zh": "當然，c-o-l-d。這怎麼能幫上忙？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, not \"cold.\" Code; you know, for making phone apps, or websites. You can make tons of money writing code.",
+      "zh": "不是“cold”。是程式碼；就是做手機應用，或者網站。寫程式碼可以賺很多錢。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Tons of money? But I can't code.",
+      "zh": "很多錢？可是我不會寫程式碼。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Next question. Can you drive?",
+      "zh": "下一個問題。你會開車嗎？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Do you mean drive a race car? It's really hard to be a race car driver. First, you need a race car ...",
+      "zh": "你是說開賽車？當賽車手很難。首先，你得有一輛賽車……"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, I mean drive a taxi or drive a bus.",
+      "zh": "不，我是說開出租車或者開公交車。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, I always fall asleep when I drive.",
+      "zh": "不行，我開車總是睡著。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, that's not good. Next question. Can you teach? You can be a teacher in a school.",
+      "zh": "哦，那可不好。下一個問題。你會教書嗎？你可以在學校當老師。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, I cannot teach.",
+      "zh": "不，我不會教書。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Can you cook? You can be a chef in a restaurant.",
+      "zh": "你會做飯嗎？你可以在餐館當廚師。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "No, I can't code! I can't teach! I can't cook! Anna, I can't do anything. This is sad. I'm gonna write about my feelings in my blog.",
+      "zh": "不，我不會寫程式碼！不會教書！不會做飯！安娜，我什麼都不會。這太難過了。我要在部落格裡寫寫我的感受。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "You write a blog?",
+      "zh": "你寫部落格？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Yeah, I write a blog.",
+      "zh": "對，我寫部落格。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "How many followers do you have?",
+      "zh": "你有多少粉絲？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I don't know … 59,538.",
+      "zh": "我不知道……59,538。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Pete, that's a lot of followers! You can make money writing!",
+      "zh": "皮特，那可是很多粉絲！你可以靠寫作賺錢！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Writing is easy. Everyone can write.",
+      "zh": "寫作很容易。每個人都會寫。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Not everyone can write well. You can be a writer!",
+      "zh": "不是每個人都能寫得好。你可以當作家！"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I can be a writer. I can be a writer! I can be a writer! Thanks, Anna.",
+      "zh": "我可以當作家。我可以當作家！我可以當作家！謝謝，安娜。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Hi, Pete. Hi, Anna.",
+      "zh": "嗨，皮特。嗨，安娜。"
+    },
+    {
+      "speaker": "Pete",
+      "en": "Hi, Marsha. Excuse me, I have to go.",
+      "zh": "嗨，瑪莎。不好意思，我得走了。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Where are you going?",
+      "zh": "你要去哪兒？"
+    },
+    {
+      "speaker": "Pete",
+      "en": "I'm going to be a writer!",
+      "zh": "我要去當作家！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Good luck, Pete!",
+      "zh": "祝你好運，皮特！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "He does know that it's not easy to be a writer, doesn't he?",
+      "zh": "他知道當作家並不容易，對吧？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "There are many different jobs you can have in Washington, D.C. Pete wants to be a writer. I wish him luck. Lots of luck. Until next time!",
+      "zh": "在華盛頓特區，你可以做很多不同的工作。皮特想當作家。我祝他好運。很多好運。下次見！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Why is Pete sad?",
+      "choices": [
+        "He lost his beard",
+        "He does not have a job",
+        "He cannot hear Anna"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Why can't Pete drive a taxi or a bus?",
+      "choices": [
+        "He always falls asleep when he drives",
+        "He does not have a race car",
+        "He cannot write code"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What job does Anna say Pete can do?",
+      "choices": [
+        "Teacher",
+        "Chef",
+        "Writer"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-19",
+    "number": 19,
+    "level": 1,
+    "title": "Let's Learn English Lesson 19",
+    "subtitle": "When Do I Start?"
+  },
+  "next": {
+    "id": "lle1-21",
+    "number": 21,
+    "level": 1,
+    "title": "Let's Learn English Lesson 21",
+    "subtitle": "Can You Come to the Party?"
+  },
+  "levelLessonIds": [
+    "lle1-01",
+    "lle1-02",
+    "lle1-03",
+    "lle1-04",
+    "lle1-05",
+    "lle1-06",
+    "lle1-07",
+    "lle1-08",
+    "lle1-09",
+    "lle1-10",
+    "lle1-11",
+    "lle1-12",
+    "lle1-13",
+    "lle1-14",
+    "lle1-15",
+    "lle1-16",
+    "lle1-17",
+    "lle1-18",
+    "lle1-19",
+    "lle1-20",
+    "lle1-21",
+    "lle1-22",
+    "lle1-23",
+    "lle1-24",
+    "lle1-25",
+    "lle1-26",
+    "lle1-27",
+    "lle1-28",
+    "lle1-29",
+    "lle1-30",
+    "lle1-31",
+    "lle1-32",
+    "lle1-33",
+    "lle1-34",
+    "lle1-35",
+    "lle1-36",
+    "lle1-37",
+    "lle1-38",
+    "lle1-39",
+    "lle1-40",
+    "lle1-41",
+    "lle1-42",
+    "lle1-43",
+    "lle1-44",
+    "lle1-45",
+    "lle1-46",
+    "lle1-47",
+    "lle1-48",
+    "lle1-49",
+    "lle1-50",
+    "lle1-51",
+    "lle1-52"
+  ]
+}

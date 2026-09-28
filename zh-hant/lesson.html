@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!--seo:start-->
+<title>VOA慢速英文課程｜Let&#39;s Learn English</title>
+  <meta name="description" content="正在開啟 VOA Let&#39;s Learn English 慢速英文課文。每課都有單獨頁面，含中英對照字幕，適合臺灣、香港、新加坡與馬來西亞的學習者。" />
+  <link rel="canonical" href="https://1019666077-bit.github.io/wx-extract-mvp/zh-hant/lesson.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="https://1019666077-bit.github.io/wx-extract-mvp/lesson.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="https://1019666077-bit.github.io/wx-extract-mvp/zh-hant/lesson.html" />
+  <link rel="alternate" hreflang="x-default" href="https://1019666077-bit.github.io/wx-extract-mvp/lesson.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_TW" />
+  <meta property="og:site_name" content="VOA慢速英文自學" />
+  <meta property="og:title" content="VOA慢速英文課程｜Let&#39;s Learn English" />
+  <meta property="og:description" content="正在開啟 VOA Let&#39;s Learn English 慢速英文課文。每課都有單獨頁面，含中英對照字幕，適合臺灣、香港、新加坡與馬來西亞的學習者。" />
+  <meta property="og:url" content="https://1019666077-bit.github.io/wx-extract-mvp/zh-hant/lesson.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="VOA慢速英文課程｜Let&#39;s Learn English" />
+  <meta name="twitter:description" content="正在開啟 VOA Let&#39;s Learn English 慢速英文課文。每課都有單獨頁面，含中英對照字幕，適合臺灣、香港、新加坡與馬來西亞的學習者。" />
+  <meta name="theme-color" content="#0b6e4f" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b6e4f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' fill='white' font-family='sans-serif'%3EV%3C/text%3E%3C/svg%3E" />
+<!--seo:end-->
+  <meta name="robots" content="noindex" />
+  <script>
+    (function () {
+      var id = new URLSearchParams(window.location.search).get("id");
+      if (id && /^lle[12]-\d{2}$/.test(id)) {
+        var root = window.location.pathname.replace(/[^/]*$/, "");
+        window.location.replace(root + "lessons/" + id + ".html" + window.location.hash);
+      }
+    })();
+  </script>
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body data-page="lesson">
+  <div class="page">
+    <nav class="nav" aria-label="站點">
+      <a href="index.html" class="back-link">← 課表</a>
+      <div class="site-nav-inline">
+        <a href="progress.html">打卡</a>
+        <a href="wrongbook.html" data-wrongbook-count>錯題本</a>
+        <a href="pricing.html" data-unlock-status>開通</a>
+        <!--script-switch:start-->
+<nav class="script-switch" aria-label="简繁"><a href="../lesson.html" hreflang="zh-Hans" lang="zh-Hans" data-script="zh-Hans">简</a><a href="lesson.html" hreflang="zh-Hant" lang="zh-Hant" data-script="zh-Hant" aria-current="true">繁</a></nav>
+<!--script-switch:end-->
+      </div>
+    </nav>
+    <header class="header">
+      <p class="eyebrow">VOA 慢速英文 · 非官方自學</p>
+      <h1 id="lesson-title">VOA 慢速英文</h1>
+      <p id="lesson-subtitle" class="subtitle">請從課表選擇一課。舊的課文連結會自動跳到新的課程頁。</p>
+    </header>
+    <nav class="lesson-pager" data-lesson-pager hidden aria-label="上下課"></nav>
+    <section class="video-section" aria-label="課文影片">
+      <div class="video-wrap">
+        <video id="lesson-video" controls playsinline preload="none" poster="../img/poster-hant.svg">
+          你的瀏覽器不支援影片播放。
+        </video>
+      </div>
+      <p class="video-fallback" id="video-fallback" hidden>
+        <a id="youtube-link" href="#" target="_blank" rel="noopener">YouTube 備用</a>
+        <span id="youtube-sep"> · </span>
+        <a id="voa-page-link" href="#" target="_blank" rel="noopener">VOA 原文課文</a>
+      </p>
+    </section>
+    <section class="dialogue-section" aria-label="對話">
+      <h2>對話 · 中英對照</h2>
+      <div id="dialogue" class="dialogue"></div>
+    </section>
+    <section class="quiz-section" id="quiz" aria-label="練習">
+      <h2>聽力小測驗</h2>
+      <form id="quiz-form"></form>
+      <div class="quiz-actions">
+        <button type="submit" form="quiz-form" id="submit-quiz" class="btn primary">核對答案</button>
+        <button type="button" id="reset-quiz" class="btn">重做</button>
+      </div>
+      <p id="quiz-result" class="quiz-result" role="status" aria-live="polite"></p>
+    </section>
+    <nav class="lesson-pager" data-lesson-pager hidden aria-label="上下課"></nav>
+    <footer class="footer">
+      <p id="attribution"></p>
+    </footer>
+  </div>
+  <noscript>
+    <p>請打開課表選擇課程。舊連結需要瀏覽器跳轉到每課自己的頁面。</p>
+  </noscript>
+  <script type="module" src="../js/study.js"></script>
+  <script type="module" src="../js/unlock.js"></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>

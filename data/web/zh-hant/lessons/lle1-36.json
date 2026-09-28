@@ -1,0 +1,219 @@
+{
+  "id": "lle1-36",
+  "number": 36,
+  "level": 1,
+  "levelId": "lle1",
+  "title": "Let's Learn English Lesson 36",
+  "subtitle": "I Can Fix This!",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/6/6f/6f867a3f-a8f1-4a89-b18c-892f85e60d35_720p.mp4",
+  "youtubeId": "",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-36-i-can-fix-this/3568962.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 36: I Can Fix This! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Last time on Let's Learn English, Marsha and I invited friends to a dinner party but I shopped with the wrong list. Guests are coming soon. Marsha is worried but I have a plan. Let's see what it is.",
+      "zh": "上次在 Let's Learn English 裡，瑪莎和我請了朋友來吃晚餐，可我按錯清單買了東西。客人馬上就到。瑪莎很擔心，但我有計劃。我們看看是什麼。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I just need a couple of ingredients. Marsha, please hand me the flour.",
+      "zh": "我只需要幾樣材料。瑪莎，請把麵粉遞給我。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna, where is the flour? It's not in the cabinets.",
+      "zh": "安娜，麵粉在哪裡？不在櫃子裡。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I put the flour inside the refrigerator.",
+      "zh": "我把麵粉放進冰箱了。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Why?",
+      "zh": "為什麼？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "It's cold and dry in the refrigerator. See, it says: \"Put in a cold, dry place.\" Okay, now, Marsha, please hand me the eggs.",
+      "zh": "冰箱裡又冷又幹。看，上面寫著：“放在陰涼乾燥處。”好，現在，瑪莎，請把雞蛋遞給我。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna, where are the eggs?",
+      "zh": "安娜，雞蛋在哪裡？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "The eggs are inside the cabinet under the sink.",
+      "zh": "雞蛋在水槽下面的櫃子裡。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna, why are the eggs in here?",
+      "zh": "安娜，雞蛋怎麼會在這兒？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "On the farm, we always put the eggs there. How else can the chickens see them? Okay. You clean the living room. I will make dinner.",
+      "zh": "在農場，我們總是把雞蛋放那兒。不然雞怎麼看見它們？好。你去打掃客廳。我來做晚餐。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "What are you going to make with these ingredients?",
+      "zh": "你要用這些材料做什麼？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I have a plan.",
+      "zh": "我有計劃。"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Okay, the apartment is clean. The kitchen is not. What are you cooking?",
+      "zh": "好，公寓乾淨了。廚房沒有。你在做什麼？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I made my favorite recipe: peanut-butter-banana pancakes!",
+      "zh": "我做了我最喜歡的食譜：花生醬香蕉煎餅！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "You made breakfast.",
+      "zh": "你做了早餐。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes! I call it let's-eat-breakfast-for-dinner dinner!",
+      "zh": "是的！我叫它“晚餐吃早餐”晚餐！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "Anna! Mmm! Hey, this tastes good! Anna, you made it work!",
+      "zh": "安娜！嗯！嘿，這味道不錯！安娜，你搞定了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "That's our guests!",
+      "zh": "客人到了！"
+    },
+    {
+      "speaker": "Marsha",
+      "en": "I'll answer the door.",
+      "zh": "我去開門。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I'll finish here.",
+      "zh": "我在這兒收尾。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Like I said, sometimes Marsha worries too much. When something goes wrong with your plan, just change the plan! Till next time!",
+      "zh": "就像我說的，有時候瑪莎擔心太多。計劃出問題時，就換個計劃！下次見！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Where does Anna put the flour?",
+      "choices": [
+        "In the cabinets",
+        "Inside the refrigerator",
+        "Under the sink"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "Where are the eggs?",
+      "choices": [
+        "Inside the cabinet under the sink",
+        "In the refrigerator",
+        "On the table"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What does Anna cook for dinner?",
+      "choices": [
+        "A salad",
+        "Chicken soup",
+        "Peanut-butter-banana pancakes"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-35",
+    "number": 35,
+    "level": 1,
+    "title": "Let's Learn English Lesson 35",
+    "subtitle": "Let's Make Dinner!"
+  },
+  "next": {
+    "id": "lle1-37",
+    "number": 37,
+    "level": 1,
+    "title": "Let's Learn English Lesson 37",
+    "subtitle": "Let's Agree to Disagree"
+  },
+  "levelLessonIds": [
+    "lle1-01",
+    "lle1-02",
+    "lle1-03",
+    "lle1-04",
+    "lle1-05",
+    "lle1-06",
+    "lle1-07",
+    "lle1-08",
+    "lle1-09",
+    "lle1-10",
+    "lle1-11",
+    "lle1-12",
+    "lle1-13",
+    "lle1-14",
+    "lle1-15",
+    "lle1-16",
+    "lle1-17",
+    "lle1-18",
+    "lle1-19",
+    "lle1-20",
+    "lle1-21",
+    "lle1-22",
+    "lle1-23",
+    "lle1-24",
+    "lle1-25",
+    "lle1-26",
+    "lle1-27",
+    "lle1-28",
+    "lle1-29",
+    "lle1-30",
+    "lle1-31",
+    "lle1-32",
+    "lle1-33",
+    "lle1-34",
+    "lle1-35",
+    "lle1-36",
+    "lle1-37",
+    "lle1-38",
+    "lle1-39",
+    "lle1-40",
+    "lle1-41",
+    "lle1-42",
+    "lle1-43",
+    "lle1-44",
+    "lle1-45",
+    "lle1-46",
+    "lle1-47",
+    "lle1-48",
+    "lle1-49",
+    "lle1-50",
+    "lle1-51",
+    "lle1-52"
+  ]
+}

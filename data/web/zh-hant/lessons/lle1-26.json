@@ -1,0 +1,239 @@
+{
+  "id": "lle1-26",
+  "number": 26,
+  "level": 1,
+  "levelId": "lle1",
+  "title": "Let's Learn English Lesson 26",
+  "subtitle": "This Game Is Fun!",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/b/b9/b9ddf673-07ec-4557-b33d-37cf6315e3e3_720p.mp4",
+  "youtubeId": "",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-26-this-game-is-fun/3457248.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 26: This Game Is Fun! (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "This is the Roosevelt Memorial. Where is the symbol?",
+      "zh": "這是羅斯福紀念堂。那個象徵在哪裡？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yay! I found Uncle Sam and I won another 40 points! What is the Fun Fact?",
+      "zh": "耶！我找到了山姆大叔，又得了 40 分！趣聞是什麼？"
+    },
+    {
+      "speaker": "Voice",
+      "en": "Franklin Roosevelt was the first to fly in a plane as president!",
+      "zh": "富蘭克林·羅斯福是第一位以總統身份坐飛機的人！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I didn't know that. This is a really beautiful memorial.",
+      "zh": "我以前不知道。這座紀念堂真漂亮。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This is the Lincoln Memorial! Where is the symbol?",
+      "zh": "這是林肯紀念堂！那個象徵在哪裡？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I found it! The Statue of Liberty! Please give me my Fun Fact.",
+      "zh": "找到了！自由女神像！請給我趣聞。"
+    },
+    {
+      "speaker": "Voice",
+      "en": "Abraham Lincoln was a great wrestler!",
+      "zh": "亞伯拉罕·林肯是個很棒的摔跤手！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I didn't know that. Lincoln wanted freedom for all people. So, the Statue of Liberty works well.",
+      "zh": "我以前不知道。林肯希望所有人都自由。所以自由女神像很合適。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "And I won 20 points! Time to find the next symbol.",
+      "zh": "我還得了 20 分！該找下一個象徵了。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Hey! Look out!",
+      "zh": "嘿！小心！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sorry. Hey, it's you! Now, I should be more careful.",
+      "zh": "抱歉。嘿，是你！現在我該更小心了。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "That's okay.",
+      "zh": "沒關係。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "This game is a lot of fun. Hey, what's your name?",
+      "zh": "這個遊戲很好玩。嘿，你叫什麼名字？"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Dan. What's yours?",
+      "zh": "丹。你呢？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Anna.",
+      "zh": "安娜。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Like Americana!",
+      "zh": "就像 Americana！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yeah, I guess so.",
+      "zh": "嗯，算是吧。"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Did you find any symbols?",
+      "zh": "你找到象徵了嗎？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, I found three and won 120 points!",
+      "zh": "找到了，我找到三個，得了 120 分！"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Me too. But, did you find the bald eagle?",
+      "zh": "我也是。不過，你找到白頭海雕了嗎？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No. Did you?",
+      "zh": "沒有。你呢？"
+    },
+    {
+      "speaker": "Dan",
+      "en": "No.",
+      "zh": "沒有。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "First one to find it wins?",
+      "zh": "誰先找到誰贏？"
+    },
+    {
+      "speaker": "Dan",
+      "en": "Anna, look out for that tree!",
+      "zh": "安娜，小心那棵樹！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I learned a lot about presidents with this game. But I ought to be more careful. Until next time …!",
+      "zh": "這個遊戲讓我學到很多總統的事。不過我應該更小心。下次見……！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Where does Anna find Uncle Sam?",
+      "choices": [
+        "The Jefferson Memorial",
+        "The Roosevelt Memorial",
+        "The Lincoln Memorial"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What Fun Fact does Anna hear about Abraham Lincoln?",
+      "choices": [
+        "He wrote 19,000 letters",
+        "He was the first to fly as president",
+        "He was a great wrestler"
+      ],
+      "answerIndex": 2
+    },
+    {
+      "id": "q3",
+      "prompt": "How many points does Anna say she won?",
+      "choices": [
+        "40",
+        "100",
+        "120"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-25",
+    "number": 25,
+    "level": 1,
+    "title": "Let's Learn English Lesson 25",
+    "subtitle": "Watch Out!"
+  },
+  "next": {
+    "id": "lle1-27",
+    "number": 27,
+    "level": 1,
+    "title": "Let's Learn English Lesson 27",
+    "subtitle": "I Can't Come In"
+  },
+  "levelLessonIds": [
+    "lle1-01",
+    "lle1-02",
+    "lle1-03",
+    "lle1-04",
+    "lle1-05",
+    "lle1-06",
+    "lle1-07",
+    "lle1-08",
+    "lle1-09",
+    "lle1-10",
+    "lle1-11",
+    "lle1-12",
+    "lle1-13",
+    "lle1-14",
+    "lle1-15",
+    "lle1-16",
+    "lle1-17",
+    "lle1-18",
+    "lle1-19",
+    "lle1-20",
+    "lle1-21",
+    "lle1-22",
+    "lle1-23",
+    "lle1-24",
+    "lle1-25",
+    "lle1-26",
+    "lle1-27",
+    "lle1-28",
+    "lle1-29",
+    "lle1-30",
+    "lle1-31",
+    "lle1-32",
+    "lle1-33",
+    "lle1-34",
+    "lle1-35",
+    "lle1-36",
+    "lle1-37",
+    "lle1-38",
+    "lle1-39",
+    "lle1-40",
+    "lle1-41",
+    "lle1-42",
+    "lle1-43",
+    "lle1-44",
+    "lle1-45",
+    "lle1-46",
+    "lle1-47",
+    "lle1-48",
+    "lle1-49",
+    "lle1-50",
+    "lle1-51",
+    "lle1-52"
+  ]
+}

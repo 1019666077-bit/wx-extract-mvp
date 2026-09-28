@@ -1,0 +1,279 @@
+{
+  "id": "lle1-07",
+  "number": 7,
+  "level": 1,
+  "levelId": "lle1",
+  "title": "Let's Learn English Lesson 7",
+  "subtitle": "What Are You Doing?",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/5/54/54ebe82e-9578-4c39-9ca9-42dae639be4f_hq.mp4",
+  "youtubeId": "",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-7-what-are-you-doing/3240468.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 7: What Are You Doing? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Caty",
+      "en": "Come in.",
+      "zh": "进来。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "Well, Anna, welcome.",
+      "zh": "安娜，欢迎。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thank you.",
+      "zh": "谢谢。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "I am your boss, Caty Weaver. But, please call me Caty.",
+      "zh": "我是你的老板，凯蒂·韦弗。不过，请叫我凯蒂。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thank you, Ms. Weaver.",
+      "zh": "谢谢您，韦弗女士。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "Just Caty.",
+      "zh": "叫凯蒂就行。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sure thing, Ms. Weaver.",
+      "zh": "好的，韦弗女士。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "Okay then. Are you excited?",
+      "zh": "那好。你兴奋吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, I am excited!",
+      "zh": "是的，我很兴奋！"
+    },
+    {
+      "speaker": "Caty",
+      "en": "So sorry, but I am busy. Please meet your co-workers. But remember, they are busy working.",
+      "zh": "抱歉，我很忙。去见见你的同事吧。不过记住，他们正在忙着工作。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi there! I’m Anna.",
+      "zh": "你好！我是安娜。"
+    },
+    {
+      "speaker": "Anne",
+      "en": "Hi, Anna. I’m Anne.",
+      "zh": "嗨，安娜。我是安妮。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Nice to meet you. What are you doing?",
+      "zh": "很高兴认识你。你在做什么？"
+    },
+    {
+      "speaker": "Anne",
+      "en": "Um, I’m writing.",
+      "zh": "嗯，我在写东西。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "You are writing! You are writing a lot!",
+      "zh": "你在写东西！你写得真多！"
+    },
+    {
+      "speaker": "Anne",
+      "en": "No! No! That's okay.",
+      "zh": "不！不！没关系。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I am sorry!",
+      "zh": "对不起！"
+    },
+    {
+      "speaker": "Jonathan",
+      "en": "and people all around the world are waiting to hear news about the next president…",
+      "zh": "全世界的人都在等待下一位总统的消息……"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Jonathan, hi! Remember me? I live in your building.",
+      "zh": "乔纳森，嗨！还记得我吗？我住在你那栋楼里。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "What are you doing?",
+      "zh": "你在做什么？"
+    },
+    {
+      "speaker": "Jonathan",
+      "en": "I am doing my show!",
+      "zh": "我在做我的节目！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, sorry. Are you recording?",
+      "zh": "哦，抱歉。你在录音吗？"
+    },
+    {
+      "speaker": "Jonathan",
+      "en": "Yes! And, now I have to record again!",
+      "zh": "是的！现在我又得重新录一遍！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sorry. Have a good show.",
+      "zh": "抱歉。节目顺利。"
+    },
+    {
+      "speaker": "Amelia",
+      "en": "The word of the day is social.",
+      "zh": "今日单词是 social。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Nice to meet you! What are you doing?",
+      "zh": "很高兴认识你！你在做什么？"
+    },
+    {
+      "speaker": "Amelia",
+      "en": "I’m reading.",
+      "zh": "我在读稿。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Are you reading the news?",
+      "zh": "你在读新闻吗？"
+    },
+    {
+      "speaker": "Amelia",
+      "en": "No, I’m reading for my show.",
+      "zh": "不是，我在为我的节目读稿。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "Anna! Hi! What’re you doing?",
+      "zh": "安娜！嗨！你在做什么？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I am bothering people, Ms. Weaver.",
+      "zh": "我在打扰别人，韦弗女士。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "Let’s go to my office and talk.",
+      "zh": "我们去我办公室谈谈。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I like to talk with you, Ms. Weaver.",
+      "zh": "我喜欢和您聊天，韦弗女士。"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Who is Anna's boss?",
+      "choices": [
+        "Anne",
+        "Caty Weaver",
+        "Amelia"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What is Anne doing?",
+      "choices": [
+        "She is writing",
+        "She is recording a show",
+        "She is reading the news"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What does Anna say she is doing at the end?",
+      "choices": [
+        "I am writing",
+        "I am recording",
+        "I am bothering people"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-06",
+    "number": 6,
+    "level": 1,
+    "title": "Let's Learn English Lesson 6",
+    "subtitle": "Where Is the Gym?"
+  },
+  "next": {
+    "id": "lle1-08",
+    "number": 8,
+    "level": 1,
+    "title": "Let's Learn English Lesson 8",
+    "subtitle": "Are You Busy?"
+  },
+  "levelLessonIds": [
+    "lle1-01",
+    "lle1-02",
+    "lle1-03",
+    "lle1-04",
+    "lle1-05",
+    "lle1-06",
+    "lle1-07",
+    "lle1-08",
+    "lle1-09",
+    "lle1-10",
+    "lle1-11",
+    "lle1-12",
+    "lle1-13",
+    "lle1-14",
+    "lle1-15",
+    "lle1-16",
+    "lle1-17",
+    "lle1-18",
+    "lle1-19",
+    "lle1-20",
+    "lle1-21",
+    "lle1-22",
+    "lle1-23",
+    "lle1-24",
+    "lle1-25",
+    "lle1-26",
+    "lle1-27",
+    "lle1-28",
+    "lle1-29",
+    "lle1-30",
+    "lle1-31",
+    "lle1-32",
+    "lle1-33",
+    "lle1-34",
+    "lle1-35",
+    "lle1-36",
+    "lle1-37",
+    "lle1-38",
+    "lle1-39",
+    "lle1-40",
+    "lle1-41",
+    "lle1-42",
+    "lle1-43",
+    "lle1-44",
+    "lle1-45",
+    "lle1-46",
+    "lle1-47",
+    "lle1-48",
+    "lle1-49",
+    "lle1-50",
+    "lle1-51",
+    "lle1-52"
+  ]
+}

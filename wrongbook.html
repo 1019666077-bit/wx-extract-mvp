@@ -1,36 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>错题本 · Let's Learn English</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!--seo:start-->
+<title>VOA慢速英语错题本｜Let&#39;s Learn English</title>
+  <meta name="description" content="把 VOA Let&#39;s Learn English 测验里错过的题收进错题本。按课程归类复习，答对后自动移除，方便对照中英字幕补上慢速英语听力。" />
+  <link rel="canonical" href="https://1019666077-bit.github.io/wx-extract-mvp/wrongbook.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="VOA慢速英语自学" />
+  <meta property="og:title" content="VOA慢速英语错题本｜Let&#39;s Learn English" />
+  <meta property="og:description" content="把 VOA Let&#39;s Learn English 测验里错过的题收进错题本。按课程归类复习，答对后自动移除，方便对照中英字幕补上慢速英语听力。" />
+  <meta property="og:url" content="https://1019666077-bit.github.io/wx-extract-mvp/wrongbook.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="VOA慢速英语错题本｜Let&#39;s Learn English" />
+  <meta name="twitter:description" content="把 VOA Let&#39;s Learn English 测验里错过的题收进错题本。按课程归类复习，答对后自动移除，方便对照中英字幕补上慢速英语听力。" />
+  <meta name="theme-color" content="#0b6e4f" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b6e4f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' fill='white' font-family='sans-serif'%3EV%3C/text%3E%3C/svg%3E" />
+<!--seo:end-->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body data-page="wrongbook">
   <div class="page">
-    <nav class="site-nav" aria-label="Site">
+    <nav class="site-nav" aria-label="站点">
       <a href="index.html">课表</a>
       <a href="progress.html">打卡</a>
       <a href="wrongbook.html" aria-current="page" data-wrongbook-count>错题本</a>
       <a href="pricing.html" data-unlock-status>开通</a>
     </nav>
     <header class="header">
-      <p class="eyebrow">Review misses</p>
+      <p class="eyebrow">VOA 慢速英语 · 错题复习</p>
       <h1>错题本</h1>
-      <p class="subtitle">Wrong quiz answers stay on this device. Answer the same question correctly later and it is removed.</p>
+      <p class="subtitle">错过的测验题保存在这台设备上。之后同一题答对，就会从错题本里去掉。</p>
       <div class="quiz-actions">
         <button type="button" id="clear-wrongbook" class="btn" hidden>清除全部</button>
       </div>
     </header>
-    <section class="wrongbook-section" aria-label="Wrong-answer book">
+    <section class="wrongbook-section" aria-label="错题本">
       <div id="wrongbook"></div>
     </section>
     <footer class="footer">
-      <p>This unofficial study helper is not affiliated with Voice of America. Lesson videos and scripts are in the public domain.</p>
+      <p>本站为非官方自学工具，与美国之音（Voice of America）没有隶属关系。课文视频与脚本来自 VOA Learning English，属于公有领域。</p>
     </footer>
   </div>
-  <script src="js/study.js"></script>
-  <script src="js/unlock.js"></script>
-  <script src="js/app.js"></script>
+  <script type="module" src="js/study.js"></script>
+  <script type="module" src="js/unlock.js"></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>

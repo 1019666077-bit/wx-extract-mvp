@@ -3,6 +3,44 @@ const OLD_QUIZ_KEY = "voa-lle1-01-quiz";
 const CATALOG_LEVEL_KEY = "voa-lle-catalog-level";
 const WECHAT_CONTACT = "15232188653";
 
+function siteRoot() {
+  const path = window.location.pathname;
+  const marker = "/lessons/";
+  const at = path.lastIndexOf(marker);
+  if (at !== -1) {
+    return path.slice(0, at + 1);
+  }
+  if (path.endsWith("/")) {
+    return path;
+  }
+  const segment = path.slice(path.lastIndexOf("/") + 1);
+  if (segment.includes(".")) {
+    return path.slice(0, path.lastIndexOf("/") + 1);
+  }
+  return `${path}/`;
+}
+
+function sitePath(relative) {
+  const clean = String(relative || "").replace(/^\//, "");
+  return `${siteRoot()}${clean}`;
+}
+
+function readJsonScript(id) {
+  const node = document.getElementById(id);
+  if (!node) {
+    return null;
+  }
+  const text = node.textContent.trim();
+  if (!text) {
+    return null;
+  }
+  try {
+    return JSON.parse(text);
+  } catch (error) {
+    return null;
+  }
+}
+
 function escapeHtml(value) {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -13,9 +51,13 @@ function escapeHtml(value) {
 }
 
 async function loadLessons() {
-  const response = await fetch("data/lessons.json");
+  const embedded = readJsonScript("catalog-data");
+  if (embedded && Array.isArray(embedded.levels)) {
+    return embedded;
+  }
+  const response = await fetch(sitePath("data/web/catalog.json"));
   if (!response.ok) {
-    throw new Error("Unable to load lesson data.");
+    throw new Error("课程数据暂时加载不上，请刷新再试。");
   }
   return response.json();
 }
@@ -86,9 +128,9 @@ function selectedLevelId(catalog) {
 }
 
 async function loadCodes() {
-  const response = await fetch("data/codes.json");
+  const response = await fetch(sitePath("data/codes.json"));
   if (!response.ok) {
-    throw new Error("Unable to load redeem codes.");
+    throw new Error("兑换码列表暂时加载不上，请稍后再试。");
   }
   const payload = await response.json();
   return Array.isArray(payload.codes) ? payload.codes : [];
@@ -232,18 +274,11 @@ function renderUnlockNav() {
 }
 
 function renderCatalog(catalog, levelId) {
-  const course = catalog.course || {};
   const level = findLevel(catalog, levelId);
   const lessons = level.lessons;
   const progress = migrateOldProgress();
   const unlocked = VOAUnlock.isUnlocked();
   writeStoredLevelId(level.id);
-
-  document.title = course.title || "Let's Learn English";
-  document.getElementById("course-title").textContent =
-    course.title || "Let's Learn English";
-  document.getElementById("course-pitch").textContent = course.pitch || "";
-  document.getElementById("course-disclaimer").textContent = course.disclaimer || "";
 
   const catalogHeading = document.querySelector(".catalog-section h2");
   if (catalogHeading) {
@@ -271,9 +306,7 @@ function renderCatalog(catalog, levelId) {
         !locked && status === "done" && typeof entry.score === "number"
           ? `测验 ${entry.score} / ${entry.total}`
           : "";
-      const href = locked
-        ? "pricing.html"
-        : `lesson.html?id=${encodeURIComponent(lesson.id)}`;
+      const href = sitePath(`lessons/${encodeURIComponent(lesson.id)}.html`);
       const buttonLabel = locked ? "开通解锁" : actionLabel(status);
       const badge = locked
         ? `<p class="status-badge status-locked">未解锁</p>`
@@ -349,7 +382,7 @@ function renderLevelProgress(level, progress) {
   root.innerHTML = `
     <div class="level-progress-row">
       <p class="level-progress-count">已完成 <strong>${done}</strong> / ${total}</p>
-      <p class="level-progress-hint">${escapeHtml(checkinHintText())} · <a href="progress.html">打开打卡</a></p>
+      <p class="level-progress-hint">${escapeHtml(checkinHintText())} · <a href="${sitePath("progress.html")}">打开打卡</a></p>
     </div>
     <div class="level-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="${total}" aria-valuenow="${done}" aria-label="${escapeHtml(label)} 完成进度">
       <span style="width: ${percent}%"></span>
@@ -371,10 +404,10 @@ function renderLevelClear(level, progress, unlocked) {
   }
 
   const cta = unlocked
-    ? `<a class="btn primary" href="progress.html">继续打卡</a>
-       <a class="btn" href="wrongbook.html">复习错题本</a>`
-    : `<a class="btn primary" href="pricing.html">开通解锁，把习惯学下去</a>
-       <a class="btn" href="wrongbook.html">复习错题本</a>`;
+    ? `<a class="btn primary" href="${sitePath("progress.html")}">继续打卡</a>
+       <a class="btn" href="${sitePath("wrongbook.html")}">复习错题本</a>`
+    : `<a class="btn primary" href="${sitePath("pricing.html")}">开通解锁，把习惯学下去</a>
+       <a class="btn" href="${sitePath("wrongbook.html")}">复习错题本</a>`;
 
   root.hidden = false;
   root.innerHTML = `
@@ -624,7 +657,7 @@ function gradeQuiz(lesson, level = null) {
     summary += ` · 错题本 ${wrongCount} 题`;
   }
   if (isLastIncomplete && level?.id === "lle1" && levelLessons.length) {
-    result.innerHTML = `${escapeHtml(summary)}<span class="clear-note">Level 1 通关！你完成了全部 ${levelLessons.length} 课测验。<a href="index.html?level=lle1">回课表看通关纪念</a></span>`;
+    result.innerHTML = `${escapeHtml(summary)}<span class="clear-note">Level 1 通关！你完成了全部 ${levelLessons.length} 课测验。<a href="${sitePath("index.html?level=lle1")}">回课表看通关纪念</a></span>`;
     return;
   }
   result.textContent = summary;
@@ -647,29 +680,48 @@ function hideLessonBody() {
   });
 }
 
+function showLessonBody() {
+  document.querySelectorAll(".video-section, .dialogue-section, .quiz-section").forEach((el) => {
+    el.hidden = false;
+  });
+  const wall = document.getElementById("lesson-paywall");
+  if (wall) {
+    wall.hidden = true;
+  }
+  const excerpt = document.querySelector(".excerpt-section");
+  if (excerpt) {
+    excerpt.hidden = true;
+  }
+}
+
 function renderLessonPaywall(lesson, level) {
   hideLessonBody();
-  document.title = `${lesson.title} · 未解锁`;
-  document.getElementById("lesson-title").textContent = lesson.title;
-  document.getElementById("lesson-subtitle").textContent = "该课需开通后学习";
-  document.getElementById("attribution").textContent = lesson.attribution || "";
+  const excerpt = document.querySelector(".excerpt-section");
+  if (excerpt) {
+    excerpt.hidden = false;
+  }
+  const attribution = document.getElementById("attribution");
+  if (attribution && lesson.attribution) {
+    attribution.textContent = lesson.attribution;
+  }
 
   const existing = document.getElementById("lesson-paywall");
   if (existing) {
-    existing.remove();
+    existing.hidden = false;
+    return;
   }
 
-  const backHref = `index.html?level=${encodeURIComponent(level?.id || "lle1")}`;
+  const backHref = sitePath(`index.html?level=${encodeURIComponent(level?.id || "lle1")}`);
   const overlay = document.createElement("section");
   overlay.id = "lesson-paywall";
   overlay.className = "paywall-section";
-  overlay.setAttribute("aria-label", "Paywall");
+  overlay.setAttribute("aria-label", "开通后学习");
   overlay.innerHTML = `
     <h2>课程未解锁</h2>
     <p>免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。</p>
     <p>下一步：去开通页看方案，微信联系 <strong>${WECHAT_CONTACT}</strong> 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。</p>
     <div class="quiz-actions">
-      <a class="btn primary" href="pricing.html">去开通 · 输入兑换码</a>
+      <a class="btn primary" href="${sitePath("pricing.html")}">去开通 · 输入兑换码</a>
       <a class="btn" href="${backHref}">返回课表</a>
     </div>
   `;
@@ -695,14 +747,11 @@ function renderLessonPager(lessons, current) {
       return `<span class="pager-placeholder">${label}</span>`;
     }
     const locked = !VOAUnlock.canOpenLesson(lesson);
-    const href = locked ? "pricing.html" : `lesson.html?id=${encodeURIComponent(lesson.id)}`;
-    const label = locked
-      ? kind === "prev"
-        ? "上一课未解锁 · 去开通"
-        : "下一课未解锁 · 去开通"
-      : kind === "prev"
-        ? `← 上一课 · ${lesson.number}`
-        : `下一课 · ${lesson.number} →`;
+    const href = sitePath(`lessons/${encodeURIComponent(lesson.id)}.html`);
+    const label =
+      kind === "prev"
+        ? `← 上一课 · ${lesson.number}${locked ? "（未解锁）" : ""}`
+        : `下一课 · ${lesson.number}${locked ? "（未解锁）" : ""} →`;
     const cls = ["btn"];
     if (!locked && kind === "next") {
       cls.push("primary");
@@ -720,12 +769,27 @@ function renderLessonPager(lessons, current) {
 }
 
 function renderLesson(lesson) {
-  document.title = lesson.title;
-  document.getElementById("lesson-title").textContent = lesson.title;
-  document.getElementById("lesson-subtitle").textContent = lesson.subtitle;
+  const heading = document.getElementById("lesson-title");
+  if (heading) {
+    const sub = lesson.subtitle ? ` ${lesson.subtitle}` : "";
+    heading.textContent = `VOA慢速英语第${lesson.number}课${sub}`;
+  }
+  const subtitle = document.getElementById("lesson-subtitle");
+  if (subtitle) {
+    const levelName = Number(lesson.level) === 2 || lesson.levelId === "lle2" ? "Level 2" : "Level 1";
+    subtitle.textContent = `${levelName} · 第${lesson.number}课`;
+  }
 
   const video = document.getElementById("lesson-video");
-  video.src = lesson.videoUrl;
+  if (video) {
+    video.preload = "none";
+    if (!video.getAttribute("poster")) {
+      video.poster = sitePath("img/poster.svg");
+    }
+    if (lesson.videoUrl && video.getAttribute("src") !== lesson.videoUrl) {
+      video.src = lesson.videoUrl;
+    }
+  }
 
   const youtubeLink = document.getElementById("youtube-link");
   const youtubeSep = document.getElementById("youtube-sep");
@@ -795,7 +859,7 @@ function renderWrongbookPage() {
               <p class="wrong-prompt">${escapeHtml(item.prompt)}</p>
               <ul class="wrong-choices">${choices}</ul>
               <div class="wrong-actions">
-                <a class="btn primary" href="lesson.html?id=${encodeURIComponent(item.lessonId)}#quiz">再练</a>
+                <a class="btn primary" href="${sitePath(`lessons/${encodeURIComponent(item.lessonId)}.html`)}#quiz">再练</a>
                 <button type="button" class="btn" data-remove-wrong>清除这题</button>
               </div>
             </article>
@@ -835,57 +899,113 @@ async function initCatalog() {
   }
 }
 
+function lessonLevelId(lesson) {
+  if (lesson.levelId) {
+    return lesson.levelId;
+  }
+  return Number(lesson.level) === 2 || String(lesson.id || "").startsWith("lle2") ? "lle2" : "lle1";
+}
+
+function lessonStub() {
+  const params = new URLSearchParams(window.location.search);
+  const nav = readJsonScript("lesson-nav") || {};
+  const id = document.body.dataset.lessonId || params.get("id") || "";
+  const level = Number(
+    document.body.dataset.lessonLevel || nav.level || (String(id).startsWith("lle2") ? 2 : 1)
+  );
+  return {
+    id,
+    number: Number(document.body.dataset.lessonNumber || String(id).match(/(\d+)$/)?.[1] || 0),
+    level,
+    levelId: document.body.dataset.levelId || nav.levelId || (level === 2 ? "lle2" : "lle1"),
+    prev: nav.prev || null,
+    next: nav.next || null,
+    attribution: document.getElementById("attribution")?.textContent || "",
+  };
+}
+
+function levelView(lesson) {
+  const ids = Array.isArray(lesson.levelLessonIds) ? lesson.levelLessonIds : [];
+  return {
+    id: lessonLevelId(lesson),
+    lessons: ids.map((lessonId) => ({ id: lessonId })),
+  };
+}
+
+function pagerChain(lesson) {
+  return [lesson.prev, lesson, lesson.next].filter(Boolean);
+}
+
+function bindLessonChrome(lesson) {
+  const levelId = lessonLevelId(lesson);
+  writeStoredLevelId(levelId);
+  const backLink = document.querySelector(".back-link");
+  if (backLink) {
+    const label = levelId === "lle2" ? "Level 2" : "Level 1";
+    backLink.href = sitePath(`index.html?level=${encodeURIComponent(levelId)}`);
+    backLink.textContent = `← ${label} · 课表`;
+  }
+}
+
+async function loadLessonDocument(lessonId) {
+  const embedded = readJsonScript("lesson-data");
+  if (embedded && embedded.id === lessonId) {
+    return embedded;
+  }
+  const response = await fetch(sitePath(`data/web/lessons/${encodeURIComponent(lessonId)}.json`));
+  if (!response.ok) {
+    throw new Error(`找不到课程 ${lessonId}。`);
+  }
+  return response.json();
+}
+
 async function initLesson() {
   const result = document.getElementById("quiz-result");
-  const lessonId = new URLSearchParams(window.location.search).get("id");
+  const params = new URLSearchParams(window.location.search);
+  const queryId = params.get("id");
+  if (!document.body.dataset.lessonId && queryId && /^lle[12]-\d{2}$/.test(queryId)) {
+    window.location.replace(`${sitePath(`lessons/${queryId}.html`)}${window.location.hash}`);
+    return;
+  }
 
-  if (!lessonId) {
-    result.textContent = "No lesson selected.";
+  const stub = lessonStub();
+  if (!stub.id) {
+    if (result) {
+      result.textContent = "请从课表选择一课。";
+    }
     return;
   }
 
   try {
-    const catalog = normalizeCatalog(await loadLessons());
-    const found = findLessonInCatalog(catalog, lessonId);
-    const lesson = found.lesson;
-    const level = found.level;
-    if (!lesson || !level) {
-      throw new Error(`Lesson ${lessonId} was not found.`);
-    }
-
-    const lessons = level.lessons;
-    writeStoredLevelId(level.id);
-    const backLink = document.querySelector(".back-link");
-    if (backLink) {
-      const label = level.id === "lle2" ? "Level 2" : "Level 1";
-      backLink.href = `index.html?level=${encodeURIComponent(level.id)}`;
-      backLink.textContent = `← ${label} · 课表`;
-    }
-
     migrateOldProgress();
     renderUnlockNav();
     updateWrongbookNavCount();
+    bindLessonChrome(stub);
 
-    if (!VOAUnlock.canOpenLesson(lesson)) {
-      renderLessonPaywall(lesson, level);
-      renderLessonPager(lessons, lesson);
+    if (!VOAUnlock.canOpenLesson(stub)) {
+      renderLessonPaywall(stub, levelView(stub));
+      renderLessonPager(pagerChain(stub), stub);
       return;
     }
 
+    const lesson = await loadLessonDocument(stub.id);
     markLessonStarted(lesson.id);
+    showLessonBody();
     renderLesson(lesson);
-    renderLessonPager(lessons, lesson);
+    renderLessonPager(pagerChain(lesson), lesson);
     applyStoredQuiz(readProgress()[lesson.id]);
 
     document.getElementById("quiz-form").addEventListener("submit", (event) => {
       event.preventDefault();
-      gradeQuiz(lesson, level);
+      gradeQuiz(lesson, levelView(lesson));
     });
     document.getElementById("reset-quiz").addEventListener("click", () => {
       resetQuiz(lesson.id);
     });
   } catch (error) {
-    result.textContent = error.message;
+    if (result) {
+      result.textContent = error.message;
+    }
   }
 }
 

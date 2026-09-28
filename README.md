@@ -26,7 +26,7 @@ This is frontend-only. There is no login, backend, or crawler. It is **not** an 
 | 打卡 | `progress.html` | Dedicated streak + month grid |
 | 错题本 | `wrongbook.html` | Missed questions grouped by lesson |
 | 开通 | `pricing.html` | Plans, manual-payment note, redeem-code unlock |
-| Lesson | `lesson.html?id=lle1-01` | Video, dialogue, quiz. Paid lessons show a paywall until unlocked. Prev/next stay inside the current level |
+| Lesson | `lessons/lle1-01.html` | One static page per lesson. Video, dialogue, quiz. Paid lessons show a paywall until unlocked. Prev/next stay inside the current level. Old `lesson.html?id=lle1-01` redirects here |
 
 Shared render, quiz, progress, check-in, unlock, and wrong-book logic lives in `js/study.js`, `js/unlock.js`, and `js/app.js`.
 
@@ -49,7 +49,7 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 2. Start a free lesson, watch the VOA MP4, read the dialogue, then submit the quiz.
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
-5. Open **错题本** to review misses. **再练** returns to `lesson.html?id=...`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
+5. Open **错题本** to review misses. **再练** returns to `lessons/<id>.html#quiz`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
 6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 ¥39（30 天） or 季卡 ¥99（90 天）, pay via WeChat **15232188653**, then enter the redeem code you receive. Nav shows **已解锁** afterward. Use **退出解锁** on the pricing page to reset this browser.
 
 ## Paywall / redeem codes
@@ -96,14 +96,40 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 Opening `index.html` as a file URL will not load the JSON.
 
-Check-in, wrong-book, unlock, miniprogram, and video-map helpers can be unit-tested with:
+Check-in, wrong-book, unlock, miniprogram, video-map, and the static-page generator can be unit-tested with:
 
 ```bash
-node --test js/study.test.js js/unlock.test.js js/mp-scaffold.test.js js/video.test.js
+node --test js/*.test.js
 bash scripts/check-codes-json.sh
 bash scripts/build-mp-data.sh --check
 bash scripts/sync-voa-videos.sh --dry-run
+node scripts/build-pages.js --check
 ```
+
+## Crawlable lesson pages
+
+Each lesson has a static HTML page generated from `data/lessons.json`. Regenerate after editing lesson content:
+
+```bash
+node scripts/build-pages.js
+node scripts/build-pages.js --check
+```
+
+`--check` fails when `lessons/*.html`, `data/web/`, `sitemap.xml`, or `robots.txt` drift from `data/lessons.json`. The same check runs inside `node --test js/*.test.js`.
+
+URL pattern: `lessons/<id>.html`, for example:
+
+- https://1019666077-bit.github.io/wx-extract-mvp/lessons/lle1-01.html
+- https://1019666077-bit.github.io/wx-extract-mvp/lessons/lle1-06.html
+- https://1019666077-bit.github.io/wx-extract-mvp/lessons/lle2-01.html
+
+The catalog and lesson pages do not download the full `data/lessons.json`. The home page embeds a slim catalog (also written to `data/web/catalog.json`). Opening a lesson reads that page, and loads `data/web/lessons/<id>.json` only when the lesson is free or already unlocked.
+
+Locked lesson HTML includes the Chinese title, a short intro, and the first two dialogue lines. The video URL, the rest of the dialogue, and the quiz stay out of the HTML until unlock. The per-lesson JSON files are still public, same as the old single JSON file: the paywall is a frontend gate, not a secret.
+
+Sitemap: https://1019666077-bit.github.io/wx-extract-mvp/sitemap.xml
+
+`robots.txt` in this repo allows crawling and points at that sitemap. On a GitHub **project** page, crawlers read robots from the host root (`https://1019666077-bit.github.io/robots.txt`), not from the project path. Submit the sitemap URL in webmaster tools.
 
 Local testing note: there are **no public demo codes**, and `data/codes.json` stays empty in git. Unlock unit tests use their own fixtures. To try the redeem form locally, generate a code with `python3 scripts/gen-codes.py --monthly 1 --quarterly 0` and type it into the form (empty allowlist accepts `LLE-M-*` / `LLE-Q-*` format). Do not commit that code. Do not advertise codes to end users.
 
@@ -115,9 +141,9 @@ https://1019666077-bit.github.io/wx-extract-mvp/
 
 GitHub Pages is served from `main` at `/` (repo root). A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once.
 
-## WeChat miniprogram (M0 + M1 wiring)
+## WeChat miniprogram (paused)
 
-Native `mp-weixin` app lives in [`miniprogram/`](miniprogram/README.md). GitHub Pages is **not** the launch target. Open that folder (or the repo root) in WeChat DevTools with placeholder AppID `touristappid`.
+The public launch is this website on GitHub Pages. The native `mp-weixin` app in [`miniprogram/`](miniprogram/README.md) is paused; leave that folder in place. Open it in WeChat DevTools with placeholder AppID `touristappid` only if you resume that track.
 
 Lesson `<video>` reads **`miniprogram/data/video-map.json`** (D1 placeholder: L1 lessons 1–5 on `media.example.com`). Do **not** point the player at Akamai. COS keys stay off-repo (`.env.cos` / `mirror/` are gitignored). See the miniprogram README for the DevTools “don’t verify legal domain” switch.
 

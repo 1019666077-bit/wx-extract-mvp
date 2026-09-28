@@ -1,0 +1,7 @@
+# GitHub 项目页：搜索引擎只读取域名根目录的 robots.txt
+# （https://1019666077-bit.github.io/robots.txt），不会自动读取本文件。
+# 请在站长平台手动提交下面的 Sitemap。
+User-agent: *
+Allow: /
+
+Sitemap: https://1019666077-bit.github.io/wx-extract-mvp/sitemap.xml

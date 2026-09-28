@@ -1,3 +1,9 @@
 {
-  "origin": "https://1019666077-bit.github.io/wx-extract-mvp"
+  "origin": "https://1019666077-bit.github.io/wx-extract-mvp",
+  "payment": {
+    "waffo": {
+      "monthlyUrl": "",
+      "quarterlyUrl": ""
+    }
+  }
 }

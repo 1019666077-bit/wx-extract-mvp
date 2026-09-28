@@ -51,17 +51,17 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
 5. Open **错题本** to review misses. **再练** returns to `lessons/<id>.html#quiz`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
-6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 ¥39（30 天） or 季卡 ¥99（90 天）, pay via WeChat **15232188653**, then enter the redeem code you receive. Nav shows **已解锁** afterward. Use **退出解锁** on the pricing page to reset this browser.
+6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 US$5.99（30 天） or 季卡 US$13.99（90 天） and pay with the Waffo button. Until `payment.waffo.monthlyUrl` / `quarterlyUrl` in `site.config.json` are filled, those buttons stay disabled and say 即将开放 / 即將開放. After payment, enter the redeem code on the same page. People in mainland China can still pay manually via WeChat **15232188653** (smaller note on the page). Nav shows **已解锁** afterward. Use **退出解锁** on the pricing page to reset this browser.
 
 ## Paywall / redeem codes
 
-This is a frontend-only MVP. There is **no payment API, login, or backend**. Learners pay manually on WeChat; the operator sends a redeem code.
+This is a frontend-only MVP. There is **no payment API, login, or backend** yet. The primary buttons are Waffo links from `site.config.json` (`payment.waffo.monthlyUrl`, `payment.waffo.quarterlyUrl`). Both are empty until the merchant account has a checkout URL, so the buttons render disabled. Learners in mainland China can still pay manually on WeChat; the operator sends a redeem code. A later server that issues codes is sketched in [`docs/payment-waffo-plan.md`](docs/payment-waffo-plan.md).
 
 `data/codes.json` in this public repo **must stay** `{"codes":[]}`. Do not commit unused codes. When that allowlist is empty, the browser accepts codes matching `LLE-M-XXXXXX` (monthly, 30 days) or `LLE-Q-XXXXXX` (quarterly, 90 days). That format check is **not security**. Anyone who can guess the pattern or skip the lock in DevTools can still open paid lesson pages.
 
 **Operators:** follow [`docs/ops-redeem.md`](docs/ops-redeem.md). Generate with `python3 scripts/gen-codes.py`, send **only in WeChat private chat**, never commit the output. Before merge, run `bash scripts/check-codes-json.sh` (fails if `codes.length > 0`).
 
-Site copy: 免费试学仅 Level 1 第 1–5 课 · 打卡日历与错题本免费使用 · 开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）· 月付 30 天 / 季卡 90 天 · 微信联系 15232188653 人工付款后获兑换码。
+Site copy: 免费试学仅 Level 1 第 1–5 课 · 打卡日历与错题本免费使用 · 开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）· 月付 US$5.99 / 30 天 · 季卡 US$13.99 / 90 天 · Waffo 付款按钮（链接为空时显示即将开放）· 中国大陆可改用微信 15232188653 人工付款后获兑换码。
 
 ## Lesson data
 

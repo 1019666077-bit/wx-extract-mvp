@@ -18,6 +18,9 @@ const {
   buildSitemap,
   buildRobots,
   readLessons,
+  HANS,
+  loadWaffoLinks,
+  waffoPlansHtml,
   sourceLastmod,
   checkAll,
   HANT,
@@ -266,6 +269,58 @@ test("site origin comes only from site.config.json", () => {
       assert.equal(allowed, true, `${rel} has ${url}`);
     }
   }
+});
+
+test("empty Waffo links render disabled soon buttons", () => {
+  assert.deepEqual(loadWaffoLinks(root), { monthlyUrl: "", quarterlyUrl: "" });
+  assert.equal(convertToHant("即将开放"), "即將開放");
+  const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });
+  const hant = waffoPlansHtml(HANT, { monthlyUrl: "", quarterlyUrl: "   " });
+  assert.equal((hans.match(/<button type="button" class="btn waffo-pay" disabled>即将开放<\/button>/g) || []).length, 2);
+  assert.equal((hant.match(/<button type="button" class="btn waffo-pay" disabled>即將開放<\/button>/g) || []).length, 2);
+  assert.match(hans, /US\$5\.99/);
+  assert.match(hans, /US\$13\.99/);
+  assert.match(hans, /30 天/);
+  assert.match(hant, /90 天/);
+  assert.doesNotMatch(hans, /href=/);
+  assert.doesNotMatch(hant, /href=/);
+  const hansPage = fs.readFileSync(path.join(root, "pricing.html"), "utf8");
+  const hantPage = fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8");
+  assert.match(hansPage, /disabled>即将开放</);
+  assert.match(hantPage, /disabled>即將開放</);
+  assert.match(hansPage, /15232188653/);
+  assert.match(hantPage, /15232188653/);
+  assert.match(hansPage, /US\$5\.99/);
+  assert.match(hantPage, /US\$13\.99/);
+  assert.doesNotMatch(hansPage, /¥39/);
+  assert.doesNotMatch(hantPage, /href=""/);
+  assert.doesNotMatch(hantPage, /href="#"/);
+  assert.doesNotMatch(hansPage, /class="btn waffo-pay"[^>]*href/);
+});
+
+test("configured Waffo links become the payment button hrefs", () => {
+  const monthly = "https://pay.example/waffo/monthly";
+  const quarterly = "https://pay.example/waffo/quarterly";
+  const html = waffoPlansHtml(HANS, { monthlyUrl: monthly, quarterlyUrl: quarterly });
+  assert.match(html, new RegExp(`href="${monthly.replaceAll("/", "\\/")}"`));
+  assert.match(html, new RegExp(`href="${quarterly.replaceAll("/", "\\/")}"`));
+  assert.match(html, /target="_blank" rel="noopener noreferrer"/);
+  assert.match(html, /用 Waffo 支付 US\$5\.99/);
+  assert.match(html, /用 Waffo 支付 US\$13\.99/);
+  assert.doesNotMatch(html, /disabled/);
+  assert.doesNotMatch(html, /即将开放/);
+  assert.doesNotMatch(html, /github\.io/);
+  const level = levels.find((item) => item.id === "lle1");
+  const lesson = level.lessons.find((item) => item.id === "lle1-06");
+  const locked = buildLessonPage(level, lesson, level.lessons[4], level.lessons[6]);
+  assert.match(locked, /Waffo/);
+  assert.match(locked, /US\$5\.99/);
+  assert.match(locked, /US\$13\.99/);
+  assert.match(locked, /<strong>15232188653<\/strong>/);
+  assert.doesNotMatch(locked, /¥39/);
+  const lockedHant = buildLessonPage(level, lesson, level.lessons[4], level.lessons[6], HANT);
+  assert.match(lockedHant, /即將開放|Waffo/);
+  assert.match(lockedHant, /15232188653/);
 });
 
 test("study state keys stay shared between scripts", () => {

@@ -50,12 +50,80 @@ const OVERRIDES = [
 
 const toTaiwan = OpenCC.Converter({ from: "cn", to: "twp" });
 
+function loadSiteConfig(root) {
+  return JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
+}
+
 function loadSiteOrigin(root) {
-  const config = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
+  const config = loadSiteConfig(root);
   if (!config.origin || typeof config.origin !== "string" || !/^https?:\/\//.test(config.origin)) {
     throw new Error("site.config.json needs an absolute http(s) origin");
   }
   return config.origin.replace(/\/+$/, "");
+}
+
+function normalizePaymentUrl(value, key) {
+  if (value == null || value === "") {
+    return "";
+  }
+  if (typeof value !== "string" || !/^https:\/\/\S+$/.test(value.trim()) || /\s/.test(value)) {
+    throw new Error(`site.config.json payment.waffo.${key} must be an empty string or an https URL`);
+  }
+  return value.trim();
+}
+
+function loadWaffoLinks(root) {
+  const config = loadSiteConfig(root);
+  const waffo = config.payment && config.payment.waffo;
+  if (!waffo || typeof waffo !== "object") {
+    throw new Error("site.config.json needs payment.waffo.monthlyUrl and quarterlyUrl");
+  }
+  return {
+    monthlyUrl: normalizePaymentUrl(waffo.monthlyUrl, "monthlyUrl"),
+    quarterlyUrl: normalizePaymentUrl(waffo.quarterlyUrl, "quarterlyUrl"),
+  };
+}
+
+function paymentButton(locale, url, label) {
+  const href = typeof url === "string" ? url.trim() : "";
+  if (!href) {
+    return `<button type="button" class="btn waffo-pay" disabled>${escapeHtml(tx("即将开放", locale))}</button>`;
+  }
+  return `<a class="btn primary waffo-pay" href="${escapeHtml(href)}" target="_blank" rel="noopener noreferrer">${escapeHtml(tx(label, locale))}</a>`;
+}
+
+function waffoPlansHtml(locale, links) {
+  const source = links || {};
+  const plans = [
+    {
+      name: "月付",
+      price: "US$5.99",
+      note: "开通后 30 天有效",
+      featured: false,
+      url: source.monthlyUrl,
+      label: "用 Waffo 支付 US$5.99",
+    },
+    {
+      name: "季卡",
+      price: "US$13.99",
+      note: "开通后 90 天有效 · 约 US$4.66 / 月",
+      featured: true,
+      url: source.quarterlyUrl,
+      label: "用 Waffo 支付 US$13.99",
+    },
+  ];
+  const cards = plans
+    .map((plan) => {
+      const featured = plan.featured ? " is-featured" : "";
+      return `        <article class="plan-card${featured}">
+          <p class="plan-name">${escapeHtml(tx(plan.name, locale))}</p>
+          <p class="plan-price">${escapeHtml(plan.price)}</p>
+          <p class="plan-note">${escapeHtml(tx(plan.note, locale))}</p>
+          ${paymentButton(locale, plan.url, plan.label)}
+        </article>`;
+    })
+    .join("\n");
+  return `<div class="plan-grid">\n${cards}\n      </div>`;
 }
 
 const SITE = loadSiteOrigin(path.join(__dirname, ".."));
@@ -589,7 +657,7 @@ ${dialogueHtml((view.dialogue || []).slice(0, 2))}
     <section class="paywall-section" id="lesson-paywall" aria-label="${escapeHtml(tx("开通后学习", loc))}">
       <h2>${escapeHtml(tx("课程未解锁", loc))}</h2>
       <p>${escapeHtml(tx("免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。", loc))}</p>
-      <p>${escapeHtml(tx("下一步：去开通页看方案，微信联系 ", loc))}<strong>15232188653</strong>${escapeHtml(tx(" 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。", loc))}</p>
+      <p>${escapeHtml(tx("下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天），获兑换码后在开通页输入解锁。人在中国大陆也可以微信联系 ", loc))}<strong>15232188653</strong>${escapeHtml(tx(" 人工付款。", loc))}</p>
       <div class="quiz-actions">
         <a class="btn primary" href="${pageBase}pricing.html">${escapeHtml(tx("去开通 · 输入兑换码", loc))}</a>
         <a class="btn" href="${escapeHtml(backHref)}">${escapeHtml(tx("返回课表", loc))}</a>
@@ -811,7 +879,7 @@ function prepareShell(root, file, locale) {
   return html;
 }
 
-function patchSitePage(html, page, levels, locale = HANS, origin = SITE) {
+function patchSitePage(html, page, levels, locale = HANS, origin = SITE, waffo = null) {
   const canonical = absoluteUrl(locale, page.file, origin);
   const title = tx(page.title, locale);
   const description = tx(page.description, locale);
@@ -830,6 +898,9 @@ function patchSitePage(html, page, levels, locale = HANS, origin = SITE) {
     })
   );
   next = replaceMarked(next, "script-switch", scriptSwitcher(locale, page.file));
+  if (page.id === "pricing") {
+    next = replaceMarked(next, "waffo-plans", waffoPlansHtml(locale, waffo));
+  }
   if (page.id !== "home") {
     return next;
   }
@@ -906,6 +977,7 @@ function iterLessons(levels) {
 function expectedFiles(root, payload, lastmod) {
   const levels = normalizeLevels(payload);
   validateCopy(levels);
+  const waffo = loadWaffoLinks(root);
   const files = new Map();
   files.set("js/i18n.js", buildI18nScript(convertToHant));
   for (const locale of LOCALES) {
@@ -926,7 +998,7 @@ function expectedFiles(root, payload, lastmod) {
     files.set(catalogRel, prettyJson(locale.id === "zh-Hant" ? convertValue(catalog) : catalog));
     for (const page of shellPages()) {
       const shell = prepareShell(root, page.file, locale);
-      files.set(`${locale.prefix}${page.file}`, patchSitePage(shell, page, levels, locale));
+      files.set(`${locale.prefix}${page.file}`, patchSitePage(shell, page, levels, locale, SITE, waffo));
     }
   }
   files.set("sitemap.xml", buildSitemap(levels, lastmod));
@@ -1023,4 +1095,7 @@ module.exports = {
   switcherHref,
   absoluteUrl,
   scriptSwitcher,
+  loadWaffoLinks,
+  paymentButton,
+  waffoPlansHtml,
 };

@@ -785,6 +785,19 @@ h3 {
   transform: translateY(-1px);
 }
 
+.btn:disabled,
+.btn[disabled] {
+  opacity: 0.72;
+  cursor: not-allowed;
+  color: var(--muted);
+  background: #f4f1ea;
+}
+
+.btn:disabled:hover,
+.btn[disabled]:hover {
+  transform: none;
+}
+
 .quiz-result {
   min-height: 1.5em;
   margin: 14px 0 0;
@@ -1023,6 +1036,15 @@ h3 {
   font-size: 2rem;
   font-weight: 750;
   line-height: 1.1;
+}
+
+.plan-card .waffo-pay {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.pay-alt {
+  font-size: 0.88rem;
 }
 
 .perk-list {

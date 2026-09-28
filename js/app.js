@@ -2,7 +2,6 @@ const PROGRESS_KEY = "voa-lle-progress";
 const OLD_QUIZ_KEY = "voa-lle1-01-quiz";
 const CATALOG_LEVEL_KEY = "voa-lle-catalog-level";
 const SCRIPT_PREF_KEY = "voa-lle-script";
-const WECHAT_CONTACT = "15232188653";
 
 function siteRoot() {
   const path = window.location.pathname;
@@ -329,7 +328,7 @@ function catalogNoteText(catalog, unlocked) {
   if (unlocked) {
     return t("catalogNoteUnlocked", { l1: l1n, l2: l2n });
   }
-  return t("catalogNoteLocked", { wechat: WECHAT_CONTACT });
+  return t("catalogNoteLocked");
 }
 
 function checkinHintText() {
@@ -811,7 +810,7 @@ function renderLessonPaywall(lesson, level) {
   overlay.innerHTML = `
     <h2>${escapeHtml(t("paywallTitle"))}</h2>
     <p>${escapeHtml(t("paywallBody"))}</p>
-    <p>${escapeHtml(t("paywallNext", { wechat: WECHAT_CONTACT })).replace(WECHAT_CONTACT, `<strong>${WECHAT_CONTACT}</strong>`)}</p>
+    <p>${escapeHtml(t("paywallNext"))}</p>
     <div class="quiz-actions">
       <a class="btn primary" href="${pagePath("pricing.html")}">${escapeHtml(t("paywallCta"))}</a>
       <a class="btn" href="${backHref}">${escapeHtml(t("backCatalog"))}</a>
@@ -1230,6 +1229,21 @@ function init() {
   }
   if (page === "pricing") {
     initPricing();
+    return;
+  }
+  if (page === "pricing-return") {
+    initPricingReturn();
+  }
+}
+
+function initPricingReturn() {
+  const status = document.getElementById("return-status");
+  if (!status || status.dataset.live !== "true") {
+    return;
+  }
+  const orderId = new URLSearchParams(window.location.search).get("merchantOrderId");
+  if (orderId) {
+    status.textContent = t("returnChecking");
   }
 }
 

@@ -3,7 +3,8 @@
   "payment": {
     "waffo": {
       "monthlyUrl": "",
-      "quarterlyUrl": ""
+      "quarterlyUrl": "",
+      "returnUrl": ""
     }
   }
 }

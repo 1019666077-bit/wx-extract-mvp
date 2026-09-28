@@ -81,7 +81,20 @@ function loadWaffoLinks(root) {
   return {
     monthlyUrl: normalizePaymentUrl(waffo.monthlyUrl, "monthlyUrl"),
     quarterlyUrl: normalizePaymentUrl(waffo.quarterlyUrl, "quarterlyUrl"),
+    returnUrl: normalizePaymentUrl(waffo.returnUrl, "returnUrl"),
   };
+}
+
+function returnStatusText(links) {
+  if (links && links.returnUrl) {
+    return "付完款会回到本页。确认到账后自动开通，不用再做别的操作。";
+  }
+  return "付款通道尚未开放。现在打开本页不会解锁课程。";
+}
+
+function returnStatusHtml(locale, links) {
+  const live = Boolean(links && links.returnUrl);
+  return `<p id="return-status" class="pay-note" data-live="${live ? "true" : "false"}">${escapeHtml(tx(returnStatusText(links), locale))}</p>`;
 }
 
 function paymentButton(locale, url, label) {
@@ -377,8 +390,21 @@ function legacyPage(origin = SITE) {
   };
 }
 
+function returnPage(origin = SITE) {
+  return {
+    id: "return",
+    file: "pricing-return.html",
+    loc: `${origin}/pricing-return.html`,
+    title: "Waffo 付款后会自动开通课程",
+    description:
+      "Waffo 付款完成后回到本页。确认到账后自动开通 VOA Let's Learn English 已上线课程，含 Level 1 与 Level 2 的慢速英文。",
+    ogType: "website",
+    priority: "0.3",
+  };
+}
+
 function shellPages(origin = SITE) {
-  return [...keyPages(origin), legacyPage(origin)];
+  return [...keyPages(origin), legacyPage(origin), returnPage(origin)];
 }
 
 function assertCopy(label, text, min, max) {
@@ -417,11 +443,16 @@ function validateCopy(levels) {
   }
 }
 
-function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRel, origin }) {
+function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRel, origin, robots }) {
   const loc = locale || HANS;
   const lines = [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
+  ];
+  if (robots) {
+    lines.push(`<meta name="robots" content="${escapeHtml(robots)}" />`);
+  }
+  lines.push(
     `<link rel="canonical" href="${escapeHtml(canonical)}" />`,
     hreflangLinks(pageRel, origin || SITE),
     `<meta property="og:type" content="${escapeHtml(ogType || "website")}" />`,
@@ -435,7 +466,7 @@ function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRe
     `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
     `<meta name="theme-color" content="#0b6e4f" />`,
     `<link rel="icon" href="${FAVICON}" />`,
-  ];
+  );
   if (jsonLd) {
     lines.push(`<script type="application/ld+json">${compactJson(jsonLd)}</script>`);
   }
@@ -657,9 +688,9 @@ ${dialogueHtml((view.dialogue || []).slice(0, 2))}
     <section class="paywall-section" id="lesson-paywall" aria-label="${escapeHtml(tx("开通后学习", loc))}">
       <h2>${escapeHtml(tx("课程未解锁", loc))}</h2>
       <p>${escapeHtml(tx("免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。", loc))}</p>
-      <p>${escapeHtml(tx("下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天），获兑换码后在开通页输入解锁。人在中国大陆也可以微信联系 ", loc))}<strong>15232188653</strong>${escapeHtml(tx(" 人工付款。", loc))}</p>
+      <p>${escapeHtml(tx("下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天）。付款确认后会自动开通。", loc))}</p>
       <div class="quiz-actions">
-        <a class="btn primary" href="${pageBase}pricing.html">${escapeHtml(tx("去开通 · 输入兑换码", loc))}</a>
+        <a class="btn primary" href="${pageBase}pricing.html">${escapeHtml(tx("去开通", loc))}</a>
         <a class="btn" href="${escapeHtml(backHref)}">${escapeHtml(tx("返回课表", loc))}</a>
       </div>
     </section>
@@ -805,9 +836,11 @@ ${items}
 ${blocks}`;
 }
 
-function buildSitemap(levels, lastmod, origin = SITE) {
+function buildSitemap(levels, lastmod, origin = SITE, waffo = null) {
+  const links = waffo || { returnUrl: "" };
   const pages = [
     ...keyPages(origin).map((page) => ({ rel: page.file, priority: page.priority })),
+    ...(links.returnUrl ? [{ rel: "pricing-return.html", priority: "0.3" }] : []),
     ...levels.flatMap((level) =>
       level.lessons.map((lesson) => ({
         rel: `lessons/${lesson.id}.html`,
@@ -883,6 +916,7 @@ function patchSitePage(html, page, levels, locale = HANS, origin = SITE, waffo =
   const canonical = absoluteUrl(locale, page.file, origin);
   const title = tx(page.title, locale);
   const description = tx(page.description, locale);
+  const robots = page.id === "return" && !(waffo && waffo.returnUrl) ? "noindex" : "";
   let next = replaceMarked(
     html,
     "seo",
@@ -895,11 +929,15 @@ function patchSitePage(html, page, levels, locale = HANS, origin = SITE, waffo =
       locale,
       pageRel: page.file,
       origin,
+      robots,
     })
   );
   next = replaceMarked(next, "script-switch", scriptSwitcher(locale, page.file));
   if (page.id === "pricing") {
     next = replaceMarked(next, "waffo-plans", waffoPlansHtml(locale, waffo));
+  }
+  if (page.id === "return") {
+    next = replaceMarked(next, "return-status", returnStatusHtml(locale, waffo));
   }
   if (page.id !== "home") {
     return next;
@@ -1001,7 +1039,7 @@ function expectedFiles(root, payload, lastmod) {
       files.set(`${locale.prefix}${page.file}`, patchSitePage(shell, page, levels, locale, SITE, waffo));
     }
   }
-  files.set("sitemap.xml", buildSitemap(levels, lastmod));
+  files.set("sitemap.xml", buildSitemap(levels, lastmod, SITE, waffo));
   files.set("robots.txt", buildRobots());
   return files;
 }
@@ -1098,4 +1136,6 @@ module.exports = {
   loadWaffoLinks,
   paymentButton,
   waffoPlansHtml,
+  returnStatusHtml,
+  returnPage,
 };

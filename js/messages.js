@@ -14,7 +14,7 @@ const MESSAGES = {
   catalogNoteUnlocked:
     "已解锁全部已上线课程（Level 1 {l1} 课 + Level 2 {l2} 课）。打卡日历与错题本免费使用。免费试学仅 Level 1 第 1–5 课。坚持打卡、复习错题本，把这套课学下去。",
   catalogNoteLocked:
-    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。海外用 Waffo 支付（月付 US$5.99 / 季卡 US$13.99），获兑换码后到开通页输入解锁。人在中国大陆也可以微信联系 {wechat} 人工付款。",
+    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。用 Waffo 支付（月付 US$5.99 / 季卡 US$13.99），付款确认后自动开通。",
   checkinTodayStreak: "今日已打卡 · 连续 {streak} 天",
   checkinToday: "今日已打卡",
   checkinStreakPending: "连续打卡 {streak} 天，今天还没打",
@@ -58,8 +58,9 @@ const MESSAGES = {
   paywallBody:
     "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。",
   paywallNext:
-    "下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天），获兑换码后在开通页输入解锁。人在中国大陆也可以微信联系 {wechat} 人工付款。",
-  paywallCta: "去开通 · 输入兑换码",
+    "下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天）。付款确认后会自动开通。",
+  paywallCta: "去开通",
+  returnChecking: "已回到本站。正在等待付款确认，确认后会自动开通。",
   backCatalog: "返回课表",
   pagerFirst: "已是第一课",
   pagerLast: "已是最后一课",

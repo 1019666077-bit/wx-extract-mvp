@@ -21,6 +21,7 @@ const {
   HANS,
   loadWaffoLinks,
   waffoPlansHtml,
+  returnStatusHtml,
   sourceLastmod,
   checkAll,
   HANT,
@@ -272,7 +273,7 @@ test("site origin comes only from site.config.json", () => {
 });
 
 test("empty Waffo links render disabled soon buttons", () => {
-  assert.deepEqual(loadWaffoLinks(root), { monthlyUrl: "", quarterlyUrl: "" });
+  assert.deepEqual(loadWaffoLinks(root), { monthlyUrl: "", quarterlyUrl: "", returnUrl: "" });
   assert.equal(convertToHant("即将开放"), "即將開放");
   const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });
   const hant = waffoPlansHtml(HANT, { monthlyUrl: "", quarterlyUrl: "   " });
@@ -288,8 +289,10 @@ test("empty Waffo links render disabled soon buttons", () => {
   const hantPage = fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8");
   assert.match(hansPage, /disabled>即将开放</);
   assert.match(hantPage, /disabled>即將開放</);
-  assert.match(hansPage, /15232188653/);
-  assert.match(hantPage, /15232188653/);
+  assert.doesNotMatch(hansPage, /15232188653/);
+  assert.doesNotMatch(hantPage, /15232188653/);
+  assert.doesNotMatch(hansPage, /微信|¥39|¥99/);
+  assert.doesNotMatch(hantPage, /微信|¥39|¥99/);
   assert.match(hansPage, /US\$5\.99/);
   assert.match(hantPage, /US\$13\.99/);
   assert.doesNotMatch(hansPage, /¥39/);
@@ -316,11 +319,47 @@ test("configured Waffo links become the payment button hrefs", () => {
   assert.match(locked, /Waffo/);
   assert.match(locked, /US\$5\.99/);
   assert.match(locked, /US\$13\.99/);
-  assert.match(locked, /<strong>15232188653<\/strong>/);
-  assert.doesNotMatch(locked, /¥39/);
+  assert.doesNotMatch(locked, /15232188653|微信|¥39|输入兑换码/);
+  assert.match(locked, /自动开通/);
   const lockedHant = buildLessonPage(level, lesson, level.lessons[4], level.lessons[6], HANT);
-  assert.match(lockedHant, /即將開放|Waffo/);
-  assert.match(lockedHant, /15232188653/);
+  assert.match(lockedHant, /Waffo/);
+  assert.match(lockedHant, /自動開通/);
+  assert.doesNotMatch(lockedHant, /15232188653|微信/);
+});
+
+test("return page stays unpublished until payment.waffo.returnUrl is set", () => {
+  const links = loadWaffoLinks(root);
+  assert.equal(links.returnUrl, "");
+  const hans = returnStatusHtml(HANS, links);
+  const hant = returnStatusHtml(HANT, links);
+  assert.match(hans, /data-live="false"/);
+  assert.match(hans, /不会解锁课程/);
+  assert.match(hant, /不會解鎖課程/);
+  assert.doesNotMatch(hans, /微信|15232188653/);
+  const live = "https://pay.example/return";
+  const opened = returnStatusHtml(HANS, { returnUrl: live });
+  assert.match(opened, /data-live="true"/);
+  assert.match(opened, /自动开通/);
+  const xml = buildSitemap(levels, "2026-09-05");
+  assert.equal([...xml.matchAll(/<loc>/g)].length, 172);
+  assert.doesNotMatch(xml, /pricing-return\.html/);
+  const listed = buildSitemap(levels, "2026-09-05", "https://lessons.example", {
+    returnUrl: "https://lessons.example/pricing-return.html",
+  });
+  assert.match(listed, /https:\/\/lessons\.example\/pricing-return\.html/);
+  assert.match(listed, /https:\/\/lessons\.example\/zh-hant\/pricing-return\.html/);
+  const page = fs.readFileSync(path.join(root, "pricing-return.html"), "utf8");
+  const hantPage = fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8");
+  assert.match(page, /name="robots" content="noindex"/);
+  assert.match(hantPage, /name="robots" content="noindex"/);
+  assert.match(page, /data-live="false"/);
+  assert.doesNotMatch(page, /15232188653|微信|¥39/);
+  assert.doesNotMatch(hantPage, /15232188653|微信|¥39/);
+  for (const rel of ["js/app.js", "js/messages.js", "js/i18n.js", "index.html", "zh-hant/index.html"]) {
+    const text = fs.readFileSync(path.join(root, rel), "utf8");
+    assert.equal(text.includes("15232188653"), false, rel);
+    assert.equal(text.includes("微信"), false, rel);
+  }
 });
 
 test("study state keys stay shared between scripts", () => {

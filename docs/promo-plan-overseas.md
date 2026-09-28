@@ -470,11 +470,11 @@ Search Console 里要看的：
 - 搜索提交（第 3 节第 1–3 天）放到 **Cloudflare Pages 接上新域名之后**。收费上线也在这次搬家之后。搬家目标是 Cloudflare Pages，不是把 GitHub Pages 绑到自定义域名，所以不要照第 1.4 节去填 GitHub 的 A/CNAME。新域名在 Cloudflare 上之后，Search Console 可以用 DNS TXT 做**网域**资源，Bing 同样用 DNS。站点地图改到新域名根，`robots.txt` 这时才会被爬虫读到。
 - 发帖账号由助手在 **Linux 桌面浏览器**注册和发布。站主只在验证码或扫码时出现，不从手机发。帖子正文仍写「这是我做的，非官方」。
 
-英文名必须让英语母语者**直接读出单词**，不用拼音。中文名简繁尽量相同；「一句慢」可以配给任何一个英文名。已注册的 `.com`（含注册后挂牌出售）直接淘汰，不用 `.app` / `.io` 顶上。
+英文名必须让英语母语者**直接读出单词**，不用拼音。中文名 2–4 个字，简繁用同一组字，顺着英文的意思，读起来短。**不使用「一句慢」。** 已注册的 `.com`（含注册后挂牌出售）直接淘汰，不用 `.app` / `.io` 顶上。
 
-### 7.1 上一轮拼音（保留，不再首选）
+### 7.1 上一轮拼音（已否决）
 
-2026-09-28 查过三个拼音名，当时 `.com` 都是 RDAP 404：一句慢 / Yijuman（`yijuman.com`，YouTube `@yijuman` 看起来空闲）、耳句 / Earju（`earju.com`，`@earju` 已被频道 Earju 占用）、慢耳句 / Manerju（`manerju.com`，`@manerju` 看起来空闲）。备用拼写 `yijumanlisten.com`、`slowjuman.com`、`earjulisten.com`、`getearju.com`、`erjuman.com` 当天也是 404。Threads / Instagram / Facebook 是登录墙，没有核实。拼音英语母语者读不出来，下面改用英文词。
+上一轮用拼音做英文名，**已否决，不再推荐**。当时的三个名字是：一句慢 / Yijuman、耳句 / Earju、慢耳句 / Manerju。2026-09-28 这三个 `.com` 都是 RDAP 404；`@earju` 已被占用，`@yijuman` 和 `@manerju` 看起来空闲。备用拼写 `yijumanlisten.com`、`slowjuman.com`、`earjulisten.com`、`getearju.com`、`erjuman.com` 当天也是 404。Threads / Instagram 是登录墙。拼音英语母语者读不出来，中文名「一句慢」也不再用。下面仍用第 7.2 节筛出的五个英文名，中文名全部重起。
 
 ### 7.2 这一轮怎么筛
 
@@ -502,21 +502,25 @@ YouTube：`https://www.youtube.com/@YouTube` 是 200，标题 “YouTube - YouTu
 
 中文简繁都相同。冲突栏是 2026-09-28 的网页快查（名字 + trademark / app，以及能打开的商标记录页），**不是** USPTO 正式检索，也不是律师清标。`tmsearch.uspto.gov` 页面能打开，查询接口前面有人机验证，没有拿到结果表。
 
+中文名在 2026-09-28 重配。简繁同一组字。粤语是香港粤拼。快查看的是网页和应用商店里有没有同名学习产品，不是商标局检索。
+
 | 英文（怎么读） | 中文（简 / 繁） | 意思 | `.com`（RDAP） | 阿里云 | YouTube | 快查 |
 | --- | --- | --- | --- | --- | --- | --- |
-| Clearandslow（clear and slow） | 一句慢 / 一句慢 | 听清楚，而且放慢 | [clearandslow.com](https://rdap.verisign.com/com/v1/domain/clearandslow.com) **404，未注册** | **标准价**，首年 ¥85，续费 ¥95。不是 premium | [@clearandslow](https://www.youtube.com/@clearandslow) **看起来空闲**（404） | 没找到同名英语学习产品或同名商标记录。课堂里常说 “speak clearly and slowly”，那是普通说法。附近的 [STILL AND SLOW](https://www.trademarkelite.com/trademark/trademark-detail/99272379/STILL-AND-SLOW) 是涂色书，不是教育软件 |
-| Sentencewise（sentence-wise） | 逐句 / 逐句 | 一句一句地 | [sentencewise.com](https://rdap.verisign.com/com/v1/domain/sentencewise.com) **404** | 标准价，¥85 / ¥95 | [@sentencewise](https://www.youtube.com/@sentencewise) **看起来空闲**（404） | 词典里有这个副词（[Wiktionary](https://en.wiktionary.org/wiki/sentencewise)），意思就是按句子。没找到同名 App。旁边有别的产品：Wise Sentence、WordWise、Sentenced |
-| Oncealine（once a line） | 一句 / 一句 | 一次只过一句 | [oncealine.com](https://rdap.verisign.com/com/v1/domain/oncealine.com) **404** | 标准价，¥85 / ¥95 | [@oncealine](https://www.youtube.com/@oncealine) **看起来空闲**（404） | 没找到同名 App 或商标记录。念出来是 once / a / line，三个都好拼；写在一起要认出中间的 a |
-| Pausealine（pause a line） | 一句慢 / 一句慢 | 停在这一句上听 | [pausealine.com](https://rdap.verisign.com/com/v1/domain/pausealine.com) **404** | 标准价，¥85 / ¥95 | [@pausealine](https://www.youtube.com/@pausealine) **看起来空闲**（404） | 没找到同名 App 或商标记录。对得上「暂停、对字幕、做三题」 |
-| Onebyline（one by line） | 逐句 / 逐句 | 一句接一句 | [onebyline.com](https://rdap.verisign.com/com/v1/domain/onebyline.com) **404** | 标准价，¥85 / ¥95 | [@onebyline](https://www.youtube.com/@onebyline) **看起来空闲**（404） | 没找到这个字符串的商标或 App。旁边的 LineByLine 是背课文的应用（[linebyline.app](https://www.linebyline.app/about)），USPTO 上的 LINEBYLINE PRODUCTIONS（序列号 76160985）已失效。`linebyline.com` 本轮 RDAP 是 200，本来就淘汰了 |
+| Clearandslow（clear and slow） | 清慢 / 清慢。粤 cing1 maan6 | 听清楚，而且放慢 | [clearandslow.com](https://rdap.verisign.com/com/v1/domain/clearandslow.com) **404，未注册** | **标准价**，首年 ¥85，续费 ¥95。不是 premium | [@clearandslow](https://www.youtube.com/@clearandslow) **看起来空闲**（404） | 没找到叫「清慢」的学习 App。旁边有 [慢学英语](https://www.crsky.com/soft/1101564.html)（名字不同）和 [朗易思听](https://apps.apple.com/tm/app/id548247084)，所以不用「朗」字开头。英文快查仍无同名产品；[STILL AND SLOW](https://www.trademarkelite.com/trademark/trademark-detail/99272379/STILL-AND-SLOW) 是涂色书 |
+| Sentencewise（sentence-wise） | 每句 / 每句。粤 mui5 geoi3 | 每一句都分开听 | [sentencewise.com](https://rdap.verisign.com/com/v1/domain/sentencewise.com) **404** | 标准价，¥85 / ¥95 | [@sentencewise](https://www.youtube.com/@sentencewise) **看起来空闲**（404） | 没找到叫「每句」的 App。已避开同名学习 App「句句」（[介绍页](https://www.crsky.com/soft/268129.html)）和 [一句英语](https://apps.apple.com/cn/app/id1590065267)。英文旁边仍有 Wise Sentence、WordWise、Sentenced |
+| Oncealine（once a line） | 一遍 / 一遍。粤 jat1 bin6 | 这一句听一遍 | [oncealine.com](https://rdap.verisign.com/com/v1/domain/oncealine.com) **404** | 标准价，¥85 / ¥95 | [@oncealine](https://www.youtube.com/@oncealine) **看起来空闲**（404） | 没找到叫「一遍」的学习 App。英文名念出来是 once / a / line |
+| Pausealine（pause a line） | 停一停 / 停一停。粤 ting4 jat1 ting4 | 先停一下，再听这句 | [pausealine.com](https://rdap.verisign.com/com/v1/domain/pausealine.com) **404** | 标准价，¥85 / ¥95 | [@pausealine](https://www.youtube.com/@pausealine) **看起来空闲**（404） | 没找到叫「停一停」的学习 App。对得上「暂停、对字幕、做三题」 |
+| Onebyline（one by line） | 循句 / 循句。粤 ceon4 geoi3 | 一句接一句跟着走 | [onebyline.com](https://rdap.verisign.com/com/v1/domain/onebyline.com) **404** | 标准价，¥85 / ¥95 | [@onebyline](https://www.youtube.com/@onebyline) **看起来空闲**（404） | 没找到叫「循句」的 App。已避开「逐句学」和「句乐部」。英文旁边的 LineByLine 是背课文应用（[linebyline.app](https://www.linebyline.app/about)）；`linebyline.com` 本轮 RDAP 是 200 |
 
-**建议用 Clearandslow，中文仍叫一句慢，域名 `clearandslow.com`。** 英语母语者会读成 clear、and、slow，没有 here/hear、air/ear 这种同音。12 个字母，意思就是把口语放慢听清楚。`.com` 未注册，阿里云按标准价，YouTube `@clearandslow` 当天看起来空闲。快查没有同名英语学习品牌。Sentencewise 是最接近「一个真正英文词」的备选，但旁边已有 Wise Sentence、WordWise。Oncealine 和 Pausealine 更短，写出来要靠中间那个 a 才拆得开。买域名之前再跑一次 RDAP，404 不保留名额。Threads / Instagram 这一轮没有重查，上一轮即使用 `@zuck` 也进登录墙。
+粤语同音只记会听岔的几处：清慢的「慢」和「萬」都是 maan6，连读不是骂人的话；普通话 qīng màn 和「晚清」wǎn qīng 声调、字序都不同。每句的「每」是 mui5，「妹」是 mui6。一遍的「遍」和「便」同音，但「一遍」是现成词。停一停中间有「一」，不会听成名字「婷婷」。循句的「循」和「巡」同音，不是贬义；没用「序」，因为粤语「序」和「罪」都是 zeoi6。
+
+**建议用 Clearandslow，中文叫清慢，域名 `clearandslow.com`。** 英语母语者会读成 clear、and、slow，没有 here/hear、air/ear 这种同音。12 个字母，意思就是把口语放慢听清楚。中文两个字，简繁相同，粤语 cing1 maan6，顺口，意思对着英文。`.com` 未注册，阿里云按标准价，YouTube `@clearandslow` 当天看起来空闲。快查没有叫「清慢」的学习 App。Sentencewise / 每句是最接近「一个真正英文词」的备选，但英文旁边已有 Wise Sentence、WordWise。Oncealine / 一遍和 Pausealine / 停一停更短，写出来要靠中间那个 a 才拆得开。买域名之前再跑一次 RDAP，404 不保留名额。Threads / Instagram 这一轮没有重查，上一轮即使用 `@zuck` 也进登录墙。
 
 ---
 
 ## 8. 零成本短片：桌面机器人能做完的部分
 
-站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `clearandslow.com`（第 7 节的建议；若改选同表里的另一个名字，就用那个域名）再填。片内中文写「一句慢」，英文写 Clearandslow。
+站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `clearandslow.com`（第 7 节的建议；若改选同表里的另一个名字，就用那个域名）再填。片内中文写「清慢」，英文写 Clearandslow。
 
 ### 8.1 画面从哪来
 
@@ -572,7 +576,7 @@ OBS 只在需要看预览时开：来源选「窗口采集」或「显示器采�
 ```srt
 1
 00:00:01,000 --> 00:00:04,500
-一句慢 · 非官方
+清慢 · 非官方
 One sentence, slowly.
 
 2
@@ -604,7 +608,7 @@ Style: EN,Noto Sans,42,&H00E8F4EF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,3,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:01.00,0:00:04.50,ZH,,0,0,0,,一句慢 · 非官方
+Dialogue: 0,0:00:01.00,0:00:04.50,ZH,,0,0,0,,清慢 · 非官方
 Dialogue: 0,0:00:01.00,0:00:04.50,EN,,0,0,0,,Unofficial. One sentence, slowly.
 ```
 
@@ -624,7 +628,7 @@ Piper 的中文音色 `zh_CN-huayan-medium` 也不直接用。[模型卡](https:
 若一定要机器中文口播，只用许可证写明可以再分发的本地引擎，并在下载页再核对一次权重文件。质量够用、条款清楚的临时方案是 espeak-ng（代码 [GPL-3.0](https://github.com/espeak-ng/espeak-ng)），声音会很机械，只适合垫一句品牌名，不适合长旁白：
 
 ```bash
-espeak-ng -v cmn -s 140 -w brand.wav "一句慢。一次听一句。"
+espeak-ng -v cmn -s 140 -w brand.wav "清慢。放慢听清楚。"
 ffmpeg -y -i brand.wav -ar 48000 -ac 2 brand-48k.wav
 ```
 
@@ -648,8 +652,8 @@ ffmpeg -y -i voicebed.wav -i music.mp3 -filter_complex \
 ```bash
 convert -size 1080x1920 canvas:'#0b6e4f' \
   -font "Noto-Sans-CJK-TC" -fill white -pointsize 96 \
-  -gravity center -annotate +0-80 "一句慢" \
-  -pointsize 42 -annotate +0+40 "一次听一句" \
+  -gravity center -annotate +0-80 "清慢" \
+  -pointsize 42 -annotate +0+40 "放慢听清楚" \
   -pointsize 28 -fill "#d7efe4" -annotate +0+220 "非官方自学笔记" \
   cover.png
 ```
@@ -668,14 +672,14 @@ ffmpeg -y -i lesson-sub.mp4 -i ui-sub.mp4 -i bed.m4a \
   clearandslow-lle1-01-hant.mp4
 ```
 
-说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用 Clearandslow 和「一句慢」，不用 VOA 当频道名。
+说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用 Clearandslow 和「清慢」，不用 VOA 当频道名。
 
 ### 8.6 每条片子核对
 
 - 竖屏 1080×1920，45–60 秒，能在桌面播放器里播完，没有黑边把字幕裁掉。
 - 站主没有出镜，没有手机界面。
 - VOA 画面只有几秒，没有通讯社角标，没有整集。
-- 片内中文品牌是「一句慢」，英文是 Clearandslow，没有 VOA 字样当名称；片尾仍有公共领域署名。
+- 片内中文品牌是「清慢」，英文是 Clearandslow，没有 VOA 字样当名称；片尾仍有公共领域署名。
 - 字幕和落地页同一种汉字：台湾、香港用繁体地址，新加坡、马来西亚用简体地址。
 - 说明栏链接是新域名（搬家前先不发这支片），并带 `utm_source=youtube` 或 `instagram`、`utm_medium=short` 或 `reel`、`utm_campaign=launch14d`。
 - 音乐曲名和作者写在说明栏。

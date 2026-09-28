@@ -95,6 +95,14 @@ const MESSAGES = {
   planMonthly: "月付 US$5.99",
   planQuarterly: "季卡 US$13.99",
   planOpened: "已开通",
+  checkoutEmailRequired: "请先填写付款邮箱。",
+  recoverFailed: "订单号或邮箱不匹配，或该订单无法找回",
+  recoverLimited: "尝试次数过多，请稍后再试。",
+  recoverOk: "已找回开通：{plan}{until}。",
+  recoverSoon: "找回还没开放。",
+  recoverWait: "正在核对订单号和邮箱…",
+  importOk: "已导入开通：{plan}{until}。",
+  importFail: "这张凭证无法使用。",
 };
 
 function buildI18nScript(convert) {

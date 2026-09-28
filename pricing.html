@@ -42,6 +42,11 @@
     </header>
     <section class="pricing-section" aria-label="方案">
       <h2>方案</h2>
+      <div class="redeem-form">
+        <label for="checkout-email">付款邮箱
+          <input id="checkout-email" name="email" type="email" autocomplete="email" maxlength="64" />
+        </label>
+      </div>
       <!--waffo-plans:start-->
 <div class="plan-grid">
         <article class="plan-card">
@@ -72,6 +77,17 @@
       <p class="pay-note">付款按钮还没接上时会显示「即将开放」。接上之后，付完即开通，不用再做别的操作。</p>
       <p id="unlock-status" class="unlock-status"></p>
       <button type="button" id="clear-unlock" class="btn" hidden>退出解锁</button>
+      <h3 class="pay-steps-title">找回开通</h3>
+      <form id="recover-form" class="redeem-form">
+        <label for="recover-order">订单号
+          <input id="recover-order" name="order" type="text" autocomplete="off" maxlength="64" />
+        </label>
+        <label for="recover-email">付款时填写的邮箱
+          <input id="recover-email" name="email" type="email" autocomplete="email" maxlength="64" />
+        </label>
+        <button type="submit" class="btn">找回开通</button>
+        <p id="recover-result" class="quiz-result" role="status" aria-live="polite"></p>
+      </form>
       <p id="redeem-result" class="quiz-result" role="status" aria-live="polite"></p>
     </section>
     <footer class="footer">

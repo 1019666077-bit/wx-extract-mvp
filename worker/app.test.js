@@ -72,7 +72,7 @@ function envFor(fixtures, kv) {
   };
 }
 
-function request(url, { method = "GET", body, origin = ORIGIN, signature } = {}) {
+function request(url, { method = "GET", body, origin = ORIGIN, signature, ip } = {}) {
   const headers = new Headers();
   if (origin) {
     headers.set("Origin", origin);
@@ -82,6 +82,9 @@ function request(url, { method = "GET", body, origin = ORIGIN, signature } = {})
   }
   if (signature) {
     headers.set("X-SIGNATURE", signature);
+  }
+  if (ip) {
+    headers.set("CF-Connecting-IP", ip);
   }
   return new Request(url, { method, headers, body });
 }
@@ -131,7 +134,7 @@ test("checkout uses the server amount, webhook signature, claim once, refund and
   const checkout = await handleRequest(
     request("https://voa-lle-unlock.example/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ plan: "monthly", amount: "0.01", script: "zh-Hans" }),
+      body: JSON.stringify({ plan: "monthly", amount: "0.01", script: "zh-Hans", email: "buyer@example.com" }),
     }),
     env,
     { fetch: fetchImpl, now: () => now }
@@ -139,6 +142,7 @@ test("checkout uses the server amount, webhook signature, claim once, refund and
   assert.equal(checkout.status, 200);
   const checkoutJson = await checkout.json();
   assert.equal(checkoutJson.checkoutUrl, "https://checkout.sandbox.example/pay");
+  assert.equal(createBody.userInfo.userEmail, "buyer@example.com");
   assert.equal(createBody.orderAmount, "5.99");
   assert.equal(createBody.orderCurrency, "USD");
   assert.equal(createBody.paymentInfo.productName, "ONE_TIME_PAYMENT");
@@ -146,6 +150,9 @@ test("checkout uses the server amount, webhook signature, claim once, refund and
   assert.equal("appName" in createBody.goodsInfo, false);
   assert.match(createBody.successRedirectUrl, /\?order=/);
   const orderId = checkoutJson.merchantOrderId;
+  const storedCheckout = JSON.parse(kv.dump().get(`order:${orderId}`));
+  assert.equal(storedCheckout.emailSource, "checkout");
+  assert.equal(JSON.stringify(storedCheckout).includes("buyer@example.com"), false);
 
   const bad = await signedWebhook(fixtures, {
     eventType: "PAYMENT_NOTIFICATION",
@@ -259,7 +266,7 @@ test("checkout uses the server amount, webhook signature, claim once, refund and
   const quarterly = await handleRequest(
     request("https://voa-lle-unlock.example/api/checkout", {
       method: "POST",
-      body: JSON.stringify({ plan: "quarterly" }),
+      body: JSON.stringify({ plan: "quarterly", email: "buyer@example.com" }),
     }),
     env,
     {
@@ -357,4 +364,210 @@ test("order inquiry verifies the response and does not write a credential", asyn
     return new Response(raw, { status: 200, headers: { "X-SIGNATURE": await fixtures.signResponse(raw) } });
   });
   assert.equal([...kv.dump().keys()].some((key) => String(key).startsWith("order:")), false);
+});
+
+async function paidOrder(fixtures, env, now, email, webhookExtra) {
+  const { handleRequest } = await import("./src/app.js");
+  let orderId = "";
+  const checkout = await handleRequest(
+    request("https://voa-lle-unlock.example/api/checkout", {
+      method: "POST",
+      body: JSON.stringify({ plan: "monthly", email }),
+    }),
+    env,
+    {
+      fetch: async (_url, init) => {
+        const parsed = JSON.parse(init.body);
+        orderId = parsed.merchantOrderId;
+        const data = {
+          code: "0",
+          msg: "Success",
+          data: {
+            paymentRequestId: parsed.paymentRequestId,
+            merchantOrderId: parsed.merchantOrderId,
+            acquiringOrderId: "A-recover",
+            orderStatus: "PAY_IN_PROGRESS",
+            orderAction: JSON.stringify({ webUrl: "https://checkout.sandbox.example/pay" }),
+          },
+        };
+        const raw = JSON.stringify(data);
+        return new Response(raw, { status: 200, headers: { "X-SIGNATURE": await fixtures.signResponse(raw) } });
+      },
+      now: () => now,
+    }
+  );
+  assert.equal(checkout.status, 200);
+  const event = {
+    eventType: "PAYMENT_NOTIFICATION",
+    result: {
+      merchantOrderId: orderId,
+      acquiringOrderId: "A-recover",
+      orderStatus: "PAY_SUCCESS",
+      orderAmount: "5.99",
+      orderCurrency: "USD",
+      orderCompletedAt: "2026-09-28T00:05:00.000Z",
+      ...webhookExtra,
+    },
+  };
+  const body = JSON.stringify(event);
+  const signature = await fixtures.signResponse(body);
+  const webhook = await handleRequest(
+    request("https://voa-lle-unlock.example/api/waffo/webhook", { method: "POST", origin: "", body, signature }),
+    env,
+    { now: () => now }
+  );
+  assert.deepEqual(await webhook.json(), { message: "success" });
+  return orderId;
+}
+
+async function postRecover(env, body, now, ip) {
+  const { handleRequest } = await import("./src/app.js");
+  const response = await handleRequest(
+    request("https://voa-lle-unlock.example/api/recover", {
+      method: "POST",
+      body: JSON.stringify(body),
+      ip,
+    }),
+    env,
+    { now: () => now }
+  );
+  return { status: response.status, json: await response.json() };
+}
+
+test("recover reissues only when the order and email match", async () => {
+  const fixtures = await generateFixtures();
+  const { verifyCredential } = await import("../js/credential.js");
+  const kv = memoryKv();
+  const env = envFor(fixtures, kv);
+  const now = new Date("2026-09-28T01:00:00.000Z");
+  const orderId = await paidOrder(fixtures, env, now, "Buyer@Example.com");
+  const stored = JSON.parse(kv.dump().get(`order:${orderId}`));
+  assert.equal(stored.emailSource, "checkout");
+  assert.equal(JSON.stringify(stored).includes("buyer@example.com"), false);
+
+  const ok = await postRecover(env, { order: orderId, email: "buyer@example.com" }, now, "203.0.113.10");
+  assert.equal(ok.status, 200);
+  assert.equal(ok.json.orderId, orderId);
+  assert.equal(ok.json.plan, "monthly");
+  assert.equal(ok.json.expiresAt, "2026-10-28T00:05:00.000Z");
+  const verified = await verifyCredential(ok.json.credential, await exportB64(fixtures.unlockPublic, "spki"), now);
+  assert.equal(verified.ok, true);
+  assert.equal(verified.payload.orderId, orderId);
+
+  const wrongEmail = await postRecover(env, { order: orderId, email: "other@example.com" }, now, "203.0.113.11");
+  const wrongOrder = await postRecover(env, { order: "m1234567890abcdef", email: "buyer@example.com" }, now, "203.0.113.12");
+  assert.equal(wrongEmail.status, 400);
+  assert.deepEqual(wrongEmail.json, wrongOrder.json);
+  assert.deepEqual(wrongEmail.json, { error: "recover_failed" });
+
+  const { handleRequest } = await import("./src/app.js");
+  const unpaid = await handleRequest(
+    request("https://voa-lle-unlock.example/api/checkout", {
+      method: "POST",
+      body: JSON.stringify({ plan: "monthly", email: "waiting@example.com" }),
+    }),
+    env,
+    {
+      fetch: async (_url, init) => {
+        const parsed = JSON.parse(init.body);
+        const data = {
+          code: "0",
+          msg: "Success",
+          data: {
+            paymentRequestId: parsed.paymentRequestId,
+            merchantOrderId: parsed.merchantOrderId,
+            acquiringOrderId: "A-wait",
+            orderAction: JSON.stringify({ webUrl: "https://checkout.sandbox.example/pay" }),
+          },
+        };
+        const raw = JSON.stringify(data);
+        return new Response(raw, { status: 200, headers: { "X-SIGNATURE": await fixtures.signResponse(raw) } });
+      },
+      now: () => now,
+    }
+  );
+  const unpaidId = (await unpaid.json()).merchantOrderId;
+  const pending = await postRecover(env, { order: unpaidId, email: "waiting@example.com" }, now, "203.0.113.13");
+  assert.deepEqual(pending, { status: 400, json: { error: "recover_failed" } });
+
+  const refundBody = JSON.stringify({
+    eventType: "REFUND_NOTIFICATION",
+    result: { merchantOrderId: orderId, refundStatus: "ORDER_FULLY_REFUNDED" },
+  });
+  await handleRequest(
+    request("https://voa-lle-unlock.example/api/waffo/webhook", {
+      method: "POST",
+      origin: "",
+      body: refundBody,
+      signature: await fixtures.signResponse(refundBody),
+    }),
+    env,
+    { now: () => now }
+  );
+  const revoked = await postRecover(env, { order: orderId, email: "buyer@example.com" }, now, "203.0.113.14");
+  assert.deepEqual(revoked.json, wrongEmail.json);
+  assert.equal(revoked.status, wrongEmail.status);
+});
+
+test("notification userEmail replaces the checkout hash, placeholders do not", async () => {
+  const fixtures = await generateFixtures();
+  const kv = memoryKv();
+  const env = envFor(fixtures, kv);
+  const now = new Date("2026-09-28T01:00:00.000Z");
+  const orderId = await paidOrder(fixtures, env, now, "typed@example.com", {
+    userInfo: { userId: "u1", userEmail: "Payer@Example.com", userTerminal: "WEB" },
+  });
+  const stored = JSON.parse(kv.dump().get(`order:${orderId}`));
+  assert.equal(stored.emailSource, "notification");
+  assert.equal(JSON.stringify(stored).includes("payer@example.com"), false);
+  const typed = await postRecover(env, { order: orderId, email: "typed@example.com" }, now, "203.0.113.20");
+  const payer = await postRecover(env, { order: orderId, email: "payer@example.com" }, now, "203.0.113.21");
+  assert.deepEqual(typed.json, { error: "recover_failed" });
+  assert.equal(payer.status, 200);
+
+  const placeholderId = await paidOrder(fixtures, env, now, "kept@example.com", {
+    userInfo: JSON.stringify({ userEmail: "mignored@examples.com" }),
+  });
+  const placeholder = JSON.parse(kv.dump().get(`order:${placeholderId}`));
+  assert.equal(placeholder.emailSource, "checkout");
+  const kept = await postRecover(env, { order: placeholderId, email: "kept@example.com" }, now, "203.0.113.22");
+  assert.equal(kept.status, 200);
+});
+
+test("recover is limited per IP, per order window, and five times per order", async () => {
+  const fixtures = await generateFixtures();
+  const kv = memoryKv();
+  const env = envFor(fixtures, kv);
+  const now = new Date("2026-09-28T01:00:00.000Z");
+  const later = new Date(now.getTime() + 11 * 60 * 1000);
+  const orderId = await paidOrder(fixtures, env, now, "buyer@example.com");
+
+  for (let i = 0; i < 3; i += 1) {
+    const attempt = await postRecover(env, { order: orderId, email: "wrong@example.com" }, now, "203.0.113.30");
+    assert.equal(attempt.status, 400, `window attempt ${i}`);
+  }
+  const windowBlocked = await postRecover(env, { order: orderId, email: "buyer@example.com" }, now, "203.0.113.31");
+  assert.equal(windowBlocked.status, 429);
+  assert.deepEqual(windowBlocked.json, { error: "recover_limited" });
+
+  for (let i = 0; i < 2; i += 1) {
+    const attempt = await postRecover(env, { order: orderId, email: "wrong@example.com" }, later, `203.0.113.4${i}`);
+    assert.equal(attempt.status, 400);
+  }
+  const totalBlocked = await postRecover(env, { order: orderId, email: "buyer@example.com" }, later, "203.0.113.49");
+  assert.equal(totalBlocked.status, 429);
+  assert.deepEqual(totalBlocked.json, { error: "recover_limited" });
+
+  for (let i = 0; i < 8; i += 1) {
+    const attempt = await postRecover(
+      env,
+      { order: `missing${i}xxxx`, email: "buyer@example.com" },
+      now,
+      "198.51.100.8"
+    );
+    assert.equal(attempt.status, 400);
+  }
+  const ipBlocked = await postRecover(env, { order: "missing9xxxx", email: "buyer@example.com" }, now, "198.51.100.8");
+  assert.equal(ipBlocked.status, 429);
+  assert.deepEqual(ipBlocked.json, { error: "recover_limited" });
 });

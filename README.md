@@ -114,7 +114,7 @@ Simplified Chinese lives at the site root. Traditional Chinese (Taiwan wording) 
 
 Both versions share one origin, so `localStorage` progress, check-in, wrong-book, and unlock carry across. `js/app.js` loads `data/web/` or `data/web/zh-hant/` from the site root, not from the `zh-hant/` folder.
 
-The published origin is the single `origin` field in [`site.config.json`](site.config.json). Canonical links, hreflang, Open Graph URLs, JSON-LD, `sitemap.xml`, `robots.txt`, and the Worker `ALLOWED_ORIGIN` all read that value at build time. It is still the GitHub Pages URL. The next host is Cloudflare Pages at the domain root (`https://lle-learn.pages.dev`, then a custom domain). Do not change `origin` until that host is checked. The same three steps apply when you do:
+The published origin is the single `origin` field in [`site.config.json`](site.config.json). Canonical links, hreflang, Open Graph URLs, JSON-LD, `sitemap.xml`, `robots.txt`, and the Worker `ALLOWED_ORIGIN` all read that value at build time. It is still the GitHub Pages URL. The next host is Cloudflare Pages at the domain root. The project name `lle-learn` is provisional until the brand name is chosen; do not create that project before then. Do not change `origin` until that host is checked. The same three steps apply when you do:
 
 1. Change `origin` in `site.config.json` (no trailing slash).
 2. Run `npm install` if needed, then `node scripts/build-pages.js`. That rewrite also copies `origin` into `worker/wrangler.toml`.

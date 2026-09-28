@@ -1,4 +1,5 @@
 # Publishes the static site to Cloudflare Pages.
+# Project name lle-learn is provisional until the brand name is chosen. Do not create the project before then.
 # GitHub Pages is unchanged: it still serves this branch from the repository root.
 # This job does nothing until both GitHub secrets exist.
 name: Cloudflare Pages

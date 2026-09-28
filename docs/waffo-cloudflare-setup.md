@@ -201,7 +201,31 @@ curl -sS -X POST "https://<Worker 主机名>/api/waffo/webhook" \
 
 应返回 `{"message":"success"}`，并且不会换一张新凭证。
 
-领取只能一次。返回页第一次拿到凭证就会写入本机。同一浏览器再刷新：如果本机这张凭证还能验过，仍显示已开通，不会再向 Worker 要第二份。用隐私窗口打开同一个 `?order=` 地址，应看到「这张开通已经交付过一次，不能再次发放」。没有补发入口。
+领取只能一次。返回页第一次拿到凭证就会写入本机。同一浏览器再刷新：如果本机这张凭证还能验过，仍显示已开通，不会再向 Worker 要第二份。用隐私窗口打开同一个 `?order=` 地址，应看到「这张开通已经交付过一次，不能再次发放」。`/api/claim` 没有补发入口。丢了本机凭证时，用下面的「找回」，不要再调 claim。
+
+付款邮箱存在公开文档的 `result.userInfo.userEmail`。Order Inquiry 和 `PAYMENT_NOTIFICATION` 的 `result` 是同一结构，里面的 `userInfo.userEmail` 是商户用户邮箱，没有另一套「付款人邮箱」字段。通知里这个值存在，并且不是文档允许的 `userId@examples.com` 占位时，用它。否则用建单时用户在开通页填写的邮箱。两种都只把规范化（去首尾空白、转成小写）之后的 SHA-256 放进 KV，不存明文，避免订单记录被转储时带出邮箱。建单时仍把用户填写的邮箱明文送给 Waffo，因为创单的 `userInfo.userEmail` 必填。
+
+找回：
+
+1. 在开通页或返回页打开「找回开通」，填建单时的订单号和付款邮箱。
+2. 邮箱和订单都对上、订单已付款且未作废时，页面写入一张新凭证，课程开通。到期日仍是付款时那 30 或 90 天，不会重新起算。
+3. 订单号错、邮箱错、还没付款、已退款或已拒付撤销，页面都是同一句：「订单号或邮箱不匹配，或该订单无法找回」。不要根据这句话判断是哪一种。
+4. 同一个订单一共只能尝试 5 次（成功和失败都算）。短时间内同一 IP、同一订单还会再被挡住。超过之后页面写「尝试次数过多，请稍后再试。」
+
+请求和成功响应：
+
+```http
+POST /api/recover
+Content-Type: application/json
+
+{"order":"m0123456789abcdef0123456789abcdef","email":"buyer@example.com"}
+```
+
+```json
+{"credential":"<与领取相同格式的凭证>","plan":"monthly","expiresAt":"2026-10-28T00:05:00.000Z","orderId":"m0123456789abcdef0123456789abcdef"}
+```
+
+对不上或不能找回时，状态码 400，正文一律是 `{"error":"recover_failed"}`。次数用完是 429，正文 `{"error":"recover_limited"}`。
 
 签名不对的通知返回 `{"message":"failed"}`，不签发。
 
@@ -235,13 +259,13 @@ Cloudflare 账号与第 3 节的 Worker 是同一个。
 
 ### 项目名
 
-Pages 项目名是 `lle-learn`。预览地址将是 `https://lle-learn.pages.dev`。
+Pages 项目名暂定为 `lle-learn`（待品牌名）。预览地址将是 `https://lle-learn.pages.dev`。品牌名确定之前，不要在 Cloudflare 里创建这个项目。确定后如果改名，要同时改 `.github/workflows/cloudflare-pages.yml` 里的 `--project-name`。
 
 不要用 `voa-lle`。项目名会进 `pages.dev` 主机名，`voa-lle.pages.dev` 里含有 VOA。最终品牌还没定，公开地址里不要出现 VOA。Worker 的名字仍是 `voa-lle-unlock`，这一步不要改。
 
 ### 每一项设置
 
-在仪表盘 Workers & Pages → Create → Pages 里，选直接上传（Upload assets），不要选 Connect to Git。项目名填 `lle-learn`。第一次也可以不在仪表盘建：下面的部署命令会在这个账号里创建同名项目。生产分支、构建设置都留空，因为不走 Git 集成。
+等品牌名确定之后，再在仪表盘 Workers & Pages → Create → Pages 里选直接上传（Upload assets），不要选 Connect to Git。项目名先填暂定的 `lle-learn`。第一次也可以不在仪表盘建：下面的部署命令会在这个账号里创建同名项目。生产分支、构建设置都留空，因为不走 Git 集成。品牌名没定之前不要执行创建。
 
 构建发生在 GitHub Action，按这个顺序：
 
@@ -313,4 +337,29 @@ Token：右上角头像 → My Profile → API Tokens → Create Token → Creat
 - 在 GitHub Pages 上留一个壳。根目录和主要路径用 meta refresh，或一小段脚本：去掉路径里的 `/wx-extract-mvp`，打开新 origin 上的同一路径。页面的 canonical 指向新地址。
 - 只改 canonical、不跳转，也能让搜索引擎合并到新地址，但收藏了旧链接的人仍会停在 GitHub Pages。跳转壳是给人用的。
 - 不要删仓库。Git 仍然是源。
+
+## 7. 手工补发（旧微信付款用户）
+
+以前用微信付过款、本机又没有签名凭证的人，不能走找回：那时没有 Waffo 订单，也没有付款邮箱。站长核对过付款记录之后，在本机或 CI 里签发一张，每次只做一单，不要写批量脚本。
+
+脚本是 `scripts/issue-credential.js`。私钥从环境变量 `UNLOCK_PRIVATE_KEY`（与 Worker 相同的一行 PKCS8 Base64）或 `--key-file` 读取。脚本里没有默认密钥。不要把私钥、打印出来的凭证提交到 Git。
+
+```bash
+export UNLOCK_PRIVATE_KEY="$(cat unlock_private_key.base64)"
+node scripts/issue-credential.js \
+  --order wechat-20240901 \
+  --plan monthly \
+  --days 30 \
+  --note "旧微信付款，已核对"
+```
+
+`--plan` 是 `monthly` 或 `quarterly`。`--days` 是整数，常用 30 或 90，范围 1 到 366。`--order` 是 8 到 64 位的字母、数字、`_` 或 `-`。`--note` 只打印在终端里，不写进凭证。凭证字段仍只有 `orderId`、`plan`、`issuedAt`、`expiresAt`，和 Worker 签发的一样，开通页能验过才写入 `localStorage`。
+
+终端会打印一个链接，形如：
+
+```text
+https://1019666077-bit.github.io/wx-extract-mvp/pricing.html?credential=<凭证>
+```
+
+把这整个链接发给该用户。用户打开后，页面用 `site.config.json` 里的 `unlockPublicKey` 验签，通过才保存。公钥还是空的时候，链接打不开开通。`--origin` 可以改链接的站点；`--script zh-Hant` 会指向 `/zh-hant/pricing.html`。不设 `UNLOCK_PRIVATE_KEY` 也不给 `--key-file` 时，脚本直接退出，不会签发。
 

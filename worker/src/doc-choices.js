@@ -17,7 +17,13 @@
  *    CASE_WON leaves a revoked credential revoked.
  * 5. The second /api/claim is always refused, including the same browser.
  *    The return page must store the credential as soon as the first 200
- *    arrives. A lost first response cannot be fetched again.
+ *    arrives. A lost first response cannot be fetched again. /api/recover
+ *    is the later path: order id plus the payer email, not a second claim.
+ * 6. Payer email. Public Order Inquiry (and therefore PAYMENT_NOTIFICATION
+ *    result) exposes result.userInfo.userEmail, the merchant user email.
+ *    There is no other payer-email field. We prefer that value when it is
+ *    present and is not the userId@examples.com fallback. Otherwise we keep
+ *    the hash of the address collected at checkout.
  */
 
 const REFUND_REVOKE = new Set(["ORDER_FULLY_REFUNDED", "ORDER_PARTIALLY_REFUNDED"]);

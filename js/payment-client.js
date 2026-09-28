@@ -18,7 +18,7 @@ async function readJson(response) {
   }
 }
 
-export async function startCheckout({ baseUrl, plan, script, fetchImpl }) {
+export async function startCheckout({ baseUrl, plan, script, email, fetchImpl }) {
   if (!configured(baseUrl)) {
     return null;
   }
@@ -26,7 +26,7 @@ export async function startCheckout({ baseUrl, plan, script, fetchImpl }) {
   const response = await fetchFn(endpoint(baseUrl, "/api/checkout"), {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ plan, script }),
+    body: JSON.stringify({ plan, script, email }),
   });
   const body = await readJson(response);
   if (!response.ok || !body || typeof body.checkoutUrl !== "string") {
@@ -81,6 +81,32 @@ export async function pollClaim({ baseUrl, orderId, fetchImpl, sleep, attempts =
   return { status: "timeout" };
 }
 
+export async function recoverAccess({ baseUrl, orderId, email, fetchImpl }) {
+  if (!configured(baseUrl)) {
+    return { status: "unconfigured" };
+  }
+  const fetchFn = fetchImpl || fetch;
+  const response = await fetchFn(endpoint(baseUrl, "/api/recover"), {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ order: orderId, email }),
+  });
+  const body = await readJson(response);
+  if (response.status === 200 && body && typeof body.credential === "string") {
+    return {
+      status: "paid",
+      credential: body.credential,
+      plan: body.plan,
+      expiresAt: body.expiresAt,
+      orderId: body.orderId,
+    };
+  }
+  if (response.status === 429) {
+    return { status: "limited" };
+  }
+  return { status: "failed" };
+}
+
 export async function readStatus({ baseUrl, orderId, fetchImpl }) {
   if (!configured(baseUrl)) {
     return null;
@@ -96,7 +122,7 @@ export async function readStatus({ baseUrl, orderId, fetchImpl }) {
   return body;
 }
 
-const api = { configured, startCheckout, claimOnce, pollClaim, readStatus };
+const api = { configured, startCheckout, claimOnce, pollClaim, readStatus, recoverAccess };
 
 if (typeof window !== "undefined") {
   window.VOAPayment = api;

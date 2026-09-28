@@ -50,6 +50,17 @@
         <a class="btn" href="index.html">返回課表</a>
         <a class="btn" href="pricing.html">檢視方案</a>
       </div>
+      <h3 class="pay-steps-title">找回開通</h3>
+      <form id="recover-form" class="redeem-form">
+        <label for="recover-order">訂單號
+          <input id="recover-order" name="order" type="text" autocomplete="off" maxlength="64" />
+        </label>
+        <label for="recover-email">付款時填寫的郵箱
+          <input id="recover-email" name="email" type="email" autocomplete="email" maxlength="64" />
+        </label>
+        <button type="submit" class="btn">找回開通</button>
+        <p id="recover-result" class="quiz-result" role="status" aria-live="polite"></p>
+      </form>
     </section>
     <footer class="footer">
       <p>本站為非官方自學工具，與美國之音（Voice of America）沒有隸屬關係。課文影片與腳本來自 VOA Learning English，屬於公共領域。</p>

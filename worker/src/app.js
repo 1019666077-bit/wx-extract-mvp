@@ -6,12 +6,18 @@ import {
   refundShouldRevoke,
   shouldIssuePayment,
 } from "./doc-choices.js";
+import { hashesEqual, normalizeEmail, payerEmailFromResult, sha256Hex } from "./email.js";
 import { buildCreateOrderBody, importRsaPublicKey, PLANS, verifyRsaSha256, waffoPost } from "./waffo.js";
 
 const CHECKOUT_LIMIT = 8;
 const READ_LIMIT = 120;
+const RECOVER_IP_LIMIT = 8;
+const RECOVER_ORDER_WINDOW = 3;
+const RECOVER_ORDER_TOTAL = 5;
+const RECOVER_TOTAL_TTL = 90 * 24 * 60 * 60;
 const WINDOW_MS = 10 * 60 * 1000;
 const ORDER_ID = /^[A-Za-z0-9_-]{8,64}$/;
+const RECOVER_FAILED = { error: "recover_failed" };
 
 function json(body, status, headers) {
   return new Response(JSON.stringify(body), {
@@ -83,6 +89,18 @@ async function limited(kv, bucketKey, limit) {
   } catch (error) {
     return true;
   }
+}
+
+async function readCount(kv, key) {
+  const raw = await kv.get(key);
+  const current = raw ? Number(raw) : 0;
+  return Number.isFinite(current) && current >= 0 ? current : 0;
+}
+
+async function bumpCount(kv, key, ttl) {
+  const next = (await readCount(kv, key)) + 1;
+  await kv.put(key, String(next), { expirationTtl: ttl });
+  return next;
 }
 
 function randomHex(bytes) {
@@ -193,6 +211,10 @@ async function handleCheckout(request, env, deps) {
   if (plan !== "monthly" && plan !== "quarterly") {
     return json({ error: "invalid_plan" }, 400, headers);
   }
+  const email = normalizeEmail(body.email);
+  if (!email || email.endsWith("@examples.com")) {
+    return json({ error: "invalid_email" }, 400, headers);
+  }
   const script = body.script === "zh-Hant" ? "zh-Hant" : "zh-Hans";
   const origin = env.ALLOWED_ORIGIN.replace(/\/$/, "");
   const paymentRequestId = randomHex(16);
@@ -208,6 +230,8 @@ async function handleCheckout(request, env, deps) {
     status: "pending",
     credential: null,
     claimed: false,
+    emailHash: await sha256Hex(email),
+    emailSource: "checkout",
     acquiringOrderId: "",
     createdAt: requestedAt,
     issuedAt: "",
@@ -225,6 +249,7 @@ async function handleCheckout(request, env, deps) {
     cancelRedirectUrl: `${origin}${pagePath(script, "pricing.html")}`,
     goodsUrl: `${origin}/pricing.html`,
     requestedAt,
+    userEmail: email,
   });
   let parsed;
   try {
@@ -321,8 +346,13 @@ async function handleWebhook(request, env, deps) {
       if (!issued) {
         return waffoAck("failed");
       }
-      await writeOrder(env.ORDERS, record);
     }
+    const payerEmail = payerEmailFromResult(result);
+    if (payerEmail) {
+      record.emailHash = await sha256Hex(payerEmail);
+      record.emailSource = "notification";
+    }
+    await writeOrder(env.ORDERS, record);
     return waffoAck("success");
   }
   if (eventType === "PAYMENT_NOTIFICATION" && result.orderStatus === "ORDER_CLOSE") {
@@ -430,6 +460,102 @@ async function handleClaim(request, env, deps) {
   );
 }
 
+function recoverable(record, now) {
+  if (!record || record.status === "revoked" || record.status === "pending" || record.status === "closed") {
+    return false;
+  }
+  if (record.status !== "paid" && record.status !== "claimed") {
+    return false;
+  }
+  if (!record.emailHash || !record.issuedAt || !record.expiresAt || !record.plan) {
+    return false;
+  }
+  const expires = new Date(record.expiresAt);
+  if (Number.isNaN(expires.getTime()) || expires.getTime() <= now.getTime()) {
+    return false;
+  }
+  return true;
+}
+
+async function handleRecover(request, env, deps) {
+  const headers = corsHeaders(request, env);
+  if (!headers) {
+    return json({ error: "origin" }, 403);
+  }
+  if (missingConfig(env)) {
+    return json({ error: "unconfigured" }, 500, headers);
+  }
+  const now = deps.now();
+  const text = await request.text();
+  if (text.length > 2048) {
+    return json(RECOVER_FAILED, 400, headers);
+  }
+  let body;
+  try {
+    body = JSON.parse(text);
+  } catch (error) {
+    return json(RECOVER_FAILED, 400, headers);
+  }
+  const order = body && typeof body.order === "string" ? body.order : "";
+  const email = normalizeEmail(body && body.email);
+  let limitedKind = "";
+  try {
+    const bucket = Math.floor(now.getTime() / WINDOW_MS);
+    const ipKey = `rl:recover:ip:${clientIp(request)}:${bucket}`;
+    if ((await readCount(env.ORDERS, ipKey)) >= RECOVER_IP_LIMIT) {
+      limitedKind = "ip";
+    } else {
+      await bumpCount(env.ORDERS, ipKey, 700);
+    }
+    if (!limitedKind && ORDER_ID.test(order)) {
+      const winKey = `rl:recover:win:${order}:${bucket}`;
+      if ((await readCount(env.ORDERS, winKey)) >= RECOVER_ORDER_WINDOW) {
+        limitedKind = "window";
+      } else {
+        await bumpCount(env.ORDERS, winKey, 700);
+        const totalKey = `rl:recover:total:${order}`;
+        if ((await readCount(env.ORDERS, totalKey)) >= RECOVER_ORDER_TOTAL) {
+          limitedKind = "total";
+        } else {
+          await bumpCount(env.ORDERS, totalKey, RECOVER_TOTAL_TTL);
+        }
+      }
+    }
+  } catch (error) {
+    limitedKind = "ip";
+  }
+  if (limitedKind) {
+    return json({ error: "recover_limited" }, 429, { ...headers, "Retry-After": "60" });
+  }
+  if (!email) {
+    return json(RECOVER_FAILED, 400, headers);
+  }
+  const record = await readOrder(env.ORDERS, order);
+  const actual = await sha256Hex(email);
+  const expected = record && typeof record.emailHash === "string" ? record.emailHash : "";
+  if (!recoverable(record, now) || !hashesEqual(expected, actual)) {
+    return json(RECOVER_FAILED, 400, headers);
+  }
+  const token = await signCredential(env.UNLOCK_PRIVATE_KEY, {
+    orderId: record.merchantOrderId,
+    plan: record.plan,
+    issuedAt: record.issuedAt,
+    expiresAt: record.expiresAt,
+  });
+  record.credential = token;
+  await writeOrder(env.ORDERS, record);
+  return json(
+    {
+      credential: token,
+      plan: record.plan,
+      expiresAt: record.expiresAt,
+      orderId: record.merchantOrderId,
+    },
+    200,
+    headers
+  );
+}
+
 async function handleStatus(request, env, deps) {
   const headers = corsHeaders(request, env);
   if (!headers) {
@@ -482,6 +608,9 @@ export async function handleRequest(request, env, deps = {}) {
   }
   if (url.pathname === "/api/claim" && (request.method === "GET" || request.method === "POST")) {
     return handleClaim(request, env, runtime);
+  }
+  if (url.pathname === "/api/recover" && request.method === "POST") {
+    return handleRecover(request, env, runtime);
   }
   if (url.pathname === "/api/status" && (request.method === "GET" || request.method === "POST")) {
     return handleStatus(request, env, runtime);

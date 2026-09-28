@@ -65,6 +65,7 @@ function syncSwitcherLinks() {
   document.querySelectorAll("[data-script]").forEach((link) => {
     const url = new URL(link.getAttribute("href"), window.location.href);
     url.search = window.location.search;
+    url.searchParams.delete("credential");
     url.hash = window.location.hash;
     link.href = `${url.pathname}${url.search}${url.hash}`;
   });
@@ -1155,6 +1156,14 @@ function wireCheckoutButtons() {
   document.querySelectorAll("button[data-plan]").forEach((button) => {
     button.addEventListener("click", async () => {
       const resultEl = document.getElementById("redeem-result");
+      const emailInput = document.getElementById("checkout-email");
+      const email = emailInput ? emailInput.value.trim() : "";
+      if (!email) {
+        if (resultEl) {
+          resultEl.textContent = t("checkoutEmailRequired");
+        }
+        return;
+      }
       if (resultEl) {
         resultEl.textContent = t("checkoutWait");
       }
@@ -1164,6 +1173,7 @@ function wireCheckoutButtons() {
           baseUrl: payment.workerBaseUrl,
           plan: button.dataset.plan,
           script: currentScript(),
+          email,
         });
         if (result && result.checkoutUrl) {
           window.location.href = result.checkoutUrl;
@@ -1182,11 +1192,86 @@ function wireCheckoutButtons() {
   });
 }
 
+async function importCredentialFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("credential");
+  if (!token || typeof VOAUnlock === "undefined") {
+    return;
+  }
+  params.delete("credential");
+  const query = params.toString();
+  window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+  const result = document.getElementById("redeem-result");
+  try {
+    const state = await VOAUnlock.saveVerifiedCredential(token, paymentConfig().unlockPublicKey || "");
+    renderPricingState();
+    renderUnlockNav();
+    if (result) {
+      result.textContent = unlockStatusText(state, "importOk");
+    }
+  } catch (error) {
+    if (result) {
+      result.textContent = t("importFail");
+    }
+  }
+}
+
+function wireRecover() {
+  const form = document.getElementById("recover-form");
+  if (!form || form.dataset.wired === "true") {
+    return;
+  }
+  form.dataset.wired = "true";
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const resultEl = document.getElementById("recover-result");
+    const payment = paymentConfig();
+    if (!payment.workerBaseUrl || !payment.unlockPublicKey || typeof VOAPayment === "undefined") {
+      if (resultEl) {
+        resultEl.textContent = t("recoverSoon");
+      }
+      return;
+    }
+    const orderInput = form.querySelector("[name=order]");
+    const emailInput = form.querySelector("[name=email]");
+    const orderId = orderInput ? orderInput.value.trim() : "";
+    const email = emailInput ? emailInput.value.trim() : "";
+    if (resultEl) {
+      resultEl.textContent = t("recoverWait");
+    }
+    try {
+      const outcome = await VOAPayment.recoverAccess({
+        baseUrl: payment.workerBaseUrl,
+        orderId,
+        email,
+      });
+      if (outcome.status === "paid" && outcome.credential) {
+        const state = await VOAUnlock.saveVerifiedCredential(outcome.credential, payment.unlockPublicKey);
+        renderPricingState();
+        renderUnlockNav();
+        if (resultEl) {
+          resultEl.textContent = unlockStatusText(state, "recoverOk");
+        }
+        return;
+      }
+      if (resultEl) {
+        resultEl.textContent = outcome.status === "limited" ? t("recoverLimited") : t("recoverFailed");
+      }
+    } catch (error) {
+      if (resultEl) {
+        resultEl.textContent = t("recoverFailed");
+      }
+    }
+  });
+}
+
 async function initPricing() {
   updateWrongbookNavCount();
   await refreshRevocation();
   renderPricingState();
+  await importCredentialFromQuery();
   wireCheckoutButtons();
+  wireRecover();
 
   const result = document.getElementById("redeem-result");
   const clearBtn = document.getElementById("clear-unlock");
@@ -1280,6 +1365,7 @@ function unlockStatusText(state, key) {
 }
 
 async function initPricingReturn() {
+  wireRecover();
   const status = document.getElementById("return-status");
   if (!status || status.dataset.live !== "true") {
     return;

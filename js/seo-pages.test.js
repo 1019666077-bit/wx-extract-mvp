@@ -303,6 +303,13 @@ test("empty Waffo links render disabled soon buttons", () => {
     'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":""};\n'
   );
   assert.equal(convertToHant("即将开放"), "即將開放");
+  const { MESSAGES, buildI18nScript } = require("./messages.js");
+  assert.equal(MESSAGES.recoverFailed, "订单号或邮箱不匹配，或该订单无法找回");
+  assert.match(buildI18nScript(convertToHant), /訂單號或郵箱不匹配，或該訂單無法找回/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /id="recover-form"/);
+  assert.match(fs.readFileSync(path.join(root, "pricing-return.html"), "utf8"), /id="recover-form"/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /找回開通/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8"), /id="recover-form"/);
   const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });
   const hant = waffoPlansHtml(HANT, { monthlyUrl: "", quarterlyUrl: "   " });
   assert.equal((hans.match(/<button type="button" class="btn waffo-pay" disabled>即将开放<\/button>/g) || []).length, 2);

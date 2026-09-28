@@ -107,6 +107,7 @@ export function buildCreateOrderBody({
   cancelRedirectUrl,
   goodsUrl,
   requestedAt,
+  userEmail,
 }) {
   const spec = PLANS[plan];
   return {
@@ -123,7 +124,7 @@ export function buildCreateOrderBody({
     merchantInfo: { merchantId },
     userInfo: {
       userId: merchantOrderId,
-      userEmail: `${merchantOrderId}@examples.com`,
+      userEmail,
       userTerminal: "WEB",
     },
     paymentInfo: { productName: "ONE_TIME_PAYMENT" },

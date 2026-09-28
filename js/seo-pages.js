@@ -4,6 +4,7 @@ const { execSync } = require("node:child_process");
 const OpenCC = require("opencc-js");
 const VOAUnlock = require("./unlock.js");
 const { buildI18nScript } = require("./messages.js");
+const { PAGES: LEGAL_PAGES, buildLegalPage } = require("./legal-pages.js");
 
 const TITLE_MIN = 16;
 const TITLE_MAX = 34;
@@ -99,17 +100,49 @@ function loadWaffoLinks(root) {
     throw new Error("site.config.json needs payment.waffo.monthlyUrl and quarterlyUrl");
   }
   const worker = (config.payment && config.payment.worker) || {};
+  const pancake = (config.payment && config.payment.pancake) || {};
   return {
     monthlyUrl: normalizePaymentUrl(waffo.monthlyUrl, "monthlyUrl"),
     quarterlyUrl: normalizePaymentUrl(waffo.quarterlyUrl, "quarterlyUrl"),
     returnUrl: normalizePaymentUrl(waffo.returnUrl, "returnUrl"),
     workerBaseUrl: normalizeOptionalHttps(worker.baseUrl, "payment.worker.baseUrl"),
     unlockPublicKey: normalizeUnlockPublicKey(worker.unlockPublicKey),
+    monthlyProductId: normalizeProductId(pancake.monthlyProductId, "payment.pancake.monthlyProductId"),
+    quarterlyProductId: normalizeProductId(pancake.quarterlyProductId, "payment.pancake.quarterlyProductId"),
+    domainVerify: normalizeDomainVerify(pancake.domainVerify),
   };
 }
 
+function normalizeProductId(value, label) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "";
+  }
+  if (!/^PROD_[A-Za-z0-9]+$/.test(text)) {
+    throw new Error(`site.config.json ${label} must be empty or a PROD_ id`);
+  }
+  return text;
+}
+
+function normalizeDomainVerify(value) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "";
+  }
+  if (!/^[A-Za-z0-9_-]{4,128}$/.test(text)) {
+    throw new Error("site.config.json payment.pancake.domainVerify must be empty or the challenge token");
+  }
+  return text;
+}
+
 function paymentReady(links) {
-  return Boolean(links && links.workerBaseUrl && links.unlockPublicKey);
+  return Boolean(
+    links &&
+      links.workerBaseUrl &&
+      links.unlockPublicKey &&
+      links.monthlyProductId &&
+      links.quarterlyProductId
+  );
 }
 
 function channelLive(links) {
@@ -173,8 +206,35 @@ function buildPaymentConfigScript(links) {
   const payload = {
     workerBaseUrl: (links && links.workerBaseUrl) || "",
     unlockPublicKey: (links && links.unlockPublicKey) || "",
+    monthlyProductId: (links && links.monthlyProductId) || "",
+    quarterlyProductId: (links && links.quarterlyProductId) || "",
   };
   return `window.VOA_PAYMENT=${JSON.stringify(payload)};\n`;
+}
+
+function legalLinksHtml(locale, scope) {
+  const lesson = scope === "lesson";
+  const pageBase = lesson ? "../" : "";
+  const enBase = lesson
+    ? locale.id === "zh-Hant"
+      ? "../../en/"
+      : "../en/"
+    : locale.id === "zh-Hant"
+      ? "../en/"
+      : "en/";
+  return `<nav class="legal-links" aria-label="${escapeHtml(tx("条款", locale))}">
+        <a href="${pageBase}terms.html">${escapeHtml(tx("服务条款", locale))}</a>
+        <a href="${pageBase}privacy.html">${escapeHtml(tx("隐私政策", locale))}</a>
+        <a href="${pageBase}refund.html">${escapeHtml(tx("退款政策", locale))}</a>
+        <a href="${enBase}terms.html" hreflang="en" lang="en">English</a>
+      </nav>`;
+}
+
+function domainVerifyTag(token) {
+  if (!token) {
+    return "";
+  }
+  return `<meta name="waffo-verify" content="${escapeHtml(token)}" />`;
 }
 
 const SITE = loadSiteOrigin(path.join(__dirname, ".."));
@@ -821,6 +881,7 @@ ${pager}
     </nav>
     <footer class="footer">
       <p id="attribution">${escapeHtml(view.attribution || "")}</p>
+      ${legalLinksHtml(loc, "lesson")}
     </footer>
   </div>
   <script type="application/json" id="lesson-nav">${navJson}</script>
@@ -880,6 +941,7 @@ function buildSitemap(levels, lastmod, origin = SITE, waffo = null) {
   const pages = [
     ...keyPages(origin).map((page) => ({ rel: page.file, priority: page.priority })),
     ...(channelLive(links) ? [{ rel: "pricing-return.html", priority: "0.3" }] : []),
+    ...Object.values(LEGAL_PAGES).map((page) => ({ rel: page.file, priority: "0.4" })),
     ...levels.flatMap((level) =>
       level.lessons.map((lesson) => ({
         rel: `lessons/${lesson.id}.html`,
@@ -893,20 +955,40 @@ function buildSitemap(levels, lastmod, origin = SITE, waffo = null) {
         const loc = absoluteUrl(locale, page.rel, origin);
         const hans = absoluteUrl(HANS, page.rel, origin);
         const hant = absoluteUrl(HANT, page.rel, origin);
+        const enAlternate = Object.values(LEGAL_PAGES).some((item) => item.file === page.rel)
+          ? `\n    <xhtml:link rel="alternate" hreflang="en" href="${escapeHtml(`${origin}/en/${page.rel}`)}" />`
+          : "";
         return `  <url>
     <loc>${escapeHtml(loc)}</loc>
     <lastmod>${lastmod}</lastmod>
     <priority>${page.priority}</priority>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="${escapeHtml(hans)}" />
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(hant)}" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(hant)}" />${enAlternate}
     <xhtml:link rel="alternate" hreflang="x-default" href="${escapeHtml(hans)}" />
   </url>`;
       })
     )
     .join("\n");
+  const english = Object.values(LEGAL_PAGES)
+    .map((page) => {
+      const loc = `${origin}/en/${page.file}`;
+      const hans = `${origin}/${page.file}`;
+      const hant = `${origin}/zh-hant/${page.file}`;
+      return `  <url>
+    <loc>${escapeHtml(loc)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="${escapeHtml(hans)}" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(hant)}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${escapeHtml(loc)}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeHtml(hans)}" />
+  </url>`;
+    })
+    .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${body}
+${english}
 </urlset>
 `;
 }
@@ -927,16 +1009,24 @@ Sitemap: ${origin}/sitemap.xml
 `;
 }
 
+function replaceTomlString(text, key, value) {
+  const pattern = new RegExp(`^${key} = ".*"$`, "m");
+  if (!pattern.test(text)) {
+    throw new Error(`worker/wrangler.toml is missing ${key}`);
+  }
+  return text.replace(pattern, `${key} = "${value}"`);
+}
+
 function syncWorkerOrigin(root) {
   const origin = loadSiteOrigin(root);
+  const links = loadWaffoLinks(root);
   const file = path.join(root, "worker", "wrangler.toml");
-  const text = fs.readFileSync(file, "utf8");
-  if (!/^ALLOWED_ORIGIN = ".*"$/m.test(text)) {
-    throw new Error("worker/wrangler.toml is missing ALLOWED_ORIGIN");
-  }
-  const next = text.replace(/^ALLOWED_ORIGIN = ".*"$/m, `ALLOWED_ORIGIN = "${origin}"`);
-  if (next !== text) {
-    fs.writeFileSync(file, next);
+  let text = fs.readFileSync(file, "utf8");
+  text = replaceTomlString(text, "ALLOWED_ORIGIN", origin);
+  text = replaceTomlString(text, "PANCAKE_PRODUCT_MONTHLY", links.monthlyProductId);
+  text = replaceTomlString(text, "PANCAKE_PRODUCT_QUARTERLY", links.quarterlyProductId);
+  if (text !== fs.readFileSync(file, "utf8")) {
+    fs.writeFileSync(file, text);
   }
   return origin;
 }
@@ -991,6 +1081,10 @@ function patchSitePage(html, page, levels, locale = HANS, origin = SITE, waffo =
     })
   );
   next = replaceMarked(next, "script-switch", scriptSwitcher(locale, page.file));
+  next = replaceMarked(next, "legal-links", legalLinksHtml(locale, "shell"));
+  if (page.id === "home") {
+    next = replaceMarked(next, "waffo-verify", domainVerifyTag(waffo && waffo.domainVerify));
+  }
   if (page.id === "pricing") {
     next = replaceMarked(next, "waffo-plans", waffoPlansHtml(locale, waffo));
   }
@@ -1098,6 +1192,11 @@ function expectedFiles(root, payload, lastmod) {
       files.set(`${locale.prefix}${page.file}`, patchSitePage(shell, page, levels, locale, SITE, waffo));
     }
   }
+  for (const kind of Object.keys(LEGAL_PAGES)) {
+    files.set(`${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hans", SITE, (text) => text));
+    files.set(`zh-hant/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hant", SITE, convertToHant));
+    files.set(`en/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "en", SITE, (text) => text));
+  }
   files.set("sitemap.xml", buildSitemap(levels, lastmod, SITE, waffo));
   files.set("robots.txt", buildRobots());
   return files;
@@ -1157,6 +1256,13 @@ function checkAll(root) {
     const wrangler = fs.readFileSync(path.join(root, "worker", "wrangler.toml"), "utf8");
     if (!wrangler.includes(`ALLOWED_ORIGIN = "${origin}"`)) {
       problems.push("worker/wrangler.toml ALLOWED_ORIGIN does not match site.config.json origin");
+    }
+    const links = loadWaffoLinks(root);
+    if (!wrangler.includes(`PANCAKE_PRODUCT_MONTHLY = "${links.monthlyProductId}"`)) {
+      problems.push("worker/wrangler.toml PANCAKE_PRODUCT_MONTHLY does not match site.config.json");
+    }
+    if (!wrangler.includes(`PANCAKE_PRODUCT_QUARTERLY = "${links.quarterlyProductId}"`)) {
+      problems.push("worker/wrangler.toml PANCAKE_PRODUCT_QUARTERLY does not match site.config.json");
     }
   } catch (error) {
     problems.push(error.message);

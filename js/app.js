@@ -223,6 +223,16 @@ function paymentConfig() {
   return window.VOA_PAYMENT || {};
 }
 
+function paymentChannelReady(payment) {
+  return Boolean(
+    payment &&
+      payment.workerBaseUrl &&
+      payment.unlockPublicKey &&
+      payment.monthlyProductId &&
+      payment.quarterlyProductId
+  );
+}
+
 function readProgress() {
   try {
     const raw = localStorage.getItem(PROGRESS_KEY);
@@ -1150,7 +1160,7 @@ async function refreshRevocation() {
 
 function wireCheckoutButtons() {
   const payment = paymentConfig();
-  if (!payment.workerBaseUrl || !payment.unlockPublicKey || typeof VOAPayment === "undefined") {
+  if (!paymentChannelReady(payment) || typeof VOAPayment === "undefined") {
     return;
   }
   document.querySelectorAll("button[data-plan]").forEach((button) => {
@@ -1226,7 +1236,7 @@ function wireRecover() {
     event.preventDefault();
     const resultEl = document.getElementById("recover-result");
     const payment = paymentConfig();
-    if (!payment.workerBaseUrl || !payment.unlockPublicKey || typeof VOAPayment === "undefined") {
+    if (!paymentChannelReady(payment) || typeof VOAPayment === "undefined") {
       if (resultEl) {
         resultEl.textContent = t("recoverSoon");
       }

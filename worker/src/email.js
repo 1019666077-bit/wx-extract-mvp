@@ -1,12 +1,10 @@
 /**
  * Recovery identity.
- * PAYMENT_NOTIFICATION result matches Order Inquiry, which includes
- * result.userInfo.userEmail (the merchant user email; the public schema has
- * no separate payer-email field). A missing value, or the documented
- * userId@examples.com fallback, is not a payer address. Checkout then asks
- * the buyer, and that address is what we hash if the notification has none.
- * KV stores only the SHA-256 of the normalized address so a dump of the
- * order record does not contain the mailbox.
+ * Pancake webhook data.buyerEmail is always present on documented events
+ * and is the buyer address collected by the Merchant of Record cashier.
+ * Checkout still stores a hash of the address the buyer typed, because the
+ * cashier can change the prefilled value. A later event with buyerEmail
+ * replaces that hash. KV stores only the SHA-256 of the normalized address.
  */
 
 export function normalizeEmail(value) {
@@ -20,32 +18,9 @@ export function normalizeEmail(value) {
   return text;
 }
 
-export function isPlaceholderEmail(email) {
-  return email.endsWith("@examples.com");
-}
-
-function userInfoOf(result) {
-  let info = result && result.userInfo;
-  if (typeof info === "string") {
-    try {
-      info = JSON.parse(info);
-    } catch (error) {
-      return null;
-    }
-  }
-  if (!info || typeof info !== "object") {
-    return null;
-  }
-  return info;
-}
-
-export function payerEmailFromResult(result) {
-  const info = userInfoOf(result);
-  const email = normalizeEmail(info && info.userEmail);
-  if (!email || isPlaceholderEmail(email)) {
-    return "";
-  }
-  return email;
+export function buyerEmailFromEvent(event) {
+  const data = event && event.data;
+  return normalizeEmail(data && data.buyerEmail);
 }
 
 export async function sha256Hex(text) {

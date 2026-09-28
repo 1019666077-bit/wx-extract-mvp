@@ -109,7 +109,7 @@ test("free lesson HTML includes dialogue and does not preload the video", () => 
 test("sitemap lists the home page, key pages, and all lessons", () => {
   const xml = buildSitemap(levels, "2026-09-05");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locs.length, 172);
+  assert.equal(locs.length, 181);
   assert.equal(new Set(locs).size, locs.length);
   assert.ok(locs.includes(`${SITE}/`));
   assert.ok(locs.includes(`${SITE}/progress.html`));
@@ -121,6 +121,9 @@ test("sitemap lists the home page, key pages, and all lessons", () => {
   assert.ok(locs.includes(`${SITE}/zh-hant/`));
   assert.ok(locs.includes(`${SITE}/zh-hant/lessons/lle1-01.html`));
   assert.ok(locs.includes(`${SITE}/zh-hant/lessons/lle2-30.html`));
+  assert.ok(locs.includes(`${SITE}/terms.html`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/privacy.html`));
+  assert.ok(locs.includes(`${SITE}/en/refund.html`));
   assert.equal([...xml.matchAll(/<lastmod>/g)].length, locs.length);
   assert.equal([...xml.matchAll(/hreflang="zh-Hant"/g)].length, locs.length);
   assert.equal([...xml.matchAll(/hreflang="x-default"/g)].length, locs.length);
@@ -297,10 +300,13 @@ test("empty Waffo links render disabled soon buttons", () => {
     returnUrl: "",
     workerBaseUrl: "",
     unlockPublicKey: "",
+    monthlyProductId: "",
+    quarterlyProductId: "",
+    domainVerify: "",
   });
   assert.equal(
     buildPaymentConfigScript(loadWaffoLinks(root)),
-    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":""};\n'
+    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":""};\n'
   );
   assert.equal(convertToHant("即将开放"), "即將開放");
   const { MESSAGES, buildI18nScript } = require("./messages.js");
@@ -309,6 +315,15 @@ test("empty Waffo links render disabled soon buttons", () => {
   assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /id="recover-form"/);
   assert.match(fs.readFileSync(path.join(root, "pricing-return.html"), "utf8"), /id="recover-form"/);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /找回開通/);
+  const terms = fs.readFileSync(path.join(root, "terms.html"), "utf8");
+  const termsHant = fs.readFileSync(path.join(root, "zh-hant/terms.html"), "utf8");
+  const termsEn = fs.readFileSync(path.join(root, "en/terms.html"), "utf8");
+  assert.match(terms, /待幕僚长确认/);
+  assert.match(termsHant, /待幕僚長確認/);
+  assert.match(termsEn, /待幕僚长确认/);
+  assert.doesNotMatch(terms, /生效日期/);
+  assert.doesNotMatch(termsEn, /Effective date/i);
+  assert.equal(fs.readFileSync(path.join(root, "index.html"), "utf8").includes('name="waffo-verify"'), false);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8"), /id="recover-form"/);
   const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });
   const hant = waffoPlansHtml(HANT, { monthlyUrl: "", quarterlyUrl: "   " });
@@ -340,7 +355,14 @@ test("worker config enables checkout buttons without a static href", () => {
   const html = waffoPlansHtml(HANS, {
     workerBaseUrl: "https://pay.example",
     unlockPublicKey: "A".repeat(44),
+    monthlyProductId: "PROD_monthly",
+    quarterlyProductId: "PROD_quarterly",
   });
+  const missingProduct = waffoPlansHtml(HANS, {
+    workerBaseUrl: "https://pay.example",
+    unlockPublicKey: "A".repeat(44),
+  });
+  assert.match(missingProduct, /disabled>即将开放</);
   assert.match(html, /data-plan="monthly"/);
   assert.match(html, /data-plan="quarterly"/);
   assert.match(html, /用 Waffo 支付 US\$5\.99/);
@@ -383,7 +405,7 @@ test("return page stays unpublished until payment.waffo.returnUrl is set", () =>
   assert.match(opened, /data-live="true"/);
   assert.match(opened, /自动开通/);
   const xml = buildSitemap(levels, "2026-09-05");
-  assert.equal([...xml.matchAll(/<loc>/g)].length, 172);
+  assert.equal([...xml.matchAll(/<loc>/g)].length, 181);
   assert.doesNotMatch(xml, /pricing-return\.html/);
   const listed = buildSitemap(levels, "2026-09-05", "https://lessons.example", {
     returnUrl: "https://lessons.example/pricing-return.html",

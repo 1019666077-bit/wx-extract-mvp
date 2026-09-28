@@ -813,6 +813,22 @@ h3 {
   margin: 0;
 }
 
+.legal-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 12px;
+}
+
+.legal-doc h2 {
+  font-size: 1.05rem;
+  margin: 1.3rem 0 0.4rem;
+}
+
+.legal-doc p {
+  line-height: 1.65;
+}
+
 .checkin-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));

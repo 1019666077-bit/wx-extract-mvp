@@ -13,13 +13,16 @@ const ROOT_FILES = [
   "progress.html",
   "wrongbook.html",
   "lesson.html",
+  "terms.html",
+  "privacy.html",
+  "refund.html",
   "sitemap.xml",
   "robots.txt",
   "_headers",
   "_redirects",
 ];
 
-const DIRS = ["css", "img", "lessons", "zh-hant", "data"];
+const DIRS = ["css", "img", "lessons", "zh-hant", "data", "en"];
 
 function copyTree(src, dest) {
   fs.cpSync(src, dest, { recursive: true });

@@ -1,13 +1,15 @@
 import { signCredential } from "../../js/credential.js";
+import { buyerEmailFromEvent, hashesEqual, normalizeEmail, sha256Hex } from "./email.js";
+import { isSubscriptionEvent, paymentInstant, refundShouldRevoke, shouldIssuePayment } from "./doc-choices.js";
 import {
-  chargebackShouldRevoke,
-  checkoutUrlFromOrderAction,
-  paymentInstant,
-  refundShouldRevoke,
-  shouldIssuePayment,
-} from "./doc-choices.js";
-import { hashesEqual, normalizeEmail, payerEmailFromResult, sha256Hex } from "./email.js";
-import { buildCreateOrderBody, importRsaPublicKey, PLANS, verifyRsaSha256, waffoPost } from "./waffo.js";
+  buildCheckoutBody,
+  createCheckoutSession,
+  importRsaPublicKey,
+  parseWaffoSignature,
+  PLANS,
+  signatureFresh,
+  verifyRsaSha256,
+} from "./waffo.js";
 
 const CHECKOUT_LIMIT = 8;
 const READ_LIMIT = 120;
@@ -15,8 +17,11 @@ const RECOVER_IP_LIMIT = 8;
 const RECOVER_ORDER_WINDOW = 3;
 const RECOVER_ORDER_TOTAL = 5;
 const RECOVER_TOTAL_TTL = 90 * 24 * 60 * 60;
+const EVENT_TTL = 90 * 24 * 60 * 60;
 const WINDOW_MS = 10 * 60 * 1000;
 const ORDER_ID = /^[A-Za-z0-9_-]{8,64}$/;
+const EVENT_ID = /^[A-Za-z0-9_.-]{1,128}$/;
+const PRODUCT_ID = /^PROD_[A-Za-z0-9]+$/;
 const RECOVER_FAILED = { error: "recover_failed" };
 
 function json(body, status, headers) {
@@ -30,10 +35,10 @@ function json(body, status, headers) {
   });
 }
 
-function waffoAck(message) {
-  return new Response(JSON.stringify({ message }), {
-    status: 200,
-    headers: { "Content-Type": "application/json" },
+function webhookResponse(status, text) {
+  return new Response(text, {
+    status,
+    headers: { "Content-Type": "text/plain; charset=utf-8", "Cache-Control": "no-store" },
   });
 }
 
@@ -56,12 +61,16 @@ function clientIp(request) {
   return cleaned || "0";
 }
 
+function productId(env, plan) {
+  const value = plan === "monthly" ? env.PANCAKE_PRODUCT_MONTHLY : env.PANCAKE_PRODUCT_QUARTERLY;
+  return typeof value === "string" && PRODUCT_ID.test(value) ? value : "";
+}
+
 function missingConfig(env) {
   const keys = [
-    "WAFFO_API_KEY",
-    "WAFFO_MERCHANT_ID",
-    "WAFFO_PRIVATE_KEY",
-    "WAFFO_PUBLIC_KEY",
+    "WAFFO_PANCAKE_API_KEY",
+    "WAFFO_PANCAKE_MERCHANT_ID",
+    "WAFFO_WEBHOOK_PUBLIC_KEY",
     "UNLOCK_PRIVATE_KEY",
     "WAFFO_API_BASE",
     "ALLOWED_ORIGIN",
@@ -70,6 +79,12 @@ function missingConfig(env) {
     if (!env[key]) {
       return key;
     }
+  }
+  if (env.PANCAKE_MODE !== "test" && env.PANCAKE_MODE !== "prod") {
+    return "PANCAKE_MODE";
+  }
+  if (!productId(env, "monthly") || !productId(env, "quarterly")) {
+    return "PANCAKE_PRODUCT";
   }
   if (!env.ORDERS) {
     return "ORDERS";
@@ -115,18 +130,26 @@ function addUtcDays(date, days) {
   return next;
 }
 
-function moneyMatches(actual, expected) {
-  if (typeof actual !== "string" || !/^\d+(\.\d+)?$/.test(actual)) {
-    return false;
+function httpsUrl(value) {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" ? url.toString() : "";
+  } catch (error) {
+    return "";
   }
-  return Number(actual).toFixed(2) === Number(expected).toFixed(2);
 }
 
-async function readOrder(kv, merchantOrderId) {
-  if (!merchantOrderId || !ORDER_ID.test(merchantOrderId)) {
+async function readOrder(kv, id) {
+  if (!id || !ORDER_ID.test(id)) {
     return null;
   }
-  const raw = await kv.get(`order:${merchantOrderId}`);
+  let raw = await kv.get(`order:${id}`);
+  if (!raw) {
+    const alias = await kv.get(`alias:${id}`);
+    if (typeof alias === "string" && ORDER_ID.test(alias)) {
+      raw = await kv.get(`order:${alias}`);
+    }
+  }
   if (!raw) {
     return null;
   }
@@ -139,48 +162,17 @@ async function readOrder(kv, merchantOrderId) {
 
 async function writeOrder(kv, record) {
   await kv.put(`order:${record.merchantOrderId}`, JSON.stringify(record));
-  if (record.acquiringOrderId) {
-    await kv.put(`acq:${record.acquiringOrderId}`, record.merchantOrderId);
+  if (record.pancakeOrderId && ORDER_ID.test(record.pancakeOrderId)) {
+    await kv.put(`alias:${record.pancakeOrderId}`, record.merchantOrderId);
   }
-  if (record.paymentRequestId) {
-    await kv.put(`payreq:${record.paymentRequestId}`, record.merchantOrderId);
-  }
-}
-
-async function resolveMerchantOrderId(kv, result) {
-  if (!result || typeof result !== "object") {
-    return "";
-  }
-  if (typeof result.merchantOrderId === "string" && result.merchantOrderId) {
-    return result.merchantOrderId;
-  }
-  const keys = [];
-  if (result.acquiringOrderId) {
-    keys.push(`acq:${result.acquiringOrderId}`);
-  }
-  if (result.originalOrderId) {
-    keys.push(`acq:${result.originalOrderId}`);
-  }
-  if (result.origPaymentRequestId) {
-    keys.push(`payreq:${result.origPaymentRequestId}`);
-  }
-  if (result.originalPaymentRequestId) {
-    keys.push(`payreq:${result.originalPaymentRequestId}`);
-  }
-  if (result.paymentRequestId) {
-    keys.push(`payreq:${result.paymentRequestId}`);
-  }
-  for (const key of keys) {
-    const id = await kv.get(key);
-    if (typeof id === "string" && id) {
-      return id;
-    }
-  }
-  return "";
 }
 
 function pagePath(script, name) {
   return script === "zh-Hant" ? `/zh-hant/${name}` : `/${name}`;
+}
+
+function cashierLanguage(script) {
+  return script === "zh-Hant" ? "zh-Hant-TW" : "zh-Hans";
 }
 
 async function handleCheckout(request, env, deps) {
@@ -217,73 +209,61 @@ async function handleCheckout(request, env, deps) {
   }
   const script = body.script === "zh-Hant" ? "zh-Hant" : "zh-Hans";
   const origin = env.ALLOWED_ORIGIN.replace(/\/$/, "");
-  const paymentRequestId = randomHex(16);
   const merchantOrderId = `m${randomHex(16)}`;
   const requestedAt = now.toISOString();
-  const workerOrigin = new URL(request.url).origin;
   const record = {
     merchantOrderId,
-    paymentRequestId,
     plan,
     amount: PLANS[plan].amount,
     currency: "USD",
+    productId: productId(env, plan),
     status: "pending",
     credential: null,
     claimed: false,
     emailHash: await sha256Hex(email),
     emailSource: "checkout",
-    acquiringOrderId: "",
+    pancakeOrderId: "",
+    sessionId: "",
     createdAt: requestedAt,
     issuedAt: "",
     expiresAt: "",
   };
   await writeOrder(env.ORDERS, record);
-  const orderBody = buildCreateOrderBody({
-    plan,
-    paymentRequestId,
-    merchantOrderId,
-    merchantId: env.WAFFO_MERCHANT_ID,
-    notifyUrl: `${workerOrigin}/api/waffo/webhook`,
-    successRedirectUrl: `${origin}${pagePath(script, "pricing-return.html")}?order=${encodeURIComponent(merchantOrderId)}`,
-    failedRedirectUrl: `${origin}${pagePath(script, "pricing.html")}`,
-    cancelRedirectUrl: `${origin}${pagePath(script, "pricing.html")}`,
-    goodsUrl: `${origin}/pricing.html`,
-    requestedAt,
-    userEmail: email,
+  const orderBody = buildCheckoutBody({
+    productId: record.productId,
+    buyerEmail: email,
+    language: cashierLanguage(script),
+    successUrl: `${origin}${pagePath(script, "pricing-return.html")}?order=${encodeURIComponent(merchantOrderId)}`,
+    orderMerchantExternalId: merchantOrderId,
   });
-  let parsed;
+  let posted;
   try {
-    const posted = await waffoPost(env, "/api/v1/order/create", orderBody, deps.fetch);
-    parsed = posted.parsed;
+    posted = await createCheckoutSession(env, orderBody, now, deps.fetch);
   } catch (error) {
     record.status = "closed";
     await writeOrder(env.ORDERS, record);
     return json({ error: "checkout_failed" }, 502, headers);
   }
-  if (!parsed || String(parsed.code) !== "0" || !parsed.data) {
+  const data = posted.parsed && posted.parsed.data;
+  const checkoutUrl = httpsUrl(data && data.checkoutUrl);
+  if (!posted.ok || !checkoutUrl) {
     record.status = "closed";
     await writeOrder(env.ORDERS, record);
     return json({ error: "checkout_failed" }, 502, headers);
   }
-  const data = parsed.data;
-  if (typeof data.acquiringOrderId === "string") {
-    record.acquiringOrderId = data.acquiringOrderId;
-  }
-  const checkoutUrl = checkoutUrlFromOrderAction(data.orderAction);
-  if (!checkoutUrl) {
-    record.status = "closed";
-    await writeOrder(env.ORDERS, record);
-    return json({ error: "checkout_failed" }, 502, headers);
+  if (typeof data.sessionId === "string") {
+    record.sessionId = data.sessionId;
   }
   await writeOrder(env.ORDERS, record);
   return json({ checkoutUrl, merchantOrderId }, 200, headers);
 }
 
-async function issueCredential(record, result, env, now) {
-  if (!moneyMatches(result.orderAmount, record.amount) || result.orderCurrency !== record.currency) {
+async function issueCredential(record, event, env, now) {
+  const data = event.data || {};
+  if (data.currency !== record.currency) {
     return false;
   }
-  const paidAt = paymentInstant(result, now);
+  const paidAt = paymentInstant(event, now);
   const expires = addUtcDays(paidAt, PLANS[record.plan].days);
   const token = await signCredential(env.UNLOCK_PRIVATE_KEY, {
     orderId: record.merchantOrderId,
@@ -295,101 +275,106 @@ async function issueCredential(record, result, env, now) {
   record.status = "paid";
   record.issuedAt = paidAt.toISOString();
   record.expiresAt = expires.toISOString();
-  if (typeof result.acquiringOrderId === "string" && result.acquiringOrderId) {
-    record.acquiringOrderId = result.acquiringOrderId;
+  if (typeof data.orderId === "string" && data.orderId) {
+    record.pancakeOrderId = data.orderId;
   }
   return true;
 }
 
+async function rememberEvent(kv, eventId, eventType) {
+  if (!eventId || !EVENT_ID.test(eventId)) {
+    return;
+  }
+  await kv.put(`event:${eventId}`, eventType || "seen", { expirationTtl: EVENT_TTL });
+}
+
 async function handleWebhook(request, env, deps) {
   if (missingConfig(env)) {
-    return waffoAck("failed");
+    return webhookResponse(500, "unconfigured");
   }
   const raw = await request.text();
   if (raw.length > 65536) {
-    return waffoAck("failed");
+    return webhookResponse(401, "Invalid signature");
   }
-  const signature = request.headers.get("X-SIGNATURE");
+  const parsedHeader = parseWaffoSignature(request.headers.get("X-Waffo-Signature"));
+  const now = deps.now();
+  if (!signatureFresh(parsedHeader.t, now.getTime())) {
+    return webhookResponse(401, "Invalid signature");
+  }
   let verified = false;
   try {
-    const publicKey = await importRsaPublicKey(env.WAFFO_PUBLIC_KEY);
-    verified = await verifyRsaSha256(publicKey, raw, signature);
+    const publicKey = await importRsaPublicKey(env.WAFFO_WEBHOOK_PUBLIC_KEY);
+    verified = await verifyRsaSha256(publicKey, `${parsedHeader.t}.${raw}`, parsedHeader.v1);
   } catch (error) {
     verified = false;
   }
   if (!verified) {
-    return waffoAck("failed");
+    return webhookResponse(401, "Invalid signature");
   }
   let event;
   try {
     event = JSON.parse(raw);
   } catch (error) {
-    return waffoAck("failed");
+    return webhookResponse(200, "OK");
   }
   const eventType = event && event.eventType;
-  const result = event && event.result;
-  if (!eventType || !result || typeof result !== "object") {
-    return waffoAck("failed");
+  const data = event && event.data;
+  if (!eventType || !data || typeof data !== "object") {
+    return webhookResponse(200, "OK");
   }
-  const merchantOrderId = await resolveMerchantOrderId(env.ORDERS, result);
-  const record = await readOrder(env.ORDERS, merchantOrderId);
-  if (!record) {
-    return waffoAck("failed");
+  if (event.mode !== env.PANCAKE_MODE) {
+    return webhookResponse(200, "OK");
   }
-  const now = deps.now();
-  if (shouldIssuePayment(eventType, result)) {
-    if (record.status === "revoked") {
-      return waffoAck("success");
+  const eventId = typeof event.eventId === "string" ? event.eventId : "";
+  if (eventId && EVENT_ID.test(eventId)) {
+    const seen = await env.ORDERS.get(`event:${eventId}`);
+    if (seen) {
+      return webhookResponse(200, "OK");
     }
-    if (!record.credential) {
-      const issued = await issueCredential(record, result, env, now);
+  }
+  if (isSubscriptionEvent(eventType)) {
+    await rememberEvent(env.ORDERS, eventId, eventType);
+    return webhookResponse(200, "OK");
+  }
+  const externalId = typeof data.orderMerchantExternalId === "string" ? data.orderMerchantExternalId : "";
+  const pancakeOrderId = typeof data.orderId === "string" ? data.orderId : "";
+  const record = (await readOrder(env.ORDERS, externalId)) || (await readOrder(env.ORDERS, pancakeOrderId));
+  if (!record) {
+    if (shouldIssuePayment(eventType) && externalId) {
+      return webhookResponse(500, "order missing");
+    }
+    await rememberEvent(env.ORDERS, eventId, eventType);
+    return webhookResponse(200, "OK");
+  }
+  if (shouldIssuePayment(eventType)) {
+    if (record.status !== "revoked" && !record.credential) {
+      const issued = await issueCredential(record, event, env, now);
       if (!issued) {
-        return waffoAck("failed");
+        return webhookResponse(200, "OK");
       }
     }
-    const payerEmail = payerEmailFromResult(result);
-    if (payerEmail) {
+    const payerEmail = buyerEmailFromEvent(event);
+    if (payerEmail && record.status !== "revoked") {
       record.emailHash = await sha256Hex(payerEmail);
       record.emailSource = "notification";
     }
-    await writeOrder(env.ORDERS, record);
-    return waffoAck("success");
-  }
-  if (eventType === "PAYMENT_NOTIFICATION" && result.orderStatus === "ORDER_CLOSE") {
-    if (record.status === "pending") {
-      record.status = "closed";
-      await writeOrder(env.ORDERS, record);
+    if (pancakeOrderId && !record.pancakeOrderId) {
+      record.pancakeOrderId = pancakeOrderId;
     }
-    return waffoAck("success");
+    await writeOrder(env.ORDERS, record);
+    await rememberEvent(env.ORDERS, eventId, eventType);
+    return webhookResponse(200, "OK");
   }
-  if (eventType === "PAYMENT_NOTIFICATION") {
-    return waffoAck("unknown");
-  }
-  if (eventType === "REFUND_NOTIFICATION" && refundShouldRevoke(result)) {
+  if (refundShouldRevoke(eventType)) {
     record.status = "revoked";
     record.credential = null;
     record.revokedAt = now.toISOString();
     await writeOrder(env.ORDERS, record);
-    return waffoAck("success");
+    await rememberEvent(env.ORDERS, eventId, eventType);
+    return webhookResponse(200, "OK");
   }
-  if (eventType === "CHARGEBACK_NOTIFICATION" && chargebackShouldRevoke(result)) {
-    record.status = "revoked";
-    record.credential = null;
-    record.revokedAt = now.toISOString();
-    await writeOrder(env.ORDERS, record);
-    return waffoAck("success");
-  }
-  if (
-    eventType === "REFUND_NOTIFICATION" ||
-    eventType === "CHARGEBACK_NOTIFICATION" ||
-    eventType === "TOKENIZATION_NOTIFICATION" ||
-    eventType === "SUBSCRIPTION_STATUS_NOTIFICATION" ||
-    eventType === "SUBSCRIPTION_PERIOD_CHANGED_NOTIFICATION" ||
-    eventType === "SUBSCRIPTION_CHANGE_NOTIFICATION"
-  ) {
-    return waffoAck("success");
-  }
-  return waffoAck("unknown");
+  await rememberEvent(env.ORDERS, eventId, eventType);
+  return webhookResponse(200, "OK");
 }
 
 async function orderParam(request) {
@@ -507,13 +492,20 @@ async function handleRecover(request, env, deps) {
     } else {
       await bumpCount(env.ORDERS, ipKey, 700);
     }
-    if (!limitedKind && ORDER_ID.test(order)) {
-      const winKey = `rl:recover:win:${order}:${bucket}`;
+    let limitId = order;
+    if (ORDER_ID.test(order)) {
+      const alias = await env.ORDERS.get(`alias:${order}`);
+      if (typeof alias === "string" && ORDER_ID.test(alias)) {
+        limitId = alias;
+      }
+    }
+    if (!limitedKind && ORDER_ID.test(limitId)) {
+      const winKey = `rl:recover:win:${limitId}:${bucket}`;
       if ((await readCount(env.ORDERS, winKey)) >= RECOVER_ORDER_WINDOW) {
         limitedKind = "window";
       } else {
         await bumpCount(env.ORDERS, winKey, 700);
-        const totalKey = `rl:recover:total:${order}`;
+        const totalKey = `rl:recover:total:${limitId}`;
         if ((await readCount(env.ORDERS, totalKey)) >= RECOVER_ORDER_TOTAL) {
           limitedKind = "total";
         } else {

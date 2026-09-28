@@ -1,33 +1,24 @@
-# 在浏览器里接上 Waffo 沙箱和 Cloudflare Worker
+# 用 Waffo Pancake 接上付款（还没部署）
 
-代码在仓库的 `worker/`，还没有部署，也没有把任何密钥提交到 Git。下面每一步都可以在浏览器和本机终端里做完。不要把私钥、API Key 贴进网页仓库。
+代码在 `worker/`，还没有部署，也没有把任何密钥提交到 Git。下面每一步都可以在浏览器和本机终端里做完。不要把私钥、API Key 贴进网页仓库。
 
-站点源站是 `https://1019666077-bit.github.io/wx-extract-mvp`。Worker 名字是 `voa-lle-unlock`。
+实际开通的是 **Waffo Pancake**（商户后台 [pancake.waffo.ai](https://pancake.waffo.ai)，商户代收 / Merchant of Record），不是 `api-sandbox.waffo.com` 那套原生收单网关。不要自己用 openssl 生成商户 RSA，不要往后台上传 Payin 公钥，也不要再找旧的 Merchant Id。
 
-## 1. 生成两把密钥
+站点源站仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。Worker 名字仍是 `voa-lle-unlock`。VOA 这家店先不要建：等网站放到 Cloudflare Pages，并且价格页、服务条款、隐私政策、退款政策都在线上之后再建。法律页现在是草稿，顶部没有生效日期。
 
-在本机空目录里执行。这些文件留在本机，不要 `git add`。
+公开文档（以页面为准，不要猜字段名）：
 
-商户 RSA（上传给 Waffo 的是公钥；私钥进 Worker 密钥）。命令与 [Configure the merchant public key](https://waffo.com/docs/en/developer-docs/getting-started/public-key-configuration.md) 一致：
+| 做什么 | 文档 |
+| --- | --- |
+| 建收银台 | [Create Checkout Session](https://docs.waffo.ai/api-reference/endpoints/orders/create-checkout-session.md) |
+| 请求怎么签名 | [Authentication](https://docs.waffo.ai/api-reference/authentication.md) |
+| Webhook 验签和事件 | [Webhooks](https://docs.waffo.ai/api-reference/webhooks.md)、[Webhook guide](https://docs.waffo.ai/guides/webhooks.md) |
+| 域名验证 | [Domain verification](https://docs.waffo.ai/settings/domain-verification.md) |
+| 拒付 | [Chargebacks](https://docs.waffo.ai/mor/chargebacks.md) |
 
-```bash
-openssl genpkey -algorithm RSA \
-  -pkeyopt rsa_keygen_bits:2048 \
-  -out merchant_private_key.pem
+## 1. 只生成我们自己的解锁私钥
 
-openssl pkcs8 -topk8 -inform PEM -outform PEM -nocrypt \
-  -in merchant_private_key.pem \
-  | grep -v '^-----' \
-  | tr -d '\n' > merchant_private_key.base64
-
-openssl rsa -in merchant_private_key.pem -pubout \
-  | grep -v '^-----' \
-  | tr -d '\n' > merchant_public_key.base64
-```
-
-`merchant_public_key.base64` 是一行 X.509/SPKI Base64，没有 `-----BEGIN`。公开文档要求这串公钥的长度是 392。
-
-解锁凭证用另一把 Ed25519。公钥以后写进网页，私钥只放进 Worker：
+Pancake 的 API 私钥由后台生成，见第 3 节。这里只生成开通凭证用的 Ed25519。公钥以后写进网页，私钥只放进 Worker 密钥 `UNLOCK_PRIVATE_KEY`。文件留在本机，不要 `git add`。
 
 ```bash
 openssl genpkey -algorithm ED25519 -out unlock_private_key.pem
@@ -42,212 +33,265 @@ openssl pkey -in unlock_private_key.pem -pubout \
   | tr -d '\n' > unlock_public_key.base64
 ```
 
-沙箱和正式环境必须各用一套商户 RSA 和 API Key。解锁这把 Ed25519 可以先继续用同一把；换它会使已经发出的凭证全部失效。
+Test 和 Live 可以继续用同一把解锁私钥。换它会使已经发出的凭证全部失效。
 
-## 2. Waffo 沙箱门户要抄出来的值
+## 2. 在 Pancake 后台建店、商品和域名
 
-用审核邮件里的 Merchant Portal 登录地址。公开文档没有给出一个可以猜的门户域名，不要自己编。
+登录 [pancake.waffo.ai](https://pancake.waffo.ai)。Test 和 Live 完全分开：API & Development 有两个标签页，Webhooks 也是 Test / Live 各一把公钥。先全程停在 **Test**。
 
-打开 Integration（开发或管理员角色）：
+### 2.1 建 Store
 
-| 抄到哪里 | 门户里的东西 | Worker 里的名字 |
+业务按店区分。VOA 店等网站已经在 Cloudflare Pages、价格页和法律页都能打开之后再创建。
+
+1. 建店之后打开 **Settings → General**。
+2. 填这家店的网站地址（以后是 Pages 的域名根，现在不要先填 github.io 当作正式店）。
+3. 做域名验证。两条路二选一：DNS TXT，或 HTML meta。用 HTML meta 时，后台会给一串 challenge。
+
+HTML meta 的标签名是文档里的 `waffo-verify`。把它贴进 `site.config.json` 的 `payment.pancake.domainVerify`，然后 `npm run build`。构建会把下面这一行写进简体和繁体首页的 `<head>`（原始 HTML，不是脚本插进去的）：
+
+```html
+<meta name="waffo-verify" content="后台给的challenge" />
+```
+
+`domainVerify` 是空字符串时，这一行不会出现。challenge 每次验证单独发，过期作废；验完可以再把配置改回空并重新构建。文档：[Domain verification](https://docs.waffo.ai/settings/domain-verification.md)。
+
+### 2.2 建两个一次性商品
+
+商品默认币种是 USD。Test Mode 已经用 USD 付成功过。建一次性商品，不要建成订阅：
+
+| 商品 | 价格 | 本站对应 |
 | --- | --- | --- |
-| 一行文本 | API Key | 密钥 `WAFFO_API_KEY` |
-| 一行文本 | Merchant Id | 密钥 `WAFFO_MERCHANT_ID` |
-| 一行 Base64，不要 PEM 头尾 | Waffo public key（Waffo 的公钥，不是你刚生成的商户公钥） | 密钥 `WAFFO_PUBLIC_KEY` |
+| 30 天课程开放 | US$5.99 | 月付 |
+| 90 天课程开放 | US$13.99 | 季卡 |
 
-API 根地址不要从门户猜。公开文档写的是：
+每个商品复制 `PROD_` 开头的 id，写进 `site.config.json`：
 
-| 环境 | 值 |
+```json
+"pancake": {
+  "monthlyProductId": "PROD_……",
+  "quarterlyProductId": "PROD_……",
+  "domainVerify": ""
+}
+```
+
+然后 `npm run build`。构建会把这两个 id 抄进 `worker/wrangler.toml` 的 `PANCAKE_PRODUCT_MONTHLY` 和 `PANCAKE_PRODUCT_QUARTERLY`。不要手改那两行。任一 id 仍是空的，开通按钮保持「即将开放 / 即將開放」，页面不请求 Worker。
+
+价格只在后台商品上定。Worker 创单不传 `priceSnapshot`，前端传来的金额一律忽略。
+
+文档写明：API Key 和 `X-Merchant-Id` 是商户级的，一家商户底下所有店共用同一套密钥；某次调用落到哪家店，由商品 `productId` 属于哪家店决定。后台 Integration 页上展示的 Store Id 只是示例（默认最近一家店），不要把它当成 `X-Merchant-Id`。这和「密钥按店还是按账户」当时没核对完的地方，以这篇 [Authentication](https://docs.waffo.ai/api-reference/authentication.md) 为准。如果 Test 标签页上确实找不到 `MER_` 开头的商户编号，先停下来问，不要编一个，也不要填旧网关的 Merchant Id。
+
+### 2.3 创建 API Key（不要自己生成 RSA）
+
+打开 **API & Development**（路径 `/merchant/dashboard/integration`），停在 **Test** 标签。
+
+1. 点 **Create API Key**。后台生成 RSA 密钥对，公钥由后台自己保存。
+2. 起名（例如 `lle-test`），环境选 Test。
+3. 立刻下载私钥。页面关掉之后不会再显示。下载到的是 `-----BEGIN RSA PRIVATE KEY-----`（PKCS#1）。Worker 能直接用这种 PEM，也会接受 PKCS#8。不要再跑 `openssl genpkey`，也不要把公钥上传到 Payin。
+
+另外抄下请求头要用的 **X-Merchant-Id**（文档示例是 `MER_` 开头）。它不是旧网关的 Merchant Id，密钥名是 `WAFFO_PANCAKE_MERCHANT_ID`，和已经删掉的 `WAFFO_MERCHANT_ID` 不是同一个东西。
+
+Live 标签以后另建一把，两把不要混用。删掉一把之后，用它签名的请求会 401，而且不能撤销。
+
+### 2.4 登记 Webhook
+
+打开 **Settings → Webhooks**。Test 和 Live 各有一把 Public Key，每边最多 10 个端点。所有店看到的是同一把环境公钥，改端点不会换钥匙。
+
+1. 抄下 **Test** 的 Webhook Public Key（`-----BEGIN PUBLIC KEY-----`）。这是验签用的，密钥名 `WAFFO_WEBHOOK_PUBLIC_KEY`。
+2. 加一个 HTTP 端点，环境选 Test。URL 等 Worker 部署之后填：
+
+```text
+https://<Worker 主机名>/api/waffo/webhook
+```
+
+例如 `https://voa-lle-unlock.<账号子域>.workers.dev/api/waffo/webhook`。
+
+3. 勾选这些事件：
+
+| 事件 | Worker 做什么 |
 | --- | --- |
-| 沙箱 | `https://api-sandbox.waffo.com` |
-| 正式 | `https://api.waffo.com` |
+| `order.completed` | 一次性付款成功，才签发开通凭证 |
+| `refund.succeeded` | 钱已经退回，作废凭证 |
+| `refund.failed` | 钱没动，不作废 |
 
-沙箱已经写在 `worker/wrangler.toml` 的 `WAFFO_API_BASE`，不用再设成密钥。
+不要勾 `subscription.*`，除非幕僚长决定改成订阅。代码里留了分支：这些事件会回 200，但不会延长或取消凭证。
 
-上传到门户的是 `merchant_public_key.base64` 的全部内容（Merchant Sign Configuration，API Operation Type 选 Payin）。门户如果给出一段 `WAFFO_VERIFY_...` 验证串，用下面的命令签名后再贴回去。把引号里的字符串换成门户上的整段，不要加空格或换行：
+退款没有单独的「处理中」事件。工单在审核或处理时不会发 webhook；只有渠道把结果定下来才发。`refund.succeeded` 才作废，`refund.failed` 不作废。文档：[Webhooks](https://docs.waffo.ai/api-reference/webhooks.md) 的 Refund Lifecycle。
 
-```bash
-echo -n "WAFFO_VERIFY_XXXXXXXXXX" | \
-  openssl dgst -sha256 -sign merchant_private_key.pem | \
-  base64 | tr -d '\n'
-```
+拒付没有 webhook。Pancake 发邮件通知，回复寄到 `chargebacks@waffo.ai`。Worker 不会因为一封拒付邮件自动作废。见 [Chargebacks](https://docs.waffo.ai/mor/chargebacks.md)。
 
-`merchant_private_key.base64` 的全部内容放进密钥 `WAFFO_PRIVATE_KEY`。不要把这个文件上传到门户。
+验签算法（不要换成旧网关的 `X-SIGNATURE` 签整个 body）：
 
-付款通知不用在门户填全局地址：每一笔订单的 `notifyUrl` 由 Worker 设成自己的 `/api/waffo/webhook`。退款和拒付要在门户 Settings → Integration 里各填一次（公开文档里的名字是 `refundNotifyUrl` 和 `chargebackNotifyUrl`）。Worker 部署完成、仪表盘给出地址之后，两处都填：
+1. 读请求头 `X-Waffo-Signature`，形如 `t=<毫秒时间戳>,v1=<Base64>`。
+2. 用后台这把公钥，对字符串 `` `${t}.${原始body}` `` 做 RSA-SHA256（PKCS#1 v1.5）验签。必须用原始 body，不能先 JSON 再序列化。
+3. `t` 允许偏离当前时间最多 45 分钟。重试沿用第一次的 `t`，收成 5 分钟会把合法重试拒掉。
+4. 用 payload 里的 `eventId` 去重。
+5. 签名不对返回 HTTP 401。处理完返回 HTTP 200，正文 `OK`。不再返回旧网关的 `{"message":"success"}`。
 
-```text
-https://<你的 workers.dev 主机名>/api/waffo/webhook
-```
+`mode` 为 `"test"` 或 `"prod"`。Worker 变量 `PANCAKE_MODE` 必须和这把公钥、这把 API Key 是同一边。对不上的事件验签通过也不会签发。
 
-例如主机名是 `voa-lle-unlock.<账号子域>.workers.dev` 时，整段就是：
-
-```text
-https://voa-lle-unlock.<账号子域>.workers.dev/api/waffo/webhook
-```
-
-创单时 Worker 会自己带上跳转地址，一般不必在门户再填一套。如果门户另有全局成功 / 失败 / 取消地址，填下面三个（繁体用户的跳转由创单参数决定，门户全局项用简体页即可）：
-
-```text
-https://1019666077-bit.github.io/wx-extract-mvp/pricing-return.html
-https://1019666077-bit.github.io/wx-extract-mvp/pricing.html
-https://1019666077-bit.github.io/wx-extract-mvp/pricing.html
-```
-
-成功页只是回到本站。开通不看跳转参数，只看验过签名的付款通知。
-
-在门户确认这份商户合同允许 `USD`。代码按课程标价发送 `orderCurrency=USD`、`orderAmount=5.99` 或 `13.99`。合同里没有 USD 时，沙箱创单会失败，先不要改价。
-
-## 3. Cloudflare
+## 3. Cloudflare Worker
 
 1. 打开 [Cloudflare Dashboard](https://dash.cloudflare.com/) → Workers & Pages。
-2. 本机安装一次 Wrangler 并用浏览器登录（会打开 Cloudflare 的授权页）：
+2. 本机安装一次 Wrangler 并用浏览器登录：
 
 ```bash
 cd worker
 npx wrangler login
 ```
 
-3. 创建 KV，名字是 `voa-lle-orders`。绑定名必须是 `ORDERS`（已经写在 `wrangler.toml`，不要改这个绑定名）：
+3. 创建 KV，名字是 `voa-lle-orders`。绑定名必须是 `ORDERS`：
 
 ```bash
 npx wrangler kv namespace create voa-lle-orders
 npx wrangler kv namespace create voa-lle-orders --preview
 ```
 
-两条命令各打印一个 `id`。把正式环境的 id 贴进 `worker/wrangler.toml` 里 `id = "replace_me"` 的引号中，把 preview 的 id 贴进 `preview_id`。这是命名空间 id，不是密钥，可以提交。
+把正式环境的 id 贴进 `worker/wrangler.toml` 的 `id`，preview 的 id 贴进 `preview_id`。这是命名空间 id，可以提交。
 
-4. 五个密钥。每条命令执行后，终端会等你粘贴。粘贴的是一行，不要带 PEM 头尾，不要带换行。
+4. 四个密钥。私钥可以整段粘贴 PEM（含 `BEGIN` / `END`），也可以粘贴去掉头尾后的一行 Base64。
 
 ```bash
-npx wrangler secret put WAFFO_API_KEY
-npx wrangler secret put WAFFO_MERCHANT_ID
-npx wrangler secret put WAFFO_PRIVATE_KEY
-npx wrangler secret put WAFFO_PUBLIC_KEY
+npx wrangler secret put WAFFO_PANCAKE_API_KEY
+npx wrangler secret put WAFFO_PANCAKE_MERCHANT_ID
+npx wrangler secret put WAFFO_WEBHOOK_PUBLIC_KEY
 npx wrangler secret put UNLOCK_PRIVATE_KEY
 ```
 
 | 密钥名 | 粘贴什么 |
 | --- | --- |
-| `WAFFO_API_KEY` | 门户里的 API Key |
-| `WAFFO_MERCHANT_ID` | 门户里的 Merchant Id |
-| `WAFFO_PRIVATE_KEY` | `merchant_private_key.base64` 整行 |
-| `WAFFO_PUBLIC_KEY` | 门户里的 Waffo 公钥（一行 Base64） |
-| `UNLOCK_PRIVATE_KEY` | `unlock_private_key.base64` 整行 |
+| `WAFFO_PANCAKE_API_KEY` | Test 标签下载的 RSA 私钥（`BEGIN RSA PRIVATE KEY`） |
+| `WAFFO_PANCAKE_MERCHANT_ID` | 请求头 `X-Merchant-Id` 的 `MER_…` 值 |
+| `WAFFO_WEBHOOK_PUBLIC_KEY` | Settings → Webhooks 里 Test 的 Public Key |
+| `UNLOCK_PRIVATE_KEY` | 第 1 节的 `unlock_private_key.base64` |
 
-`wrangler.toml` 里已有的普通变量（不是密钥）：
+不要再创建 `WAFFO_API_KEY`、`WAFFO_MERCHANT_ID`、`WAFFO_PRIVATE_KEY`、`WAFFO_PUBLIC_KEY`。
+
+`wrangler.toml` 里的普通变量（不是密钥）：
 
 | 变量 | 当前值 | 作用 |
 | --- | --- | --- |
-| `WAFFO_API_BASE` | `https://api-sandbox.waffo.com` | 改成 `https://api.waffo.com` 就是正式环境 |
-| `ALLOWED_ORIGIN` | 与 `site.config.json` 的 `origin` 相同，由 `npm run build` 写入 | 浏览器 CORS 只允许这个源站。不要手改这一行 |
+| `WAFFO_API_BASE` | `https://api.waffo.ai` | Test 和 Live 同一个主机。换环境不改这个地址 |
+| `PANCAKE_MODE` | `test` | 改成 `prod` 才接 Live 的事件 |
+| `PANCAKE_PRODUCT_MONTHLY` / `PANCAKE_PRODUCT_QUARTERLY` | 空 | 由 `npm run build` 从 `site.config.json` 写入 |
+| `ALLOWED_ORIGIN` | 与 `site.config.json` 的 `origin` 相同 | CORS。不要手改 |
 
-5. 部署（这一步会让 Worker 出现在公网，确认密钥都已放好再执行）：
+5. 确认密钥和商品 id 都在之后再部署（这一步会把 Worker 放到公网）：
 
 ```bash
 npx wrangler deploy
 ```
 
-仪表盘里 Worker 的名字是 `voa-lle-unlock`。复制它给出的 `https://....workers.dev` 地址。
-
-6. 把解锁公钥和 Worker 地址写进仓库的 `site.config.json`，然后重新构建页面并推上去，GitHub Pages 才会让按钮可点：
-
-```json
-"worker": {
-  "baseUrl": "https://voa-lle-unlock.<账号子域>.workers.dev",
-  "unlockPublicKey": "<unlock_public_key.base64 的整行>"
-}
-```
+6. 把解锁公钥和 Worker 地址写进 `site.config.json` 的 `payment.worker`，商品 id 写进 `payment.pancake`，然后：
 
 ```bash
 npm run build
 ```
 
-`unlockPublicKey` 是公钥，可以进 Git。`baseUrl` 不要末尾斜杠。两个值有一个仍是空字符串时，按钮保持「即将开放 / 即將開放」，页面不会请求 Worker。站点改放到 Cloudflare Pages 之后，同一次 `npm run build` 也会更新那边；先按第 6 节验收，再改 `origin`。
+`unlockPublicKey` 是公钥，可以进 Git。`baseUrl` 不要末尾斜杠。Worker 地址、公钥、两个商品 id 有一个仍是空的，按钮保持「即将开放 / 即將開放」。
 
-## 4. 沙箱怎么试
+创单由 Worker 发到 `POST https://api.waffo.ai/v1/actions/checkout/create-session`。签名字符串是：
 
-沙箱收银台是模拟器，没有真实扣款。公开说明见 [Sandbox simulator](https://waffo.com/docs/en/developer-docs/tools-and-references/developer-tools/sandbox-simulator.md)。
+```text
+POST
+/v1/actions/checkout/create-session
+<unix 秒>
+<body 的 SHA-256，再 Base64>
+```
+
+请求头是 `X-Merchant-Id`、`X-Timestamp`、`X-Signature`。API Key 认证不要带 `X-Environment`；这把钥匙本身就绑在 Test 或 Live 上。时间戳允许比服务器慢最多 5 分钟、快最多 1 分钟。
+
+Body 只有 `productId`、`currency`（`USD`）、`buyerEmail`、`language`（简体 `zh-Hans`，繁体 `zh-Hant-TW`）、`successUrl`、`orderMerchantExternalId`（我们自己的订单号）。没有 `priceSnapshot`。用 Store Slug 会把 `orderMerchantExternalId` 丢掉，所以这里用 API Key。
+
+`successUrl` 指向 `pricing-return.html?order=<我们的订单号>`。买家付完先停在收银台的成功页，要点 Done 才回到本站，没有自动跳转，也没有取消回跳。放弃或付款失败不会发 webhook，课程保持锁定。
+
+## 4. Test Mode 怎么验收
+
+商品默认币种 USD。用 Test 的 API Key 和 Test 的 Webhook 公钥。收银台是 Pancake 的测试模式，不是旧网关的 sandbox simulator。
 
 成功：
 
-1. 打开 `https://1019666077-bit.github.io/wx-extract-mvp/pricing.html`（页面需已经带上 Worker 地址）。
-2. 点「用 Waffo 支付 US$5.99」。应跳到沙箱收银台，地址来自创单结果里的 `webUrl` 或 `deeplinkUrl`。
-3. 在模拟器上点 **Payment succeeded**。订单应变为 `PAY_SUCCESS`，Waffo 向 `notifyUrl` 发 `PAYMENT_NOTIFICATION`。
-4. 浏览器回到 `pricing-return.html?order=m...`。页面会写「正在等待付款确认」，然后变成已开通。本机 `localStorage` 的 `voa-lle-unlock` 里应有 `credential`。
-5. 打开一节 Level 1 第 6 课，应能学习。
+1. 打开开通页（页面需已经带上 Worker 地址、公钥和两个 `PROD_` id）。
+2. 填写付款邮箱，点「用 Waffo 支付 US$5.99」。应跳到 Pancake 收银台。请求里的金额必须是后台商品的 US$5.99，不能是页面上改出来的别的数。
+3. 用测试卡付成功。应收到 `order.completed`。税额可以让 `chargedAmount` 不等于 5.99，这仍然签发。币种不是 USD 则不签发。
+4. 在收银台点 Done，回到 `pricing-return.html?order=m...`。页面写等待确认，然后变成已开通。本机 `localStorage` 的 `voa-lle-unlock` 里应有 `credential`。
+5. 打开 Level 1 第 6 课，应能学习。
 
-失败：再下一笔，在模拟器上点 **Payment failed**。订单是 `ORDER_CLOSE`。返回页等到超时或关闭，课程保持锁定。不要根据跳回了网站就当成已付款。
+失败：再开一笔然后关掉收银台，或让付款失败。没有 `order.completed`。返回页停在未开通，课程保持锁定。不要因为回到了网站就当成已付款。
 
-退款：对刚才成功的那笔，在门户发起退款，或按沙箱能用的退款操作完成一笔全额或分额退款。退款通知必须打到第 2 节那个 `/api/waffo/webhook`。然后打开：
+退款：对成功的那笔，在后台把退款做到成功。应收到 `refund.succeeded`，凭证作废。打开：
 
 ```text
-https://<Worker 主机名>/api/status?order=<merchantOrderId>
+https://<Worker 主机名>/api/status?order=<我们的订单号>
 ```
 
-应看到 `"state":"revoked"`，响应里没有 `credential`。再打开开通页，本机解锁会被清掉。`REFUND_IN_PROGRESS` 和 `ORDER_REFUND_FAILED` 不会撤销。
+应看到 `"state":"revoked"`，响应里没有 `credential`。再打开开通页，本机解锁会被清掉。只做到处理中、还没收到 `refund.succeeded` 时，凭证还在。另做一笔让渠道返回失败（`refund.failed`），凭证不作废。
 
-拒付：同一条 webhook 地址。`chargebackStatus` 为 `ACTION_REQUIRED`、`UNDER_REVIEW`、`SECOND_CYCLE_RESPONSE_REQUIRED`、`ESCALATE_TO_2ND_CYCLE`、`CASE_LOST`、`ACCEPTED`、`EXPIRED` 时撤销。`CASE_WON`、`CANCELED`、`SETTLED` 不撤销，也不会把已经撤销的凭证恢复。
-
-重复通知：付款成功后，把同一次 webhook 的原始 body 和 `X-SIGNATURE` 再 POST 一次。
+重复通知：把同一次 `order.completed` 的原始 body 和原来的 `X-Waffo-Signature` 再 POST 一次。
 
 ```bash
-curl -sS -X POST "https://<Worker 主机名>/api/waffo/webhook" \
+curl -sS -D - -o /tmp/webhook-body.txt -X POST "https://<Worker 主机名>/api/waffo/webhook" \
   -H "Content-Type: application/json" \
-  -H "X-SIGNATURE: <同一份签名>" \
+  -H "X-Waffo-Signature: <同一份 t=...,v1=...>" \
   --data-binary @body.json
 ```
 
-应返回 `{"message":"success"}`，并且不会换一张新凭证。
+应返回 HTTP 200 和 `OK`，不会换一张新凭证。签名不对是 HTTP 401。
 
-领取只能一次。返回页第一次拿到凭证就会写入本机。同一浏览器再刷新：如果本机这张凭证还能验过，仍显示已开通，不会再向 Worker 要第二份。用隐私窗口打开同一个 `?order=` 地址，应看到「这张开通已经交付过一次，不能再次发放」。`/api/claim` 没有补发入口。丢了本机凭证时，用下面的「找回」，不要再调 claim。
+领取只能一次。返回页第一次拿到凭证就写入本机。隐私窗口再打开同一个 `?order=`，应看到已经交付过、不能再次发放。丢了本机凭证走找回，不要再调 `/api/claim`。
 
-付款邮箱存在公开文档的 `result.userInfo.userEmail`。Order Inquiry 和 `PAYMENT_NOTIFICATION` 的 `result` 是同一结构，里面的 `userInfo.userEmail` 是商户用户邮箱，没有另一套「付款人邮箱」字段。通知里这个值存在，并且不是文档允许的 `userId@examples.com` 占位时，用它。否则用建单时用户在开通页填写的邮箱。两种都只把规范化（去首尾空白、转成小写）之后的 SHA-256 放进 KV，不存明文，避免订单记录被转储时带出邮箱。建单时仍把用户填写的邮箱明文送给 Waffo，因为创单的 `userInfo.userEmail` 必填。
+找回用的邮箱优先是事件里的 `data.buyerEmail`（收银台收的买家邮箱）。建单时开通页也会收一次邮箱，用来预填收银台；买家在收银台改过邮箱时，以通知里的 `buyerEmail` 为准。两种都只把规范化（去首尾空白、转成小写）之后的 SHA-256 放进 KV，不存明文。
 
 找回：
 
-1. 在开通页或返回页打开「找回开通」，填建单时的订单号和付款邮箱。
-2. 邮箱和订单都对上、订单已付款且未作废时，页面写入一张新凭证，课程开通。到期日仍是付款时那 30 或 90 天，不会重新起算。
-3. 订单号错、邮箱错、还没付款、已退款或已拒付撤销，页面都是同一句：「订单号或邮箱不匹配，或该订单无法找回」。不要根据这句话判断是哪一种。
-4. 同一个订单一共只能尝试 5 次（成功和失败都算）。短时间内同一 IP、同一订单还会再被挡住。超过之后页面写「尝试次数过多，请稍后再试。」
-
-请求和成功响应：
+1. 在开通页或返回页打开「找回开通」。订单号可以填我们自己的 `m…`，也可以填 Pancake 的 `ORD_…`。邮箱填通知里的买家邮箱。
+2. 两边都对上、订单已付款且未作废时，页面写入凭证。到期日仍是付款时那 30 或 90 天，不会重新起算。
+3. 订单号错、邮箱错、还没付款、已退款，页面都是同一句：「订单号或邮箱不匹配，或该订单无法找回」。
+4. 同一个订单一共只能尝试 5 次。短时间内同一 IP、同一订单还会再被挡住。超过之后：「尝试次数过多，请稍后再试。」用 `ORD_…` 和 `m…` 算同一单，不能靠换一种订单号多试。
 
 ```http
 POST /api/recover
 Content-Type: application/json
 
-{"order":"m0123456789abcdef0123456789abcdef","email":"buyer@example.com"}
+{"order":"ORD_……或 m……","email":"buyer@example.com"}
 ```
 
-```json
-{"credential":"<与领取相同格式的凭证>","plan":"monthly","expiresAt":"2026-10-28T00:05:00.000Z","orderId":"m0123456789abcdef0123456789abcdef"}
-```
+对不上是 HTTP 400 `{"error":"recover_failed"}`。次数用完是 HTTP 429 `{"error":"recover_limited"}`。
 
-对不上或不能找回时，状态码 400，正文一律是 `{"error":"recover_failed"}`。次数用完是 429，正文 `{"error":"recover_limited"}`。
+## 5. 切到 Live
 
-签名不对的通知返回 `{"message":"failed"}`，不签发。
-
-## 5. 切到正式环境
-
-1. 沙箱验收通过，并且 Waffo 已开通正式账号之后，再生成一套新的商户 RSA（不要复用沙箱那一对）。按第 1 节的 openssl 命令重做，把新公钥上传到正式门户，等状态变成 Active。
-2. 从正式门户复制新的 API Key、Merchant Id、Waffo 公钥。
-3. 用 `npx wrangler secret put` 覆盖 `WAFFO_API_KEY`、`WAFFO_MERCHANT_ID`、`WAFFO_PRIVATE_KEY`、`WAFFO_PUBLIC_KEY`。解锁私钥可以不换。
-4. 把 `worker/wrangler.toml` 里的 `WAFFO_API_BASE` 改成：
-
-```toml
-WAFFO_API_BASE = "https://api.waffo.com"
-```
-
+1. Test 验收通过，并且店已经允许正式收款之后，在 API & Development 的 **Live** 标签另建一把 API Key，下载新的私钥。不要复用 Test 的私钥。
+2. 在 Settings → Webhooks 的 **Live** 一边抄 Public Key，并把同一个 `/api/waffo/webhook` 登记成 Live 端点，勾选和第 2.4 节相同的事件。
+3. 用 `npx wrangler secret put` 覆盖 `WAFFO_PANCAKE_API_KEY`、`WAFFO_PANCAKE_MERCHANT_ID`（若 Live 的商户号不同）、`WAFFO_WEBHOOK_PUBLIC_KEY`。解锁私钥可以不换。
+4. 把 `worker/wrangler.toml` 的 `PANCAKE_MODE` 改成 `prod`。`WAFFO_API_BASE` 仍然是 `https://api.waffo.ai`。
 5. 再执行 `npx wrangler deploy`。
-6. 先做一笔小额真实订单，确认创单、收银台、`PAYMENT_NOTIFICATION` 验签、返回页开通、`/api/status` 都正常，再放开正常流量。
+6. 先做一笔小额真实订单，确认创单、收银台、`order.completed` 验签、返回页开通、`/api/status`、退款作废、找回都正常，再放开正常流量。
 
-正式环境的退款和拒付通知 URL 同样是 `https://<Worker 主机名>/api/waffo/webhook`。
+这次改代码本身不要部署，也不要合并。
 
-## 6. 把网站放到 Cloudflare Pages
+## 6. 一次性购买和订阅（待幕僚长定）
+
+现在按一次性购买实现，和现有凭证一致：付一次，凭证从 `order.completed` 的时间起 30 天或 90 天，到期后前端验签失败。没有自动续费。
+
+Pancake 也支持订阅（月付 / 季付，可设试用期）。相关事件包括 `subscription.activated`、`subscription.payment_succeeded`、`subscription.renewed`、`subscription.recovered`、`subscription.canceled`、`subscription.past_due` 等。代码收到 `subscription.*` 只回 200，不改 `expiresAt`，也不作废。
+
+若以后改成订阅，差异是：
+
+| | 一次性（现在） | 订阅（未启用） |
+| --- | --- | --- |
+| 签发 | 只在 `order.completed` | 首次开通要看 `subscription.activated`，收据在 `subscription.payment_succeeded` |
+| 续费 | 没有。到期即失效 | `subscription.renewed` 要把凭证的 `expiresAt` 延到新的 `currentPeriodEnd` |
+| 取消 | 不涉及 | `subscription.canceling` 时当期通常仍可用；`subscription.canceled` 才结束。是否在 canceling 时就作废，要另定 |
+| 扣款失败 | 没有 webhook，课程保持锁定 | `subscription.past_due` 要决定是立刻作废还是留一段补缴期 |
+| 退款 | `refund.succeeded` 作废 | 同样只在 `refund.succeeded` 作废；要分清退的是哪一个账期 |
+| 试用 | 不使用 | `withTrial` 会让首期不按标价收费，凭证天数不能再写死 30/90 |
+
+建议继续用一次性 30 天 / 90 天。凭证、一次领取和找回都是按固定到期日做的。订阅要另定续费延长、取消和逾期，现在没有这个决定。
+
+## 7. 把网站放到 Cloudflare Pages
 
 付款上线之前，站点要改放到 Cloudflare Pages。GitHub 的条款不允许把 Pages 主要用来做商业交易。Git 仓库仍然是唯一源。现在不要改 `site.config.json` 的 `origin`，它仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。GitHub Pages 继续从仓库根目录发布，直到本节的验收做完。旧地址的跳转以后再做，见本节最后。
+
+建 Pancake 的店之前，Pages 上要能打开：价格页，以及服务条款、隐私政策、退款政策的简体、繁体、英文（`/terms.html`、`/zh-hant/terms.html`、`/en/terms.html`，隐私和退款同样三条路径）。
 
 ### 用 GitHub Action 上传，不用 Cloudflare 的 Git 集成
 
@@ -280,7 +324,7 @@ Pages 项目名暂定为 `lle-learn`（待品牌名）。预览地址将是 `htt
 
 仪表盘里的 Build command 填 none（留空）。不要把构建命令填进 Cloudflare，否则会和 Action 各建一次。
 
-`dist/` 不进 Git。里面是站点根：`index.html`、`robots.txt`、`sitemap.xml`、`_headers`、`_redirects`、`css/`、`js/`（不含 `*.test.js`）、`img/`、`lessons/`、`zh-hant/`、`data/`。没有 `worker/`、`miniprogram/`、`docs/`。
+`dist/` 不进 Git。里面是站点根：`index.html`、`terms.html`、`privacy.html`、`refund.html`、`en/`、`robots.txt`、`sitemap.xml`、`_headers`、`_redirects`、`css/`、`js/`（不含 `*.test.js`）、`img/`、`lessons/`、`zh-hant/`、`data/`。没有 `worker/`、`miniprogram/`、`docs/`。
 
 在 Cloudflare Pages 上，站点在域名根，不在 `/wx-extract-mvp/` 下面。所以 `https://lle-learn.pages.dev/robots.txt` 和 `/sitemap.xml` 就是搜索引擎要读的那两份。`/zh-hant/` 仍是繁体前缀。课页用相对路径（`../css/styles.css`、`../../css/styles.css`），在域名根和现在的项目路径上都会落到 `/css/styles.css`。运行时代码不写死 `/wx-extract-mvp/`。
 
@@ -312,21 +356,23 @@ Token：右上角头像 → My Profile → API Tokens → Create Token → Creat
 
 不要先改 `origin`。等 `https://lle-learn.pages.dev` 出现之后检查：
 
-1. 打开 `/`。简体目录能用，样式来自 `/css/styles.css`。
+1. 打开 `/`。简体目录能用，样式来自 `/css/styles.css`。页脚有服务条款、隐私政策、退款政策。
 2. 打开 `/zh-hant/`。繁体目录能用。页面里写的是 `../css/styles.css`，实际仍是 `/css/styles.css`。
-3. 打开 `/lessons/lle1-01.html` 和 `/zh-hant/lessons/lle1-01.html`。课页样式正常，地址里没有 `/wx-extract-mvp/`。
-4. 打开 `/lesson.html?id=lle1-01`，应到 `/lessons/lle1-01.html`。繁体 `/zh-hant/lesson.html?id=lle1-01` 应到 `/zh-hant/lessons/lle1-01.html`。Cloudflare 走上面的 301；301 没有生效时，页面自己的脚本仍会跳。
-5. 打开 `/robots.txt` 和 `/sitemap.xml`，确认它们在域名根，不在 `/wx-extract-mvp/` 下面。
-6. 打开 `/pricing.html`。按钮仍是「即将开放」，不请求 Worker。
-7. 响应头里有 `X-Content-Type-Options: nosniff`。HTML 是 `Cache-Control: public, max-age=0, must-revalidate`。
-8. 再打开原来的 `https://1019666077-bit.github.io/wx-extract-mvp/`，确认 GitHub Pages 还能用。
+3. 打开 `/terms.html`、`/zh-hant/privacy.html`、`/en/refund.html`。三份都能打开，顶部没有生效日期。
+4. 打开 `/lessons/lle1-01.html` 和 `/zh-hant/lessons/lle1-01.html`。课页样式正常，地址里没有 `/wx-extract-mvp/`。
+5. 打开 `/lesson.html?id=lle1-01`，应到 `/lessons/lle1-01.html`。繁体 `/zh-hant/lesson.html?id=lle1-01` 应到 `/zh-hant/lessons/lle1-01.html`。
+6. 打开 `/robots.txt` 和 `/sitemap.xml`，确认它们在域名根。
+7. 打开 `/pricing.html`。按钮仍是「即将开放」，不请求 Worker。
+8. 若正在做域名验证，首页源代码的 `<head>` 里有 `meta name="waffo-verify"`；`domainVerify` 为空时没有这一行。
+9. 响应头里有 `X-Content-Type-Options: nosniff`。HTML 是 `Cache-Control: public, max-age=0, must-revalidate`。
+10. 再打开原来的 `https://1019666077-bit.github.io/wx-extract-mvp/`，确认 GitHub Pages 还能用。
 
 验收通过之后才改源站。canonical、hreflang、sitemap、Open Graph、JSON-LD 和 Worker 的 CORS 都跟这一个字段：
 
 1. 把 `site.config.json` 的 `origin` 改成 `https://lle-learn.pages.dev`，不要末尾斜杠。以后绑了自定义域名，再改成那个 `https://` 地址，然后重复下面两步。
-2. 运行 `npm run build`。它会重写页面，并把 `worker/wrangler.toml` 的 `ALLOWED_ORIGIN` 改成同一个值。不要手改那一行。
+2. 运行 `npm run build`。它会重写页面，并把 `worker/wrangler.toml` 的 `ALLOWED_ORIGIN` 和两个商品 id 改成和 `site.config.json` 一致。不要手改那几行。
 3. 提交并推到 `main`，等 Pages 工作流把新的 `dist/` 传上去。
-4. 在 `worker/` 里再执行一次 `npx wrangler deploy`。CORS 要这次部署才换成新源站。部署之前，Worker 仍只允许旧的 GitHub Pages 地址。
+4. 在 `worker/` 里再执行一次 `npx wrangler deploy`。CORS 要这次部署才换成新源站。
 
 ### 以后再把旧的 github.io 地址指过来
 
@@ -338,9 +384,9 @@ Token：右上角头像 → My Profile → API Tokens → Create Token → Creat
 - 只改 canonical、不跳转，也能让搜索引擎合并到新地址，但收藏了旧链接的人仍会停在 GitHub Pages。跳转壳是给人用的。
 - 不要删仓库。Git 仍然是源。
 
-## 7. 手工补发（旧微信付款用户）
+## 8. 手工补发（旧微信付款用户）
 
-以前用微信付过款、本机又没有签名凭证的人，不能走找回：那时没有 Waffo 订单，也没有付款邮箱。站长核对过付款记录之后，在本机或 CI 里签发一张，每次只做一单，不要写批量脚本。
+以前用微信付过款、本机又没有签名凭证的人，不能走找回：那时没有 Pancake 订单，也没有付款邮箱。站长核对过付款记录之后，在本机或 CI 里签发一张，每次只做一单，不要写批量脚本。
 
 脚本是 `scripts/issue-credential.js`。私钥从环境变量 `UNLOCK_PRIVATE_KEY`（与 Worker 相同的一行 PKCS8 Base64）或 `--key-file` 读取。脚本里没有默认密钥。不要把私钥、打印出来的凭证提交到 Git。
 
@@ -362,4 +408,3 @@ https://1019666077-bit.github.io/wx-extract-mvp/pricing.html?credential=<凭证>
 ```
 
 把这整个链接发给该用户。用户打开后，页面用 `site.config.json` 里的 `unlockPublicKey` 验签，通过才保存。公钥还是空的时候，链接打不开开通。`--origin` 可以改链接的站点；`--script zh-Hant` 会指向 `/zh-hant/pricing.html`。不设 `UNLOCK_PRIVATE_KEY` 也不给 `--key-file` 时，脚本直接退出，不会签发。
-

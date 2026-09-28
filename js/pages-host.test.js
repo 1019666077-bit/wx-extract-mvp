@@ -24,6 +24,9 @@ test("staged site is served from the domain root and omits the Worker and minipr
   const dest = fs.mkdtempSync(path.join(os.tmpdir(), "lle-pages-"));
   stageSite(root, dest);
   assert.equal(fs.existsSync(path.join(dest, "index.html")), true);
+  assert.equal(fs.existsSync(path.join(dest, "terms.html")), true);
+  assert.equal(fs.existsSync(path.join(dest, "en/terms.html")), true);
+  assert.equal(fs.existsSync(path.join(dest, "zh-hant/privacy.html")), true);
   assert.equal(fs.existsSync(path.join(dest, "zh-hant/index.html")), true);
   assert.equal(fs.existsSync(path.join(dest, "zh-hant/lessons/lle1-01.html")), true);
   assert.equal(fs.existsSync(path.join(dest, "robots.txt")), true);

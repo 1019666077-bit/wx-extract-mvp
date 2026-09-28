@@ -1,6 +1,7 @@
-import { goodsInfoForOrder } from "./doc-choices.js";
-
-const API_VERSION = "1.0.0";
+const CREATE_PATH = "/v1/actions/checkout/create-session";
+const RSA_OID = Uint8Array.from([
+  0x30, 0x0d, 0x06, 0x09, 0x2a, 0x86, 0x48, 0x86, 0xf7, 0x0d, 0x01, 0x01, 0x01, 0x05, 0x00,
+]);
 
 function bytesToBase64(bytes) {
   let binary = "";
@@ -10,7 +11,85 @@ function bytesToBase64(bytes) {
   return btoa(binary);
 }
 
-function decodeKeyMaterial(text) {
+function concatBytes(parts) {
+  const length = parts.reduce((sum, part) => sum + part.length, 0);
+  const out = new Uint8Array(length);
+  let offset = 0;
+  for (const part of parts) {
+    out.set(part, offset);
+    offset += part.length;
+  }
+  return out;
+}
+
+function derLength(length) {
+  if (length < 128) {
+    return Uint8Array.of(length);
+  }
+  if (length < 256) {
+    return Uint8Array.of(0x81, length);
+  }
+  return Uint8Array.of(0x82, (length >> 8) & 0xff, length & 0xff);
+}
+
+function derTag(tag, content) {
+  const len = derLength(content.length);
+  const out = new Uint8Array(1 + len.length + content.length);
+  out[0] = tag;
+  out.set(len, 1);
+  out.set(content, 1 + len.length);
+  return out;
+}
+
+function readDer(bytes, offset) {
+  if (offset >= bytes.length) {
+    throw new Error("truncated rsa key");
+  }
+  const tag = bytes[offset];
+  let length = bytes[offset + 1];
+  let start = offset + 2;
+  if (length & 0x80) {
+    const count = length & 0x7f;
+    length = 0;
+    for (let i = 0; i < count; i += 1) {
+      length = (length << 8) | bytes[start + i];
+    }
+    start += count;
+  }
+  return { tag, start, end: start + length };
+}
+
+function wrapPkcs1(pkcs1) {
+  const version = Uint8Array.of(0x02, 0x01, 0x00);
+  const octet = derTag(0x04, pkcs1);
+  return derTag(0x30, concatBytes([version, RSA_OID, octet]));
+}
+
+/**
+ * Dashboard "Create API Key" downloads a PKCS#1 PEM (`BEGIN RSA PRIVATE KEY`).
+ * WebCrypto only imports PKCS#8. A PKCS#8 key's second field is a SEQUENCE;
+ * a PKCS#1 key's second field is the modulus INTEGER.
+ */
+export function normalizeRsaPrivateKey(bytes) {
+  const outer = readDer(bytes, 0);
+  if (outer.tag !== 0x30) {
+    throw new Error("bad rsa private key");
+  }
+  const version = readDer(bytes, outer.start);
+  if (version.tag !== 0x02) {
+    throw new Error("bad rsa private key");
+  }
+  const next = bytes[version.end];
+  if (next === 0x30) {
+    return bytes;
+  }
+  if (next === 0x02) {
+    return wrapPkcs1(bytes);
+  }
+  throw new Error("bad rsa private key");
+}
+
+export function decodeKeyMaterial(text) {
   const stripped = String(text || "")
     .replace(/-----BEGIN [^-]+-----/g, "")
     .replace(/-----END [^-]+-----/g, "")
@@ -29,7 +108,7 @@ function decodeKeyMaterial(text) {
 export async function importRsaPrivateKey(material) {
   return crypto.subtle.importKey(
     "pkcs8",
-    decodeKeyMaterial(material),
+    normalizeRsaPrivateKey(decodeKeyMaterial(material)),
     { name: "RSASSA-PKCS1-v1_5", hash: "SHA-256" },
     false,
     ["sign"]
@@ -44,6 +123,11 @@ export async function importRsaPublicKey(material) {
     false,
     ["verify"]
   );
+}
+
+export async function sha256Base64(text) {
+  const digest = await crypto.subtle.digest("SHA-256", new TextEncoder().encode(text));
+  return bytesToBase64(new Uint8Array(digest));
 }
 
 export async function signRsaSha256(privateKey, body) {
@@ -81,101 +165,74 @@ export async function verifyRsaSha256(publicKey, body, signatureB64) {
   }
 }
 
+export function parseWaffoSignature(header) {
+  const parts = {};
+  for (const pair of String(header || "").split(",")) {
+    const eq = pair.indexOf("=");
+    if (eq < 0) {
+      continue;
+    }
+    parts[pair.slice(0, eq).trim()] = pair.slice(eq + 1).trim();
+  }
+  return { t: parts.t || "", v1: parts.v1 || "" };
+}
+
+export function signatureFresh(t, nowMs) {
+  if (!/^\d+$/.test(String(t || ""))) {
+    return false;
+  }
+  const stamp = Number(t);
+  return Math.abs(nowMs - stamp) <= 45 * 60 * 1000;
+}
+
 export const PLANS = {
-  monthly: {
-    amount: "5.99",
-    days: 30,
-    description: "Let's Learn English monthly access",
-    goodsName: "Let's Learn English monthly",
-  },
-  quarterly: {
-    amount: "13.99",
-    days: 90,
-    description: "Let's Learn English quarterly access",
-    goodsName: "Let's Learn English quarterly",
-  },
+  monthly: { amount: "5.99", days: 30 },
+  quarterly: { amount: "13.99", days: 90 },
 };
 
-export function buildCreateOrderBody({
-  plan,
-  paymentRequestId,
-  merchantOrderId,
-  merchantId,
-  notifyUrl,
-  successRedirectUrl,
-  failedRedirectUrl,
-  cancelRedirectUrl,
-  goodsUrl,
-  requestedAt,
-  userEmail,
-}) {
-  const spec = PLANS[plan];
+export const CREATE_SESSION_PATH = CREATE_PATH;
+
+export function buildCheckoutBody({ productId, buyerEmail, language, successUrl, orderMerchantExternalId }) {
   return {
-    paymentRequestId,
-    merchantOrderId,
-    orderCurrency: "USD",
-    orderAmount: spec.amount,
-    orderDescription: spec.description,
-    orderRequestedAt: requestedAt,
-    notifyUrl,
-    successRedirectUrl,
-    failedRedirectUrl,
-    cancelRedirectUrl,
-    merchantInfo: { merchantId },
-    userInfo: {
-      userId: merchantOrderId,
-      userEmail,
-      userTerminal: "WEB",
-    },
-    paymentInfo: { productName: "ONE_TIME_PAYMENT" },
-    goodsInfo: goodsInfoForOrder(spec.goodsName, goodsUrl),
+    productId,
+    currency: "USD",
+    buyerEmail,
+    language,
+    successUrl,
+    orderMerchantExternalId,
   };
 }
 
-export function buildInquiryBody(paymentRequestId) {
-  return { paymentRequestId };
+export function canonicalRequest(method, path, timestamp, body) {
+  return `${method}\n${path}\n${timestamp}\n${body}`;
 }
 
-export async function waffoPost(env, path, bodyObject, fetchImpl = fetch) {
+export async function createCheckoutSession(env, bodyObject, now, fetchImpl = fetch) {
   const body = JSON.stringify(bodyObject);
-  const privateKey = await importRsaPrivateKey(env.WAFFO_PRIVATE_KEY);
-  const signature = await signRsaSha256(privateKey, body);
+  const timestamp = String(Math.floor(now.getTime() / 1000));
+  const bodyHash = await sha256Base64(body);
+  const privateKey = await importRsaPrivateKey(env.WAFFO_PANCAKE_API_KEY);
+  const signature = await signRsaSha256(
+    privateKey,
+    canonicalRequest("POST", CREATE_PATH, timestamp, bodyHash)
+  );
   const base = String(env.WAFFO_API_BASE || "").replace(/\/$/, "");
-  const response = await fetchImpl(`${base}${path}`, {
+  const response = await fetchImpl(`${base}${CREATE_PATH}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      "X-API-KEY": env.WAFFO_API_KEY,
-      "X-SIGNATURE": signature,
-      "X-API-VERSION": API_VERSION,
+      "X-Merchant-Id": env.WAFFO_PANCAKE_MERCHANT_ID,
+      "X-Timestamp": timestamp,
+      "X-Signature": signature,
     },
     body,
   });
   const raw = await response.text();
-  const headerSig = response.headers.get("X-SIGNATURE");
-  const publicKey = await importRsaPublicKey(env.WAFFO_PUBLIC_KEY);
-  const verified = await verifyRsaSha256(publicKey, raw, headerSig);
-  if (!verified) {
-    const error = new Error("waffo response signature rejected");
-    error.code = "bad_response_signature";
-    throw error;
-  }
-  let parsed;
+  let parsed = null;
   try {
     parsed = JSON.parse(raw);
   } catch (error) {
-    const failure = new Error("waffo response was not json");
-    failure.code = "bad_response";
-    throw failure;
+    parsed = null;
   }
-  return { parsed, raw };
-}
-
-/**
- * Order inquiry. Callers must not issue an unlock credential from this result.
- * Only a verified PAYMENT_NOTIFICATION webhook issues a credential.
- */
-export async function inquireOrder(env, paymentRequestId, fetchImpl = fetch) {
-  const { parsed } = await waffoPost(env, "/api/v1/order/inquiry", buildInquiryBody(paymentRequestId), fetchImpl);
-  return parsed;
+  return { ok: response.ok, status: response.status, parsed };
 }

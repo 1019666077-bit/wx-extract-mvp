@@ -1,4 +1,6 @@
-# Waffo 付款后自动开通
+# Waffo 付款后自动开通（旧稿，已停用）
+
+> 这份是按原生收单网关（api-sandbox.waffo.com）写的旧方案，已经不作实现依据。现在对接的是 Waffo Pancake，步骤在 [waffo-cloudflare-setup.md](waffo-cloudflare-setup.md)。下面的接口名不要再照着做。
 
 代码已经按本文的主方案写在 `worker/`，前端在 `js/unlock.js` 和开通页 / 返回页。**还没有部署，仓库里也没有 Waffo 或 Cloudflare 密钥。** 站长按 [waffo-cloudflare-setup.md](waffo-cloudflare-setup.md) 在浏览器里配完，把 Worker 地址和解锁公钥填进 `site.config.json` 并重新构建之后，按钮才会从「即将开放」变成可点。
 

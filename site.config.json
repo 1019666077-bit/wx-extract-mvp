@@ -9,6 +9,11 @@
     "worker": {
       "baseUrl": "",
       "unlockPublicKey": ""
+    },
+    "pancake": {
+      "monthlyProductId": "",
+      "quarterlyProductId": "",
+      "domainVerify": ""
     }
   }
 }

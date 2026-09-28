@@ -164,6 +164,11 @@ test("site root resolves GitHub project pages and local lesson urls", () => {
   assert.equal(siteRoot("/zh-hant/progress.html"), "/");
   assert.equal(siteRoot("/zh-hant/"), "/");
   assert.equal(siteRoot("/zh-hant"), "/");
+  assert.equal(siteRoot("/pricing.html"), "/");
+  assert.equal(siteRoot("/pricing-return.html"), "/");
+  assert.equal(siteRoot("/zh-hant/pricing.html"), "/");
+  assert.equal(siteRoot("/zh-hant/pricing-return.html"), "/");
+  assert.equal(siteRoot("/wx-extract-mvp/pricing-return.html"), "/wx-extract-mvp/");
 });
 
 test("legacy lesson.html redirects old id links and is noindex", () => {
@@ -258,6 +263,18 @@ test("site origin comes only from site.config.json", () => {
   const sitemap = buildSitemap(levels, "2026-09-05", "https://lessons.example");
   assert.match(sitemap, /https:\/\/lessons\.example\/zh-hant\/lessons\/lle1-01\.html/);
   assert.doesNotMatch(sitemap, /github\.io/);
+  const pagesOrigin = "https://lle-learn.pages.dev";
+  const pagesLesson = buildLessonPage(levels[0], levels[0].lessons[0], null, levels[0].lessons[1], undefined, pagesOrigin);
+  assert.match(pagesLesson, /https:\/\/lle-learn\.pages\.dev\/lessons\/lle1-01\.html/);
+  assert.match(pagesLesson, /hreflang="zh-Hant" href="https:\/\/lle-learn\.pages\.dev\/zh-hant\/lessons\/lle1-01\.html"/);
+  assert.doesNotMatch(pagesLesson, /wx-extract-mvp/);
+  const pagesSitemap = buildSitemap(levels, "2026-09-05", pagesOrigin);
+  assert.match(pagesSitemap, /https:\/\/lle-learn\.pages\.dev\/zh-hant\/lessons\/lle1-01\.html/);
+  assert.doesNotMatch(pagesSitemap, /wx-extract-mvp/);
+  const pagesRobots = buildRobots(pagesOrigin);
+  assert.match(pagesRobots, /Sitemap: https:\/\/lle-learn\.pages\.dev\/sitemap\.xml/);
+  assert.match(pagesRobots, /域名根/);
+  assert.doesNotMatch(pagesRobots, /wx-extract-mvp/);
   const hostRootRobots = `${new URL(SITE).origin}/robots.txt`;
   for (const rel of ["sitemap.xml", "robots.txt", "index.html", "zh-hant/index.html", "lessons/lle1-01.html", "zh-hant/lessons/lle1-06.html"]) {
     const text = fs.readFileSync(path.join(root, rel), "utf8");

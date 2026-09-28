@@ -51,7 +51,7 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
 5. Open **错题本** to review misses. **再练** returns to `lessons/<id>.html#quiz`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
-6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 US$5.99（30 天） or 季卡 US$13.99（90 天）. The buttons call the Cloudflare Worker in `worker/` only after `payment.worker.baseUrl` and `payment.worker.unlockPublicKey` in `site.config.json` are both set and the pages are rebuilt. While either is empty, the buttons stay disabled and say 即将开放 / 即將開放, and the page does not call the network. Setup steps are in `docs/waffo-cloudflare-setup.md`. Nothing here is deployed. Use **退出解锁** on the pricing page to reset this browser. Unlock is kept only when `localStorage` holds a signed, unexpired credential.
+6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 US$5.99（30 天） or 季卡 US$13.99（90 天）. The buttons call the Cloudflare Worker in `worker/` only after `payment.worker.baseUrl` and `payment.worker.unlockPublicKey` in `site.config.json` are both set and the pages are rebuilt. While either is empty, the buttons stay disabled and say 即将开放 / 即將開放, and the page does not call the network. Setup steps are in `docs/waffo-cloudflare-setup.md`. Nothing here is deployed. Use **退出解锁** on the pricing page to reset this browser. Unlock is kept only when `localStorage` holds a signed, unexpired credential. The public site origin is only `site.config.json` `origin` (still the GitHub Pages URL). A later move to Cloudflare Pages is prepared in `.github/workflows/cloudflare-pages.yml`; do not change `origin` until that host is checked.
 
 ## Paywall / redeem codes
 
@@ -114,13 +114,13 @@ Simplified Chinese lives at the site root. Traditional Chinese (Taiwan wording) 
 
 Both versions share one origin, so `localStorage` progress, check-in, wrong-book, and unlock carry across. `js/app.js` loads `data/web/` or `data/web/zh-hant/` from the site root, not from the `zh-hant/` folder.
 
-The published origin is the single `origin` field in [`site.config.json`](site.config.json). Canonical links, hreflang, Open Graph URLs, JSON-LD, `sitemap.xml`, and `robots.txt` all read that value at build time. To move to a custom domain later:
+The published origin is the single `origin` field in [`site.config.json`](site.config.json). Canonical links, hreflang, Open Graph URLs, JSON-LD, `sitemap.xml`, `robots.txt`, and the Worker `ALLOWED_ORIGIN` all read that value at build time. It is still the GitHub Pages URL. The next host is Cloudflare Pages at the domain root (`https://lle-learn.pages.dev`, then a custom domain). Do not change `origin` until that host is checked. The same three steps apply when you do:
 
 1. Change `origin` in `site.config.json` (no trailing slash).
-2. Run `npm install` if needed, then `node scripts/build-pages.js`.
-3. Commit the regenerated pages and deploy.
+2. Run `npm install` if needed, then `node scripts/build-pages.js`. That rewrite also copies `origin` into `worker/wrangler.toml`.
+3. Commit the regenerated pages and deploy. Redeploy the Worker so CORS follows.
 
-Do not paste the origin into HTML or JS. The generator test fails if `js/seo-pages.js` hardcodes the host.
+Do not paste the origin into HTML or JS. The generator test fails if `js/seo-pages.js` hardcodes the host. Setup for the Pages project is in `docs/waffo-cloudflare-setup.md`.
 
 URL pattern, prefixed with that origin:
 
@@ -158,7 +158,7 @@ Local testing note: there are **no public demo codes**, and `data/codes.json` st
 
 ## Public preview
 
-GitHub Pages serves this repo from `main` at the origin in `site.config.json`. Open `/` for Simplified Chinese and `/zh-hant/` for Traditional Chinese. A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once.
+GitHub Pages still serves this repo from `main` at the origin in `site.config.json`. Open `/` for Simplified Chinese and `/zh-hant/` for Traditional Chinese. A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once. Cloudflare Pages is a separate workflow and does not replace this until the checklist in `docs/waffo-cloudflare-setup.md` is done.
 
 ## WeChat miniprogram (paused)
 

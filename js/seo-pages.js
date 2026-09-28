@@ -912,14 +912,33 @@ ${body}
 }
 
 function buildRobots(origin = SITE) {
-  const host = new URL(origin).origin;
-  return `# 搜索引擎只读取主机根目录的 robots.txt（${host}/robots.txt），不会自动读取子路径里的本文件。
+  const url = new URL(origin);
+  const host = url.origin;
+  const projectPath = url.pathname.replace(/\/+$/, "");
+  const placement = projectPath
+    ? `# 搜索引擎只读取主机根目录的 robots.txt（${host}/robots.txt），不会自动读取子路径 ${projectPath} 里的本文件。\n# 迁到域名根（Cloudflare Pages）后，只改 site.config.json 的 origin 并重新构建，本文件就会出现在主机根上。`
+    : `# 站点在域名根上。搜索引擎读取 ${host}/robots.txt，Sitemap 跟 origin 走。`;
+  return `${placement}
 # 部署在 GitHub 项目页时，请到站长平台手动提交下面的 Sitemap。
 User-agent: *
 Allow: /
 
 Sitemap: ${origin}/sitemap.xml
 `;
+}
+
+function syncWorkerOrigin(root) {
+  const origin = loadSiteOrigin(root);
+  const file = path.join(root, "worker", "wrangler.toml");
+  const text = fs.readFileSync(file, "utf8");
+  if (!/^ALLOWED_ORIGIN = ".*"$/m.test(text)) {
+    throw new Error("worker/wrangler.toml is missing ALLOWED_ORIGIN");
+  }
+  const next = text.replace(/^ALLOWED_ORIGIN = ".*"$/m, `ALLOWED_ORIGIN = "${origin}"`);
+  if (next !== text) {
+    fs.writeFileSync(file, next);
+  }
+  return origin;
 }
 
 function replaceMarked(html, name, inner) {
@@ -1133,6 +1152,15 @@ function checkAll(root) {
     problems,
     ".json"
   );
+  try {
+    const origin = loadSiteOrigin(root);
+    const wrangler = fs.readFileSync(path.join(root, "worker", "wrangler.toml"), "utf8");
+    if (!wrangler.includes(`ALLOWED_ORIGIN = "${origin}"`)) {
+      problems.push("worker/wrangler.toml ALLOWED_ORIGIN does not match site.config.json origin");
+    }
+  } catch (error) {
+    problems.push(error.message);
+  }
   return problems;
 }
 
@@ -1143,6 +1171,7 @@ function writeAll(root) {
     fs.mkdirSync(path.dirname(full), { recursive: true });
     fs.writeFileSync(full, content);
   }
+  syncWorkerOrigin(root);
   return files.size;
 }
 
@@ -1164,6 +1193,7 @@ module.exports = {
   buildLessonPage,
   buildSitemap,
   buildRobots,
+  syncWorkerOrigin,
   webLesson,
   sourceLastmod,
   checkAll,

@@ -6,6 +6,7 @@ compatibility_date = "2026-09-28"
 
 [vars]
 WAFFO_API_BASE = "https://api-sandbox.waffo.com"
+# Copied from site.config.json origin by scripts/build-pages.js. Do not edit by hand.
 ALLOWED_ORIGIN = "https://1019666077-bit.github.io/wx-extract-mvp"
 
 [[kv_namespaces]]

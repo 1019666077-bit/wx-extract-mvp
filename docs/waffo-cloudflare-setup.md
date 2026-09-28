@@ -141,14 +141,7 @@ cd worker
 npx wrangler login
 ```
 
-3. 创建 KV，名字是 `voa-lle-orders`。绑定名必须是 `ORDERS`：
-
-```bash
-npx wrangler kv namespace create voa-lle-orders
-npx wrangler kv namespace create voa-lle-orders --preview
-```
-
-把正式环境的 id 贴进 `worker/wrangler.toml` 的 `id`，preview 的 id 贴进 `preview_id`。这是命名空间 id，可以提交。
+3. KV 已建好（已完成）。不要再执行 `wrangler kv namespace create`。绑定名是 `ORDERS`。正式命名空间 `voa-lle-orders` 的 id 是 `84110c8900934ac6abe4841117e9d8a3`，preview 命名空间 `voa-lle-orders-preview` 的 id 是 `49aac2630d6b4030bbbd739bcbe707eb`。两行已经写在 `worker/wrangler.toml`。这是命名空间 id，不是密钥，可以提交。
 
 4. 四个密钥。私钥可以整段粘贴 PEM（含 `BEGIN` / `END`），也可以粘贴去掉头尾后的一行 Base64。
 
@@ -177,11 +170,15 @@ npx wrangler secret put UNLOCK_PRIVATE_KEY
 | `PANCAKE_PRODUCT_MONTHLY` / `PANCAKE_PRODUCT_QUARTERLY` | 空 | 由 `npm run build` 从 `site.config.json` 写入 |
 | `ALLOWED_ORIGIN` | 与 `site.config.json` 的 `origin` 相同 | CORS。不要手改 |
 
-5. 确认密钥和商品 id 都在之后再部署（这一步会把 Worker 放到公网）：
+5. 确认四个密钥和两个商品 id 都在之后再部署（这一步会把 Worker 放到公网）。现在不要部署。密钥仍只在本机用上面的 `wrangler secret put` 写到 Cloudflare，不进 Git，工作流里也不写。
+
+本机：
 
 ```bash
 npx wrangler deploy
 ```
+
+或者在 GitHub Actions 里手动运行「Cloudflare Worker」（`.github/workflows/cloudflare-worker.yml`）。它只有 `workflow_dispatch`，不会在 push 时跑，命令是在 `worker/` 里执行 `wrangler deploy`，用的是已经加好的 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`。现在不要点运行。
 
 6. 把解锁公钥和 Worker 地址写进 `site.config.json` 的 `payment.worker`，商品 id 写进 `payment.pancake`，然后：
 
@@ -326,18 +323,18 @@ Pages 项目名暂定为 `lle-learn`（待品牌名）。预览地址将是 `htt
 /zh-hant/lesson.html?id=:id /zh-hant/lessons/:id.html 301
 ```
 
-### GitHub 密钥
+### GitHub 密钥（已完成）
 
-仓库 Settings → Secrets and variables → Actions，新建两个：
+仓库 Settings → Secrets and variables → Actions 里这两项已经添加，不要把值写进 Git：
 
-| 密钥 | 填什么 |
+| 密钥 | 状态 |
 | --- | --- |
-| `CLOUDFLARE_API_TOKEN` | 只给这个账号的 API Token，权限是 Account → Cloudflare Pages → Edit |
-| `CLOUDFLARE_ACCOUNT_ID` | 仪表盘右侧栏或 Workers 概览里的 Account ID |
+| `CLOUDFLARE_API_TOKEN` | 已添加。只给这个账号。权限是 Account → Cloudflare Pages → Edit、Workers Scripts → Edit、Workers KV Storage → Edit |
+| `CLOUDFLARE_ACCOUNT_ID` | 已添加。来自仪表盘右侧栏或 Workers 概览里的 Account ID |
 
-Token：右上角头像 → My Profile → API Tokens → Create Token → Create Custom Token。Permission 选 Account、Cloudflare Pages、Edit。Account Resources 只选放 Worker 的那个账号。不要选所有账号。如果 Action 报还要读账号信息，再加一条 Account → Account Settings → Read，然后换上新 Token。
+以后要换 Token：右上角头像 → My Profile → API Tokens → Create Token → Create Custom Token。Permission 仍是上面三条，Account Resources 只选放 Worker 的那个账号。不要选所有账号。如果 Action 报还要读账号信息，再加一条 Account → Account Settings → Read，然后换上新 Token。
 
-两个都填上之后，推到 `main`（或在 Actions 里手动跑 Cloudflare Pages）才会上传。在此之前工作流会成功结束，但不会部署。
+密钥已经在，所以推到 `main` 时 Cloudflare Pages 工作流会尝试把 `dist/` 传到项目 `lle-learn`。Worker 不跟着 push 部署。现在不要为了部署去推 `main`，也不要手动跑 Worker 工作流。
 
 ### 改 origin 之前先验收
 
@@ -359,7 +356,7 @@ Token：右上角头像 → My Profile → API Tokens → Create Token → Creat
 1. 把 `site.config.json` 的 `origin` 改成 `https://lle-learn.pages.dev`，不要末尾斜杠。以后绑了自定义域名，再改成那个 `https://` 地址，然后重复下面两步。
 2. 运行 `npm run build`。它会重写页面，并把 `worker/wrangler.toml` 的 `ALLOWED_ORIGIN` 和两个商品 id 改成和 `site.config.json` 一致。不要手改那几行。
 3. 提交并推到 `main`，等 Pages 工作流把新的 `dist/` 传上去。
-4. 在 `worker/` 里再执行一次 `npx wrangler deploy`。CORS 要这次部署才换成新源站。
+4. 在 `worker/` 里再执行一次 `npx wrangler deploy`，或手动跑「Cloudflare Worker」工作流。CORS 要这次部署才换成新源站。现在不要部署。
 
 ### 以后再把旧的 github.io 地址指过来
 

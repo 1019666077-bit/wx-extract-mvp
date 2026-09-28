@@ -1,5 +1,5 @@
 # No secrets in this file. API keys and private keys are Worker secrets.
-# The KV id below is a placeholder until `wrangler kv namespace create`.
+# ORDERS ids are KV namespace ids (voa-lle-orders / voa-lle-orders-preview), not secrets.
 name = "voa-lle-unlock"
 main = "src/index.js"
 compatibility_date = "2026-09-28"
@@ -19,5 +19,5 @@ TERMS_VERSION = "2026-09-28-norefund"
 
 [[kv_namespaces]]
 binding = "ORDERS"
-id = "replace_me"
-preview_id = "replace_me"
+id = "84110c8900934ac6abe4841117e9d8a3"
+preview_id = "49aac2630d6b4030bbbd739bcbe707eb"

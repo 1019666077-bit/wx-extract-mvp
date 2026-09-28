@@ -16,8 +16,18 @@ test("Cloudflare Pages project name is neutral and the workflow does not replace
   assert.match(workflow, /CLOUDFLARE_ACCOUNT_ID/);
   assert.match(workflow, /branches: \[main\]/);
   assert.doesNotMatch(workflow, /peaceiris|actions\/upload-pages-artifact|github-pages/);
-  const names = fs.readdirSync(path.join(root, ".github/workflows"));
-  assert.deepEqual(names, ["cloudflare-pages.yml"]);
+  const names = fs.readdirSync(path.join(root, ".github/workflows")).sort();
+  assert.deepEqual(names, ["cloudflare-pages.yml", "cloudflare-worker.yml"]);
+  const workerFlow = fs.readFileSync(path.join(root, ".github/workflows/cloudflare-worker.yml"), "utf8");
+  assert.match(workerFlow, /workflow_dispatch/);
+  assert.doesNotMatch(workerFlow, /push:/);
+  assert.match(workerFlow, /workingDirectory: worker/);
+  assert.match(workerFlow, /command: deploy/);
+  assert.doesNotMatch(workerFlow, /run:.*secret put/);
+  const wrangler = fs.readFileSync(path.join(root, "worker/wrangler.toml"), "utf8");
+  assert.match(wrangler, /id = "84110c8900934ac6abe4841117e9d8a3"/);
+  assert.match(wrangler, /preview_id = "49aac2630d6b4030bbbd739bcbe707eb"/);
+  assert.doesNotMatch(wrangler, /replace_me/);
 });
 
 test("staged site is served from the domain root and omits the Worker and miniprogram", () => {

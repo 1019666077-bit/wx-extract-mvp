@@ -1,4 +1,5 @@
 node_modules/
+dist/
 
 # 微信开发者工具本地私有配置（可能含本机 AppID），不入库
 project.private.config.json
@@ -14,4 +15,13 @@ mirror/
 .cos.credentials
 *.cos.credentials
 .cos.conf
+
+# Waffo / Cloudflare local secrets. Never commit key material.
+worker/.dev.vars
+worker/.wrangler/
+*.pem
+merchant_private_key.base64
+merchant_public_key.base64
+unlock_private_key.base64
+unlock_public_key.base64
 

@@ -1,0 +1,35 @@
+# Temporary sandbox deploy for cursor/waffo-pricing-ad6a. Remove this file before merging.
+# Push to this branch deploys voa-lle-unlock-sandbox and Pages branch "sandbox".
+# It does not deploy the production Worker and it does not replace eachsound.com.
+name: Cloudflare sandbox
+
+on:
+  push:
+    branches: [cursor/waffo-pricing-ad6a]
+  workflow_dispatch:
+
+jobs:
+  sandbox:
+    if: github.ref == 'refs/heads/cursor/waffo-pricing-ad6a'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - run: npm ci
+
+      - name: Deploy sandbox Worker and Pages branch
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          PANCAKE_MERCHANT_ID: ${{ secrets.PANCAKE_MERCHANT_ID }}
+          PANCAKE_TEST_STORE_ID: ${{ secrets.PANCAKE_TEST_STORE_ID }}
+          PANCAKE_TEST_API_KEY: ${{ secrets.PANCAKE_TEST_API_KEY }}
+          PANCAKE_TEST_WEBHOOK_PUBLIC_KEY: ${{ secrets.PANCAKE_TEST_WEBHOOK_PUBLIC_KEY }}
+          PANCAKE_TEST_PRODUCT_30_ID: ${{ secrets.PANCAKE_TEST_PRODUCT_30_ID }}
+          PANCAKE_TEST_PRODUCT_90_ID: ${{ secrets.PANCAKE_TEST_PRODUCT_90_ID }}
+        run: node scripts/sandbox-deploy.js

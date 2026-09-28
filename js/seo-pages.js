@@ -4,6 +4,7 @@ const { execSync } = require("node:child_process");
 const OpenCC = require("opencc-js");
 const VOAUnlock = require("./unlock.js");
 const { buildI18nScript } = require("./messages.js");
+const { PAGES: LEGAL_PAGES, buildLegalPage } = require("./legal-pages.js");
 
 const TITLE_MIN = 16;
 const TITLE_MAX = 34;
@@ -46,16 +47,215 @@ const OVERRIDES = [
   ["開啟打卡", "打開打卡"],
   ["開啟課表", "打開課表"],
   ["開啟頁面", "打開頁面"],
+  ["東莞市常平創客匯網路技術工作室", "東莞市常平創客彙網絡技術工作室"],
 ];
 
 const toTaiwan = OpenCC.Converter({ from: "cn", to: "twp" });
 
+function loadSiteConfig(root) {
+  return JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
+}
+
+function loadContactEmail(root) {
+  const config = loadSiteConfig(root);
+  const email = config.contactEmail;
+  if (typeof email !== "string" || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email)) {
+    throw new Error("site.config.json contactEmail must be one email address");
+  }
+  return email;
+}
+
 function loadSiteOrigin(root) {
-  const config = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
+  const config = loadSiteConfig(root);
   if (!config.origin || typeof config.origin !== "string" || !/^https?:\/\//.test(config.origin)) {
     throw new Error("site.config.json needs an absolute http(s) origin");
   }
   return config.origin.replace(/\/+$/, "");
+}
+
+function normalizePaymentUrl(value, key) {
+  if (value == null || value === "") {
+    return "";
+  }
+  if (typeof value !== "string" || !/^https:\/\/\S+$/.test(value.trim()) || /\s/.test(value)) {
+    throw new Error(`site.config.json payment.waffo.${key} must be an empty string or an https URL`);
+  }
+  return value.trim();
+}
+
+function normalizeOptionalHttps(value, key) {
+  if (value == null || value === "") {
+    return "";
+  }
+  if (typeof value !== "string" || !/^https:\/\/\S+$/.test(value.trim()) || /\s/.test(value)) {
+    throw new Error(`site.config.json ${key} must be an empty string or an https URL`);
+  }
+  return value.trim();
+}
+
+function normalizeUnlockPublicKey(value) {
+  if (value == null || value === "") {
+    return "";
+  }
+  if (typeof value !== "string" || !/^[A-Za-z0-9+/=]+$/.test(value) || value.length < 40 || value.length > 200) {
+    throw new Error("site.config.json payment.worker.unlockPublicKey must be empty or one-line SPKI base64");
+  }
+  return value;
+}
+
+function loadWaffoLinks(root) {
+  const config = loadSiteConfig(root);
+  const waffo = config.payment && config.payment.waffo;
+  if (!waffo || typeof waffo !== "object") {
+    throw new Error("site.config.json needs payment.waffo.monthlyUrl and quarterlyUrl");
+  }
+  const worker = (config.payment && config.payment.worker) || {};
+  const pancake = (config.payment && config.payment.pancake) || {};
+  return {
+    monthlyUrl: normalizePaymentUrl(waffo.monthlyUrl, "monthlyUrl"),
+    quarterlyUrl: normalizePaymentUrl(waffo.quarterlyUrl, "quarterlyUrl"),
+    returnUrl: normalizePaymentUrl(waffo.returnUrl, "returnUrl"),
+    workerBaseUrl: normalizeOptionalHttps(worker.baseUrl, "payment.worker.baseUrl"),
+    unlockPublicKey: normalizeUnlockPublicKey(worker.unlockPublicKey),
+    monthlyProductId: normalizeProductId(pancake.monthlyProductId, "payment.pancake.monthlyProductId"),
+    quarterlyProductId: normalizeProductId(pancake.quarterlyProductId, "payment.pancake.quarterlyProductId"),
+    domainVerify: normalizeDomainVerify(pancake.domainVerify),
+    termsVersion: normalizeTermsVersion(config.termsVersion),
+  };
+}
+
+function normalizeTermsVersion(value) {
+  const text = String(value || "").trim();
+  if (!/^[A-Za-z0-9._-]{4,64}$/.test(text)) {
+    throw new Error("site.config.json termsVersion must be 4–64 letters, digits, dots, underscores, or hyphens");
+  }
+  return text;
+}
+
+function normalizeProductId(value, label) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "";
+  }
+  if (!/^PROD_[A-Za-z0-9]+$/.test(text)) {
+    throw new Error(`site.config.json ${label} must be empty or a PROD_ id`);
+  }
+  return text;
+}
+
+function normalizeDomainVerify(value) {
+  const text = String(value || "").trim();
+  if (!text) {
+    return "";
+  }
+  if (!/^[A-Za-z0-9_-]{4,128}$/.test(text)) {
+    throw new Error("site.config.json payment.pancake.domainVerify must be empty or the challenge token");
+  }
+  return text;
+}
+
+function paymentReady(links) {
+  return Boolean(
+    links &&
+      links.workerBaseUrl &&
+      links.unlockPublicKey &&
+      links.monthlyProductId &&
+      links.quarterlyProductId &&
+      links.termsVersion
+  );
+}
+
+function channelLive(links) {
+  return paymentReady(links) || Boolean(links && links.returnUrl);
+}
+
+function returnStatusText(links) {
+  if (channelLive(links)) {
+    return "付完款会回到本页。确认到账后自动开通，不用再做别的操作。";
+  }
+  return "付款通道尚未开放。现在打开本页不会解锁课程。";
+}
+
+function returnStatusHtml(locale, links) {
+  const live = channelLive(links);
+  return `<p id="return-status" class="pay-note" data-live="${live ? "true" : "false"}">${escapeHtml(tx(returnStatusText(links), locale))}</p>`;
+}
+
+function paymentButton(locale, plan, label, live) {
+  if (!live) {
+    return `<button type="button" class="btn waffo-pay" disabled>${escapeHtml(tx("即将开放", locale))}</button>`;
+  }
+  return `<button type="button" class="btn primary waffo-pay" data-plan="${plan}" disabled>${escapeHtml(tx(label, locale))}</button>`;
+}
+
+function waffoPlansHtml(locale, links) {
+  const live = paymentReady(links);
+  const plans = [
+    {
+      name: "月付",
+      price: "US$5.99",
+      note: "开通后 30 天有效 · 一次性付款，不自动续费",
+      featured: false,
+      plan: "monthly",
+      label: "用 Waffo 支付 US$5.99",
+    },
+    {
+      name: "季卡",
+      price: "US$13.99",
+      note: "开通后 90 天有效 · 约 US$4.66 / 月 · 一次性付款，不自动续费",
+      featured: true,
+      plan: "quarterly",
+      label: "用 Waffo 支付 US$13.99",
+    },
+  ];
+  const cards = plans
+    .map((plan) => {
+      const featured = plan.featured ? " is-featured" : "";
+      return `        <article class="plan-card${featured}">
+          <p class="plan-name">${escapeHtml(tx(plan.name, locale))}</p>
+          <p class="plan-price">${escapeHtml(plan.price)}</p>
+          <p class="plan-note">${escapeHtml(tx(plan.note, locale))}</p>
+          ${paymentButton(locale, plan.plan, plan.label, live)}
+        </article>`;
+    })
+    .join("\n");
+  return `<div class="plan-grid">\n${cards}\n      </div>`;
+}
+
+function buildPaymentConfigScript(links) {
+  const payload = {
+    workerBaseUrl: (links && links.workerBaseUrl) || "",
+    unlockPublicKey: (links && links.unlockPublicKey) || "",
+    monthlyProductId: (links && links.monthlyProductId) || "",
+    quarterlyProductId: (links && links.quarterlyProductId) || "",
+    termsVersion: (links && links.termsVersion) || "",
+  };
+  return `window.VOA_PAYMENT=${JSON.stringify(payload)};\n`;
+}
+
+function legalLinksHtml(locale, scope) {
+  const lesson = scope === "lesson";
+  const pageBase = lesson ? "../" : "";
+  const enBase = lesson
+    ? locale.id === "zh-Hant"
+      ? "../../en/"
+      : "../en/"
+    : locale.id === "zh-Hant"
+      ? "../en/"
+      : "en/";
+  return `<nav class="legal-links" aria-label="${escapeHtml(tx("条款", locale))}">
+        <a href="${pageBase}terms.html">${escapeHtml(tx("服务条款", locale))}</a>
+        <a href="${pageBase}privacy.html">${escapeHtml(tx("隐私政策", locale))}</a>
+        <a href="${pageBase}refund.html">${escapeHtml(tx("退款政策", locale))}</a>
+        <a href="${enBase}terms.html" hreflang="en" lang="en">English</a>
+      </nav>`;
+}
+
+function domainVerifyTag(token) {
+  if (!token) {
+    return "";
+  }
+  return `<meta name="waffo-verify" content="${escapeHtml(token)}" />`;
 }
 
 const SITE = loadSiteOrigin(path.join(__dirname, ".."));
@@ -287,9 +487,9 @@ function keyPages(origin = SITE) {
       id: "pricing",
       file: "pricing.html",
       loc: `${origin}/pricing.html`,
-      title: "开通 VOA Let's Learn English 慢速英文",
+      title: "开通声声慢｜非 VOA 官方自学课",
       description:
-        "Level 1 第 1–5 课免费试学。开通后解锁 VOA Let's Learn English 已上线的全部慢速英文课，含 Level 1、Level 2 的中英对照听力与测验。",
+        "声声慢是非官方自学工具，不是美国之音。Level 1 第 1–5 课免费。开通后解锁已上线慢速英文课，含 Level 1 与 Level 2 的中英对照听力与测验。",
       ogType: "website",
       priority: "0.5",
     },
@@ -309,8 +509,21 @@ function legacyPage(origin = SITE) {
   };
 }
 
+function returnPage(origin = SITE) {
+  return {
+    id: "return",
+    file: "pricing-return.html",
+    loc: `${origin}/pricing-return.html`,
+    title: "Waffo 付款后会自动开通课程",
+    description:
+      "Waffo 付款完成后回到本页。确认到账后自动开通 VOA Let's Learn English 已上线课程，含 Level 1 与 Level 2 的慢速英文。",
+    ogType: "website",
+    priority: "0.3",
+  };
+}
+
 function shellPages(origin = SITE) {
-  return [...keyPages(origin), legacyPage(origin)];
+  return [...keyPages(origin), legacyPage(origin), returnPage(origin)];
 }
 
 function assertCopy(label, text, min, max) {
@@ -349,11 +562,16 @@ function validateCopy(levels) {
   }
 }
 
-function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRel, origin }) {
+function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRel, origin, robots }) {
   const loc = locale || HANS;
   const lines = [
     `<title>${escapeHtml(title)}</title>`,
     `<meta name="description" content="${escapeHtml(description)}" />`,
+  ];
+  if (robots) {
+    lines.push(`<meta name="robots" content="${escapeHtml(robots)}" />`);
+  }
+  lines.push(
     `<link rel="canonical" href="${escapeHtml(canonical)}" />`,
     hreflangLinks(pageRel, origin || SITE),
     `<meta property="og:type" content="${escapeHtml(ogType || "website")}" />`,
@@ -367,7 +585,7 @@ function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRe
     `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
     `<meta name="theme-color" content="#0b6e4f" />`,
     `<link rel="icon" href="${FAVICON}" />`,
-  ];
+  );
   if (jsonLd) {
     lines.push(`<script type="application/ld+json">${compactJson(jsonLd)}</script>`);
   }
@@ -383,7 +601,7 @@ function homePitch(levels) {
 }
 
 function homeDisclaimer() {
-  return "本站为非官方自学工具，与美国之音（Voice of America）没有隶属或背书关系。课文视频与脚本来自 VOA Learning English，属于公有领域。";
+  return "声声慢是非官方自学工具，与美国之音（Voice of America）没有隶属或背书关系。课文视频与脚本来自 VOA Learning English，属于公有领域。";
 }
 
 function homeJsonLd(page, locale, canonical, origin) {
@@ -589,9 +807,9 @@ ${dialogueHtml((view.dialogue || []).slice(0, 2))}
     <section class="paywall-section" id="lesson-paywall" aria-label="${escapeHtml(tx("开通后学习", loc))}">
       <h2>${escapeHtml(tx("课程未解锁", loc))}</h2>
       <p>${escapeHtml(tx("免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。", loc))}</p>
-      <p>${escapeHtml(tx("下一步：去开通页看方案，微信联系 ", loc))}<strong>15232188653</strong>${escapeHtml(tx(" 付款（¥39 月 / ¥99 季），获兑换码后在开通页输入解锁。", loc))}</p>
+      <p>${escapeHtml(tx("下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天）。一次性付款，不自动续费。付款确认后会自动开通。", loc))}</p>
       <div class="quiz-actions">
-        <a class="btn primary" href="${pageBase}pricing.html">${escapeHtml(tx("去开通 · 输入兑换码", loc))}</a>
+        <a class="btn primary" href="${pageBase}pricing.html">${escapeHtml(tx("去开通", loc))}</a>
         <a class="btn" href="${escapeHtml(backHref)}">${escapeHtml(tx("返回课表", loc))}</a>
       </div>
     </section>
@@ -683,12 +901,15 @@ ${quiz}
 ${pager}
     </nav>
     <footer class="footer">
+      <p>${escapeHtml(tx("声声慢是非官方自学工具，与美国之音（Voice of America）没有隶属关系。", loc))}</p>
       <p id="attribution">${escapeHtml(view.attribution || "")}</p>
+      ${legalLinksHtml(loc, "lesson")}
     </footer>
   </div>
   <script type="application/json" id="lesson-nav">${navJson}</script>
 ${dataScript}  <script type="module" src="${asset}js/study.js"></script>
   <script type="module" src="${asset}js/unlock.js"></script>
+  <script src="${asset}js/payment-config.js" defer></script>
   <script src="${asset}js/i18n.js" defer></script>
   <script src="${asset}js/app.js" defer></script>
 </body>
@@ -737,9 +958,12 @@ ${items}
 ${blocks}`;
 }
 
-function buildSitemap(levels, lastmod, origin = SITE) {
+function buildSitemap(levels, lastmod, origin = SITE, waffo = null) {
+  const links = waffo || { returnUrl: "" };
   const pages = [
     ...keyPages(origin).map((page) => ({ rel: page.file, priority: page.priority })),
+    ...(channelLive(links) ? [{ rel: "pricing-return.html", priority: "0.3" }] : []),
+    ...Object.values(LEGAL_PAGES).map((page) => ({ rel: page.file, priority: "0.4" })),
     ...levels.flatMap((level) =>
       level.lessons.map((lesson) => ({
         rel: `lessons/${lesson.id}.html`,
@@ -753,33 +977,81 @@ function buildSitemap(levels, lastmod, origin = SITE) {
         const loc = absoluteUrl(locale, page.rel, origin);
         const hans = absoluteUrl(HANS, page.rel, origin);
         const hant = absoluteUrl(HANT, page.rel, origin);
+        const enAlternate = Object.values(LEGAL_PAGES).some((item) => item.file === page.rel)
+          ? `\n    <xhtml:link rel="alternate" hreflang="en" href="${escapeHtml(`${origin}/en/${page.rel}`)}" />`
+          : "";
         return `  <url>
     <loc>${escapeHtml(loc)}</loc>
     <lastmod>${lastmod}</lastmod>
     <priority>${page.priority}</priority>
     <xhtml:link rel="alternate" hreflang="zh-Hans" href="${escapeHtml(hans)}" />
-    <xhtml:link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(hant)}" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(hant)}" />${enAlternate}
     <xhtml:link rel="alternate" hreflang="x-default" href="${escapeHtml(hans)}" />
   </url>`;
       })
     )
     .join("\n");
+  const english = Object.values(LEGAL_PAGES)
+    .map((page) => {
+      const loc = `${origin}/en/${page.file}`;
+      const hans = `${origin}/${page.file}`;
+      const hant = `${origin}/zh-hant/${page.file}`;
+      return `  <url>
+    <loc>${escapeHtml(loc)}</loc>
+    <lastmod>${lastmod}</lastmod>
+    <priority>0.4</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="${escapeHtml(hans)}" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(hant)}" />
+    <xhtml:link rel="alternate" hreflang="en" href="${escapeHtml(loc)}" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="${escapeHtml(hans)}" />
+  </url>`;
+    })
+    .join("\n");
   return `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
 ${body}
+${english}
 </urlset>
 `;
 }
 
 function buildRobots(origin = SITE) {
-  const host = new URL(origin).origin;
-  return `# 搜索引擎只读取主机根目录的 robots.txt（${host}/robots.txt），不会自动读取子路径里的本文件。
+  const url = new URL(origin);
+  const host = url.origin;
+  const projectPath = url.pathname.replace(/\/+$/, "");
+  const placement = projectPath
+    ? `# 搜索引擎只读取主机根目录的 robots.txt（${host}/robots.txt），不会自动读取子路径 ${projectPath} 里的本文件。\n# 迁到域名根（Cloudflare Pages）后，只改 site.config.json 的 origin 并重新构建，本文件就会出现在主机根上。`
+    : `# 站点在域名根上。搜索引擎读取 ${host}/robots.txt，Sitemap 跟 origin 走。`;
+  return `${placement}
 # 部署在 GitHub 项目页时，请到站长平台手动提交下面的 Sitemap。
 User-agent: *
 Allow: /
 
 Sitemap: ${origin}/sitemap.xml
 `;
+}
+
+function replaceTomlString(text, key, value) {
+  const pattern = new RegExp(`^${key} = ".*"$`, "m");
+  if (!pattern.test(text)) {
+    throw new Error(`worker/wrangler.toml is missing ${key}`);
+  }
+  return text.replace(pattern, `${key} = "${value}"`);
+}
+
+function syncWorkerOrigin(root) {
+  const origin = loadSiteOrigin(root);
+  const links = loadWaffoLinks(root);
+  const file = path.join(root, "worker", "wrangler.toml");
+  let text = fs.readFileSync(file, "utf8");
+  text = replaceTomlString(text, "ALLOWED_ORIGIN", origin);
+  text = replaceTomlString(text, "PANCAKE_PRODUCT_MONTHLY", links.monthlyProductId);
+  text = replaceTomlString(text, "PANCAKE_PRODUCT_QUARTERLY", links.quarterlyProductId);
+  text = replaceTomlString(text, "TERMS_VERSION", links.termsVersion);
+  if (text !== fs.readFileSync(file, "utf8")) {
+    fs.writeFileSync(file, text);
+  }
+  return origin;
 }
 
 function replaceMarked(html, name, inner) {
@@ -811,10 +1083,11 @@ function prepareShell(root, file, locale) {
   return html;
 }
 
-function patchSitePage(html, page, levels, locale = HANS, origin = SITE) {
+function patchSitePage(html, page, levels, locale = HANS, origin = SITE, waffo = null) {
   const canonical = absoluteUrl(locale, page.file, origin);
   const title = tx(page.title, locale);
   const description = tx(page.description, locale);
+  const robots = page.id === "return" && !channelLive(waffo) ? "noindex" : "";
   let next = replaceMarked(
     html,
     "seo",
@@ -827,9 +1100,20 @@ function patchSitePage(html, page, levels, locale = HANS, origin = SITE) {
       locale,
       pageRel: page.file,
       origin,
+      robots,
     })
   );
   next = replaceMarked(next, "script-switch", scriptSwitcher(locale, page.file));
+  next = replaceMarked(next, "legal-links", legalLinksHtml(locale, "shell"));
+  if (page.id === "home") {
+    next = replaceMarked(next, "waffo-verify", domainVerifyTag(waffo && waffo.domainVerify));
+  }
+  if (page.id === "pricing") {
+    next = replaceMarked(next, "waffo-plans", waffoPlansHtml(locale, waffo));
+  }
+  if (page.id === "return") {
+    next = replaceMarked(next, "return-status", returnStatusHtml(locale, waffo));
+  }
   if (page.id !== "home") {
     return next;
   }
@@ -903,11 +1187,97 @@ function iterLessons(levels) {
   return rows;
 }
 
+function englishPayButton(plan, label, live) {
+  if (!live) {
+    return `<button type="button" class="btn waffo-pay" disabled>Coming soon</button>`;
+  }
+  return `<button type="button" class="btn primary waffo-pay" data-plan="${plan}" disabled>${escapeHtml(label)}</button>`;
+}
+
+function buildEnglishPricingPage(origin, links) {
+  const live = paymentReady(links);
+  return `<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>Pricing | Eachsound</title>
+  <meta name="description" content="Eachsound is an unofficial study tool and is not Voice of America. One-time access: 30 days for US$5.99 or 90 days for US$13.99. Payment does not auto-renew." />
+  <link rel="canonical" href="${escapeHtml(origin)}/en/pricing.html" />
+  <link rel="alternate" hreflang="zh-Hans" href="${escapeHtml(origin)}/pricing.html" />
+  <link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(origin)}/zh-hant/pricing.html" />
+  <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/pricing.html" />
+  <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin)}/pricing.html" />
+  <meta name="robots" content="index,follow" />
+  <meta name="theme-color" content="#0b6e4f" />
+  <link rel="stylesheet" href="../css/styles.css" />
+</head>
+<body data-page="pricing">
+  <div class="page">
+    <nav class="site-nav" aria-label="Site">
+      <a href="../index.html">Lessons</a>
+      <a href="pricing.html" aria-current="page">Pricing</a>
+      <nav class="script-switch" aria-label="Language"><a href="../pricing.html" hreflang="zh-Hans" lang="zh-Hans">简</a><a href="../zh-hant/pricing.html" hreflang="zh-Hant" lang="zh-Hant">繁</a><a href="pricing.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
+    </nav>
+    <header class="header">
+      <p class="eyebrow">Eachsound · not official VOA</p>
+      <h1>Unlock Eachsound</h1>
+      <p class="subtitle">Level 1 lessons 1–5 stay free. One-time payment: US$5.99 for 30 days or US$13.99 for 90 days. One-time payment, no automatic renewal. Digital content opens immediately after payment.</p>
+    </header>
+    <section class="pricing-section" aria-label="Plans">
+      <h2>Plans</h2>
+      <div class="redeem-form">
+        <label for="checkout-email">Email for this payment
+          <input id="checkout-email" name="email" type="email" autocomplete="email" maxlength="64" />
+        </label>
+      </div>
+      <label class="terms-consent">
+        <input id="terms-consent" name="termsAccepted" type="checkbox" />
+        <span>I agree to immediate access to this digital content, and I understand that, to the extent permitted by applicable law, I waive the right of withdrawal and any right to a refund. <a href="terms.html">Terms</a> · <a href="refund.html">Refunds</a></span>
+      </label>
+      <div class="plan-grid">
+        <article class="plan-card">
+          <p class="plan-name">30 days</p>
+          <p class="plan-price">US$5.99</p>
+          <p class="plan-note">Valid for 30 days · one-time payment, no automatic renewal</p>
+          ${englishPayButton("monthly", "Pay US$5.99 with Waffo", live)}
+        </article>
+        <article class="plan-card is-featured">
+          <p class="plan-name">90 days</p>
+          <p class="plan-price">US$13.99</p>
+          <p class="plan-note">Valid for 90 days · one-time payment, no automatic renewal</p>
+          ${englishPayButton("quarterly", "Pay US$13.99 with Waffo", live)}
+        </article>
+      </div>
+      <p class="pay-note">The pay buttons stay off until this box is checked. They do not call the payment service before that.</p>
+    </section>
+    <footer class="footer">
+      <p>Eachsound is an unofficial study tool and is not affiliated with Voice of America.</p>
+      <nav class="legal-links" aria-label="Policies">
+        <a href="terms.html">Terms</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="refund.html">Refunds</a>
+      </nav>
+    </footer>
+  </div>
+  <script type="module" src="../js/study.js"></script>
+  <script type="module" src="../js/unlock.js"></script>
+  <script type="module" src="../js/payment-client.js"></script>
+  <script src="../js/payment-config.js" defer></script>
+  <script src="../js/i18n.js" defer></script>
+  <script src="../js/app.js" defer></script>
+</body>
+</html>
+`;
+}
+
 function expectedFiles(root, payload, lastmod) {
   const levels = normalizeLevels(payload);
   validateCopy(levels);
+  const waffo = loadWaffoLinks(root);
   const files = new Map();
   files.set("js/i18n.js", buildI18nScript(convertToHant));
+  files.set("js/payment-config.js", buildPaymentConfigScript(waffo));
   for (const locale of LOCALES) {
     for (const row of iterLessons(levels)) {
       files.set(
@@ -926,10 +1296,17 @@ function expectedFiles(root, payload, lastmod) {
     files.set(catalogRel, prettyJson(locale.id === "zh-Hant" ? convertValue(catalog) : catalog));
     for (const page of shellPages()) {
       const shell = prepareShell(root, page.file, locale);
-      files.set(`${locale.prefix}${page.file}`, patchSitePage(shell, page, levels, locale));
+      files.set(`${locale.prefix}${page.file}`, patchSitePage(shell, page, levels, locale, SITE, waffo));
     }
   }
-  files.set("sitemap.xml", buildSitemap(levels, lastmod));
+  const contactEmail = loadContactEmail(root);
+  for (const kind of Object.keys(LEGAL_PAGES)) {
+    files.set(`${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hans", SITE, (text) => text, contactEmail));
+    files.set(`zh-hant/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hant", SITE, convertToHant, contactEmail));
+    files.set(`en/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "en", SITE, (text) => text, contactEmail));
+  }
+  files.set("en/pricing.html", buildEnglishPricingPage(SITE, waffo));
+  files.set("sitemap.xml", buildSitemap(levels, lastmod, SITE, waffo));
   files.set("robots.txt", buildRobots());
   return files;
 }
@@ -983,6 +1360,25 @@ function checkAll(root) {
     problems,
     ".json"
   );
+  try {
+    const origin = loadSiteOrigin(root);
+    const wrangler = fs.readFileSync(path.join(root, "worker", "wrangler.toml"), "utf8");
+    if (!wrangler.includes(`ALLOWED_ORIGIN = "${origin}"`)) {
+      problems.push("worker/wrangler.toml ALLOWED_ORIGIN does not match site.config.json origin");
+    }
+    const links = loadWaffoLinks(root);
+    if (!wrangler.includes(`PANCAKE_PRODUCT_MONTHLY = "${links.monthlyProductId}"`)) {
+      problems.push("worker/wrangler.toml PANCAKE_PRODUCT_MONTHLY does not match site.config.json");
+    }
+    if (!wrangler.includes(`PANCAKE_PRODUCT_QUARTERLY = "${links.quarterlyProductId}"`)) {
+      problems.push("worker/wrangler.toml PANCAKE_PRODUCT_QUARTERLY does not match site.config.json");
+    }
+    if (!wrangler.includes(`TERMS_VERSION = "${links.termsVersion}"`)) {
+      problems.push("worker/wrangler.toml TERMS_VERSION does not match site.config.json");
+    }
+  } catch (error) {
+    problems.push(error.message);
+  }
   return problems;
 }
 
@@ -993,6 +1389,7 @@ function writeAll(root) {
     fs.mkdirSync(path.dirname(full), { recursive: true });
     fs.writeFileSync(full, content);
   }
+  syncWorkerOrigin(root);
   return files.size;
 }
 
@@ -1014,6 +1411,7 @@ module.exports = {
   buildLessonPage,
   buildSitemap,
   buildRobots,
+  syncWorkerOrigin,
   webLesson,
   sourceLastmod,
   checkAll,
@@ -1023,4 +1421,11 @@ module.exports = {
   switcherHref,
   absoluteUrl,
   scriptSwitcher,
+  loadWaffoLinks,
+  paymentButton,
+  paymentReady,
+  buildPaymentConfigScript,
+  waffoPlansHtml,
+  returnStatusHtml,
+  returnPage,
 };

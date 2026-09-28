@@ -1,0 +1,4 @@
+# Cloudflare Pages only. GitHub Pages ignores this file.
+# Old lesson.html?id=lle1-01 links. The page's own script still redirects on GitHub Pages.
+/lesson.html?id=:id /lessons/:id.html 301
+/zh-hant/lesson.html?id=:id /zh-hant/lessons/:id.html 301

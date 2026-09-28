@@ -18,6 +18,11 @@ const {
   buildSitemap,
   buildRobots,
   readLessons,
+  HANS,
+  loadWaffoLinks,
+  waffoPlansHtml,
+  returnStatusHtml,
+  buildPaymentConfigScript,
   sourceLastmod,
   checkAll,
   HANT,
@@ -104,7 +109,7 @@ test("free lesson HTML includes dialogue and does not preload the video", () => 
 test("sitemap lists the home page, key pages, and all lessons", () => {
   const xml = buildSitemap(levels, "2026-09-05");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locs.length, 172);
+  assert.equal(locs.length, 181);
   assert.equal(new Set(locs).size, locs.length);
   assert.ok(locs.includes(`${SITE}/`));
   assert.ok(locs.includes(`${SITE}/progress.html`));
@@ -116,6 +121,9 @@ test("sitemap lists the home page, key pages, and all lessons", () => {
   assert.ok(locs.includes(`${SITE}/zh-hant/`));
   assert.ok(locs.includes(`${SITE}/zh-hant/lessons/lle1-01.html`));
   assert.ok(locs.includes(`${SITE}/zh-hant/lessons/lle2-30.html`));
+  assert.ok(locs.includes(`${SITE}/terms.html`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/privacy.html`));
+  assert.ok(locs.includes(`${SITE}/en/refund.html`));
   assert.equal([...xml.matchAll(/<lastmod>/g)].length, locs.length);
   assert.equal([...xml.matchAll(/hreflang="zh-Hant"/g)].length, locs.length);
   assert.equal([...xml.matchAll(/hreflang="x-default"/g)].length, locs.length);
@@ -159,6 +167,11 @@ test("site root resolves GitHub project pages and local lesson urls", () => {
   assert.equal(siteRoot("/zh-hant/progress.html"), "/");
   assert.equal(siteRoot("/zh-hant/"), "/");
   assert.equal(siteRoot("/zh-hant"), "/");
+  assert.equal(siteRoot("/pricing.html"), "/");
+  assert.equal(siteRoot("/pricing-return.html"), "/");
+  assert.equal(siteRoot("/zh-hant/pricing.html"), "/");
+  assert.equal(siteRoot("/zh-hant/pricing-return.html"), "/");
+  assert.equal(siteRoot("/wx-extract-mvp/pricing-return.html"), "/wx-extract-mvp/");
 });
 
 test("legacy lesson.html redirects old id links and is noindex", () => {
@@ -253,6 +266,18 @@ test("site origin comes only from site.config.json", () => {
   const sitemap = buildSitemap(levels, "2026-09-05", "https://lessons.example");
   assert.match(sitemap, /https:\/\/lessons\.example\/zh-hant\/lessons\/lle1-01\.html/);
   assert.doesNotMatch(sitemap, /github\.io/);
+  const pagesOrigin = "https://eachsound.pages.dev";
+  const pagesLesson = buildLessonPage(levels[0], levels[0].lessons[0], null, levels[0].lessons[1], undefined, pagesOrigin);
+  assert.match(pagesLesson, /https:\/\/eachsound\.pages\.dev\/lessons\/lle1-01\.html/);
+  assert.match(pagesLesson, /hreflang="zh-Hant" href="https:\/\/eachsound\.pages\.dev\/zh-hant\/lessons\/lle1-01\.html"/);
+  assert.doesNotMatch(pagesLesson, /wx-extract-mvp/);
+  const pagesSitemap = buildSitemap(levels, "2026-09-05", pagesOrigin);
+  assert.match(pagesSitemap, /https:\/\/eachsound\.pages\.dev\/zh-hant\/lessons\/lle1-01\.html/);
+  assert.doesNotMatch(pagesSitemap, /wx-extract-mvp/);
+  const pagesRobots = buildRobots(pagesOrigin);
+  assert.match(pagesRobots, /Sitemap: https:\/\/eachsound\.pages\.dev\/sitemap\.xml/);
+  assert.match(pagesRobots, /域名根/);
+  assert.doesNotMatch(pagesRobots, /wx-extract-mvp/);
   const hostRootRobots = `${new URL(SITE).origin}/robots.txt`;
   for (const rel of ["sitemap.xml", "robots.txt", "index.html", "zh-hant/index.html", "lessons/lle1-01.html", "zh-hant/lessons/lle1-06.html"]) {
     const text = fs.readFileSync(path.join(root, rel), "utf8");
@@ -265,6 +290,194 @@ test("site origin comes only from site.config.json", () => {
       const allowed = url.startsWith(SITE) || url === hostRootRobots;
       assert.equal(allowed, true, `${rel} has ${url}`);
     }
+  }
+});
+
+test("empty Waffo links render disabled soon buttons", () => {
+  assert.deepEqual(loadWaffoLinks(root), {
+    monthlyUrl: "",
+    quarterlyUrl: "",
+    returnUrl: "",
+    workerBaseUrl: "",
+    unlockPublicKey: "",
+    monthlyProductId: "",
+    quarterlyProductId: "",
+    domainVerify: "",
+    termsVersion: "2026-09-28-law",
+  });
+  assert.equal(
+    buildPaymentConfigScript(loadWaffoLinks(root)),
+    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":"","termsVersion":"2026-09-28-law"};\n'
+  );
+  assert.equal(convertToHant("即将开放"), "即將開放");
+  const { MESSAGES, buildI18nScript } = require("./messages.js");
+  assert.equal(MESSAGES.recoverFailed, "订单号或邮箱不匹配，或该订单无法找回");
+  assert.match(buildI18nScript(convertToHant), /訂單號或郵箱不匹配，或該訂單無法找回/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /id="recover-form"/);
+  assert.match(fs.readFileSync(path.join(root, "pricing-return.html"), "utf8"), /id="recover-form"/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /找回開通/);
+  const terms = fs.readFileSync(path.join(root, "terms.html"), "utf8");
+  const termsHant = fs.readFileSync(path.join(root, "zh-hant/terms.html"), "utf8");
+  const termsEn = fs.readFileSync(path.join(root, "en/terms.html"), "utf8");
+  const contactEmail = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8")).contactEmail;
+  assert.equal(contactEmail, "eachsound@outlook.com");
+  assert.doesNotMatch(terms, /待幕僚长确认/);
+  assert.doesNotMatch(termsHant, /待幕僚長確認/);
+  assert.doesNotMatch(termsEn, /待幕僚长确认/);
+  assert.doesNotMatch(terms, /contact@example\.com/);
+  assert.match(terms, /中华人民共和国法律（不含冲突规范）/);
+  assert.match(terms, /强制性消费者保护法赋予的权利/);
+  assert.match(terms, /广东省东莞市/);
+  assert.match(terms, new RegExp(contactEmail.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(termsHant, /中華人民共和國法律（不含衝突規範）/);
+  assert.match(termsHant, /廣東省東莞市/);
+  assert.match(termsEn, /People's Republic of China, excluding its conflict-of-laws rules/);
+  assert.match(termsEn, /mandatory consumer protection laws/);
+  assert.match(termsEn, /Dongguan, Guangdong Province/);
+  const privacy = fs.readFileSync(path.join(root, "privacy.html"), "utf8");
+  const privacyEn = fs.readFileSync(path.join(root, "en/privacy.html"), "utf8");
+  assert.match(privacy, /凭证过期后再保留 3 年/);
+  assert.match(privacy, /单向校验值/);
+  assert.match(privacy, /结账同意时间和条款版本/);
+  assert.match(privacyEn, /kept for 3 years/);
+  assert.match(privacyEn, /terms version/);
+  assert.match(terms, /东莞市常平创客汇网络技术工作室/);
+  assert.match(termsHant, /東莞市常平創客彙網絡技術工作室/);
+  assert.match(termsEn, /a sole proprietorship registered in Dongguan, Guangdong, China/);
+  assert.match(terms, /在适用法律允许的最大范围内/);
+  assert.match(terms, /一次性付款，不自动续费/);
+  assert.doesNotMatch(terms, /不承担任何责任/);
+  assert.doesNotMatch(terms, /生效日期/);
+  assert.doesNotMatch(termsEn, /Effective date/i);
+  assert.equal(fs.readFileSync(path.join(root, "js/legal-pages.js"), "utf8").includes(contactEmail), false);
+  for (const rel of ["terms.html", "privacy.html", "refund.html", "zh-hant/terms.html", "en/refund.html"]) {
+    assert.match(fs.readFileSync(path.join(root, rel), "utf8"), new RegExp(contactEmail.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  const refund = fs.readFileSync(path.join(root, "refund.html"), "utf8");
+  const refundEn = fs.readFileSync(path.join(root, "en/refund.html"), "utf8");
+  assert.match(refund, /不予退款/);
+  assert.match(refund, /数字内容/);
+  assert.match(refundEn, /non-refundable/);
+  assert.doesNotMatch(refund, /7 天/);
+  assert.doesNotMatch(refund, /每个付款邮箱限一次/);
+  assert.doesNotMatch(refundEn, /7 days/);
+  assert.match(fs.readFileSync(path.join(root, "terms.html"), "utf8"), /不予退款/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /id="terms-consent"/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /放棄撤銷權和退款權/);
+  assert.match(fs.readFileSync(path.join(root, "en/pricing.html"), "utf8"), /waive the right of withdrawal/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /一次性付款，不自动续费/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /一次性付款，不自動續費/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /声声慢 · 非 VOA 官方/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /聲聲慢 · 非 VOA 官方/);
+  assert.match(fs.readFileSync(path.join(root, "en/pricing.html"), "utf8"), /Eachsound · not official VOA/);
+  assert.match(fs.readFileSync(path.join(root, "terms.html"), "utf8"), /声声慢是非官方自学工具/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/terms.html"), "utf8"), /聲聲慢是非官方自學工具/);
+  assert.match(fs.readFileSync(path.join(root, "en/terms.html"), "utf8"), /Eachsound is an unofficial study tool/);
+  assert.match(fs.readFileSync(path.join(root, "index.html"), "utf8"), /声声慢是非官方自学工具/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/index.html"), "utf8"), /聲聲慢是非官方自學工具/);
+  const config = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
+  assert.match(config.origin, /github\.io/);
+  assert.equal(fs.readFileSync(path.join(root, "index.html"), "utf8").includes('name="waffo-verify"'), false);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8"), /id="recover-form"/);
+  const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });
+  const hant = waffoPlansHtml(HANT, { monthlyUrl: "", quarterlyUrl: "   " });
+  assert.equal((hans.match(/<button type="button" class="btn waffo-pay" disabled>即将开放<\/button>/g) || []).length, 2);
+  assert.equal((hant.match(/<button type="button" class="btn waffo-pay" disabled>即將開放<\/button>/g) || []).length, 2);
+  assert.match(hans, /US\$5\.99/);
+  assert.match(hans, /US\$13\.99/);
+  assert.match(hans, /30 天/);
+  assert.match(hant, /90 天/);
+  assert.doesNotMatch(hans, /href=/);
+  assert.doesNotMatch(hant, /href=/);
+  const hansPage = fs.readFileSync(path.join(root, "pricing.html"), "utf8");
+  const hantPage = fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8");
+  assert.match(hansPage, /disabled>即将开放</);
+  assert.match(hantPage, /disabled>即將開放</);
+  assert.doesNotMatch(hansPage, /15232188653/);
+  assert.doesNotMatch(hantPage, /15232188653/);
+  assert.doesNotMatch(hansPage, /微信|¥39|¥99/);
+  assert.doesNotMatch(hantPage, /微信|¥39|¥99/);
+  assert.match(hansPage, /US\$5\.99/);
+  assert.match(hantPage, /US\$13\.99/);
+  assert.doesNotMatch(hansPage, /¥39/);
+  assert.doesNotMatch(hantPage, /href=""/);
+  assert.doesNotMatch(hantPage, /href="#"/);
+  assert.doesNotMatch(hansPage, /class="btn waffo-pay"[^>]*href/);
+});
+
+test("worker config enables checkout buttons without a static href", () => {
+  const html = waffoPlansHtml(HANS, {
+    workerBaseUrl: "https://pay.example",
+    unlockPublicKey: "A".repeat(44),
+    monthlyProductId: "PROD_monthly",
+    quarterlyProductId: "PROD_quarterly",
+    termsVersion: "2026-09-28-law",
+  });
+  const missingProduct = waffoPlansHtml(HANS, {
+    workerBaseUrl: "https://pay.example",
+    unlockPublicKey: "A".repeat(44),
+  });
+  assert.match(missingProduct, /disabled>即将开放</);
+  assert.match(html, /data-plan="monthly"/);
+  assert.match(html, /data-plan="quarterly"/);
+  assert.match(html, /用 Waffo 支付 US\$5\.99/);
+  assert.match(html, /用 Waffo 支付 US\$13\.99/);
+  assert.match(html, /data-plan="monthly" disabled/);
+  assert.doesNotMatch(html, /即将开放/);
+  assert.doesNotMatch(html, /href=/);
+  assert.doesNotMatch(html, /github\.io/);
+  const staticOnly = waffoPlansHtml(HANS, {
+    monthlyUrl: "https://pay.example/waffo/monthly",
+    quarterlyUrl: "https://pay.example/waffo/quarterly",
+  });
+  assert.match(staticOnly, /disabled>即将开放</);
+  assert.doesNotMatch(staticOnly, /href=/);
+  const level = levels.find((item) => item.id === "lle1");
+  const lesson = level.lessons.find((item) => item.id === "lle1-06");
+  const locked = buildLessonPage(level, lesson, level.lessons[4], level.lessons[6]);
+  assert.match(locked, /Waffo/);
+  assert.match(locked, /US\$5\.99/);
+  assert.match(locked, /US\$13\.99/);
+  assert.doesNotMatch(locked, /15232188653|微信|¥39|输入兑换码/);
+  assert.match(locked, /自动开通/);
+  const lockedHant = buildLessonPage(level, lesson, level.lessons[4], level.lessons[6], HANT);
+  assert.match(lockedHant, /Waffo/);
+  assert.match(lockedHant, /自動開通/);
+  assert.doesNotMatch(lockedHant, /15232188653|微信/);
+});
+
+test("return page stays unpublished until payment.waffo.returnUrl is set", () => {
+  const links = loadWaffoLinks(root);
+  assert.equal(links.returnUrl, "");
+  const hans = returnStatusHtml(HANS, links);
+  const hant = returnStatusHtml(HANT, links);
+  assert.match(hans, /data-live="false"/);
+  assert.match(hans, /不会解锁课程/);
+  assert.match(hant, /不會解鎖課程/);
+  assert.doesNotMatch(hans, /微信|15232188653/);
+  const live = "https://pay.example/return";
+  const opened = returnStatusHtml(HANS, { returnUrl: live });
+  assert.match(opened, /data-live="true"/);
+  assert.match(opened, /自动开通/);
+  const xml = buildSitemap(levels, "2026-09-05");
+  assert.equal([...xml.matchAll(/<loc>/g)].length, 181);
+  assert.doesNotMatch(xml, /pricing-return\.html/);
+  const listed = buildSitemap(levels, "2026-09-05", "https://lessons.example", {
+    returnUrl: "https://lessons.example/pricing-return.html",
+  });
+  assert.match(listed, /https:\/\/lessons\.example\/pricing-return\.html/);
+  assert.match(listed, /https:\/\/lessons\.example\/zh-hant\/pricing-return\.html/);
+  const page = fs.readFileSync(path.join(root, "pricing-return.html"), "utf8");
+  const hantPage = fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8");
+  assert.match(page, /name="robots" content="noindex"/);
+  assert.match(hantPage, /name="robots" content="noindex"/);
+  assert.match(page, /data-live="false"/);
+  assert.doesNotMatch(page, /15232188653|微信|¥39/);
+  assert.doesNotMatch(hantPage, /15232188653|微信|¥39/);
+  for (const rel of ["js/app.js", "js/messages.js", "js/i18n.js", "index.html", "zh-hant/index.html"]) {
+    const text = fs.readFileSync(path.join(root, rel), "utf8");
+    assert.equal(text.includes("15232188653"), false, rel);
+    assert.equal(text.includes("微信"), false, rel);
   }
 });
 

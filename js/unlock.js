@@ -1,16 +1,14 @@
 const UNLOCK_KEY = "voa-lle-unlock";
 const FREE_LESSON_MAX = 5;
 const TIME_ZONE = "Asia/Shanghai";
-const ISSUED_CODE_PATTERN = /^LLE-(M|Q)-[A-Z0-9]{6}$/;
 const PLAN_DAYS = {
   monthly: 30,
   quarterly: 90,
 };
-const DEFAULT_PLAN_DAYS = 30;
 
 const PLAN_LABELS = {
-  monthly: "月付 ¥39",
-  quarterly: "季卡 ¥99",
+  monthly: "月付 US$5.99",
+  quarterly: "季卡 US$13.99",
 };
 
 function createMemoryStorage() {
@@ -31,26 +29,10 @@ function createMemoryStorage() {
 function createUnlock(options = {}) {
   const storage = options.storage || (typeof localStorage === "undefined" ? createMemoryStorage() : localStorage);
   const nowFn = options.now || (() => new Date());
-
-  function normalizeCode(value) {
-    return String(value || "")
-      .trim()
-      .replace(/\s+/g, "")
-      .toUpperCase();
-  }
+  let trusted = null;
 
   function pad2(value) {
     return String(value).padStart(2, "0");
-  }
-
-  function addCalendarDays(date, days) {
-    const next = new Date(date.getTime());
-    next.setUTCDate(next.getUTCDate() + days);
-    return next;
-  }
-
-  function planDurationDays(plan) {
-    return PLAN_DAYS[plan] || DEFAULT_PLAN_DAYS;
   }
 
   function shanghaiDateKey(date) {
@@ -109,10 +91,7 @@ function createUnlock(options = {}) {
   }
 
   function isExpiredState(parsed) {
-    if (!parsed || parsed.active !== true) {
-      return true;
-    }
-    if (!parsed.expiresAt) {
+    if (!parsed || parsed.active !== true || !parsed.expiresAt) {
       return true;
     }
     const expires = new Date(parsed.expiresAt);
@@ -122,26 +101,39 @@ function createUnlock(options = {}) {
     return nowFn().getTime() > expires.getTime();
   }
 
-  function readUnlock() {
+  function readStored() {
     try {
       const raw = storage.getItem(UNLOCK_KEY);
       if (!raw) {
         return null;
       }
-      const parsed = JSON.parse(raw);
-      if (isExpiredState(parsed)) {
-        storage.removeItem(UNLOCK_KEY);
-        return null;
-      }
-      return parsed;
+      return JSON.parse(raw);
     } catch (error) {
+      storage.removeItem(UNLOCK_KEY);
+      trusted = null;
       return null;
     }
   }
 
-  function writeUnlock(state) {
-    storage.setItem(UNLOCK_KEY, JSON.stringify(state));
-    return state;
+  function readUnlock() {
+    const parsed = readStored();
+    if (!parsed) {
+      return null;
+    }
+    if (!parsed.credential || typeof parsed.credential !== "string") {
+      storage.removeItem(UNLOCK_KEY);
+      trusted = null;
+      return null;
+    }
+    if (isExpiredState(parsed)) {
+      storage.removeItem(UNLOCK_KEY);
+      trusted = null;
+      return null;
+    }
+    if (trusted !== parsed.credential) {
+      return null;
+    }
+    return parsed;
   }
 
   function isUnlocked() {
@@ -156,42 +148,69 @@ function createUnlock(options = {}) {
     return PLAN_LABELS[plan] || plan || "已开通";
   }
 
-  function findCode(codes, input) {
-    const needle = normalizeCode(input);
-    if (!needle) {
-      return null;
+  async function verifier() {
+    if (typeof window !== "undefined" && window.VOACredential) {
+      return window.VOACredential;
     }
-    const list = Array.isArray(codes) ? codes : [];
-    if (list.length > 0) {
-      return list.find((entry) => normalizeCode(entry && entry.code) === needle) || null;
-    }
-    const match = needle.match(ISSUED_CODE_PATTERN);
-    if (!match) {
-      return null;
-    }
-    return {
-      code: needle,
-      plan: match[1] === "Q" ? "quarterly" : "monthly",
-    };
+    return import("./credential.js");
   }
 
-  function redeem(codeEntry) {
-    if (!codeEntry || !codeEntry.code) {
-      throw new Error("兑换码无效");
+  async function restore(publicKey) {
+    const parsed = readStored();
+    if (!parsed) {
+      trusted = null;
+      return null;
     }
-    const now = nowFn();
-    const plan = codeEntry.plan || "unlocked";
-    return writeUnlock({
+    if (!parsed.credential || typeof parsed.credential !== "string") {
+      storage.removeItem(UNLOCK_KEY);
+      trusted = null;
+      return null;
+    }
+    if (!publicKey) {
+      storage.removeItem(UNLOCK_KEY);
+      trusted = null;
+      return null;
+    }
+    const { verifyCredential } = await verifier();
+    const result = await verifyCredential(parsed.credential, publicKey, nowFn());
+    if (!result.ok) {
+      storage.removeItem(UNLOCK_KEY);
+      trusted = null;
+      return null;
+    }
+    trusted = parsed.credential;
+    return readUnlock();
+  }
+
+  async function saveVerifiedCredential(token, publicKey) {
+    if (!publicKey) {
+      throw new Error("missing public key");
+    }
+    const { verifyCredential } = await verifier();
+    const result = await verifyCredential(token, publicKey, nowFn());
+    if (!result.ok) {
+      throw new Error(result.reason || "bad credential");
+    }
+    const state = {
       active: true,
-      code: normalizeCode(codeEntry.code),
-      plan,
-      unlockedAt: now.toISOString(),
-      expiresAt: addCalendarDays(now, planDurationDays(plan)).toISOString(),
-    });
+      credential: token,
+      orderId: result.payload.orderId,
+      plan: result.payload.plan,
+      unlockedAt: result.payload.issuedAt,
+      expiresAt: result.payload.expiresAt,
+    };
+    storage.setItem(UNLOCK_KEY, JSON.stringify(state));
+    trusted = token;
+    return state;
+  }
+
+  function findCode() {
+    return null;
   }
 
   function clearUnlock() {
     storage.removeItem(UNLOCK_KEY);
+    trusted = null;
     return null;
   }
 
@@ -200,9 +219,7 @@ function createUnlock(options = {}) {
     FREE_LESSON_MAX,
     PLAN_LABELS,
     PLAN_DAYS,
-    ISSUED_CODE_PATTERN,
     TIME_ZONE,
-    normalizeCode,
     lessonNumber,
     lessonLevel,
     isFreeTrialLesson,
@@ -213,7 +230,8 @@ function createUnlock(options = {}) {
     planLabel,
     formatExpiryDate,
     findCode,
-    redeem,
+    restore,
+    saveVerifiedCredential,
     clearUnlock,
   };
 }

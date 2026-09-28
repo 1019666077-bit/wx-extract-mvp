@@ -458,3 +458,202 @@ Search Console 里要看的：
 - Lowyat、HardwareZone 的账号年龄门槛。
 - LIHKG 会员权限表里、P 牌以外的每日开帖上限（表格抓取后列没有对齐）。
 - Mobile01、Plurk、Discuss.com.hk、Telegram、Discord、WhatsApp 群的规则。
+
+---
+
+## 7. 品牌名（不含 VOA）
+
+账号名、频道名和以后的域名用同一个品牌，字面里不出现 VOA、Voice of America，也不写成官方、授权、出品。课文出处仍写在影片说明和片尾，那是署名，不是品牌。
+
+本节改两处旧安排，不改第 1 节的验证做法：
+
+- 搜索提交（第 3 节第 1–3 天）放到 **Cloudflare Pages 接上新域名之后**。收费上线也在这次搬家之后。搬家目标是 Cloudflare Pages，不是把 GitHub Pages 绑到自定义域名，所以不要照第 1.4 节去填 GitHub 的 A/CNAME。新域名在 Cloudflare 上之后，Search Console 可以用 DNS TXT 做**网域**资源，Bing 同样用 DNS。站点地图改到新域名根，`robots.txt` 这时才会被爬虫读到。
+- 发帖账号由助手在 **Linux 桌面浏览器**注册和发布。站主只在验证码或扫码时出现，不从手机发。帖子正文仍写「这是我做的，非官方」。
+
+价格只查了后缀标价，没有登录万网、没有下单。2026-09-28 打开 [万网首页](https://wanwang.aliyun.com/domain/) 的 `.com` 卡片：首年 **¥85**，续费 **¥95/年**，转入 ¥85/年，日常价 ¥90/年。三个候选都是普通未注册的 `.com`，按这张卡片计价；若查询页把某个词标成溢价，以查询页为准，那一格本次没有逐词打开。
+
+域名状态用 Verisign RDAP：`https://rdap.verisign.com/com/v1/domain/<name>.com`，HTTP 404 视为当时未注册，200 视为已注册。检查时间 2026-09-28。这不是商标局检索。
+
+账号：YouTube 对比了公开页。`https://www.youtube.com/@YouTube` 返回 200，标题 “YouTube - YouTube”。候选若返回 404 且标题是 “404 Not Found”，记为**看起来空闲**；返回 200 且有频道标题，记为**已占用**。Instagram 和 Threads 即使用已存在的 `@zuck` 也会转到登录页，标题只是 “Instagram” / “Threads”，和候选一样，所以这两处一律记为**未能核实（登录墙）**。Facebook 同样是登录墙；`facebook.com/earju` 曾打开另一个人的 `@ea.rju`，不能当成 `@earju` 已被占用。
+
+邻近但不是这三个名字的产品，避免靠太近：听句 TingJu、逐句学 Movlingo、耳熟英语、句好记，以及 App「句读」（[judouapp.com](https://judouapp.com/)、[App Store](https://apps.apple.com/cn/app/%E5%8F%A5%E8%AF%BB-%E5%8F%91%E7%8E%B0%E6%96%87%E5%AD%97%E4%B9%8B%E7%BE%8E/id1073431872)）。句读因此不列入候选。
+
+| 候选 | 中文（简 / 繁） | 英文 | 一句意思 | 为什么适合这批学习者 | `.com`（2026-09-28 RDAP） | 备用拼写 | 阿里云首年 / 续费 | YouTube | Threads / Instagram | Facebook |
+| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
+| 1 | 一句慢 / 一句慢（简繁相同） | Yijuman | 一次只听一句，而且听慢 | 台湾、香港、新加坡、马来西亚都说得通，不用文言。对上「暂停、对字幕、做三题」 | [yijuman.com](https://rdap.verisign.com/com/v1/domain/yijuman.com) **404，未注册** | 若被抢注：[yijumanlisten.com](https://rdap.verisign.com/com/v1/domain/yijumanlisten.com)、[slowjuman.com](https://rdap.verisign.com/com/v1/domain/slowjuman.com) 当日也是 404 | 首年 ¥85，续费 ¥95/年。来源同上万网卡片，2026-09-28。未做该词的下单价 | [@yijuman](https://www.youtube.com/@yijuman) **看起来空闲**（404） | 未能核实（登录墙） | 未能核实（登录墙） |
+| 2 | 耳句 / 耳句（简繁相同） | Earju | 给耳朵的一句英文 | 短，耳和句在四种地区都常用。拼音 `erju.com` 已注册，品牌域名用英文拼法 | [earju.com](https://rdap.verisign.com/com/v1/domain/earju.com) **404，未注册**。`erju.com` 已注册 | 句柄被占时的备用：[earjulisten.com](https://rdap.verisign.com/com/v1/domain/earjulisten.com)、[getearju.com](https://rdap.verisign.com/com/v1/domain/getearju.com) 当日 404。YouTube [@earjulisten](https://www.youtube.com/@earjulisten)、[@getearju](https://www.youtube.com/@getearju) 当日 404 | 同上，¥85 / ¥95 | [@earju](https://www.youtube.com/@earju) **已占用**（200，频道标题 Earju，`UCIxdPd4A-ExPnofoJeVCKdQ`）。没有打开频道内容，不猜测它是谁 | 未能核实（登录墙） | 未能核实。打开的是另一个句柄 `@ea.rju` |
+| 3 | 慢耳句 / 慢耳句（简繁相同） | Manerju | 慢慢听给耳朵的句子 | 三个字简繁都不用转换，助手不容易贴错字。比「一句慢」更像自造品牌，也更绕口 | [manerju.com](https://rdap.verisign.com/com/v1/domain/manerju.com) **404，未注册** | [erjuman.com](https://rdap.verisign.com/com/v1/domain/erjuman.com) 当日 404。YouTube [@erjuman](https://www.youtube.com/@erjuman) 当日 404 | 同上，¥85 / ¥95 | [@manerju](https://www.youtube.com/@manerju) **看起来空闲**（404） | 未能核实（登录墙） | 未能核实（登录墙） |
+
+**建议用候选 1：一句慢 / Yijuman，域名 `yijuman.com`。** 简繁不用改字，`.com` 和 YouTube `@yijuman` 在检查当天都空着，意思就是产品本身（一句、放慢）。耳句更短，但 `@earju` 已经被一个 YouTube 频道占用，助手注册时对不齐。慢耳句域名和 YouTube 也空着，但三字拼音不好拼、不好念，放在备选。注册当天若 `@yijuman` 在 Threads/Instagram 已被占用，改用 `@yijumanlisten`，域名仍尽量买 `yijuman.com`。买之前再跑一次 RDAP，404 不保留名额。
+
+公开网页没有查到「一句慢」或 “Yijuman” 的英语学习产品。这不代替商标注册查询。
+
+---
+
+## 8. 零成本短片：桌面机器人能做完的部分
+
+站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `yijuman.com`（或最终域名）再填。片内品牌只写「一句慢」。
+
+### 8.1 画面从哪来
+
+整条片子以**本站自己的界面**为主：课页、中英字幕、三道题、打卡。VOA 课文影片只出 **5–8 秒**，而且只用站内播放器里已经在播的 Let's Learn English 影片。
+
+[VOA Learning English 的内容说明](https://learningenglish.voanews.com/p/6861.html) 允许在署名的前提下使用他们自己的文字、MP3、照片和影片。片中或片尾保留这一行：
+
+```text
+非官方自学笔记，不是美国之音。
+课文画面与声音来自 VOA Learning English，公共领域。
+learningenglish.voanews.com
+```
+
+通讯社画面不能用。若播放器里出现 AP、Reuters、AFP 的署名或角标，这段裁掉。不要把整集课文当成短片上传。
+
+### 8.2 录屏
+
+机器人在有图形界面的 Linux 桌面上录。`ffmpeg` 的 `x11grab` 只吃 X11。会话若是纯 Wayland，改用 OBS（PipeWire 窗口采集）或 `wf-recorder -g "0,0 1080x1920"`。下面的命令按 X11 写。
+
+用无边框窗口，避免标题栏把 1080×1920 撑歪：
+
+```bash
+chromium --new-window --window-position=0,0 --window-size=1080,1920 \
+  --force-device-scale-factor=1 --lang=zh-TW \
+  --app="https://1019666077-bit.github.io/wx-extract-mvp/zh-hant/lessons/lle1-01.html"
+```
+
+简体片把 `--lang` 和网址换成简体首页路径下的 `lessons/lle1-01.html`。搬家之后换成新域名上的同一课。录之前用 `xwininfo` 量窗口左上角和宽高，下面命令里的 `+0,0` 和 `1080x1920` 改成量到的数字。
+
+系统声音用 PulseAudio 的监听源，不要去录麦克风：
+
+```bash
+SINK=$(pactl get-default-sink)
+ffmpeg -y \
+  -f x11grab -video_size 1080x1920 -framerate 30 -draw_mouse 0 -i :0.0+0,0 \
+  -f pulse -i "${SINK}.monitor" \
+  -t 20 \
+  -c:v libx264 -pix_fmt yuv420p -preset veryfast -crf 18 \
+  -c:a aac -ar 48000 -ac 2 -b:a 192k \
+  capture-lesson.mp4
+```
+
+`-t 20` 是课文画面那一小段。界面、题目、打卡各另录一条，再拼。鼠标轨迹关掉（`-draw_mouse 0`）。浏览器缩放到 100%，滚动条用键盘，避免光标入画。
+
+OBS 只在需要看预览时开：来源选「窗口采集」或「显示器采集」，画布设为 1920×1080 的竖向，即宽 1080、高 1920，30 fps，输出编码器 x264，然后用下面同一套导出参数。机器人能脚本化的路径仍是 ffmpeg。
+
+### 8.3 字幕烧进画面
+
+中英各一行。繁体片用繁体中文，简体片用简体。字体用 Noto CJK（Debian/Ubuntu：`fonts-noto-cjk`），一种字体覆盖两种字形，文本本身决定简繁。
+
+`captions.srt`：
+
+```srt
+1
+00:00:01,000 --> 00:00:04,500
+一句慢 · 非官方
+One sentence, slowly.
+
+2
+00:00:05,000 --> 00:00:09,000
+先听这一句，再看中文。
+Listen once, then read the Chinese line.
+```
+
+烧进画面，字放在中下，躲开 Reels 底部按钮（大约底部 320 像素）和顶部用户名（大约顶部 220 像素）：
+
+```bash
+ffmpeg -y -i capture-lesson.mp4 \
+  -vf "subtitles=captions.srt:fontsdir=/usr/share/fonts:force_style='FontName=Noto Sans CJK TC,FontSize=22,PrimaryColour=&H00FFFFFF,OutlineColour=&H00000000,BorderStyle=1,Outline=3,Alignment=2,MarginV=380'" \
+  -c:a copy lesson-sub.mp4
+```
+
+需要描边和位置更稳时改用 ASS。`captions.ass` 的样式行：
+
+```ass
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1080
+PlayResY: 1920
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: ZH,Noto Sans CJK TC,64,&H00FFFFFF,&H00000000,&H64000000,1,0,0,0,100,100,0,0,1,4,0,2,80,80,420,1
+Style: EN,Noto Sans,42,&H00E8F4EF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,3,0,2,80,80,340,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.00,0:00:04.50,ZH,,0,0,0,,一句慢 · 非官方
+Dialogue: 0,0:00:01.00,0:00:04.50,EN,,0,0,0,,Unofficial. One sentence, slowly.
+```
+
+```bash
+ffmpeg -y -i capture-lesson.mp4 -vf "ass=captions.ass:fontsdir=/usr/share/fonts" \
+  -c:a copy lesson-sub.mp4
+```
+
+### 8.4 旁白
+
+默认**不加合成旁白**。声音用课文播放器里那几秒公共领域原声，其余时间用轻音乐。这样不碰到语音服务的条款。
+
+`edge-tts` 不用于要发布的成片。它是第三方客户端，去接 Microsoft Edge 的在线朗读，不是 Azure 语音的正式 API。[edge-tts 讨论](https://github.com/rany2/edge-tts/discussions/261) 把仓库的 GPL 解释成只覆盖这段代码，不授权微软的服务。微软问答里也没有一份公开条款允许把 Edge Read Aloud 经第三方客户端做成可发布的商业旁白（[问答](https://learn.microsoft.com/en-us/answers/questions/5925556/commercial-use-of-edge-read-aloud-voices-via-edge)，回复者写明那不是法律意见）。库的 GPL 不能代替微软的使用条款。
+
+Piper 的中文音色 `zh_CN-huayan-medium` 也不直接用。[模型卡](https://huggingface.co/rhasspy/piper-voices/blob/main/zh/zh_CN/huayan/medium/MODEL_CARD) 写数据集许可证是 **Unknown**。许可证不明的音色不进成片。
+
+若一定要机器中文口播，只用许可证写明可以再分发的本地引擎，并在下载页再核对一次权重文件。质量够用、条款清楚的临时方案是 espeak-ng（代码 [GPL-3.0](https://github.com/espeak-ng/espeak-ng)），声音会很机械，只适合垫一句品牌名，不适合长旁白：
+
+```bash
+espeak-ng -v cmn -s 140 -w brand.wav "一句慢。一次听一句。"
+ffmpeg -y -i brand.wav -ar 48000 -ac 2 brand-48k.wav
+```
+
+`-v cmn` 是普通话音位，不区分简繁；简繁体现在字幕文本上。把 `brand-48k.wav` 放到成片开头两秒，音量低于课文原声。
+
+### 8.5 音乐、封面、导出
+
+音乐用可写明授权的免费来源，一条片子只用一首，音量压到大约原文的 15%：
+
+- [Kevin MacLeod / Incompetech](https://incompetech.com/music/royalty-free/)：常见授权是 CC BY 4.0，说明栏要写曲名、作者和 `incompetech.com`。每首曲目页面上的许可证再看一次，不要假设全部相同。
+- YouTube 音频库：频道建好之后才能下。每首曲目旁边有自己的授权，有的要署名，有的不要。只挑标成可在 YouTube 以外使用的曲目，因为同一条还要发 Reels。
+
+```bash
+ffmpeg -y -i voicebed.wav -i music.mp3 -filter_complex \
+  "[1:a]volume=0.15[m];[0:a][m]amix=inputs=2:duration=first:dropout_transition=0[a]" \
+  -map "[a]" -c:a aac -b:a 192k -ar 48000 bed.m4a
+```
+
+封面给 Reels 选帧，也给以后频道验证后的自定义缩图。不放 VOA 标志，不放课文全画面：
+
+```bash
+convert -size 1080x1920 canvas:'#0b6e4f' \
+  -font "Noto-Sans-CJK-TC" -fill white -pointsize 96 \
+  -gravity center -annotate +0-80 "一句慢" \
+  -pointsize 42 -annotate +0+40 "一次听一句" \
+  -pointsize 28 -fill "#d7efe4" -annotate +0+220 "非官方自学笔记" \
+  cover.png
+```
+
+站点主题色 `#0b6e4f` 来自现有页面的 `theme-color`。`convert` 是 ImageMagick。字体名以 `convert -list font` 里看得到的为准。
+
+拼成一条并导出。Shorts 和 Reels 用同一文件：H.264、`yuv420p`、30 fps、AAC 48 kHz 立体声、`+faststart`，长度不超过 60 秒。
+
+```bash
+ffmpeg -y -i lesson-sub.mp4 -i ui-sub.mp4 -i bed.m4a \
+  -filter_complex "[0:v][1:v]concat=n=2:v=1:a=0,scale=1080:1920:force_original_aspect_ratio=decrease,pad=1080:1920:(ow-iw)/2:(oh-ih)/2,fps=30[v]" \
+  -map "[v]" -map 2:a -t 55 \
+  -c:v libx264 -profile:v high -pix_fmt yuv420p -b:v 8M -maxrate 10M -bufsize 16M \
+  -c:a aac -b:a 192k -ar 48000 -ac 2 \
+  -movflags +faststart \
+  yijuman-lle1-01-hant.mp4
+```
+
+说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用「一句慢」，不用 VOA 当频道名。
+
+### 8.6 每条片子核对
+
+- 竖屏 1080×1920，45–60 秒，能在桌面播放器里播完，没有黑边把字幕裁掉。
+- 站主没有出镜，没有手机界面。
+- VOA 画面只有几秒，没有通讯社角标，没有整集。
+- 片内品牌是「一句慢」，没有 VOA 字样当名称；片尾仍有公共领域署名。
+- 字幕和落地页同一种汉字：台湾、香港用繁体地址，新加坡、马来西亚用简体地址。
+- 说明栏链接是新域名（搬家前先不发这支片），并带 `utm_source=youtube` 或 `instagram`、`utm_medium=short` 或 `reel`、`utm_campaign=launch14d`。
+- 音乐曲名和作者写在说明栏。
+- 没有价格、微信号、开通页、兑换码。
+- 同一支片先发 YouTube，再发 Reels；不要在同一天把同一文件贴进五个地方。

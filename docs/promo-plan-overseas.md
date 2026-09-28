@@ -458,6 +458,7 @@ Search Console 里要看的：
 - Lowyat、HardwareZone 的账号年龄门槛。
 - LIHKG 会员权限表里、P 牌以外的每日开帖上限（表格抓取后列没有对齐）。
 - Mobile01、Plurk、Discuss.com.hk、Telegram、Discord、WhatsApp 群的规则。
+- 中国商标局（`wcjs.sbj.cnipa.gov.cn` 是脚本挑战，没有进入检索表）和台湾智慧局（`twtmsearch.tipo.gov.tw` 返回 404）的官方库。第 9 类、第 41 类没有官方结论。台湾「聲聲慢」登记号只来自 FindCompany 的搜索摘录，没有在官网复核。见第 7.4 节。
 
 ---
 
@@ -470,7 +471,7 @@ Search Console 里要看的：
 - 搜索提交（第 3 节第 1–3 天）放到 **Cloudflare Pages 接上新域名之后**。收费上线也在这次搬家之后。搬家目标是 Cloudflare Pages，不是把 GitHub Pages 绑到自定义域名，所以不要照第 1.4 节去填 GitHub 的 A/CNAME。新域名在 Cloudflare 上之后，Search Console 可以用 DNS TXT 做**网域**资源，Bing 同样用 DNS。站点地图改到新域名根，`robots.txt` 这时才会被爬虫读到。
 - 发帖账号由助手在 **Linux 桌面浏览器**注册和发布。站主只在验证码或扫码时出现，不从手机发。帖子正文仍写「这是我做的，非官方」。
 
-英文名必须让英语母语者**直接读出单词**，不用拼音。中文名 2–4 个字，简繁用同一组字，顺着英文的意思，读起来短。**不使用「一句慢」。** 已注册的 `.com`（含注册后挂牌出售）直接淘汰，不用 `.app` / `.io` 顶上。
+英文名必须让英语母语者**直接读出单词**，不用拼音。中文名 2–4 个字，简繁用同一组字，顺着英文的意思，读起来短。**不使用「一句慢」。** 已注册的 `.com`（含注册后挂牌出售）直接淘汰，不用 `.app` / `.io` 顶上。中文名首选是站主提的「声声慢 / 聲聲慢」，简繁字形不同，这一条盖过「简繁同一组字」。英文首推和商标核查在第 7.4 节；第 7.3 节的五个名字只留作备选。
 
 ### 7.1 上一轮拼音（已否决）
 
@@ -514,13 +515,53 @@ YouTube：`https://www.youtube.com/@YouTube` 是 200，标题 “YouTube - YouTu
 
 粤语同音只记会听岔的几处：清慢的「慢」和「萬」都是 maan6，连读不是骂人的话；普通话 qīng màn 和「晚清」wǎn qīng 声调、字序都不同。每句的「每」是 mui5，「妹」是 mui6。一遍的「遍」和「便」同音，但「一遍」是现成词。停一停中间有「一」，不会听成名字「婷婷」。循句的「循」和「巡」同音，不是贬义；没用「序」，因为粤语「序」和「罪」都是 zeoi6。
 
-**建议用 Clearandslow，中文叫清慢，域名 `clearandslow.com`。** 英语母语者会读成 clear、and、slow，没有 here/hear、air/ear 这种同音。12 个字母，意思就是把口语放慢听清楚。中文两个字，简繁相同，粤语 cing1 maan6，顺口，意思对着英文。`.com` 未注册，阿里云按标准价，YouTube `@clearandslow` 当天看起来空闲。快查没有叫「清慢」的学习 App。Sentencewise / 每句是最接近「一个真正英文词」的备选，但英文旁边已有 Wise Sentence、WordWise。Oncealine / 一遍和 Pausealine / 停一停更短，写出来要靠中间那个 a 才拆得开。买域名之前再跑一次 RDAP，404 不保留名额。Threads / Instagram 这一轮没有重查，上一轮即使用 `@zuck` 也进登录墙。
+第 7.3 节的 Clearandslow / 清慢只留作备选，不再当首推。中文名首选改成站主提的「声声慢」，英文名和商标核查见 7.4。Clearandslow 的 `.com` 和 YouTube 当天仍空着，阿里云是标准价。Sentencewise / 每句更像一个现成英文词，但旁边已有 Wise Sentence、WordWise。买任何域名之前再跑一次 RDAP。Threads / Instagram 这一轮没有重查。
+
+### 7.4 声声慢 核查
+
+站主提议的中文名是**声声慢**，繁体写作**聲聲慢**。这一节覆盖前面「简繁必须同一组字」的偏好：声和聲不同，简体页用声声慢，繁体页用聲聲慢。粤语香港读 sing1 sing1 maan6。聲和星、升同音，「星星慢」不是骂人的话；慢和萬都是 maan6，连起来也不是脏字。**一句慢仍然只记在 7.1，已否决。** 这次没有去申请商标，也没有买域名。
+
+#### 商标
+
+**数据来源和可信度。** 2026-09-28 打开 [中国商标网检索](https://wcjs.sbj.cnipa.gov.cn/) 时，返回的是一段脚本挑战，没有进入检索表单，**没能直接查官方库**。[商标局首页](https://sbj.cnipa.gov.cn/) 能打开，但那不是检索结果。标库网的查询接口返回「已禁用，请从首页重新查询」，没有结果表。台湾 [twtmsearch.tipo.gov.tw](https://twtmsearch.tipo.gov.tw/) 返回 404，[cloud.tipo.gov.tw](https://cloud.tipo.gov.tw/) 只有一行欢迎文字。下面台湾登记来自 FindCompany 页面被搜索引擎摘出的表格，本机再打开时被人机验证挡住，**没有在智慧局官网复核**。可信度低于官方库。没有编造登记号；摘录里没出现的类别，不写成「已经查过并没有」。
+
+摘录里能对上「聲聲慢」的，都不是第 9 类或第 41 类：
+
+- 第 25 类，衣服。注册号 00856284，申请案号 087027458，申请人雪曼國際開發有限公司，注册日 1999-06-16，专用期限写到 2029-06-15。出处：[FindCompany 摘要](https://www.findcompany.com.tw/trademark/00856284_087027458)。
+- 第 35 类，零售批发等。注册号 01500628，申请案号 100038448，同一申请人，注册日 2012-01-16。出处：[另一页摘要](https://www.findcompany.com.tw/trademark/01500628_100038448)。
+- 第 44 类，心理咨询、艺术治疗、音乐治疗。商标是「聲聲慢Slowly Sound 及圖」，图样英文 SLOWLY SOUND。注册号 02449860，申请案号 113062485，申请人李明漪，注册日 2025-04-16。出处：[摘要](https://www.findcompany.com.tw/trademark/02449860_113062485)。
+
+大陆第 9 类、第 41 类：**没有拿到注册号，不能写成已注册，也不能写成确定没有。** 所以这一条不触发「换掉声声慢」。同名使用已经很多，只是另一回事：诗词 App（[下载页介绍](https://www.155.cn/app/926430.html)）、语音聊天 App（[小米应用商店](https://app.mi.com/details?id=shengsman.hzy.app)，包名 shengsman.hzy.app）、北京声声慢教育咨询有限公司、成都声声慢教育咨询有限公司。公司名和 App 名不等于商标证。
+
+#### 英文名
+
+意思对着「一声一声、慢慢听」。不用拼音。`.com` 用 Verisign RDAP，404 才留下；200 的淘汰，不用 `.app` / `.io` 顶上。溢价用万网同一公开接口，首年 ¥85、续费 ¥95 且 type 不是 premium 记为标准价。YouTube 404 记为看起来空闲。检查日 2026-09-28。
+
+`shengshengman.com` **已注册（RDAP 200）**，淘汰。YouTube `@shengshengman` 也已占用（页面标题 Sangtandung）。`soundbysound.com`、`slowsound.com`、`soundslow.com`、`onesound.com`、`slowlistening.com` 也是 200。
+
+`slowlysound.com` 当天是 404，阿里云标准价，但 YouTube `@slowlysound` 已占用（页面标题 SlowlyS）。台湾第 44 类商标的英文又正好是 SLOWLY SOUND，这个英文名不采用。
+
+| 英文（怎么读） | 对着哪半个意思 | `.com` | 阿里云 | YouTube |
+| --- | --- | --- | --- | --- |
+| Soundandslow（sound and slow） | 声，而且慢 | [soundandslow.com](https://rdap.verisign.com/com/v1/domain/soundandslow.com) **404** | 标准价，¥85 / ¥95 | [@soundandslow](https://www.youtube.com/@soundandslow) **看起来空闲** |
+| Onebysound（one by sound） | 一声一声 | [onebysound.com](https://rdap.verisign.com/com/v1/domain/onebysound.com) **404** | 标准价，¥85 / ¥95 | [@onebysound](https://www.youtube.com/@onebysound) **看起来空闲** |
+| Eachsound（each sound） | 每一声 | [eachsound.com](https://rdap.verisign.com/com/v1/domain/eachsound.com) **404** | 标准价，¥85 / ¥95 | [@eachsound](https://www.youtube.com/@eachsound) **看起来空闲** |
+| Soundslowly（sound slowly） | 把声音放慢 | [soundslowly.com](https://rdap.verisign.com/com/v1/domain/soundslowly.com) **404** | 标准价，¥85 / ¥95 | [@soundslowly](https://www.youtube.com/@soundslowly) **看起来空闲** |
+| Soundaline（sound a line） | 一次一声、一行 | [soundaline.com](https://rdap.verisign.com/com/v1/domain/soundaline.com) **404** | 标准价，¥85 / ¥95 | [@soundaline](https://www.youtube.com/@soundaline) **看起来空闲** |
+
+#### 搜索
+
+裸搜「声声慢」，前面是李清照的《声声慢》（寻寻觅觅），以及崔开潮 2017 年专辑《急驶的马车》里的同名歌。歌词借用了「寻寻觅觅，冷冷清清」。这首歌还进过亚洲文明对话的短片，2022 年中秋晚会崔开潮、万茜又唱过。词和歌都比一个新站老、也更有人搜。新站不要指望靠「声声慢」四个字单独排到前面。
+
+页面标题和说明写成组合词，把英语听力说清楚：简体用「声声慢 慢速英语」「声声慢 英语听力」，繁体用「聲聲慢 英語聽力」。域名和频道英文用 Soundandslow，这个字符串不和宋词抢。有人搜「聲聲慢 VOA」时，落地页可以同时出现这两个词，方便对上，但标题旁边要写「非官方」。频道名、域名、片内品牌仍然不能写成美国之音或官方。
+
+**首推：中文声声慢 / 聲聲慢，英文 Soundandslow，域名 `soundandslow.com`。** 中文是站主要的，词牌叠字，顺口，粤语 sing1 sing1 maan6 不难听。英文读成 sound and slow，同时盖住「声」和「慢」，12 个字母，`.com` 未注册，阿里云标准价，YouTube 句柄当天看起来空闲，也躲开了已有商标里的 Slowly Sound。第 9 类和第 41 类官方库这次没查成，不把「没注册」说死。买域名之前再跑一次 RDAP。
 
 ---
 
 ## 8. 零成本短片：桌面机器人能做完的部分
 
-站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `clearandslow.com`（第 7 节的建议；若改选同表里的另一个名字，就用那个域名）再填。片内中文写「清慢」，英文写 Clearandslow。
+站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `soundandslow.com`（第 7.4 节的首推；若改用同表里的另一个英文名，就用那个域名）再填。片内简体写「声声慢」，繁体写「聲聲慢」，英文写 Soundandslow。
 
 ### 8.1 画面从哪来
 
@@ -576,7 +617,7 @@ OBS 只在需要看预览时开：来源选「窗口采集」或「显示器采�
 ```srt
 1
 00:00:01,000 --> 00:00:04,500
-清慢 · 非官方
+聲聲慢 · 非官方
 One sentence, slowly.
 
 2
@@ -608,7 +649,7 @@ Style: EN,Noto Sans,42,&H00E8F4EF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,3,
 
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
-Dialogue: 0,0:00:01.00,0:00:04.50,ZH,,0,0,0,,清慢 · 非官方
+Dialogue: 0,0:00:01.00,0:00:04.50,ZH,,0,0,0,,聲聲慢 · 非官方
 Dialogue: 0,0:00:01.00,0:00:04.50,EN,,0,0,0,,Unofficial. One sentence, slowly.
 ```
 
@@ -628,7 +669,7 @@ Piper 的中文音色 `zh_CN-huayan-medium` 也不直接用。[模型卡](https:
 若一定要机器中文口播，只用许可证写明可以再分发的本地引擎，并在下载页再核对一次权重文件。质量够用、条款清楚的临时方案是 espeak-ng（代码 [GPL-3.0](https://github.com/espeak-ng/espeak-ng)），声音会很机械，只适合垫一句品牌名，不适合长旁白：
 
 ```bash
-espeak-ng -v cmn -s 140 -w brand.wav "清慢。放慢听清楚。"
+espeak-ng -v cmn -s 140 -w brand.wav "声声慢。一声一声，慢慢听。"
 ffmpeg -y -i brand.wav -ar 48000 -ac 2 brand-48k.wav
 ```
 
@@ -652,8 +693,8 @@ ffmpeg -y -i voicebed.wav -i music.mp3 -filter_complex \
 ```bash
 convert -size 1080x1920 canvas:'#0b6e4f' \
   -font "Noto-Sans-CJK-TC" -fill white -pointsize 96 \
-  -gravity center -annotate +0-80 "清慢" \
-  -pointsize 42 -annotate +0+40 "放慢听清楚" \
+  -gravity center -annotate +0-80 "聲聲慢" \
+  -pointsize 42 -annotate +0+40 "一声一声" \
   -pointsize 28 -fill "#d7efe4" -annotate +0+220 "非官方自学笔记" \
   cover.png
 ```
@@ -669,17 +710,17 @@ ffmpeg -y -i lesson-sub.mp4 -i ui-sub.mp4 -i bed.m4a \
   -c:v libx264 -profile:v high -pix_fmt yuv420p -b:v 8M -maxrate 10M -bufsize 16M \
   -c:a aac -b:a 192k -ar 48000 -ac 2 \
   -movflags +faststart \
-  clearandslow-lle1-01-hant.mp4
+  soundandslow-lle1-01-hant.mp4
 ```
 
-说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用 Clearandslow 和「清慢」，不用 VOA 当频道名。
+说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用 Soundandslow。简体标题加「声声慢」，繁体标题加「聲聲慢」。不用 VOA 当频道名。
 
 ### 8.6 每条片子核对
 
 - 竖屏 1080×1920，45–60 秒，能在桌面播放器里播完，没有黑边把字幕裁掉。
 - 站主没有出镜，没有手机界面。
 - VOA 画面只有几秒，没有通讯社角标，没有整集。
-- 片内中文品牌是「清慢」，英文是 Clearandslow，没有 VOA 字样当名称；片尾仍有公共领域署名。
+- 片内简体品牌是「声声慢」，繁体是「聲聲慢」，英文是 Soundandslow，没有 VOA 字样当名称；片尾仍有公共领域署名。
 - 字幕和落地页同一种汉字：台湾、香港用繁体地址，新加坡、马来西亚用简体地址。
 - 说明栏链接是新域名（搬家前先不发这支片），并带 `utm_source=youtube` 或 `instagram`、`utm_medium=short` 或 `reel`、`utm_campaign=launch14d`。
 - 音乐曲名和作者写在说明栏。

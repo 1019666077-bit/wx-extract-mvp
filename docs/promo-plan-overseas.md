@@ -1,8 +1,8 @@
 # 海外零预算推广计划（调研稿）
 
-**状态**：只读调研。本文件不改站点代码，也不代表已经在任何平台发帖、注册或联系版主。  
-**调研日期**：2026-09-28。  
-**站点**：GitHub Pages **项目站**（子路径，不是域名根）。
+**状态**：品牌已定。本文件不改站点代码，也不代表已经在任何平台发帖、注册或联系版主。  
+**调研日期**：2026-09-28。品牌选定写在第 7 节。  
+**站点**：迁出前是 GitHub Pages **项目站**（子路径，不是域名根）。对外链接改走 Cloudflare Pages 项目 `eachsound`。
 
 | 版本 | 网址 |
 | --- | --- |
@@ -12,13 +12,17 @@
 
 2026-09-28 实测：站点地图含 **172** 个 `<loc>`。`https://1019666077-bit.github.io/robots.txt` 返回 GitHub Pages「Site not found」（HTTP 404，该账号没有用户站）。项目路径上的 `robots.txt` 可以打开，但爬虫不会把它当成这个主机的 robots 文件，见下文。
 
+**对外主机**（第 7 节）：域名 `eachsound.com` 正在购买。接通之前，帖子、UTM 和搜索提交用 [https://eachsound.pages.dev/](https://eachsound.pages.dev/)。接通之后同一条路径改到 `https://eachsound.com/`。联系邮箱占位：**待开 Outlook 别名**。
+
 **前 14 天对外只推免费部分**：Level 1 第 1–5 课、打卡、错题本。仓库里的开通页（`pricing.html`）目前仍是微信人工收款，月付 ¥39 / 季卡 ¥99。任务说明里的 Waffo 美元价（30 天 US$5.99、90 天 US$13.99）尚未写进这个页面。美元价和结账链接等开通页改完再写。海外帖子里不要留微信号。
 
 ---
 
 ## 1. 搜索引擎提交
 
-现在能用的资源类型只有 **网址前缀资源**。域名资源要往 DNS 里加记录，而 `github.io` 的 DNS 不在本仓库主人手里。Google 也不接受把公共后缀本身做成域名资源，所以不要去验证 `github.io`。
+新的搜索提交对着 Cloudflare，不对着下面记录的 `github.io` 子路径。迁站前提交 `https://eachsound.pages.dev/`。`eachsound.com` 的 DNS 生效后，再按第 1.4 节加网域资源。第 1.1–1.3 节保留迁出前项目站的做法，步骤可以类比到 `pages.dev`，但新帖不要再链 `github.io`。
+
+迁出前能用的资源类型只有 **网址前缀资源**。域名资源要往 DNS 里加记录，而 `github.io` 的 DNS 不在本仓库主人手里。Google 也不接受把公共后缀本身做成域名资源，所以不要去验证 `github.io`。
 
 要添加的前缀（带协议、带结尾斜线）：
 
@@ -29,6 +33,8 @@ https://1019666077-bit.github.io/wx-extract-mvp/
 这一条已经盖住简体和 `/zh-hant/`。Google 写明：父资源验证之后，用同一方法添加的子资源会自动视为已验证。想把繁体单独看报表时，可以再加 `https://1019666077-bit.github.io/wx-extract-mvp/zh-hant/`。小站先用一条即可，成效报表里按网页过滤。
 
 ### 1.1 Google Search Console
+
+现在要添加的前缀是 `https://eachsound.pages.dev/`。下面步骤里的 `github.io` 地址是迁出前的记录，用来说明子路径站当时怎么验证，不要再当成落地页。
 
 入口：[Search Console](https://search.google.com/search-console)。步骤以 [添加资源](https://support.google.com/webmasters/answer/34592) 和 [验证所有权](https://support.google.com/webmasters/answer/9008080) 为准。
 
@@ -141,28 +147,21 @@ EOF
 
 参与 IndexNow 的引擎会互相分享提交。静态站没有 CMS 插件，上面这种手动 POST 就是启用方式。钥匙只给搜索引擎，不要写进公开帖。本文件用占位符，不生成真实钥匙。
 
-### 1.4 以后买了自己的域名
+### 1.4 接到 eachsound.com
 
-自定义域名配在**这个项目仓库**的 Pages 设置里，站点才会从域名根提供。若只配在用户站上、项目仓库不单独覆盖，GitHub 的规则是项目站变成 `https://你的域名/wx-extract-mvp/`，子路径还在。[关于自定义域名](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/about-custom-domains-and-github-pages)。
+搬家目标是 Cloudflare Pages 项目 `eachsound`，不是把 GitHub Pages 绑到自定义域名。不要照 GitHub 文档去填指向 `1019666077-bit.github.io` 的 CNAME，也不要填 GitHub Pages 的那四条 A 记录。
 
-DNS 按 [管理自定义域名](https://docs.github.com/en/pages/configuring-a-custom-domain-for-your-github-pages-site/managing-a-custom-domain-for-your-github-pages-site)：
+现在的临时主机是 `https://eachsound.pages.dev/`。`eachsound.com` 买下并在 Cloudflare 里接上之后：
 
-- 子域名：CNAME 指向 `1019666077-bit.github.io`，**不要**带仓库名，也不要指向 `*.pages.github.io`。
-- 顶点域名：四条 `A` 记录 `185.199.108.153`、`185.199.109.153`、`185.199.110.153`、`185.199.111.153`，以及文档中的 `AAAA`。文档建议同时做 `www`。
-- 先在仓库里写上自定义域名，再去 DNS 服务商添加记录，并在 GitHub 验证域名，避免域名被别人占用。
-- 不要用 `*.example.com` 这种通配记录。
+1. 改 `site.config.json` 的 `origin` 为 `https://eachsound.com`（不要结尾斜线），运行 `node scripts/build-pages.js`。canonical、hreflang、Open Graph、JSON-LD、`sitemap.xml`、`robots.txt` 都会换成新源。README 已写这三步。迁站前若先对 `pages.dev` 建站，origin 先写 `https://eachsound.pages.dev`，域名接通后再改一次。
+2. `eachsound.com` 的 `robots.txt` 位于主机根，`Sitemap:` 才会被爬虫读到。
+3. Search Console 新增 **网域**资源 `eachsound.com`，用 DNS TXT 验证。它覆盖 `www`、顶点域名、http 和 https。`pages.dev` 只能做网址前缀，不能做网域资源。
+4. [变更地址工具](https://support.google.com/webmasters/answer/9370220) **不能**用于 `github.io` 那条路径级资源。原文写明只能用于网域一级，不能用于带路径的资源。换域名后保留旧资源、提交新站点地图、靠 canonical。旧的 `github.io` 网址会不会自动 301，本次读到的官方页没有写死；上线后用 `curl -I` 看响应。没有 301 时，不要删掉旧页，让 canonical 告诉 Google 新网址。
+5. Bing 在 `eachsound.com` 上用 DNS TXT 或 CNAME（向导提供的那条）。然后提交 `https://eachsound.com/sitemap.xml`。
+6. IndexNow 改成主机根的钥匙文件，`host` 改为 `eachsound.com`。迁站前若先提交，`host` 用 `eachsound.pages.dev`。
+7. 联系邮箱在 Search Console、Bing 和各平台资料里都先写 **待开 Outlook 别名**。别名开好后再换成那个地址，本文不写一个假邮箱。
 
-然后：
-
-1. 改 `site.config.json` 的 `origin`（不要结尾斜线），运行 `node scripts/build-pages.js`。canonical、hreflang、Open Graph、JSON-LD、`sitemap.xml`、`robots.txt` 都会换成新源。README 已写这三步。
-2. 新域名的 `robots.txt` 位于主机根，`Sitemap:` 才会被爬虫读到。
-3. Search Console 新增 **网域**资源，用 DNS TXT 验证。它覆盖 `www`、顶点域名、http 和 https。也可以再加一条 `https://www.你的域名/` 网址前缀。
-4. [变更地址工具](https://support.google.com/webmasters/answer/9370220) **不能**用于现在这条路径级资源。原文写明只能用于网域一级（`example.com`、`m.example.com`、`http://example.com`），不能用于 `http://example.com/petstore/` 这种带路径的资源。换域名后保留旧资源、提交新站点地图、靠 canonical。旧的 `github.io` 网址会不会自动 301 到新域名，本次读到的官方页没有写死；上线后用 `curl -I` 看响应。没有 301 时，不要删掉旧页，让 canonical 告诉 Google 新网址。
-5. Bing 在新域名上用 DNS TXT 或 CNAME（向导提供的那条）。Domain Connect 要看域名商是否支持。然后提交新的站点地图网址。
-6. IndexNow 改成主机根的钥匙文件（文档里的第一种），`host` 改为新主机名。子路径钥匙只能覆盖该子路径。
-7. HTML 验证文件若还要维持旧的 `github.io` 资源，旧网址必须仍能直接打开该文件。Google 不跟随跨网域重定向。旧资源在跳转之后掉验证是可能的；新网域资源验证成功即可。
-
-换域名时尽量保持路径形状：`/lessons/lle1-01.html`、`/zh-hant/lessons/lle1-01.html`。只改主机、不改路径，信号更好传递。变更地址工具的说明也建议搬家时不要同时大改网址结构。
+路径保持 `/lessons/lle1-01.html`、`/zh-hant/lessons/lle1-01.html`。只改主机、不改路径。
 
 ---
 
@@ -184,6 +183,8 @@ DNS 按 [管理自定义域名](https://docs.github.com/en/pages/configuring-a-c
 | 8 | LIHKG、Lowyat、HardwareZone | 书面规则禁止招揽，跳过 |
 | — | r/ChineseLanguage、小红书 | 受众不对，跳过 |
 
+品牌账号名一律建议 **eachsound**。显示名：简体页和简体帖用「声声慢」，繁体用「聲聲慢」，英文简介和英文帖用 Eachsound。Threads、Instagram、YouTube 的 `@eachsound` 在注册当天再核一次是否被占用；2026-09-28 只看到 YouTube `@eachsound` 返回 404，不能当成注册时仍然空闲。被占用就在 eachsound 后面加不改品牌的短后缀，不要改回第 7 节里未采用的名字。进 Facebook 小组、Dcard、PTT 仍用站主个人号，不新建品牌号去发广告。各平台资料里的联系邮箱写 **待开 Outlook 别名**。
+
 ### 2.1 Threads（名次 1）
 
 - **受众**：台湾、香港的公开短文。新加坡、马来西亚也有人，但同一天的简体帖更适合 Instagram。
@@ -191,17 +192,17 @@ DNS 按 [管理自定义域名](https://docs.github.com/en/pages/configuring-a-c
 - **账号年龄或积分**：公开文档里没有 karma 门槛。新号没有对话历史，推荐量会小。这是产品行为，不是一条写明的最低天数。
 - **能发的角度**：个人学习笔记。第一句写明「这是我做的非官方页」。连到免费第 1 课，不连开通页，不写价格。
 - **封号风险**：中等。重复贴链接、多账号对倒、假扮美国之音，会碰到不实行为。一个真人号、几天一条，风险低。
-- **谁来发**：站主的个人号。空的品牌号像广播。
+- **谁来发**：账号名 eachsound，显示名「聲聲慢」。句柄注册时再核。帖子仍以个人笔记的口吻写，第一句写「这是我做的」。
 - **工夫**：低。一条文字，配一张课表截图即可。
 
 ### 2.2 YouTube Shorts（名次 2）
 
-- **受众**：会搜「VOA 慢速英文」「Let's Learn English 中文字幕」的人。繁体、简体各一条，标题用对应文字。
+- **受众**：会搜「VOA 慢速英文」「Let's Learn English 中文字幕」的人。繁体标题用「聲聲慢 英語聽力」，简体标题用「声声慢 慢速英语」。英文频道名用 Eachsound，不用 VOA。
 - **书面规则**：[垃圾信息政策](https://support.google.com/youtube/answer/2801973)。禁止误导点击、重复评论引流、自动化批量生产，以及标题和影片内容不符。政策覆盖标题、说明、评论和缩图。
 - **账号年龄或积分**：没有论坛式积分。新频道没有订阅者，Shorts 靠当次完播。具体推荐门槛本次未在帮助页看到，标为未核实。
 - **能发的角度**：60 秒内讲自己怎么用第 1 课：听一句、对中文、做三题。说明文字放免费课链接，并写「非官方，影片与脚本属于公共领域，出处是 VOA Learning English」。不要上传整集课文，不要在别人的影片底下留相同评论。
 - **封号风险**：中等偏高，若整集重传。YouTube 对重复使用内容很严，官方频道也可能有 Content ID。讲方法、少用原片画面，风险降到中等。
-- **谁来发**：站主个人频道，频道名不要做成「VOA 官方」。
+- **谁来发**：频道句柄 eachsound，注册时再核。显示名「聲聲慢」，英文名 Eachsound。不要做成「VOA 官方」。关于页联系邮箱写「待开 Outlook 别名」。
 - **工夫**：高。要写口播、出镜或录屏、字幕。一条片子可以同时裁成 Reels。
 
 ### 2.3 Instagram Reels（名次 3）
@@ -211,7 +212,7 @@ DNS 按 [管理自定义域名](https://docs.github.com/en/pages/configuring-a-c
 - **账号年龄或积分**：没有公开的 karma 门槛。
 - **能发的角度**：与 Shorts 同一支方法片。说明第一行自我披露。链接放在个人档案或限时动态；Reels 说明里的外链经常点不到，这是产品限制，不是版规原文。
 - **封号风险**：中等。同一支片子三天内在 Reels、Threads、Shorts 各发一次可以接受；同一天复制五次会像垃圾信息。
-- **谁来发**：个人号，并在档案写「非官方自学笔记」。
+- **谁来发**：账号名 eachsound，注册时再核。档案写「声声慢 · 非官方自学笔记」，英文名 Eachsound。联系邮箱写「待开 Outlook 别名」。
 - **工夫**：中。片子在 Shorts 那天已经做好，这里主要是简体标题、封面和档案链接。
 
 ### 2.4 Facebook 小组（名次 4）
@@ -245,7 +246,7 @@ DNS 按 [管理自定义域名](https://docs.github.com/en/pages/configuring-a-c
 - **r/HongKong、r/singapore、r/malaysia、海外华人子版、r/ChineseLanguage**：侧栏未核实。r/ChineseLanguage 是学中文的版，不是学英文的版，受众错开，跳过。其余地方版在版规未核实前不发链接。
 - **账号年龄或积分**：很多子版用 AutoMod 卡新号，数字不公开。r/EnglishLearning 有人反映帖子被 Reddit 过滤器拿掉，但那不能推出具体 karma 数字。未核实。
 - **封号风险**：直接开帖广告为高。在许可的资源串里发一条为中。
-- **谁来发**：个人号，英文，署名 unofficial。新注册的空号不要第一篇就是链接。
+- **谁来发**：英文帖署名 Eachsound, unofficial。账号名若走品牌号，用 eachsound，注册时再核。新注册的空号不要第一篇就是链接。
 - **工夫**：中到高。先读侧栏和置顶串，往往结论是这 14 天不发。
 
 ### 2.7 PTT（名次 7）
@@ -303,6 +304,8 @@ DNS 按 [管理自定义域名](https://docs.github.com/en/pages/configuring-a-c
 
 ### 3.1 UTM
 
+落地页主机用将来的 `eachsound.com`。域名还没接到站上时，同一条路径把主机换成 `eachsound.pages.dev`，参数不动。
+
 ```text
 utm_source   threads | youtube | instagram | facebook | dcard | reddit
 utm_medium   social | short | reel | group | forum
@@ -311,15 +314,17 @@ utm_content  d04-method-hant 这种「日序-角度-文字」
 utm_term     tw | hk | sg | my   （可选，受众地区）
 ```
 
-示例：
+域名接通后：
 
 ```text
-https://1019666077-bit.github.io/wx-extract-mvp/zh-hant/lessons/lle1-01.html?utm_source=threads&utm_medium=social&utm_campaign=launch14d&utm_content=d04-method-hant&utm_term=tw
+https://eachsound.com/zh-hant/lessons/lle1-01.html?utm_source=threads&utm_medium=social&utm_campaign=launch14d&utm_content=d04-method-hant&utm_term=tw
 ```
 
 ```text
-https://1019666077-bit.github.io/wx-extract-mvp/lessons/lle1-01.html?utm_source=instagram&utm_medium=reel&utm_campaign=launch14d&utm_content=d08-reel-hans&utm_term=sg
+https://eachsound.com/lessons/lle1-01.html?utm_source=instagram&utm_medium=reel&utm_campaign=launch14d&utm_content=d08-reel-hans&utm_term=sg
 ```
+
+迁站前把上面两条的主机换成 `https://eachsound.pages.dev`。
 
 GitHub Pages 不提供访问日志。Search Console 的点击是 **Google 搜索点击**，不会把 Threads 的 UTM 算进来。UTM 要有计数，用一个免费的短链接服务看点击数，目标网址仍带上面的参数。以后若加上免费的 GA4，同一套参数可以直接用。14 天内不要为了统计去改站。不要把带 UTM 的网址提交索引。
 
@@ -336,8 +341,8 @@ Search Console 里要看的：
 
 | 天 | 渠道 | 角度 | 语言 | 衡量 |
 | --- | --- | --- | --- | --- |
-| 1 | Google Search Console | 添加网址前缀，HTML 文件验证，提交 `sitemap.xml` | 不发帖 | 验证成功；站点地图状态不是「无法抓取」 |
-| 2 | Bing | 从 Search Console 导入；若导入失败，改放 `BingSiteAuth.xml`。提交同一份站点地图。放置 IndexNow 钥匙并提交首页和四条第 1 课网址（简繁首页 + 简繁 lle1-01） | 不发帖 | Bing 显示已验证；站点地图有最后读取时间或成功状态；IndexNow 返回 200 或 202 |
+| 1 | Google Search Console | 添加 `https://eachsound.pages.dev/` 网址前缀，HTML 文件验证，提交该主机上的 `sitemap.xml`。`eachsound.com` 生效后再加网域资源 | 不发帖 | 验证成功；站点地图状态不是「无法抓取」 |
+| 2 | Bing | 从 Search Console 导入 `eachsound.pages.dev`；若导入失败，改放 `BingSiteAuth.xml`。提交同一份站点地图。IndexNow 的 `host` 用 `eachsound.pages.dev`，提交首页和四条第 1 课网址（简繁首页 + 简繁 lle1-01） | 不发帖 | Bing 显示已验证；站点地图有最后读取时间或成功状态；IndexNow 返回 200 或 202 |
 | 3 | Google 网址检查 | 请求编入索引：简繁首页和简繁 Level 1 第 1–5 课。配额提示出现就停 | 不发帖 | 每条网址的检查结果截图。记下已收录 / 已发现未收录 / 未知 |
 | 4 | Threads | 方法：第 1 课怎么听。链到繁体 `lle1-01`，UTM `d04-method-hant` | 繁体，台湾、香港 | 短链接点击、回复数、帖子是否还在 |
 | 5 | 不发新帖 | 看第 1–2 天的报表是否开始有行。准备第 6 天口播稿和 60 秒录屏 | — | Search Console 有无曝光。没有曝光也正常，不满 48 小时 |
@@ -347,7 +352,7 @@ Search Console 里要看的：
 | 9 | Dcard 或改回 Threads | 仅当当天在 App 里读完站规，确认免费课链接允许，才发一篇方法文，UTM `d09-method-hant`。站规不允许购买站或外链时，改发一条 Threads 追问，不带新链接 | 繁体 | 是否过审、短链接点击。被删则记录原因，14 天内不再发 Dcard |
 | 10 | Facebook 小组或跳过 | 只在已加入、置顶规则允许资源分享的一个群。繁体或简体按群的主要地区。UTM `d10-method-hant` 或 `d10-method-hans`。规则不明就跳过 | 按群 | 帖是否留下、短链接点击、被删原因 |
 | 11 | YouTube Shorts | 第二支，简体，仍是方法不是广告。链到简体第 1 课，UTM `d11-short-hans` | 简体 | 与第 6 天对比保留率。出现再利用或版权提示就不再发第三支 |
-| 12 | Reddit 或跳过 | 打开 r/languagelearning 置顶资源串。规则仍要求版主预审时，只发私信草稿，不公开贴链接。其他子版不发 | 英文 | 是否被允许、短链接点击。被删则停止 Reddit |
+| 12 | Reddit 或跳过 | 打开 r/languagelearning 置顶资源串。英文署名 Eachsound, unofficial。规则仍要求版主预审时，只发私信草稿，不公开贴链接。其他子版不发 | 英文 | 是否被允许、短链接点击。被删则停止 Reddit |
 | 13 | Threads | 第二篇：打卡和错题本，仍然链到繁体免费第 1 课，不链开通页。UTM `d13-checkin-hant` | 繁体 | 点击是否高于第 4 天。低于第 4 天就不要在第 14 天加发 |
 | 14 | 复盘 | 不发新渠道。汇总 Search Console 国家与网页、Bing 页面、各 UTM 点击、被删帖 | 简繁分开看 | 决定下一轮只保留点击最高的一个社交渠道。LIHKG、Lowyat、HardwareZone、PTT 广告帖维持不做 |
 
@@ -361,7 +366,8 @@ Search Console 里要看的：
 
 ### 4.1 Threads，第 4 天，繁体方法
 
-- **角度**：自己用 VOA 第 1 课练听力的步骤，顺手说明有一份非官方的中英对照。
+- **标题**：聲聲慢 英語聽力：第 1 課怎麼聽（非官方）
+- **角度**：自己用 VOA 第 1 课练听力的步骤，顺手说明有一份非官方的中英对照。品牌写聲聲慢，不写裸词「声声慢」当唯一标题。
 - **要点**：非官方，与美国之音没有隶属或背书；课文来自 VOA Learning English，公共领域；只承诺前 5 课免费；三步是看片、对字幕、做三题。
 - **长度**：150–220 字，一段即可。
 - **语言**：繁体中文。
@@ -369,14 +375,16 @@ Search Console 里要看的：
 
 ### 4.2 YouTube Shorts，第 6 天，繁体方法片
 
+- **标题**：聲聲慢 英語聽力 · 非官方。英文行写 Eachsound。
 - **角度**：60 秒演示「听一句、暂停、对中文、答一题」。
-- **要点**：标题含「非官方」和 “Let's Learn English”；口播不说「VOA 官方课程」；画面以人脸或笔记为主，课文画面只作一两秒示意；说明栏署名 VOA Learning English，并链到 learningenglish.voanews.com 的原文。
+- **要点**：标题用「聲聲慢 英語聽力」，并含「非官方」；口播不说「VOA 官方课程」；画面以笔记和本站界面为主，课文画面只作一两秒示意；说明栏署名 VOA Learning English，并链到 learningenglish.voanews.com 的原文。
 - **长度**：45–60 秒。标题 40 字以内。说明 80–120 字。
 - **语言**：繁体口播，标题繁体。
 - **CTA**：说明栏第一条是繁体第 1 课，UTM `d06-short-hant`。
 
 ### 4.3 Instagram Reels，第 8 天，简体东南亚
 
+- **标题**：声声慢 慢速英语（封面 12 字以内就用这六个字）。英文名 Eachsound 写在档案，不写进这六个字。
 - **角度**：同一支片子，改成给新加坡、马来西亚的简体说明。
 - **要点**：第一句写明作者身份和非官方；不要写成补习班招生；不要 @ 一串无关账号。
 - **长度**：片子不变。封面标题 12 字以内。说明 60–100 字。
@@ -385,6 +393,7 @@ Search Console 里要看的：
 
 ### 4.4 YouTube Shorts，第 11 天，简体方法片
 
+- **标题**：声声慢 慢速英语：只听这一句（非官方）。
 - **角度**：换一个具体困难，例如「慢速英文仍然听不清时，怎么只听两句」。不要重复第 6 天的脚本。
 - **要点**：仍只展示免费课；片尾口头说一次「不是 VOA 官方」；不出现价格。
 - **长度**：45–60 秒。说明 80–120 字。
@@ -393,6 +402,7 @@ Search Console 里要看的：
 
 ### 4.5 Threads，第 13 天，繁体打卡与错题本
 
+- **标题**：聲聲慢 英語聽力：打卡和錯題本（非官方）。
 - **角度**：连续天数和错题怎么留下来，适合已经看过第 4 天、还没点击的人。
 - **要点**：打卡和错题本不用开通；进度在浏览器本地，换设备不会跟着走（避免事后被说成有账号同步）；仍然非官方。
 - **长度**：120–180 字。
@@ -424,10 +434,10 @@ Search Console 里要看的：
 
 ### 5.3 会让站点被盯上的点
 
-- **GitHub Pages 的使用范围**。[附加产品条款](https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features) 和 [Pages 限制](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits) 写明：Pages 不是用来免费托管线上生意、电子商务，或主要用于促成商业交易、提供商业软件服务的网站。捐赠按钮和众筹链接是举例允许的。GitHub 保留收回 `github.io` 子网域的权利。现在的开通页已经在收款。零预算推广若把流量打到付费解锁，等于把这个条款风险放大。前 14 天只推免费课；收费搬到自己的域名之后，再把开通页当作落地页。这不是律师意见，是条款原文和发布顺序。
+- **GitHub Pages 的使用范围**。[附加产品条款](https://docs.github.com/en/site-policy/github-terms/github-terms-for-additional-products-and-features) 和 [Pages 限制](https://docs.github.com/en/pages/getting-started-with-github-pages/github-pages-limits) 写明：Pages 不是用来免费托管线上生意、电子商务，或主要用于促成商业交易、提供商业软件服务的网站。捐赠按钮和众筹链接是举例允许的。GitHub 保留收回 `github.io` 子网域的权利。现在的开通页已经在收款。零预算推广若把流量打到付费解锁，等于把这个条款风险放大。前 14 天只推免费课；收费搬到 `eachsound.com` 之后，再把开通页当作落地页。这不是律师意见，是条款原文和发布顺序。
 - **开通页和宣传不一致**。页上仍是 ¥39 / ¥99 和微信。帖子若写 US$5.99 或 Waffo，访客对不上页面，也容易被平台当成误导。等页面改完再提价格。
 - **兑换码格式**。README 写明空的 `codes.json` 下，浏览器会接受符合格式的码，这不是安全措施。公开帖不要讨论码的格式，不要发测试码。
-- **商标加付费**。频道名、小组名、网域若做成 `voa-official` 一类，同时卖解锁，商标和仿冒风险叠在一起。网域用自己的课名，页面保留非官方声明。
+- **商标加付费**。频道名、小组名、网域不要做成 `voa-official` 一类。网域用 `eachsound.com`，页面和频道保留「声声慢 / 聲聲慢 · 非官方」。大陆商标不查。
 - **索引与抓取**。主机根没有 robots.txt，不会挡住抓取，只是不会自动广告站点地图。不要在用户站的 robots.txt 里 `Disallow: /`。验证文件不要加登录。付费课的 HTML 目前仍可被抓到节选和付费墙，这是现站结构；推广不要承诺「搜索引擎看不到付费课正文」——前两句节选在页面里。
 - **多账号**。同一篇文案换号重发，在 Meta、LIHKG、Reddit、PTT 都有对应的虚假身份、分身或垃圾信息条款。被删就停。
 
@@ -458,110 +468,57 @@ Search Console 里要看的：
 - Lowyat、HardwareZone 的账号年龄门槛。
 - LIHKG 会员权限表里、P 牌以外的每日开帖上限（表格抓取后列没有对齐）。
 - Mobile01、Plurk、Discuss.com.hk、Telegram、Discord、WhatsApp 群的规则。
-- 中国商标局（`wcjs.sbj.cnipa.gov.cn` 是脚本挑战，没有进入检索表）和台湾智慧局（`twtmsearch.tipo.gov.tw` 返回 404）的官方库。第 9 类、第 41 类没有官方结论。台湾「聲聲慢」登记号只来自 FindCompany 的搜索摘录，没有在官网复核。见第 7.4 节。
+- 大陆商标按决定不查。台湾智慧局官网本次没有打开；「聲聲慢」的类别摘录见第 7 节，没有在官网复核。
 
 ---
 
-## 7. 品牌名（不含 VOA）
+## 7. 品牌名（已定）
 
-账号名、频道名和以后的域名用同一个品牌，字面里不出现 VOA、Voice of America，也不写成官方、授权、出品。课文出处仍写在影片说明和片尾，那是署名，不是品牌。
+账号名、频道名和域名用同一个品牌。字面里不出现 VOA、Voice of America，也不写成官方、授权、出品。课文出处仍写在影片说明和片尾，那是署名，不是品牌。
 
-本节改两处旧安排，不改第 1 节的验证做法：
+发帖账号由助手在 **Linux 桌面浏览器**注册和发布。站主只在验证码或扫码时出现，不从手机发。帖子正文仍写「这是我做的，非官方」。搜索提交见第 1 节和第 3 节第 1–3 天：先对 `eachsound.pages.dev`，`eachsound.com` 接通后再加网域资源。收费上线仍在搬家之后。
 
-- 搜索提交（第 3 节第 1–3 天）放到 **Cloudflare Pages 接上新域名之后**。收费上线也在这次搬家之后。搬家目标是 Cloudflare Pages，不是把 GitHub Pages 绑到自定义域名，所以不要照第 1.4 节去填 GitHub 的 A/CNAME。新域名在 Cloudflare 上之后，Search Console 可以用 DNS TXT 做**网域**资源，Bing 同样用 DNS。站点地图改到新域名根，`robots.txt` 这时才会被爬虫读到。
-- 发帖账号由助手在 **Linux 桌面浏览器**注册和发布。站主只在验证码或扫码时出现，不从手机发。帖子正文仍写「这是我做的，非官方」。
+### 最终选定
 
-英文名必须让英语母语者**直接读出单词**，不用拼音。中文名 2–4 个字，简繁用同一组字，顺着英文的意思，读起来短。**不使用「一句慢」。** 已注册的 `.com`（含注册后挂牌出售）直接淘汰，不用 `.app` / `.io` 顶上。中文名首选是站主提的「声声慢 / 聲聲慢」，简繁字形不同，这一条盖过「简繁同一组字」。英文首推和商标核查在第 7.4 节；第 7.3 节的五个名字只留作备选。
+| 项 | 选定 |
+| --- | --- |
+| 中文 | **声声慢**（简体）/ **聲聲慢**（繁体）。两套字形不同，简体页和简体帖用前者，繁体页和繁体帖用后者 |
+| 英文 | **Eachsound**（读成 each sound） |
+| 域名 | **eachsound.com**（正在购买） |
+| 迁站前 | Cloudflare Pages 项目名 `eachsound`，[https://eachsound.pages.dev](https://eachsound.pages.dev) |
+| 账号名 | **eachsound**。Threads、Instagram、YouTube 的句柄在注册时再核 |
+| 联系邮箱 | **待开 Outlook 别名** |
 
-### 7.1 上一轮拼音（已否决）
+选定理由：
 
-上一轮用拼音做英文名，**已否决，不再推荐**。当时的三个名字是：一句慢 / Yijuman、耳句 / Earju、慢耳句 / Manerju。2026-09-28 这三个 `.com` 都是 RDAP 404；`@earju` 已被占用，`@yijuman` 和 `@manerju` 看起来空闲。备用拼写 `yijumanlisten.com`、`slowjuman.com`、`earjulisten.com`、`getearju.com`、`erjuman.com` 当天也是 404。Threads / Instagram 是登录墙。拼音英语母语者读不出来，中文名「一句慢」也不再用。下面仍用第 7.2 节筛出的五个英文名，中文名全部重起。
+- 中文是站主定的。词牌叠字，顺口。粤语香港读 sing1 sing1 maan6，「星星慢」不是骂人的话；慢和萬都是 maan6，连起来也不是脏字。
+- 英文不用拼音。Eachsound 英语母语者能直接读，意思是「每一声」，对着「一声一声、慢慢听」。9 个字母，账号名和域名是同一串。
+- 2026-09-28 Verisign RDAP：`eachsound.com` 返回 404。万网公开接口当时是标准价（首年 ¥85，续费 ¥95）。YouTube `@eachsound` 当天返回 404。注册句柄时再核一次，不要把「看起来空闲」当成已经占下。
+- 帖子标题不用裸词跟李清照《声声慢》和崔开潮的同名歌抢。简体用「声声慢 慢速英语」「声声慢 英语听力」，繁体用「聲聲慢 英語聽力」。英文场景（Reddit、片内英文行、频道英文名）写 Eachsound。有人搜「聲聲慢 VOA」时，落地页可以同时出现这两个词，标题旁边写「非官方」。频道名、域名、片内品牌仍然不能写成美国之音或官方。
+- **大陆商标不查。** 不把「没注册」或「已注册」说成结论。
 
-### 7.2 这一轮怎么筛
+### 未采用
 
-用 sentence、line、slow、ear、listen、tune、step、one、echo、replay、pause、clear、phrase、word、pace、loop，再接 a、by、and、once、again、slowly、it，拼成能读出来的英文。2026-09-28 对 **533** 个只含字母、长度 4–16 的名字做了 Verisign RDAP（`https://rdap.verisign.com/com/v1/domain/<name>.com`）。**271 个返回 404（当时未注册），262 个返回 200（已注册），0 个请求失败。**
+下面这些名字不再注册、不再当账号名或域名。2026-09-28 的 RDAP 和 YouTube 快查只作当时的记录。
 
-已注册、因此淘汰的例子：`slowline`、`linebyline`、`onesentence`、`slowlisten`、`listenline`、`replayline`、`pauseline`、`clearline`、`oneline`、`oneatatime`、`lineatatime`、`takeyourtime`、`unhurried`、`lendanear`、`allears`、`listenonce`、`eachline`、`wordbyword`、`bitbybit`、`stepbystep`、`playitslow`、`adagio`、`cadence`。
-
-未注册的再按意思、朗读时会不会拼错、长度（尽量 ≤ 12 个字母）缩短。留下的名字用万网查询页同一个公开接口核对溢价：`https://api.domain.aliyun.com/api/check/domainCheck?domainName=<name>.com&scenario=domainCheck&productId=210701`（查询页本身是 [万网搜索](https://wanwang.aliyun.com/domain/searchresult/?keyword=clearandslow&suffix=.com)）。2026-09-28 首页 [`.com` 卡片](https://wanwang.aliyun.com/domain/) 仍是首年 ¥85、续费 ¥95/年。下面五个入选的接口都是 `canRegistry=true`，`type` 不是 premium，首年 **¥85**、续费 **¥95**。没有登录、没有下单。Namecheap 查询返回 403，Cloudflare 域名搜索有人机验证，溢价只以阿里云这一处为准。
-
-YouTube：`https://www.youtube.com/@YouTube` 是 200，标题 “YouTube - YouTube”；不存在的句柄是 404，标题 “404 Not Found”。404 记为**看起来空闲**，200 且有频道标题记为**已占用**。
-
-`.com` 空着但仍拿掉的：
-
-- `playitslowly`：RDAP 404，阿里云标准价，YouTube 404。但 [Play it Slowly](https://29a.ch/playitslowly)（Jonas Wagner，GPL，约 2009 年起）是同名的慢放音频软件。
-- `oneslowline`：YouTube 已有频道 “One Slow Line”。
-- `slowandclear`：YouTube 频道 “Slow Clear English”，和英语学习贴在一起。
-- `slowsentence`：YouTube 频道标题是韩文「느린문장」（慢句子），句柄就是这个英文。
-- `slowspoken`、`pauseandhear`、`againslowly`、`linebyone`：YouTube 句柄已被同名频道占用。
-- `onlyaline`：句柄被 “Only Aline0409” 占用，不是这个短语，但 `@onlyaline` 不能用。
-- `hearitslowly`、`hearslowly`、`hearaline`：听上去像 here，拼写会错。
-- `patientear`：听上去像 air。
-- `theslowline`：`.com` 和 YouTube 当天都空着，但 “The Slow Line” 已是 [一支舞蹈](https://www.hopemohr.org/the-slow-line) 和 “Slow Line Art Room” 的名字。
-
-### 7.3 五个入选
-
-中文简繁都相同。冲突栏是 2026-09-28 的网页快查（名字 + trademark / app，以及能打开的商标记录页），**不是** USPTO 正式检索，也不是律师清标。`tmsearch.uspto.gov` 页面能打开，查询接口前面有人机验证，没有拿到结果表。
-
-中文名在 2026-09-28 重配。简繁同一组字。粤语是香港粤拼。快查看的是网页和应用商店里有没有同名学习产品，不是商标局检索。
-
-| 英文（怎么读） | 中文（简 / 繁） | 意思 | `.com`（RDAP） | 阿里云 | YouTube | 快查 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Clearandslow（clear and slow） | 清慢 / 清慢。粤 cing1 maan6 | 听清楚，而且放慢 | [clearandslow.com](https://rdap.verisign.com/com/v1/domain/clearandslow.com) **404，未注册** | **标准价**，首年 ¥85，续费 ¥95。不是 premium | [@clearandslow](https://www.youtube.com/@clearandslow) **看起来空闲**（404） | 没找到叫「清慢」的学习 App。旁边有 [慢学英语](https://www.crsky.com/soft/1101564.html)（名字不同）和 [朗易思听](https://apps.apple.com/tm/app/id548247084)，所以不用「朗」字开头。英文快查仍无同名产品；[STILL AND SLOW](https://www.trademarkelite.com/trademark/trademark-detail/99272379/STILL-AND-SLOW) 是涂色书 |
-| Sentencewise（sentence-wise） | 每句 / 每句。粤 mui5 geoi3 | 每一句都分开听 | [sentencewise.com](https://rdap.verisign.com/com/v1/domain/sentencewise.com) **404** | 标准价，¥85 / ¥95 | [@sentencewise](https://www.youtube.com/@sentencewise) **看起来空闲**（404） | 没找到叫「每句」的 App。已避开同名学习 App「句句」（[介绍页](https://www.crsky.com/soft/268129.html)）和 [一句英语](https://apps.apple.com/cn/app/id1590065267)。英文旁边仍有 Wise Sentence、WordWise、Sentenced |
-| Oncealine（once a line） | 一遍 / 一遍。粤 jat1 bin6 | 这一句听一遍 | [oncealine.com](https://rdap.verisign.com/com/v1/domain/oncealine.com) **404** | 标准价，¥85 / ¥95 | [@oncealine](https://www.youtube.com/@oncealine) **看起来空闲**（404） | 没找到叫「一遍」的学习 App。英文名念出来是 once / a / line |
-| Pausealine（pause a line） | 停一停 / 停一停。粤 ting4 jat1 ting4 | 先停一下，再听这句 | [pausealine.com](https://rdap.verisign.com/com/v1/domain/pausealine.com) **404** | 标准价，¥85 / ¥95 | [@pausealine](https://www.youtube.com/@pausealine) **看起来空闲**（404） | 没找到叫「停一停」的学习 App。对得上「暂停、对字幕、做三题」 |
-| Onebyline（one by line） | 循句 / 循句。粤 ceon4 geoi3 | 一句接一句跟着走 | [onebyline.com](https://rdap.verisign.com/com/v1/domain/onebyline.com) **404** | 标准价，¥85 / ¥95 | [@onebyline](https://www.youtube.com/@onebyline) **看起来空闲**（404） | 没找到叫「循句」的 App。已避开「逐句学」和「句乐部」。英文旁边的 LineByLine 是背课文应用（[linebyline.app](https://www.linebyline.app/about)）；`linebyline.com` 本轮 RDAP 是 200 |
-
-粤语同音只记会听岔的几处：清慢的「慢」和「萬」都是 maan6，连读不是骂人的话；普通话 qīng màn 和「晚清」wǎn qīng 声调、字序都不同。每句的「每」是 mui5，「妹」是 mui6。一遍的「遍」和「便」同音，但「一遍」是现成词。停一停中间有「一」，不会听成名字「婷婷」。循句的「循」和「巡」同音，不是贬义；没用「序」，因为粤语「序」和「罪」都是 zeoi6。
-
-第 7.3 节的 Clearandslow / 清慢只留作备选，不再当首推。中文名首选改成站主提的「声声慢」，英文名和商标核查见 7.4。Clearandslow 的 `.com` 和 YouTube 当天仍空着，阿里云是标准价。Sentencewise / 每句更像一个现成英文词，但旁边已有 Wise Sentence、WordWise。买任何域名之前再跑一次 RDAP。Threads / Instagram 这一轮没有重查。
-
-### 7.4 声声慢 核查
-
-站主提议的中文名是**声声慢**，繁体写作**聲聲慢**。这一节覆盖前面「简繁必须同一组字」的偏好：声和聲不同，简体页用声声慢，繁体页用聲聲慢。粤语香港读 sing1 sing1 maan6。聲和星、升同音，「星星慢」不是骂人的话；慢和萬都是 maan6，连起来也不是脏字。**一句慢仍然只记在 7.1，已否决。** 这次没有去申请商标，也没有买域名。
-
-#### 商标
-
-**数据来源和可信度。** 2026-09-28 打开 [中国商标网检索](https://wcjs.sbj.cnipa.gov.cn/) 时，返回的是一段脚本挑战，没有进入检索表单，**没能直接查官方库**。[商标局首页](https://sbj.cnipa.gov.cn/) 能打开，但那不是检索结果。标库网的查询接口返回「已禁用，请从首页重新查询」，没有结果表。台湾 [twtmsearch.tipo.gov.tw](https://twtmsearch.tipo.gov.tw/) 返回 404，[cloud.tipo.gov.tw](https://cloud.tipo.gov.tw/) 只有一行欢迎文字。下面台湾登记来自 FindCompany 页面被搜索引擎摘出的表格，本机再打开时被人机验证挡住，**没有在智慧局官网复核**。可信度低于官方库。没有编造登记号；摘录里没出现的类别，不写成「已经查过并没有」。
-
-摘录里能对上「聲聲慢」的，都不是第 9 类或第 41 类：
-
-- 第 25 类，衣服。注册号 00856284，申请案号 087027458，申请人雪曼國際開發有限公司，注册日 1999-06-16，专用期限写到 2029-06-15。出处：[FindCompany 摘要](https://www.findcompany.com.tw/trademark/00856284_087027458)。
-- 第 35 类，零售批发等。注册号 01500628，申请案号 100038448，同一申请人，注册日 2012-01-16。出处：[另一页摘要](https://www.findcompany.com.tw/trademark/01500628_100038448)。
-- 第 44 类，心理咨询、艺术治疗、音乐治疗。商标是「聲聲慢Slowly Sound 及圖」，图样英文 SLOWLY SOUND。注册号 02449860，申请案号 113062485，申请人李明漪，注册日 2025-04-16。出处：[摘要](https://www.findcompany.com.tw/trademark/02449860_113062485)。
-
-大陆第 9 类、第 41 类：**没有拿到注册号，不能写成已注册，也不能写成确定没有。** 所以这一条不触发「换掉声声慢」。同名使用已经很多，只是另一回事：诗词 App（[下载页介绍](https://www.155.cn/app/926430.html)）、语音聊天 App（[小米应用商店](https://app.mi.com/details?id=shengsman.hzy.app)，包名 shengsman.hzy.app）、北京声声慢教育咨询有限公司、成都声声慢教育咨询有限公司。公司名和 App 名不等于商标证。
-
-#### 英文名
-
-意思对着「一声一声、慢慢听」。不用拼音。`.com` 用 Verisign RDAP，404 才留下；200 的淘汰，不用 `.app` / `.io` 顶上。溢价用万网同一公开接口，首年 ¥85、续费 ¥95 且 type 不是 premium 记为标准价。YouTube 404 记为看起来空闲。检查日 2026-09-28。
-
-`shengshengman.com` **已注册（RDAP 200）**，淘汰。YouTube `@shengshengman` 也已占用（页面标题 Sangtandung）。`soundbysound.com`、`slowsound.com`、`soundslow.com`、`onesound.com`、`slowlistening.com` 也是 200。
-
-`slowlysound.com` 当天是 404，阿里云标准价，但 YouTube `@slowlysound` 已占用（页面标题 SlowlyS）。台湾第 44 类商标的英文又正好是 SLOWLY SOUND，这个英文名不采用。
-
-| 英文（怎么读） | 对着哪半个意思 | `.com` | 阿里云 | YouTube |
-| --- | --- | --- | --- | --- |
-| Soundandslow（sound and slow） | 声，而且慢 | [soundandslow.com](https://rdap.verisign.com/com/v1/domain/soundandslow.com) **404** | 标准价，¥85 / ¥95 | [@soundandslow](https://www.youtube.com/@soundandslow) **看起来空闲** |
-| Onebysound（one by sound） | 一声一声 | [onebysound.com](https://rdap.verisign.com/com/v1/domain/onebysound.com) **404** | 标准价，¥85 / ¥95 | [@onebysound](https://www.youtube.com/@onebysound) **看起来空闲** |
-| Eachsound（each sound） | 每一声 | [eachsound.com](https://rdap.verisign.com/com/v1/domain/eachsound.com) **404** | 标准价，¥85 / ¥95 | [@eachsound](https://www.youtube.com/@eachsound) **看起来空闲** |
-| Soundslowly（sound slowly） | 把声音放慢 | [soundslowly.com](https://rdap.verisign.com/com/v1/domain/soundslowly.com) **404** | 标准价，¥85 / ¥95 | [@soundslowly](https://www.youtube.com/@soundslowly) **看起来空闲** |
-| Soundaline（sound a line） | 一次一声、一行 | [soundaline.com](https://rdap.verisign.com/com/v1/domain/soundaline.com) **404** | 标准价，¥85 / ¥95 | [@soundaline](https://www.youtube.com/@soundaline) **看起来空闲** |
-
-#### 搜索
-
-裸搜「声声慢」，前面是李清照的《声声慢》（寻寻觅觅），以及崔开潮 2017 年专辑《急驶的马车》里的同名歌。歌词借用了「寻寻觅觅，冷冷清清」。这首歌还进过亚洲文明对话的短片，2022 年中秋晚会崔开潮、万茜又唱过。词和歌都比一个新站老、也更有人搜。新站不要指望靠「声声慢」四个字单独排到前面。
-
-页面标题和说明写成组合词，把英语听力说清楚：简体用「声声慢 慢速英语」「声声慢 英语听力」，繁体用「聲聲慢 英語聽力」。域名和频道英文用 Soundandslow，这个字符串不和宋词抢。有人搜「聲聲慢 VOA」时，落地页可以同时出现这两个词，方便对上，但标题旁边要写「非官方」。频道名、域名、片内品牌仍然不能写成美国之音或官方。
-
-**首推：中文声声慢 / 聲聲慢，英文 Soundandslow，域名 `soundandslow.com`。** 中文是站主要的，词牌叠字，顺口，粤语 sing1 sing1 maan6 不难听。英文读成 sound and slow，同时盖住「声」和「慢」，12 个字母，`.com` 未注册，阿里云标准价，YouTube 句柄当天看起来空闲，也躲开了已有商标里的 Slowly Sound。第 9 类和第 41 类官方库这次没查成，不把「没注册」说死。买域名之前再跑一次 RDAP。
+| 名字 | 状态 |
+| --- | --- |
+| 一句慢 / Yijuman | 未采用。站主已否决。拼音读不出来 |
+| 耳句 / Earju、慢耳句 / Manerju | 未采用。同一轮拼音名 |
+| Clearandslow / 清慢 | 未采用 |
+| Sentencewise / 每句 | 未采用 |
+| Oncealine / 一遍 | 未采用 |
+| Pausealine / 停一停 | 未采用 |
+| Onebyline / 循句 | 未采用 |
+| Soundandslow、Onebysound、Soundslowly、Soundaline | 未采用。曾和 Eachsound 一起对照「声声慢」，没有选定 |
+| shengshengman.com | 未采用。当天 RDAP 200，已注册。YouTube `@shengshengman` 也已占用 |
+| slowlysound | 未采用。`.com` 当天是 404，但 YouTube `@slowlysound` 已占用。台湾 FindCompany 摘录里有第 44 类「聲聲慢Slowly Sound 及圖」（注册号 02449860，未在智慧局官网复核）。同一摘录还有第 25 类、第 35 类，没有第 9 类或第 41 类。大陆商标不查 |
 
 ---
 
 ## 8. 零成本短片：桌面机器人能做完的部分
 
-站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `soundandslow.com`（第 7.4 节的首推；若改用同表里的另一个英文名，就用那个域名）再填。片内简体写「声声慢」，繁体写「聲聲慢」，英文写 Soundandslow。
+站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM。域名接通后链 `eachsound.com`，接通前链 `eachsound.pages.dev`。片内简体写「声声慢」，繁体写「聲聲慢」，英文写 Eachsound。频道句柄建议 eachsound，注册时再核。关于页联系邮箱写「待开 Outlook 别名」。
 
 ### 8.1 画面从哪来
 
@@ -586,10 +543,10 @@ learningenglish.voanews.com
 ```bash
 chromium --new-window --window-position=0,0 --window-size=1080,1920 \
   --force-device-scale-factor=1 --lang=zh-TW \
-  --app="https://1019666077-bit.github.io/wx-extract-mvp/zh-hant/lessons/lle1-01.html"
+  --app="https://eachsound.pages.dev/zh-hant/lessons/lle1-01.html"
 ```
 
-简体片把 `--lang` 和网址换成简体首页路径下的 `lessons/lle1-01.html`。搬家之后换成新域名上的同一课。录之前用 `xwininfo` 量窗口左上角和宽高，下面命令里的 `+0,0` 和 `1080x1920` 改成量到的数字。
+简体片把 `--lang` 和网址换成 `https://eachsound.pages.dev/lessons/lle1-01.html`。`eachsound.com` 接通后，同一条路径只改主机。录之前用 `xwininfo` 量窗口左上角和宽高，下面命令里的 `+0,0` 和 `1080x1920` 改成量到的数字。
 
 系统声音用 PulseAudio 的监听源，不要去录麦克风：
 
@@ -618,7 +575,7 @@ OBS 只在需要看预览时开：来源选「窗口采集」或「显示器采�
 1
 00:00:01,000 --> 00:00:04,500
 聲聲慢 · 非官方
-One sentence, slowly.
+Eachsound
 
 2
 00:00:05,000 --> 00:00:09,000
@@ -650,7 +607,7 @@ Style: EN,Noto Sans,42,&H00E8F4EF,&H00000000,&H64000000,0,0,0,0,100,100,0,0,1,3,
 [Events]
 Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
 Dialogue: 0,0:00:01.00,0:00:04.50,ZH,,0,0,0,,聲聲慢 · 非官方
-Dialogue: 0,0:00:01.00,0:00:04.50,EN,,0,0,0,,Unofficial. One sentence, slowly.
+Dialogue: 0,0:00:01.00,0:00:04.50,EN,,0,0,0,,Eachsound. Unofficial.
 ```
 
 ```bash
@@ -694,7 +651,7 @@ ffmpeg -y -i voicebed.wav -i music.mp3 -filter_complex \
 convert -size 1080x1920 canvas:'#0b6e4f' \
   -font "Noto-Sans-CJK-TC" -fill white -pointsize 96 \
   -gravity center -annotate +0-80 "聲聲慢" \
-  -pointsize 42 -annotate +0+40 "一声一声" \
+  -pointsize 42 -annotate +0+40 "Eachsound" \
   -pointsize 28 -fill "#d7efe4" -annotate +0+220 "非官方自学笔记" \
   cover.png
 ```
@@ -710,19 +667,19 @@ ffmpeg -y -i lesson-sub.mp4 -i ui-sub.mp4 -i bed.m4a \
   -c:v libx264 -profile:v high -pix_fmt yuv420p -b:v 8M -maxrate 10M -bufsize 16M \
   -c:a aac -b:a 192k -ar 48000 -ac 2 \
   -movflags +faststart \
-  soundandslow-lle1-01-hant.mp4
+  eachsound-lle1-01-hant.mp4
 ```
 
-说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用 Soundandslow。简体标题加「声声慢」，繁体标题加「聲聲慢」。不用 VOA 当频道名。
+说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。繁体标题用「聲聲慢 英語聽力」，简体标题用「声声慢 慢速英语」，英文写 Eachsound。不用 VOA 当频道名。联系邮箱仍写「待开 Outlook 别名」。
 
 ### 8.6 每条片子核对
 
 - 竖屏 1080×1920，45–60 秒，能在桌面播放器里播完，没有黑边把字幕裁掉。
 - 站主没有出镜，没有手机界面。
 - VOA 画面只有几秒，没有通讯社角标，没有整集。
-- 片内简体品牌是「声声慢」，繁体是「聲聲慢」，英文是 Soundandslow，没有 VOA 字样当名称；片尾仍有公共领域署名。
+- 片内简体品牌是「声声慢」，繁体是「聲聲慢」，英文是 Eachsound，没有 VOA 字样当名称；片尾仍有公共领域署名。
 - 字幕和落地页同一种汉字：台湾、香港用繁体地址，新加坡、马来西亚用简体地址。
-- 说明栏链接是新域名（搬家前先不发这支片），并带 `utm_source=youtube` 或 `instagram`、`utm_medium=short` 或 `reel`、`utm_campaign=launch14d`。
+- 说明栏链接在域名接通后用 `eachsound.com`，接通前用 `eachsound.pages.dev`，并带 `utm_source=youtube` 或 `instagram`、`utm_medium=short` 或 `reel`、`utm_campaign=launch14d`。
 - 音乐曲名和作者写在说明栏。
 - 没有价格、微信号、开通页、兑换码。
 - 同一支片先发 YouTube，再发 Reels；不要在同一天把同一文件贴进五个地方。

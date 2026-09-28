@@ -470,29 +470,53 @@ Search Console 里要看的：
 - 搜索提交（第 3 节第 1–3 天）放到 **Cloudflare Pages 接上新域名之后**。收费上线也在这次搬家之后。搬家目标是 Cloudflare Pages，不是把 GitHub Pages 绑到自定义域名，所以不要照第 1.4 节去填 GitHub 的 A/CNAME。新域名在 Cloudflare 上之后，Search Console 可以用 DNS TXT 做**网域**资源，Bing 同样用 DNS。站点地图改到新域名根，`robots.txt` 这时才会被爬虫读到。
 - 发帖账号由助手在 **Linux 桌面浏览器**注册和发布。站主只在验证码或扫码时出现，不从手机发。帖子正文仍写「这是我做的，非官方」。
 
-价格只查了后缀标价，没有登录万网、没有下单。2026-09-28 打开 [万网首页](https://wanwang.aliyun.com/domain/) 的 `.com` 卡片：首年 **¥85**，续费 **¥95/年**，转入 ¥85/年，日常价 ¥90/年。三个候选都是普通未注册的 `.com`，按这张卡片计价；若查询页把某个词标成溢价，以查询页为准，那一格本次没有逐词打开。
+英文名必须让英语母语者**直接读出单词**，不用拼音。中文名简繁尽量相同；「一句慢」可以配给任何一个英文名。已注册的 `.com`（含注册后挂牌出售）直接淘汰，不用 `.app` / `.io` 顶上。
 
-域名状态用 Verisign RDAP：`https://rdap.verisign.com/com/v1/domain/<name>.com`，HTTP 404 视为当时未注册，200 视为已注册。检查时间 2026-09-28。这不是商标局检索。
+### 7.1 上一轮拼音（保留，不再首选）
 
-账号：YouTube 对比了公开页。`https://www.youtube.com/@YouTube` 返回 200，标题 “YouTube - YouTube”。候选若返回 404 且标题是 “404 Not Found”，记为**看起来空闲**；返回 200 且有频道标题，记为**已占用**。Instagram 和 Threads 即使用已存在的 `@zuck` 也会转到登录页，标题只是 “Instagram” / “Threads”，和候选一样，所以这两处一律记为**未能核实（登录墙）**。Facebook 同样是登录墙；`facebook.com/earju` 曾打开另一个人的 `@ea.rju`，不能当成 `@earju` 已被占用。
+2026-09-28 查过三个拼音名，当时 `.com` 都是 RDAP 404：一句慢 / Yijuman（`yijuman.com`，YouTube `@yijuman` 看起来空闲）、耳句 / Earju（`earju.com`，`@earju` 已被频道 Earju 占用）、慢耳句 / Manerju（`manerju.com`，`@manerju` 看起来空闲）。备用拼写 `yijumanlisten.com`、`slowjuman.com`、`earjulisten.com`、`getearju.com`、`erjuman.com` 当天也是 404。Threads / Instagram / Facebook 是登录墙，没有核实。拼音英语母语者读不出来，下面改用英文词。
 
-邻近但不是这三个名字的产品，避免靠太近：听句 TingJu、逐句学 Movlingo、耳熟英语、句好记，以及 App「句读」（[judouapp.com](https://judouapp.com/)、[App Store](https://apps.apple.com/cn/app/%E5%8F%A5%E8%AF%BB-%E5%8F%91%E7%8E%B0%E6%96%87%E5%AD%97%E4%B9%8B%E7%BE%8E/id1073431872)）。句读因此不列入候选。
+### 7.2 这一轮怎么筛
 
-| 候选 | 中文（简 / 繁） | 英文 | 一句意思 | 为什么适合这批学习者 | `.com`（2026-09-28 RDAP） | 备用拼写 | 阿里云首年 / 续费 | YouTube | Threads / Instagram | Facebook |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| 1 | 一句慢 / 一句慢（简繁相同） | Yijuman | 一次只听一句，而且听慢 | 台湾、香港、新加坡、马来西亚都说得通，不用文言。对上「暂停、对字幕、做三题」 | [yijuman.com](https://rdap.verisign.com/com/v1/domain/yijuman.com) **404，未注册** | 若被抢注：[yijumanlisten.com](https://rdap.verisign.com/com/v1/domain/yijumanlisten.com)、[slowjuman.com](https://rdap.verisign.com/com/v1/domain/slowjuman.com) 当日也是 404 | 首年 ¥85，续费 ¥95/年。来源同上万网卡片，2026-09-28。未做该词的下单价 | [@yijuman](https://www.youtube.com/@yijuman) **看起来空闲**（404） | 未能核实（登录墙） | 未能核实（登录墙） |
-| 2 | 耳句 / 耳句（简繁相同） | Earju | 给耳朵的一句英文 | 短，耳和句在四种地区都常用。拼音 `erju.com` 已注册，品牌域名用英文拼法 | [earju.com](https://rdap.verisign.com/com/v1/domain/earju.com) **404，未注册**。`erju.com` 已注册 | 句柄被占时的备用：[earjulisten.com](https://rdap.verisign.com/com/v1/domain/earjulisten.com)、[getearju.com](https://rdap.verisign.com/com/v1/domain/getearju.com) 当日 404。YouTube [@earjulisten](https://www.youtube.com/@earjulisten)、[@getearju](https://www.youtube.com/@getearju) 当日 404 | 同上，¥85 / ¥95 | [@earju](https://www.youtube.com/@earju) **已占用**（200，频道标题 Earju，`UCIxdPd4A-ExPnofoJeVCKdQ`）。没有打开频道内容，不猜测它是谁 | 未能核实（登录墙） | 未能核实。打开的是另一个句柄 `@ea.rju` |
-| 3 | 慢耳句 / 慢耳句（简繁相同） | Manerju | 慢慢听给耳朵的句子 | 三个字简繁都不用转换，助手不容易贴错字。比「一句慢」更像自造品牌，也更绕口 | [manerju.com](https://rdap.verisign.com/com/v1/domain/manerju.com) **404，未注册** | [erjuman.com](https://rdap.verisign.com/com/v1/domain/erjuman.com) 当日 404。YouTube [@erjuman](https://www.youtube.com/@erjuman) 当日 404 | 同上，¥85 / ¥95 | [@manerju](https://www.youtube.com/@manerju) **看起来空闲**（404） | 未能核实（登录墙） | 未能核实（登录墙） |
+用 sentence、line、slow、ear、listen、tune、step、one、echo、replay、pause、clear、phrase、word、pace、loop，再接 a、by、and、once、again、slowly、it，拼成能读出来的英文。2026-09-28 对 **533** 个只含字母、长度 4–16 的名字做了 Verisign RDAP（`https://rdap.verisign.com/com/v1/domain/<name>.com`）。**271 个返回 404（当时未注册），262 个返回 200（已注册），0 个请求失败。**
 
-**建议用候选 1：一句慢 / Yijuman，域名 `yijuman.com`。** 简繁不用改字，`.com` 和 YouTube `@yijuman` 在检查当天都空着，意思就是产品本身（一句、放慢）。耳句更短，但 `@earju` 已经被一个 YouTube 频道占用，助手注册时对不齐。慢耳句域名和 YouTube 也空着，但三字拼音不好拼、不好念，放在备选。注册当天若 `@yijuman` 在 Threads/Instagram 已被占用，改用 `@yijumanlisten`，域名仍尽量买 `yijuman.com`。买之前再跑一次 RDAP，404 不保留名额。
+已注册、因此淘汰的例子：`slowline`、`linebyline`、`onesentence`、`slowlisten`、`listenline`、`replayline`、`pauseline`、`clearline`、`oneline`、`oneatatime`、`lineatatime`、`takeyourtime`、`unhurried`、`lendanear`、`allears`、`listenonce`、`eachline`、`wordbyword`、`bitbybit`、`stepbystep`、`playitslow`、`adagio`、`cadence`。
 
-公开网页没有查到「一句慢」或 “Yijuman” 的英语学习产品。这不代替商标注册查询。
+未注册的再按意思、朗读时会不会拼错、长度（尽量 ≤ 12 个字母）缩短。留下的名字用万网查询页同一个公开接口核对溢价：`https://api.domain.aliyun.com/api/check/domainCheck?domainName=<name>.com&scenario=domainCheck&productId=210701`（查询页本身是 [万网搜索](https://wanwang.aliyun.com/domain/searchresult/?keyword=clearandslow&suffix=.com)）。2026-09-28 首页 [`.com` 卡片](https://wanwang.aliyun.com/domain/) 仍是首年 ¥85、续费 ¥95/年。下面五个入选的接口都是 `canRegistry=true`，`type` 不是 premium，首年 **¥85**、续费 **¥95**。没有登录、没有下单。Namecheap 查询返回 403，Cloudflare 域名搜索有人机验证，溢价只以阿里云这一处为准。
+
+YouTube：`https://www.youtube.com/@YouTube` 是 200，标题 “YouTube - YouTube”；不存在的句柄是 404，标题 “404 Not Found”。404 记为**看起来空闲**，200 且有频道标题记为**已占用**。
+
+`.com` 空着但仍拿掉的：
+
+- `playitslowly`：RDAP 404，阿里云标准价，YouTube 404。但 [Play it Slowly](https://29a.ch/playitslowly)（Jonas Wagner，GPL，约 2009 年起）是同名的慢放音频软件。
+- `oneslowline`：YouTube 已有频道 “One Slow Line”。
+- `slowandclear`：YouTube 频道 “Slow Clear English”，和英语学习贴在一起。
+- `slowsentence`：YouTube 频道标题是韩文「느린문장」（慢句子），句柄就是这个英文。
+- `slowspoken`、`pauseandhear`、`againslowly`、`linebyone`：YouTube 句柄已被同名频道占用。
+- `onlyaline`：句柄被 “Only Aline0409” 占用，不是这个短语，但 `@onlyaline` 不能用。
+- `hearitslowly`、`hearslowly`、`hearaline`：听上去像 here，拼写会错。
+- `patientear`：听上去像 air。
+- `theslowline`：`.com` 和 YouTube 当天都空着，但 “The Slow Line” 已是 [一支舞蹈](https://www.hopemohr.org/the-slow-line) 和 “Slow Line Art Room” 的名字。
+
+### 7.3 五个入选
+
+中文简繁都相同。冲突栏是 2026-09-28 的网页快查（名字 + trademark / app，以及能打开的商标记录页），**不是** USPTO 正式检索，也不是律师清标。`tmsearch.uspto.gov` 页面能打开，查询接口前面有人机验证，没有拿到结果表。
+
+| 英文（怎么读） | 中文（简 / 繁） | 意思 | `.com`（RDAP） | 阿里云 | YouTube | 快查 |
+| --- | --- | --- | --- | --- | --- | --- |
+| Clearandslow（clear and slow） | 一句慢 / 一句慢 | 听清楚，而且放慢 | [clearandslow.com](https://rdap.verisign.com/com/v1/domain/clearandslow.com) **404，未注册** | **标准价**，首年 ¥85，续费 ¥95。不是 premium | [@clearandslow](https://www.youtube.com/@clearandslow) **看起来空闲**（404） | 没找到同名英语学习产品或同名商标记录。课堂里常说 “speak clearly and slowly”，那是普通说法。附近的 [STILL AND SLOW](https://www.trademarkelite.com/trademark/trademark-detail/99272379/STILL-AND-SLOW) 是涂色书，不是教育软件 |
+| Sentencewise（sentence-wise） | 逐句 / 逐句 | 一句一句地 | [sentencewise.com](https://rdap.verisign.com/com/v1/domain/sentencewise.com) **404** | 标准价，¥85 / ¥95 | [@sentencewise](https://www.youtube.com/@sentencewise) **看起来空闲**（404） | 词典里有这个副词（[Wiktionary](https://en.wiktionary.org/wiki/sentencewise)），意思就是按句子。没找到同名 App。旁边有别的产品：Wise Sentence、WordWise、Sentenced |
+| Oncealine（once a line） | 一句 / 一句 | 一次只过一句 | [oncealine.com](https://rdap.verisign.com/com/v1/domain/oncealine.com) **404** | 标准价，¥85 / ¥95 | [@oncealine](https://www.youtube.com/@oncealine) **看起来空闲**（404） | 没找到同名 App 或商标记录。念出来是 once / a / line，三个都好拼；写在一起要认出中间的 a |
+| Pausealine（pause a line） | 一句慢 / 一句慢 | 停在这一句上听 | [pausealine.com](https://rdap.verisign.com/com/v1/domain/pausealine.com) **404** | 标准价，¥85 / ¥95 | [@pausealine](https://www.youtube.com/@pausealine) **看起来空闲**（404） | 没找到同名 App 或商标记录。对得上「暂停、对字幕、做三题」 |
+| Onebyline（one by line） | 逐句 / 逐句 | 一句接一句 | [onebyline.com](https://rdap.verisign.com/com/v1/domain/onebyline.com) **404** | 标准价，¥85 / ¥95 | [@onebyline](https://www.youtube.com/@onebyline) **看起来空闲**（404） | 没找到这个字符串的商标或 App。旁边的 LineByLine 是背课文的应用（[linebyline.app](https://www.linebyline.app/about)），USPTO 上的 LINEBYLINE PRODUCTIONS（序列号 76160985）已失效。`linebyline.com` 本轮 RDAP 是 200，本来就淘汰了 |
+
+**建议用 Clearandslow，中文仍叫一句慢，域名 `clearandslow.com`。** 英语母语者会读成 clear、and、slow，没有 here/hear、air/ear 这种同音。12 个字母，意思就是把口语放慢听清楚。`.com` 未注册，阿里云按标准价，YouTube `@clearandslow` 当天看起来空闲。快查没有同名英语学习品牌。Sentencewise 是最接近「一个真正英文词」的备选，但旁边已有 Wise Sentence、WordWise。Oncealine 和 Pausealine 更短，写出来要靠中间那个 a 才拆得开。买域名之前再跑一次 RDAP，404 不保留名额。Threads / Instagram 这一轮没有重查，上一轮即使用 `@zuck` 也进登录墙。
 
 ---
 
 ## 8. 零成本短片：桌面机器人能做完的部分
 
-站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `yijuman.com`（或最终域名）再填。片内品牌只写「一句慢」。
+站主不出镜、不从手机发。一条成片同时给 YouTube Shorts 和 Instagram Reels。长度 **45–60 秒**，竖屏 **1080×1920**，30 fps。片内不烧 github.io 网址，也不烧价格；可点的链接放在说明栏，用第 3.1 节的 UTM，等 Cloudflare 上的 `clearandslow.com`（第 7 节的建议；若改选同表里的另一个名字，就用那个域名）再填。片内中文写「一句慢」，英文写 Clearandslow。
 
 ### 8.1 画面从哪来
 
@@ -641,17 +665,17 @@ ffmpeg -y -i lesson-sub.mp4 -i ui-sub.mp4 -i bed.m4a \
   -c:v libx264 -profile:v high -pix_fmt yuv420p -b:v 8M -maxrate 10M -bufsize 16M \
   -c:a aac -b:a 192k -ar 48000 -ac 2 \
   -movflags +faststart \
-  yijuman-lle1-01-hant.mp4
+  clearandslow-lle1-01-hant.mp4
 ```
 
-说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用「一句慢」，不用 VOA 当频道名。
+说明栏第一行是品牌和「非官方」，接着是免费第 1 课的 UTM 链接，最后是 VOA 署名和音乐署名。标题用 Clearandslow 和「一句慢」，不用 VOA 当频道名。
 
 ### 8.6 每条片子核对
 
 - 竖屏 1080×1920，45–60 秒，能在桌面播放器里播完，没有黑边把字幕裁掉。
 - 站主没有出镜，没有手机界面。
 - VOA 画面只有几秒，没有通讯社角标，没有整集。
-- 片内品牌是「一句慢」，没有 VOA 字样当名称；片尾仍有公共领域署名。
+- 片内中文品牌是「一句慢」，英文是 Clearandslow，没有 VOA 字样当名称；片尾仍有公共领域署名。
 - 字幕和落地页同一种汉字：台湾、香港用繁体地址，新加坡、马来西亚用简体地址。
 - 说明栏链接是新域名（搬家前先不发这支片），并带 `utm_source=youtube` 或 `instagram`、`utm_medium=short` 或 `reel`、`utm_campaign=launch14d`。
 - 音乐曲名和作者写在说明栏。

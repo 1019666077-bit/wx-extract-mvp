@@ -1,33 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>打卡日历 · Let's Learn English</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <!--seo:start-->
+<title>VOA慢速英语打卡日历｜Let&#39;s Learn English</title>
+  <meta name="description" content="用打卡日历记下 VOA Let&#39;s Learn English 学习天数。提交任意一课测验即完成当日打卡，连续天数按北京时间计算，方便坚持慢速英语。" />
+  <link rel="canonical" href="https://1019666077-bit.github.io/wx-extract-mvp/progress.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="VOA慢速英语自学" />
+  <meta property="og:title" content="VOA慢速英语打卡日历｜Let&#39;s Learn English" />
+  <meta property="og:description" content="用打卡日历记下 VOA Let&#39;s Learn English 学习天数。提交任意一课测验即完成当日打卡，连续天数按北京时间计算，方便坚持慢速英语。" />
+  <meta property="og:url" content="https://1019666077-bit.github.io/wx-extract-mvp/progress.html" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="VOA慢速英语打卡日历｜Let&#39;s Learn English" />
+  <meta name="twitter:description" content="用打卡日历记下 VOA Let&#39;s Learn English 学习天数。提交任意一课测验即完成当日打卡，连续天数按北京时间计算，方便坚持慢速英语。" />
+  <meta name="theme-color" content="#0b6e4f" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%230b6e4f'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' fill='white' font-family='sans-serif'%3EV%3C/text%3E%3C/svg%3E" />
+<!--seo:end-->
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body data-page="progress">
   <div class="page">
-    <nav class="site-nav" aria-label="Site">
+    <nav class="site-nav" aria-label="站点">
       <a href="index.html">课表</a>
       <a href="progress.html" aria-current="page">打卡</a>
       <a href="wrongbook.html" data-wrongbook-count>错题本</a>
       <a href="pricing.html" data-unlock-status>开通</a>
     </nav>
     <header class="header">
-      <p class="eyebrow">Self-study streak</p>
+      <p class="eyebrow">VOA 慢速英语 · 学习打卡</p>
       <h1>打卡日历</h1>
-      <p class="subtitle">Submit any lesson quiz to check in for the day. Dates use Asia/Shanghai.</p>
+      <p class="subtitle">提交任意一课的听力小测验，就记为当天已打卡。日期按北京时间（Asia/Shanghai）计算。</p>
     </header>
-    <section class="checkin-section" aria-label="Check-in calendar">
+    <section class="checkin-section" aria-label="打卡日历">
       <div id="checkin-root"></div>
     </section>
     <footer class="footer">
-      <p>This unofficial study helper is not affiliated with Voice of America. Lesson videos and scripts are in the public domain.</p>
+      <p>本站为非官方自学工具，与美国之音（Voice of America）没有隶属关系。课文视频与脚本来自 VOA Learning English，属于公有领域。</p>
     </footer>
   </div>
-  <script src="js/study.js"></script>
-  <script src="js/unlock.js"></script>
-  <script src="js/app.js"></script>
+  <script type="module" src="js/study.js"></script>
+  <script type="module" src="js/unlock.js"></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>

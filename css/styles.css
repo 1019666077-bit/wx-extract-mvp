@@ -1,4 +1,5 @@
 :root {
+  color-scheme: light;
   --bg: #f4f1ea;
   --card: #ffffff;
   --ink: #1d2a32;
@@ -47,12 +48,16 @@ body {
     linear-gradient(180deg, #f7f4ee 0%, var(--bg) 100%);
   color: var(--ink);
   line-height: 1.55;
+  overflow-x: clip;
+  padding-left: env(safe-area-inset-left);
+  padding-right: env(safe-area-inset-right);
 }
 
 .page {
   width: min(860px, calc(100% - 32px));
   margin: 24px auto 48px;
-  display: grid;
+  display: flex;
+  flex-direction: column;
   gap: 18px;
 }
 
@@ -68,6 +73,8 @@ body {
 .pricing-section,
 .redeem-section,
 .paywall-section,
+.excerpt-section,
+.directory-section,
 .footer {
   background: var(--card);
   border: 1px solid var(--line);
@@ -85,6 +92,8 @@ body {
 .pricing-section,
 .redeem-section,
 .paywall-section,
+.excerpt-section,
+.directory-section,
 .footer {
   padding: 22px 24px;
 }
@@ -97,11 +106,29 @@ body {
   gap: 12px;
 }
 
+.site-nav,
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: #fff;
+}
+
 .site-nav {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px 18px;
-  padding: 12px 24px;
+  gap: 4px 12px;
+  padding: 4px 16px;
+}
+
+.site-nav a,
+.site-nav-inline a,
+.back-link,
+.section-more a,
+.level-progress-hint a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
 }
 
 .site-nav a,
@@ -109,6 +136,9 @@ body {
   color: var(--ink);
   font-weight: 700;
   text-decoration: none;
+  justify-content: center;
+  min-width: 44px;
+  padding: 0 6px;
 }
 
 .site-nav a:hover,
@@ -141,6 +171,7 @@ body {
   color: var(--accent);
   font-weight: 700;
   text-decoration: none;
+  padding: 0 4px;
 }
 
 .back-link:hover {
@@ -152,8 +183,7 @@ body {
   color: var(--accent);
   font-size: 0.82rem;
   font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  letter-spacing: 0.04em;
 }
 
 h1,
@@ -166,7 +196,8 @@ h3,
 
 h1 {
   margin-bottom: 6px;
-  font-size: clamp(1.7rem, 4vw, 2.2rem);
+  font-size: clamp(1.45rem, 4vw, 2.2rem);
+  overflow-wrap: anywhere;
 }
 
 h2 {
@@ -179,10 +210,26 @@ h3 {
   font-size: 1.15rem;
 }
 
+.subtitle,
+.lesson-intro,
+.catalog-note,
+.en,
+.zh,
+.wrong-prompt,
+.video-fallback,
+h2,
+h3 {
+  overflow-wrap: anywhere;
+}
+
 .subtitle {
   margin-bottom: 0;
   color: var(--muted);
   font-size: 1.05rem;
+}
+
+.lesson-intro {
+  margin: 10px 0 0;
 }
 
 .catalog {
@@ -258,6 +305,7 @@ h3 {
   border-radius: 999px;
   background: #fff;
   color: var(--ink);
+  min-height: 44px;
   padding: 8px 16px;
   font: inherit;
   font-size: 0.92rem;
@@ -362,6 +410,7 @@ h3 {
   border-radius: 999px;
   background: #fff;
   color: var(--ink);
+  min-height: 44px;
   padding: 8px 14px;
   font: inherit;
   font-size: 0.88rem;
@@ -459,6 +508,8 @@ h3 {
 
 .video-wrap {
   position: relative;
+  width: 100%;
+  max-width: 100%;
   overflow: hidden;
   border-radius: 12px;
   aspect-ratio: 16 / 9;
@@ -481,6 +532,9 @@ h3 {
 }
 
 .video-fallback a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
   color: var(--accent);
 }
 
@@ -612,14 +666,57 @@ h3 {
 
 .choice {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
   gap: 10px;
+  min-height: 44px;
   margin: 0 0 10px;
   cursor: pointer;
 }
 
 .choice input {
-  margin-top: 4px;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  flex: none;
+}
+
+.quiz-preview {
+  margin: 8px 0 0;
+  padding-left: 1.2em;
+}
+
+.excerpt-note {
+  margin: 0 0 12px;
+  color: var(--muted);
+}
+
+.lesson-directory ol {
+  margin: 0 0 16px;
+  padding-left: 1.2em;
+}
+
+.lesson-directory li {
+  margin: 0;
+}
+
+.lesson-directory a {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  color: var(--ink);
+  font-weight: 650;
+  text-decoration: none;
+  overflow-wrap: anywhere;
+}
+
+.lesson-directory a:hover {
+  color: var(--accent);
+}
+
+#quiz,
+.header,
+.catalog-section {
+  scroll-margin-top: 96px;
 }
 
 .quiz-actions {
@@ -630,14 +727,19 @@ h3 {
 
 .btn {
   appearance: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   border: 1px solid var(--line);
   border-radius: 999px;
   background: #fff;
   color: var(--ink);
+  min-height: 44px;
   padding: 10px 18px;
   font: inherit;
   font-weight: 650;
   cursor: pointer;
+  text-decoration: none;
 }
 
 .btn.primary {
@@ -707,7 +809,8 @@ h3 {
 }
 
 .cal-nav {
-  min-width: 42px;
+  min-width: 44px;
+  min-height: 44px;
   padding: 6px 12px;
 }
 
@@ -930,10 +1033,14 @@ h3 {
 .redeem-form input {
   width: 100%;
   max-width: 360px;
+  min-height: 44px;
   padding: 10px 12px;
   border: 1px solid var(--line);
   border-radius: 12px;
+  background: #fff;
+  color: var(--ink);
   font: inherit;
+  font-size: 16px;
 }
 
 .paywall-section {
@@ -957,6 +1064,17 @@ h3 {
   text-decoration: none;
 }
 
+@media (min-width: 720px) {
+  .lesson-directory ol {
+    columns: 2;
+    column-gap: 28px;
+  }
+
+  .lesson-directory li {
+    break-inside: avoid;
+  }
+}
+
 @media (max-width: 640px) {
   .page {
     width: min(100%, calc(100% - 20px));
@@ -974,12 +1092,18 @@ h3 {
   .pricing-section,
   .redeem-section,
   .paywall-section,
+  .excerpt-section,
+  .directory-section,
   .footer {
     padding: 18px 16px;
   }
 
-  .checkin-stats {
-    grid-template-columns: 1fr;
+  .checkin-stats strong {
+    font-size: 1.35rem;
+  }
+
+  .checkin-stats span {
+    font-size: 0.75rem;
   }
 
   .nav {

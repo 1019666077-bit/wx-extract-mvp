@@ -1,15 +1,27 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Let's Learn English Lesson</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>VOA慢速英语课程</title>
+  <meta name="description" content="正在打开 VOA Let's Learn English 慢速英语课文。每课都有单独页面，含中英对照听力字幕。" />
+  <meta name="robots" content="noindex" />
+  <link rel="canonical" href="https://1019666077-bit.github.io/wx-extract-mvp/" />
+  <script>
+    (function () {
+      var id = new URLSearchParams(window.location.search).get("id");
+      if (id && /^lle[12]-\d{2}$/.test(id)) {
+        var root = window.location.pathname.replace(/[^/]*$/, "");
+        window.location.replace(root + "lessons/" + id + ".html" + window.location.hash);
+      }
+    })();
+  </script>
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body data-page="lesson">
   <div class="page">
-    <nav class="nav" aria-label="Site">
-      <a href="index.html" class="back-link">← All lessons · 课表</a>
+    <nav class="nav" aria-label="站点">
+      <a href="index.html" class="back-link">← 课表</a>
       <div class="site-nav-inline">
         <a href="progress.html">打卡</a>
         <a href="wrongbook.html" data-wrongbook-count>错题本</a>
@@ -17,33 +29,33 @@
       </div>
     </nav>
     <header class="header">
-      <p class="eyebrow">Unofficial VOA study helper</p>
-      <h1 id="lesson-title">Let's Learn English</h1>
-      <p id="lesson-subtitle" class="subtitle"></p>
+      <p class="eyebrow">VOA 慢速英语 · 非官方自学</p>
+      <h1 id="lesson-title">VOA 慢速英语</h1>
+      <p id="lesson-subtitle" class="subtitle">请从课表选择一课。旧的课文链接会自动跳到新的课程页。</p>
     </header>
     <nav class="lesson-pager" data-lesson-pager hidden aria-label="上下课"></nav>
-    <section class="video-section" aria-label="Lesson video">
+    <section class="video-section" aria-label="课文视频">
       <div class="video-wrap">
-        <video id="lesson-video" controls playsinline preload="metadata" poster="">
-          Your browser does not support video.
+        <video id="lesson-video" controls playsinline preload="none" poster="img/poster.svg">
+          你的浏览器不支持视频播放。
         </video>
       </div>
       <p class="video-fallback" id="video-fallback" hidden>
-        <a id="youtube-link" href="#" target="_blank" rel="noopener">Open on YouTube</a>
+        <a id="youtube-link" href="#" target="_blank" rel="noopener">YouTube 备用</a>
         <span id="youtube-sep"> · </span>
-        <a id="voa-page-link" href="#" target="_blank" rel="noopener">VOA lesson page</a>
+        <a id="voa-page-link" href="#" target="_blank" rel="noopener">VOA 原文课文</a>
       </p>
     </section>
-    <section class="dialogue-section" aria-label="Dialogue">
-      <h2>Dialogue · 对话</h2>
+    <section class="dialogue-section" aria-label="对话">
+      <h2>对话 · 中英对照</h2>
       <div id="dialogue" class="dialogue"></div>
     </section>
-    <section class="quiz-section" id="quiz" aria-label="Quiz">
-      <h2>Quiz · 练习</h2>
+    <section class="quiz-section" id="quiz" aria-label="练习">
+      <h2>听力小测验</h2>
       <form id="quiz-form"></form>
       <div class="quiz-actions">
-        <button type="submit" form="quiz-form" id="submit-quiz" class="btn primary">Check answers</button>
-        <button type="button" id="reset-quiz" class="btn">Reset</button>
+        <button type="submit" form="quiz-form" id="submit-quiz" class="btn primary">核对答案</button>
+        <button type="button" id="reset-quiz" class="btn">重做</button>
       </div>
       <p id="quiz-result" class="quiz-result" role="status" aria-live="polite"></p>
     </section>
@@ -52,8 +64,11 @@
       <p id="attribution"></p>
     </footer>
   </div>
-  <script src="js/study.js"></script>
-  <script src="js/unlock.js"></script>
-  <script src="js/app.js"></script>
+  <noscript>
+    <p>请打开课表选择课程。旧链接需要浏览器跳转到每课自己的页面。</p>
+  </noscript>
+  <script type="module" src="js/study.js"></script>
+  <script type="module" src="js/unlock.js"></script>
+  <script src="js/app.js" defer></script>
 </body>
 </html>

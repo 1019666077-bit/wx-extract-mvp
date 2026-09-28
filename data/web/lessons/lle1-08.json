@@ -1,0 +1,224 @@
+{
+  "id": "lle1-08",
+  "number": 8,
+  "level": 1,
+  "levelId": "lle1",
+  "title": "Let's Learn English Lesson 8",
+  "subtitle": "Are You Busy?",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2016/05/e/ee/ee277d1c-017b-4b98-9491-8de08a76122e_hq.mp4",
+  "youtubeId": "",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-lesson-8-are-you-busy/3253185.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 1, Lesson 8: Are You Busy? (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello, everyone. Here I am at my new job!",
+      "zh": "大家好。我现在在新工作的地方！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yesterday at my first day of work … Well, let’s not talk about yesterday. Today is a new day!",
+      "zh": "昨天是我上班的第一天……算了，我们别提昨天了。今天是新的一天！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Today I want to apologize to my co-workers.",
+      "zh": "今天我想向同事们道歉。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi, Anne. Are you busy?",
+      "zh": "嗨，安妮。你忙吗？"
+    },
+    {
+      "speaker": "Anne",
+      "en": "Hi, Anna. Yes. At 10 a.m. I am writing. Every day I do my morning show. Sorry!",
+      "zh": "嗨，安娜。是的。上午 10 点我在写稿。我每天都做早间节目。抱歉！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Okay. See you later, maybe.",
+      "zh": "好的。也许回头见。"
+    },
+    {
+      "speaker": "Anne",
+      "en": "Maybe I’ll see you later.",
+      "zh": "也许回头见。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi, Jonathan. Are you busy?",
+      "zh": "嗨，乔纳森。你忙吗？"
+    },
+    {
+      "speaker": "Jonathan",
+      "en": "Yes, I’m busy. When the studio light is on, I am recording my evening show.",
+      "zh": "是的，我很忙。演播室的灯亮着的时候，我在录晚间节目。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Right. Sorry about yesterday.",
+      "zh": "好的。昨天的事抱歉。"
+    },
+    {
+      "speaker": "Jonathan",
+      "en": "No worries.",
+      "zh": "没关系。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "May I see the studio?",
+      "zh": "我可以看看演播室吗？"
+    },
+    {
+      "speaker": "Jonathan",
+      "en": "Um, maybe another time? Right now I am busy.",
+      "zh": "嗯，下次吧？我现在很忙。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi, Amelia! Are you busy?",
+      "zh": "嗨，阿米莉亚！你忙吗？"
+    },
+    {
+      "speaker": "Amelia",
+      "en": "I’m a little busy.",
+      "zh": "我有一点忙。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I want to say I’m sorry for yesterday.",
+      "zh": "我想为昨天的事说对不起。"
+    },
+    {
+      "speaker": "Amelia",
+      "en": "It’s okay, Anna. Come by this afternoon.",
+      "zh": "没关系，安娜。今天下午再来。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "Are you busy?",
+      "zh": "你忙吗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, Ms. Weaver. I am busy.",
+      "zh": "是的，韦弗女士。我很忙。"
+    },
+    {
+      "speaker": "Caty",
+      "en": "My office. 5:00 p.m.",
+      "zh": "来我办公室。下午 5 点。"
+    },
+    {
+      "speaker": "Co-Workers",
+      "en": "Surprise!",
+      "zh": "惊喜！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "A party! Awesome! And I still have my job! Until next time!",
+      "zh": "派对！太棒了！而且我还保住了工作！下次见！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "What does Anna want to do today?",
+      "choices": [
+        "Record a show",
+        "Apologize to her co-workers",
+        "Find the gym"
+      ],
+      "answerIndex": 1
+    },
+    {
+      "id": "q2",
+      "prompt": "What does Anne do at 10 a.m. every day?",
+      "choices": [
+        "She is writing for her morning show",
+        "She is recording her evening show",
+        "She is having a party"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "What happens in Caty's office at 5:00 p.m.?",
+      "choices": [
+        "Anna loses her job",
+        "Jonathan records a show",
+        "The co-workers have a surprise party"
+      ],
+      "answerIndex": 2
+    }
+  ],
+  "prev": {
+    "id": "lle1-07",
+    "number": 7,
+    "level": 1,
+    "title": "Let's Learn English Lesson 7",
+    "subtitle": "What Are You Doing?"
+  },
+  "next": {
+    "id": "lle1-09",
+    "number": 9,
+    "level": 1,
+    "title": "Let's Learn English Lesson 9",
+    "subtitle": "Is It Cold?"
+  },
+  "levelLessonIds": [
+    "lle1-01",
+    "lle1-02",
+    "lle1-03",
+    "lle1-04",
+    "lle1-05",
+    "lle1-06",
+    "lle1-07",
+    "lle1-08",
+    "lle1-09",
+    "lle1-10",
+    "lle1-11",
+    "lle1-12",
+    "lle1-13",
+    "lle1-14",
+    "lle1-15",
+    "lle1-16",
+    "lle1-17",
+    "lle1-18",
+    "lle1-19",
+    "lle1-20",
+    "lle1-21",
+    "lle1-22",
+    "lle1-23",
+    "lle1-24",
+    "lle1-25",
+    "lle1-26",
+    "lle1-27",
+    "lle1-28",
+    "lle1-29",
+    "lle1-30",
+    "lle1-31",
+    "lle1-32",
+    "lle1-33",
+    "lle1-34",
+    "lle1-35",
+    "lle1-36",
+    "lle1-37",
+    "lle1-38",
+    "lle1-39",
+    "lle1-40",
+    "lle1-41",
+    "lle1-42",
+    "lle1-43",
+    "lle1-44",
+    "lle1-45",
+    "lle1-46",
+    "lle1-47",
+    "lle1-48",
+    "lle1-49",
+    "lle1-50",
+    "lle1-51",
+    "lle1-52"
+  ]
+}

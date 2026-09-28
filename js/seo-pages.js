@@ -487,9 +487,9 @@ function keyPages(origin = SITE) {
       id: "pricing",
       file: "pricing.html",
       loc: `${origin}/pricing.html`,
-      title: "开通 VOA Let's Learn English 慢速英文",
+      title: "开通声声慢｜非 VOA 官方自学课",
       description:
-        "Level 1 第 1–5 课免费试学。开通后解锁 VOA Let's Learn English 已上线的全部慢速英文课，含 Level 1、Level 2 的中英对照听力与测验。",
+        "声声慢是非官方自学工具，不是美国之音。Level 1 第 1–5 课免费。开通后解锁已上线慢速英文课，含 Level 1 与 Level 2 的中英对照听力与测验。",
       ogType: "website",
       priority: "0.5",
     },
@@ -601,7 +601,7 @@ function homePitch(levels) {
 }
 
 function homeDisclaimer() {
-  return "本站为非官方自学工具，与美国之音（Voice of America）没有隶属或背书关系。课文视频与脚本来自 VOA Learning English，属于公有领域。";
+  return "声声慢是非官方自学工具，与美国之音（Voice of America）没有隶属或背书关系。课文视频与脚本来自 VOA Learning English，属于公有领域。";
 }
 
 function homeJsonLd(page, locale, canonical, origin) {
@@ -901,6 +901,7 @@ ${quiz}
 ${pager}
     </nav>
     <footer class="footer">
+      <p>${escapeHtml(tx("声声慢是非官方自学工具，与美国之音（Voice of America）没有隶属关系。", loc))}</p>
       <p id="attribution">${escapeHtml(view.attribution || "")}</p>
       ${legalLinksHtml(loc, "lesson")}
     </footer>
@@ -1200,8 +1201,8 @@ function buildEnglishPricingPage(origin, links) {
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Pricing | unofficial study tool</title>
-  <meta name="description" content="One-time access: 30 days for US$5.99 or 90 days for US$13.99. Payment does not auto-renew. Digital content opens immediately and is not refundable, except where the law or Waffo Pancake requires it." />
+  <title>Pricing | Eachsound</title>
+  <meta name="description" content="Eachsound is an unofficial study tool and is not Voice of America. One-time access: 30 days for US$5.99 or 90 days for US$13.99. Payment does not auto-renew." />
   <link rel="canonical" href="${escapeHtml(origin)}/en/pricing.html" />
   <link rel="alternate" hreflang="zh-Hans" href="${escapeHtml(origin)}/pricing.html" />
   <link rel="alternate" hreflang="zh-Hant" href="${escapeHtml(origin)}/zh-hant/pricing.html" />
@@ -1219,8 +1220,8 @@ function buildEnglishPricingPage(origin, links) {
       <nav class="script-switch" aria-label="Language"><a href="../pricing.html" hreflang="zh-Hans" lang="zh-Hans">简</a><a href="../zh-hant/pricing.html" hreflang="zh-Hant" lang="zh-Hant">繁</a><a href="pricing.html" hreflang="en" lang="en" aria-current="true">EN</a></nav>
     </nav>
     <header class="header">
-      <p class="eyebrow">Unofficial study tool</p>
-      <h1>Unlock the course</h1>
+      <p class="eyebrow">Eachsound · not official VOA</p>
+      <h1>Unlock Eachsound</h1>
       <p class="subtitle">Level 1 lessons 1–5 stay free. One-time payment: US$5.99 for 30 days or US$13.99 for 90 days. One-time payment, no automatic renewal. Digital content opens immediately after payment.</p>
     </header>
     <section class="pricing-section" aria-label="Plans">
@@ -1251,7 +1252,7 @@ function buildEnglishPricingPage(origin, links) {
       <p class="pay-note">The pay buttons stay off until this box is checked. They do not call the payment service before that.</p>
     </section>
     <footer class="footer">
-      <p>This site is an unofficial study tool and is not affiliated with Voice of America.</p>
+      <p>Eachsound is an unofficial study tool and is not affiliated with Voice of America.</p>
       <nav class="legal-links" aria-label="Policies">
         <a href="terms.html">Terms</a>
         <a href="privacy.html">Privacy</a>

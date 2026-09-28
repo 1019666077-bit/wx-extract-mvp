@@ -4,7 +4,7 @@
 const fs = require("node:fs");
 const path = require("node:path");
 
-const PAGES_PROJECT = "lle-learn";
+const PAGES_PROJECT = "eachsound";
 
 const ROOT_FILES = [
   "index.html",

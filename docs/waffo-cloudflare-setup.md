@@ -287,13 +287,13 @@ Cloudflare 账号与第 3 节的 Worker 是同一个。
 
 ### 项目名
 
-Pages 项目名暂定为 `lle-learn`（待品牌名）。预览地址将是 `https://lle-learn.pages.dev`。品牌名确定之前，不要在 Cloudflare 里创建这个项目。确定后如果改名，要同时改 `.github/workflows/cloudflare-pages.yml` 里的 `--project-name`。
+品牌中文名是「声声慢」，繁体是「聲聲慢」，英文名是 Eachsound。Pages 项目名是 `eachsound`。预览地址是 `https://eachsound.pages.dev`。`.github/workflows/cloudflare-pages.yml` 里的 `--project-name` 已经是 `eachsound`。
 
-不要用 `voa-lle`。项目名会进 `pages.dev` 主机名，`voa-lle.pages.dev` 里含有 VOA。最终品牌还没定，公开地址里不要出现 VOA。Worker 的名字仍是 `voa-lle-unlock`，这一步不要改。
+在仪表盘 Workers & Pages → Create → Pages 里选直接上传（Direct Upload / Upload assets），不要选 Connect to Git。项目名填 `eachsound`。生产分支、构建设置都留空，因为不走 Git 集成。项目由你在仪表盘建好；工作流只上传 `dist/`，名字必须和仪表盘一致。
+
+公开的 `pages.dev` 主机名不要带 VOA。Worker 的名字仍是 `voa-lle-unlock`，不要改。
 
 ### 每一项设置
-
-等品牌名确定之后，再在仪表盘 Workers & Pages → Create → Pages 里选直接上传（Upload assets），不要选 Connect to Git。项目名先填暂定的 `lle-learn`。第一次也可以不在仪表盘建：下面的部署命令会在这个账号里创建同名项目。生产分支、构建设置都留空，因为不走 Git 集成。品牌名没定之前不要执行创建。
 
 构建发生在 GitHub Action，按这个顺序：
 
@@ -304,13 +304,13 @@ Pages 项目名暂定为 `lle-learn`（待品牌名）。预览地址将是 `htt
 | 构建命令 | `node scripts/build-pages.js` |
 | 整理输出 | `node scripts/stage-pages.js` |
 | 输出目录 | `dist` |
-| 部署命令 | `npx wrangler pages deploy dist --project-name=lle-learn --commit-dirty=true` |
+| 部署命令 | `npx wrangler pages deploy dist --project-name=eachsound --commit-dirty=true` |
 
 仪表盘里的 Build command 填 none（留空）。不要把构建命令填进 Cloudflare，否则会和 Action 各建一次。
 
 `dist/` 不进 Git。里面是站点根：`index.html`、`terms.html`、`privacy.html`、`refund.html`、`en/`、`robots.txt`、`sitemap.xml`、`_headers`、`_redirects`、`css/`、`js/`（不含 `*.test.js`）、`img/`、`lessons/`、`zh-hant/`、`data/`。没有 `worker/`、`miniprogram/`、`docs/`。
 
-在 Cloudflare Pages 上，站点在域名根，不在 `/wx-extract-mvp/` 下面。所以 `https://lle-learn.pages.dev/robots.txt` 和 `/sitemap.xml` 就是搜索引擎要读的那两份。`/zh-hant/` 仍是繁体前缀。课页用相对路径（`../css/styles.css`、`../../css/styles.css`），在域名根和现在的项目路径上都会落到 `/css/styles.css`。运行时代码不写死 `/wx-extract-mvp/`。
+在 Cloudflare Pages 上，站点在域名根，不在 `/wx-extract-mvp/` 下面。所以 `https://eachsound.pages.dev/robots.txt` 和 `/sitemap.xml` 就是验收时要打开的那两份。`/zh-hant/` 仍是繁体前缀。课页用相对路径（`../css/styles.css`、`../../css/styles.css`），在域名根和现在的项目路径上都会落到 `/css/styles.css`。运行时代码不写死 `/wx-extract-mvp/`。
 
 `_headers` 和 `_redirects` 只对 Cloudflare Pages 生效。GitHub Pages 忽略这两个文件。`lesson.html` 里的脚本仍然负责 GitHub 上的旧链接。
 
@@ -334,11 +334,11 @@ Pages 项目名暂定为 `lle-learn`（待品牌名）。预览地址将是 `htt
 
 以后要换 Token：右上角头像 → My Profile → API Tokens → Create Token → Create Custom Token。Permission 仍是上面三条，Account Resources 只选放 Worker 的那个账号。不要选所有账号。如果 Action 报还要读账号信息，再加一条 Account → Account Settings → Read，然后换上新 Token。
 
-密钥已经在，所以推到 `main` 时 Cloudflare Pages 工作流会尝试把 `dist/` 传到项目 `lle-learn`。Worker 不跟着 push 部署。现在不要为了部署去推 `main`，也不要手动跑 Worker 工作流。
+密钥已经在，所以推到 `main` 时 Cloudflare Pages 工作流会尝试把 `dist/` 传到项目 `eachsound`。仪表盘里要先有这个 Direct Upload 项目，否则上传会失败。Worker 不跟着 push 部署。现在不要为了部署去推 `main`，也不要手动跑 Worker 工作流。
 
 ### 改 origin 之前先验收
 
-不要先改 `origin`。等 `https://lle-learn.pages.dev` 出现之后检查：
+不要先改 `origin`。等 `https://eachsound.pages.dev` 出现之后检查：
 
 1. 打开 `/`。简体目录能用，样式来自 `/css/styles.css`。页脚有服务条款、隐私政策、退款政策。
 2. 打开 `/zh-hant/`。繁体目录能用。页面里写的是 `../css/styles.css`，实际仍是 `/css/styles.css`。
@@ -351,9 +351,28 @@ Pages 项目名暂定为 `lle-learn`（待品牌名）。预览地址将是 `htt
 9. 响应头里有 `X-Content-Type-Options: nosniff`。HTML 是 `Cache-Control: public, max-age=0, must-revalidate`。
 10. 再打开原来的 `https://1019666077-bit.github.io/wx-extract-mvp/`，确认 GitHub Pages 还能用。
 
-验收通过之后才改源站。canonical、hreflang、sitemap、Open Graph、JSON-LD 和 Worker 的 CORS 都跟这一个字段：
+验收通过之后才改源站。canonical、hreflang、sitemap、Open Graph、JSON-LD 和 Worker 的 CORS 都跟这一个字段。`pages.dev` 只用来验收，不要把它写成最终的 `origin`。
 
-1. 把 `site.config.json` 的 `origin` 改成 `https://lle-learn.pages.dev`，不要末尾斜杠。以后绑了自定义域名，再改成那个 `https://` 地址，然后重复下面两步。
+### 迁站最终域名 eachsound.com
+
+最终对外域名是 `https://eachsound.com`（正在购买，还没绑定）。`site.config.json` 的 `origin` 现在仍然是 `https://1019666077-bit.github.io/wx-extract-mvp`，这一步不要改。
+
+自定义域通了、锁图标出现、并且上面的验收在 `pages.dev` 上做过之后，再把 `origin` 直接改成 `https://eachsound.com`。
+
+绑定分两步：先在 Pages 里加自定义域，再选一种 DNS。
+
+1. 打开 Pages 项目 `eachsound` → Custom domains → Set up a custom domain，填 `eachsound.com`。若还要 `www`，再加 `www.eachsound.com`。Pages 会列出要添加的记录。
+2. DNS 二选一。
+
+**留在阿里云 DNS。** 注册商的 NS 不动。按 Pages 给出的记录，在阿里云只加这一条站的解析：根域按 Pages 的要求填写（根域若不能写 CNAME，用阿里云的 CNAME 展平或 ALIAS，或照 Pages 当时给出的记录类型）。`www` 用 CNAME 指到 `eachsound.pages.dev`。已有的 MX、验证记录和其他子域留在原地。
+
+**把 NS 改到 Cloudflare。** 在 Cloudflare 添加站点 `eachsound.com`，把注册商的 NS 改成 Cloudflare 给出的两条，等 NS 生效后，再在 Pages 里添加上面的自定义域。证书和代理都在 Cloudflare。
+
+**建议：** eachsound.com 是新买的域名，上面还没有必须留在阿里云的邮箱或其他站点，把 NS 改到 Cloudflare。自定义域、证书和 Pages 在同一处，少一次跨服务排错。如果买下来之后已经在阿里云配了 MX 或其他记录，就留在阿里云 DNS，只加 Pages 要求的记录，避免把那些记录一起搬走。
+
+改 `origin` 时按这个顺序，现在不要做：
+
+1. 把 `site.config.json` 的 `origin` 改成 `https://eachsound.com`，不要末尾斜杠。
 2. 运行 `npm run build`。它会重写页面，并把 `worker/wrangler.toml` 的 `ALLOWED_ORIGIN` 和两个商品 id 改成和 `site.config.json` 一致。不要手改那几行。
 3. 提交并推到 `main`，等 Pages 工作流把新的 `dist/` 传上去。
 4. 在 `worker/` 里再执行一次 `npx wrangler deploy`，或手动跑「Cloudflare Worker」工作流。CORS 要这次部署才换成新源站。现在不要部署。

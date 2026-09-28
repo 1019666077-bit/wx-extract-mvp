@@ -1,6 +1,7 @@
-# Publishes the static site to Cloudflare Pages.
-# Project name lle-learn is provisional until the brand name is chosen. Do not create the project before then.
-# GitHub Pages is unchanged: it still serves this branch from the repository root.
+# Publishes the static site to Cloudflare Pages project eachsound.
+# Preview host: https://eachsound.pages.dev. Final domain later: https://eachsound.com.
+# Create the project in the dashboard with Direct Upload. Do not connect Git.
+# GitHub Pages is unchanged. site.config.json origin stays on GitHub Pages for now.
 # This job does nothing until both GitHub secrets exist.
 name: Cloudflare Pages
 
@@ -43,4 +44,4 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy dist --project-name=lle-learn --commit-dirty=true
+          command: pages deploy dist --project-name=eachsound --commit-dirty=true

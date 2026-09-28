@@ -7,43 +7,45 @@
 
 const OPERATOR_HANS = "东莞市常平创客汇网络技术工作室";
 const OPERATOR_EN = `${OPERATOR_HANS}, a sole proprietorship registered in Dongguan, Guangdong, China`;
+const PRODUCT_HANS = "声声慢";
+const PRODUCT_EN = "Eachsound";
 
 const PAGES = {
   terms: {
     file: "terms.html",
-    hansTitle: "服务条款｜非官方慢速英文自学",
+    hansTitle: "服务条款｜声声慢",
     hansDescription:
-      "本站服务条款。一次性付款，不自动续费。收费的是学习工具和课程开放。付款由 Waffo 作为商户代收处理。",
-    enTitle: "Terms of service | unofficial study tool",
+      "声声慢的服务条款。声声慢是非官方自学工具，不是美国之音。一次性付款，不自动续费。付款由 Waffo 作为商户代收处理。",
+    enTitle: "Terms of service | Eachsound",
     enDescription:
-      "Terms of service. Purchases are one-time and do not auto-renew. The fee is for the study tool and course access. Waffo is the merchant of record.",
+      "Terms of service for Eachsound, an unofficial study tool and not Voice of America. Purchases are one-time and do not auto-renew. Waffo is the merchant of record.",
   },
   privacy: {
     file: "privacy.html",
-    hansTitle: "隐私政策｜非官方慢速英文自学",
+    hansTitle: "隐私政策｜声声慢",
     hansDescription:
-      "本站隐私政策。为找回开通，本站使用的买家信息只有订单号和付款邮箱。付款由 Waffo 作为商户代收处理。",
-    enTitle: "Privacy policy | unofficial study tool",
+      "声声慢的隐私政策。声声慢是非官方自学工具，不是美国之音。为找回开通，使用的买家信息只有订单号和付款邮箱。",
+    enTitle: "Privacy policy | Eachsound",
     enDescription:
-      "Privacy policy. For restoring access we use only the order id and the payer email. Waffo processes the payment as merchant of record.",
+      "Privacy policy for Eachsound, an unofficial study tool and not Voice of America. For restoring access we use only the order id and the payer email.",
   },
   refund: {
     file: "refund.html",
-    hansTitle: "退款政策｜非官方慢速英文自学",
+    hansTitle: "退款政策｜声声慢",
     hansDescription:
-      "本站退款政策。本产品为数字内容，购买后立即开通。所有销售最终有效、不予退款。法律或 Waffo Pancake 规则强制要求的除外。",
-    enTitle: "Refund policy | unofficial study tool",
+      "声声慢的退款政策。声声慢是非官方自学工具，不是美国之音。数字内容购买后立即开通，所有销售最终有效、不予退款。法律或 Waffo Pancake 强制要求的除外。",
+    enTitle: "Refund policy | Eachsound",
     enDescription:
-      "Refund policy. This is digital content and opens immediately. All sales are final and non-refundable, except where the law or Waffo Pancake requires a refund.",
+      "Refund policy for Eachsound, an unofficial study tool and not Voice of America. Digital content opens immediately. All sales are final, except where the law or Waffo Pancake requires a refund.",
   },
 };
 
 function contactPhrase(lang, email) {
   const safe = escapeHtml(email);
   if (lang === "en") {
-    return `${safe} (placeholder, 待幕僚长确认; an Outlook alias is opened after the brand name is set)`;
+    return `${safe} (placeholder, 待幕僚长确认; the brand is Eachsound, and the Outlook alias is not in use yet)`;
   }
-  return `${safe}（占位，待幕僚长确认。品牌名定后改为 Outlook 别名）`;
+  return `${safe}（占位，待幕僚长确认。品牌已定为声声慢 / Eachsound，Outlook 别名尚未更换）`;
 }
 
 function termsBody(lang, email) {
@@ -51,7 +53,7 @@ function termsBody(lang, email) {
   if (lang === "en") {
     return `
     <h2>What this site is</h2>
-    <p>This site is an unofficial study tool. It is not Voice of America, and VOA does not run or endorse it. Lesson videos and scripts come from VOA Learning English public resources.</p>
+    <p>Eachsound is an unofficial study tool. It is not Voice of America, and VOA does not run or endorse it. Lesson videos and scripts come from VOA Learning English public resources.</p>
     <h2>What the fee pays for</h2>
     <p>The fee is for this study tool and for opening the course. The tool includes check-in, the wrong-answer notebook, and progress, together with access to the lessons that are already published. The only products are one-time purchases: 30 days for US$5.99 and 90 days for US$13.99. Payment is one-time and does not auto-renew. There is no trial period. The free Level 1 lessons 1–5 are the trial.</p>
     <p>This product is digital content and access starts immediately after purchase. All sales are final and non-refundable, except where applicable law or the rules of the payment service provider (Waffo Pancake) require otherwise. Before checkout you must agree to immediate access and acknowledge that, to the extent permitted by applicable law, you waive the right of withdrawal and any right to a refund.</p>
@@ -74,7 +76,7 @@ function termsBody(lang, email) {
   }
   return `
     <h2>本站是什么</h2>
-    <p>本站是非官方自学工具，不是美国之音（Voice of America），也没有得到美国之音的运营或背书。课文视频和脚本来自 VOA Learning English 的公开资源。</p>
+    <p>声声慢是非官方自学工具，不是美国之音（Voice of America），也没有得到美国之音的运营或背书。课文视频和脚本来自 VOA Learning English 的公开资源。</p>
     <h2>收费买的是什么</h2>
     <p>收费的是本站学习工具和课程开放。学习工具包括打卡、错题本和进度，以及已经上线课程的开放。只做一次性购买：30 天 US$5.99、90 天 US$13.99。一次性付款，不自动续费。不设试用期。免费的 Level 1 第 1–5 课就是试用。</p>
     <p>本产品为数字内容，购买后立即开通。所有销售最终有效、不予退款。适用法律或支付服务商（Waffo Pancake）规则强制要求的除外。结账前须勾选同意立即开通，并知悉在适用法律允许的范围内由此放弃撤销权和退款权。</p>
@@ -101,7 +103,7 @@ function privacyBody(lang, email) {
   if (lang === "en") {
     return `
     <h2>Who runs this site</h2>
-    <p>This site is an unofficial study tool. It is not Voice of America. The operator is ${escapeHtml(OPERATOR_EN)}.</p>
+    <p>Eachsound is an unofficial study tool. It is not Voice of America. The operator is ${escapeHtml(OPERATOR_EN)}.</p>
     <h2>What we use</h2>
     <p>To sell access and to restore a lost credential, the buyer information this site uses is only the order id and the payer email. The email is stored here as a one-way checksum, not as the mailbox itself. The plaintext email is collected by the Waffo checkout and is read back from the payment notification.</p>
     <h2>What we do not collect</h2>
@@ -113,7 +115,7 @@ function privacyBody(lang, email) {
   }
   return `
     <h2>谁在运营</h2>
-    <p>本站是非官方自学工具，不是美国之音。经营者是${escapeHtml(OPERATOR_HANS)}。</p>
+    <p>声声慢是非官方自学工具，不是美国之音。经营者是${escapeHtml(OPERATOR_HANS)}。</p>
     <h2>我们用到的信息</h2>
     <p>为了出售课程开放，以及找回弄丢的开通凭证，本站使用的买家信息只有订单号和付款邮箱。邮箱在本站只保存单向校验值，不保存邮箱明文。明文邮箱由 Waffo 收银台收集，并在付款通知里读回。</p>
     <h2>我们不收集的信息</h2>
@@ -129,13 +131,13 @@ function refundBody(lang, email) {
   if (lang === "en") {
     return `
     <h2>No refunds</h2>
-    <p>This product is digital content, and access starts immediately after purchase. All sales are final and non-refundable, except where applicable law or the rules of the payment service provider (Waffo Pancake) require otherwise. Before checkout you must agree to immediate access and acknowledge that, to the extent permitted by applicable law, you waive the right of withdrawal and any right to a refund. Level 1 lessons 1–5 are free and are not a purchase.</p>
+    <p>Eachsound is an unofficial study tool and is not Voice of America. This product is digital content, and access starts immediately after purchase. All sales are final and non-refundable, except where applicable law or the rules of the payment service provider (Waffo Pancake) require otherwise. Before checkout you must agree to immediate access and acknowledge that, to the extent permitted by applicable law, you waive the right of withdrawal and any right to a refund. Level 1 lessons 1–5 are free and are not a purchase.</p>
     <h2>If a refund or chargeback still happens</h2>
     <p>The merchant or Waffo may still refund a payment, and a cardholder may still raise a chargeback. Waffo, as merchant of record, returns a completed refund to the original payment method. When Waffo reports that the refund has succeeded and the funds have been returned, the unlock credential for that order is revoked. A refund that is still in progress, or a refund that fails and moves no money, does not revoke access. This site does not receive a chargeback webhook; a card chargeback is handled from Waffo's email notice, not by an automatic event. The operator is ${escapeHtml(OPERATOR_EN)}. Contact: ${contact}</p>`;
   }
   return `
     <h2>不予退款</h2>
-    <p>本产品为数字内容，购买后立即开通。所有销售最终有效、不予退款。适用法律或支付服务商（Waffo Pancake）规则强制要求的除外。结账前须勾选同意立即开通，并知悉在适用法律允许的范围内由此放弃撤销权和退款权。Level 1 第 1–5 课是免费的，不是一笔购买。</p>
+    <p>声声慢是非官方自学工具，不是美国之音。本产品为数字内容，购买后立即开通。所有销售最终有效、不予退款。适用法律或支付服务商（Waffo Pancake）规则强制要求的除外。结账前须勾选同意立即开通，并知悉在适用法律允许的范围内由此放弃撤销权和退款权。Level 1 第 1–5 课是免费的，不是一笔购买。</p>
     <h2>若仍然发生退款或拒付</h2>
     <p>商户或 Waffo 仍可能主动退款，持卡人仍可能拒付。退款由 Waffo（商户代收方）原路退回。Waffo 通知退款已经成功、款项已经退回时，该订单的开通凭证作废。还在处理中的退款，或没有退成、没有发生资金变动的退款，不会取消开通。本站收不到拒付的 webhook；银行卡拒付按 Waffo 的邮件通知处理，没有自动事件。经营者是${escapeHtml(OPERATOR_HANS)}。联系邮箱：${contact}</p>`;
 }
@@ -180,7 +182,7 @@ function buildLegalPage(kind, lang, origin, convert, contactEmail) {
   const homeLabel = lang === "en" ? "Lessons" : convert("课表");
   const pricingLabel = lang === "en" ? "Pricing" : convert("开通");
   const heading = title.split("｜")[0].split("|")[0].trim();
-  const eyebrow = lang === "en" ? "Unofficial study tool" : convert("非官方自学工具");
+  const eyebrow = lang === "en" ? `${PRODUCT_EN} · not official VOA` : convert(`${PRODUCT_HANS} · 非 VOA 官方`);
   const sourceLang = hansLang === "en" ? "en" : "zh-Hans";
   return `<!DOCTYPE html>
 <html lang="${htmlLang}">
@@ -216,7 +218,7 @@ ${bodyFor(kind, sourceLang, contactEmail)
   .join("\n")}
     </section>
     <footer class="footer">
-      <p>${lang === "en" ? "This site is an unofficial study tool and is not affiliated with Voice of America." : convert("本站为非官方自学工具，与美国之音（Voice of America）没有隶属关系。")}</p>
+      <p>${lang === "en" ? `${PRODUCT_EN} is an unofficial study tool and is not affiliated with Voice of America.` : convert(`${PRODUCT_HANS}是非官方自学工具，与美国之音（Voice of America）没有隶属关系。`)}</p>
       <nav class="legal-links" aria-label="${lang === "en" ? "Policies" : convert("条款")}">
         <a href="${fileHref("terms")}">${lang === "en" ? "Terms" : convert("服务条款")}</a>
         <a href="${fileHref("privacy")}">${lang === "en" ? "Privacy" : convert("隐私政策")}</a>

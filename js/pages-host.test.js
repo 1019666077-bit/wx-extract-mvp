@@ -7,11 +7,12 @@ const { stageSite, PAGES_PROJECT } = require("../scripts/stage-pages.js");
 
 const root = path.join(__dirname, "..");
 
-test("Cloudflare Pages project name is neutral and the workflow does not replace GitHub Pages", () => {
-  assert.equal(PAGES_PROJECT, "lle-learn");
+test("Cloudflare Pages project name is eachsound and the workflow does not replace GitHub Pages", () => {
+  assert.equal(PAGES_PROJECT, "eachsound");
   assert.equal(PAGES_PROJECT.toLowerCase().includes("voa"), false);
   const workflow = fs.readFileSync(path.join(root, ".github/workflows/cloudflare-pages.yml"), "utf8");
-  assert.match(workflow, /pages deploy dist --project-name=lle-learn/);
+  assert.match(workflow, /pages deploy dist --project-name=eachsound/);
+  assert.doesNotMatch(workflow, /lle-learn/);
   assert.match(workflow, /CLOUDFLARE_API_TOKEN/);
   assert.match(workflow, /CLOUDFLARE_ACCOUNT_ID/);
   assert.match(workflow, /branches: \[main\]/);
@@ -25,6 +26,7 @@ test("Cloudflare Pages project name is neutral and the workflow does not replace
   assert.match(workerFlow, /command: deploy/);
   assert.doesNotMatch(workerFlow, /run:.*secret put/);
   const wrangler = fs.readFileSync(path.join(root, "worker/wrangler.toml"), "utf8");
+  assert.match(wrangler, /name = "voa-lle-unlock"/);
   assert.match(wrangler, /id = "84110c8900934ac6abe4841117e9d8a3"/);
   assert.match(wrangler, /preview_id = "49aac2630d6b4030bbbd739bcbe707eb"/);
   assert.doesNotMatch(wrangler, /replace_me/);

@@ -21,3 +21,22 @@ TERMS_VERSION = "2026-09-28-law"
 binding = "ORDERS"
 id = "84110c8900934ac6abe4841117e9d8a3"
 preview_id = "49aac2630d6b4030bbbd739bcbe707eb"
+
+# Sandbox only. `wrangler deploy --env sandbox` publishes voa-lle-unlock-sandbox
+# and binds the preview KV. It does not deploy the production worker name or the
+# production namespace. Product ids are filled in CI and are not committed.
+[env.sandbox]
+name = "voa-lle-unlock-sandbox"
+workers_dev = true
+
+[env.sandbox.vars]
+WAFFO_API_BASE = "https://api.waffo.ai"
+PANCAKE_MODE = "test"
+PANCAKE_PRODUCT_MONTHLY = ""
+PANCAKE_PRODUCT_QUARTERLY = ""
+ALLOWED_ORIGIN = "https://sandbox.eachsound.pages.dev"
+TERMS_VERSION = "2026-09-28-law"
+
+[[env.sandbox.kv_namespaces]]
+binding = "ORDERS"
+id = "49aac2630d6b4030bbbd739bcbe707eb"

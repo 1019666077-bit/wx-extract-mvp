@@ -18,7 +18,16 @@ test("Cloudflare Pages project name is eachsound and the workflow does not repla
   assert.match(workflow, /branches: \[main\]/);
   assert.doesNotMatch(workflow, /peaceiris|actions\/upload-pages-artifact|github-pages/);
   const names = fs.readdirSync(path.join(root, ".github/workflows")).sort();
-  assert.deepEqual(names, ["cloudflare-pages.yml", "cloudflare-worker.yml"]);
+  assert.deepEqual(names, ["cloudflare-pages.yml", "cloudflare-sandbox.yml", "cloudflare-worker.yml"]);
+  const sandboxFlow = fs.readFileSync(path.join(root, ".github/workflows/cloudflare-sandbox.yml"), "utf8");
+  assert.match(sandboxFlow, /branches: \[cursor\/waffo-pricing-ad6a\]/);
+  assert.match(sandboxFlow, /refs\/heads\/cursor\/waffo-pricing-ad6a/);
+  assert.match(sandboxFlow, /node scripts\/sandbox-deploy\.js/);
+  const sandboxScript = fs.readFileSync(path.join(root, "scripts/sandbox-deploy.js"), "utf8");
+  assert.match(sandboxScript, /--branch=sandbox/);
+  assert.match(sandboxScript, /"deploy", "--env", "sandbox"/);
+  assert.match(sandboxScript, /voa-lle-unlock-sandbox/);
+  assert.doesNotMatch(sandboxScript, /--project-name=eachsound",\s*"--commit-dirty=true"/);
   const workerFlow = fs.readFileSync(path.join(root, ".github/workflows/cloudflare-worker.yml"), "utf8");
   assert.match(workerFlow, /workflow_dispatch/);
   assert.doesNotMatch(workerFlow, /push:/);
@@ -29,6 +38,8 @@ test("Cloudflare Pages project name is eachsound and the workflow does not repla
   assert.match(wrangler, /name = "voa-lle-unlock"/);
   assert.match(wrangler, /id = "84110c8900934ac6abe4841117e9d8a3"/);
   assert.match(wrangler, /preview_id = "49aac2630d6b4030bbbd739bcbe707eb"/);
+  assert.match(wrangler, /name = "voa-lle-unlock-sandbox"/);
+  assert.match(wrangler, /\[env\.sandbox\.kv_namespaces\][\s\S]*id = "49aac2630d6b4030bbbd739bcbe707eb"/);
   assert.doesNotMatch(wrangler, /replace_me/);
 });
 

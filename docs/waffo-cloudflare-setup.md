@@ -178,7 +178,9 @@ npx wrangler secret put UNLOCK_PRIVATE_KEY
 npx wrangler deploy
 ```
 
-或者在 GitHub Actions 里手动运行「Cloudflare Worker」（`.github/workflows/cloudflare-worker.yml`）。它只有 `workflow_dispatch`，不会在 push 时跑，命令是在 `worker/` 里执行 `wrangler deploy`，用的是已经加好的 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`。现在不要点运行。
+或者在 GitHub Actions 里手动运行「Cloudflare Worker」（`.github/workflows/cloudflare-worker.yml`）。它只有 `workflow_dispatch`，不会在 push 时跑，命令是在 `worker/` 里执行 `wrangler deploy`，用的是已经加好的 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`。这是生产 Worker `voa-lle-unlock`，现在不要点运行。
+
+沙箱是另一条工作流 `.github/workflows/cloudflare-sandbox.yml`，只在推到 `cursor/waffo-pricing-ad6a` 时跑。它部署 Worker `voa-lle-unlock-sandbox`（绑定预览 KV `49aac2630d6b4030bbbd739bcbe707eb`，`PANCAKE_MODE=test`），再用 `wrangler pages deploy --branch=sandbox` 上传到 Pages 项目 `eachsound` 的非生产分支。生产部署和 `eachsound.com` 不动。Pancake 密钥只在这步用 `wrangler secret put` 写入，不进 Git、不进日志。合并到 `main` 之前删掉这个工作流。
 
 6. 把解锁公钥和 Worker 地址写进 `site.config.json` 的 `payment.worker`，商品 id 写进 `payment.pancake`，然后：
 

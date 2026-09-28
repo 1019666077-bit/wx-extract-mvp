@@ -1,6 +1,6 @@
 import { signCredential } from "../../js/credential.js";
 import { buyerEmailFromEvent, hashesEqual, normalizeEmail, sha256Hex } from "./email.js";
-import { isSubscriptionEvent, paymentInstant, refundShouldRevoke, shouldIssuePayment } from "./doc-choices.js";
+import { paymentInstant, refundShouldRevoke, shouldIssuePayment } from "./doc-choices.js";
 import {
   buildCheckoutBody,
   createCheckoutSession,
@@ -332,10 +332,6 @@ async function handleWebhook(request, env, deps) {
       return webhookResponse(200, "OK");
     }
   }
-  if (isSubscriptionEvent(eventType)) {
-    await rememberEvent(env.ORDERS, eventId, eventType);
-    return webhookResponse(200, "OK");
-  }
   const externalId = typeof data.orderMerchantExternalId === "string" ? data.orderMerchantExternalId : "";
   const pancakeOrderId = typeof data.orderId === "string" ? data.orderId : "";
   const record = (await readOrder(env.ORDERS, externalId)) || (await readOrder(env.ORDERS, pancakeOrderId));
@@ -373,6 +369,7 @@ async function handleWebhook(request, env, deps) {
     await rememberEvent(env.ORDERS, eventId, eventType);
     return webhookResponse(200, "OK");
   }
+  // subscription.* and any other event: ignore and return 2xx. Do not extend or revoke.
   await rememberEvent(env.ORDERS, eventId, eventType);
   return webhookResponse(200, "OK");
 }

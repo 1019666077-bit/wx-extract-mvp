@@ -47,12 +47,22 @@ const OVERRIDES = [
   ["開啟打卡", "打開打卡"],
   ["開啟課表", "打開課表"],
   ["開啟頁面", "打開頁面"],
+  ["東莞市常平創客匯網路技術工作室", "東莞市常平創客彙網絡技術工作室"],
 ];
 
 const toTaiwan = OpenCC.Converter({ from: "cn", to: "twp" });
 
 function loadSiteConfig(root) {
   return JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
+}
+
+function loadContactEmail(root) {
+  const config = loadSiteConfig(root);
+  const email = config.contactEmail;
+  if (typeof email !== "string" || !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(email)) {
+    throw new Error("site.config.json contactEmail must be one email address");
+  }
+  return email;
 }
 
 function loadSiteOrigin(root) {
@@ -174,7 +184,7 @@ function waffoPlansHtml(locale, links) {
     {
       name: "月付",
       price: "US$5.99",
-      note: "开通后 30 天有效",
+      note: "开通后 30 天有效 · 一次性付款，不自动续费",
       featured: false,
       plan: "monthly",
       label: "用 Waffo 支付 US$5.99",
@@ -182,7 +192,7 @@ function waffoPlansHtml(locale, links) {
     {
       name: "季卡",
       price: "US$13.99",
-      note: "开通后 90 天有效 · 约 US$4.66 / 月",
+      note: "开通后 90 天有效 · 约 US$4.66 / 月 · 一次性付款，不自动续费",
       featured: true,
       plan: "quarterly",
       label: "用 Waffo 支付 US$13.99",
@@ -786,7 +796,7 @@ ${dialogueHtml((view.dialogue || []).slice(0, 2))}
     <section class="paywall-section" id="lesson-paywall" aria-label="${escapeHtml(tx("开通后学习", loc))}">
       <h2>${escapeHtml(tx("课程未解锁", loc))}</h2>
       <p>${escapeHtml(tx("免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。", loc))}</p>
-      <p>${escapeHtml(tx("下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天）。付款确认后会自动开通。", loc))}</p>
+      <p>${escapeHtml(tx("下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天）。一次性付款，不自动续费。付款确认后会自动开通。", loc))}</p>
       <div class="quiz-actions">
         <a class="btn primary" href="${pageBase}pricing.html">${escapeHtml(tx("去开通", loc))}</a>
         <a class="btn" href="${escapeHtml(backHref)}">${escapeHtml(tx("返回课表", loc))}</a>
@@ -1192,10 +1202,11 @@ function expectedFiles(root, payload, lastmod) {
       files.set(`${locale.prefix}${page.file}`, patchSitePage(shell, page, levels, locale, SITE, waffo));
     }
   }
+  const contactEmail = loadContactEmail(root);
   for (const kind of Object.keys(LEGAL_PAGES)) {
-    files.set(`${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hans", SITE, (text) => text));
-    files.set(`zh-hant/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hant", SITE, convertToHant));
-    files.set(`en/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "en", SITE, (text) => text));
+    files.set(`${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hans", SITE, (text) => text, contactEmail));
+    files.set(`zh-hant/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "zh-Hant", SITE, convertToHant, contactEmail));
+    files.set(`en/${LEGAL_PAGES[kind].file}`, buildLegalPage(kind, "en", SITE, (text) => text, contactEmail));
   }
   files.set("sitemap.xml", buildSitemap(levels, lastmod, SITE, waffo));
   files.set("robots.txt", buildRobots());

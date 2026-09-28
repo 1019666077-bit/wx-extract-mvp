@@ -19,9 +19,9 @@
  * 5. Pancake has no chargeback webhook. Chargebacks arrive by email to the
  *    merchant, who replies to chargebacks@waffo.ai. This Worker does not
  *    revoke on an invented chargeback event.
- * 6. subscription.* is acknowledged and ignored. One-time 30/90 day access
- *    is the live mode. Enabling subscriptions later would extend the
- *    credential on renewal and would need a decision for cancel and past_due.
+ * 6. Purchases are one-time. subscription.* is not implemented. If such an
+ *    event arrives, the webhook ignores it and returns HTTP 200. Whether
+ *    to offer subscriptions later depends on data.
  * 7. Recovery prefers data.buyerEmail from the event. Checkout still asks
  *    for an email because the cashier can change the prefilled address.
  *    KV stores only the SHA-256 of the normalized address.
@@ -49,8 +49,4 @@ export function shouldIssuePayment(eventType) {
 
 export function refundShouldRevoke(eventType) {
   return eventType === "refund.succeeded";
-}
-
-export function isSubscriptionEvent(eventType) {
-  return typeof eventType === "string" && eventType.startsWith("subscription.");
 }

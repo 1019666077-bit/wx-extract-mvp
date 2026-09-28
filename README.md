@@ -51,7 +51,7 @@ A day counts as checked-in when the learner **submits a lesson quiz that day**. 
 3. That submit checks in today and writes misses to the wrong-answer book. Check-in and the wrong-answer book work without unlocking.
 4. Open **打卡** to see streak, days this month, and the highlighted month grid.
 5. Open **错题本** to review misses. **再练** returns to `lessons/<id>.html#quiz`. Clear one item or clear all. Answer the same question correctly on retry and it disappears. Empty state: 「暂无错题」.
-6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 US$5.99（30 天） or 季卡 US$13.99（90 天）. The buttons call the Cloudflare Worker in `worker/` only after `payment.worker.baseUrl`, `payment.worker.unlockPublicKey`, and both Pancake product ids in `site.config.json` are set and the pages are rebuilt. While any of those is empty, the buttons stay disabled and say 即将开放 / 即將開放, and the page does not call the network. The live product is Waffo Pancake (merchant of record), not the old acquiring gateway. Setup steps are in `docs/waffo-cloudflare-setup.md`. Nothing here is deployed. Use **退出解锁** on the pricing page to reset this browser. Unlock is kept only when `localStorage` holds a signed, unexpired credential. The public site origin is only `site.config.json` `origin` (still the GitHub Pages URL). A later move to Cloudflare Pages is prepared in `.github/workflows/cloudflare-pages.yml`; do not change `origin` until that host is checked. Draft terms, privacy, and refund pages are linked from the footer.
+6. To open paid lessons, go to **开通** (`pricing.html`): pick 月付 US$5.99（30 天） or 季卡 US$13.99（90 天）. The buttons call the Cloudflare Worker in `worker/` only after `payment.worker.baseUrl`, `payment.worker.unlockPublicKey`, and both Pancake product ids in `site.config.json` are set and the pages are rebuilt. While any of those is empty, the buttons stay disabled and say 即将开放 / 即將開放, and the page does not call the network. The live product is Waffo Pancake (merchant of record), not the old acquiring gateway. Setup steps are in `docs/waffo-cloudflare-setup.md`. Nothing here is deployed. Use **退出解锁** on the pricing page to reset this browser. Unlock is kept only when `localStorage` holds a signed, unexpired credential. The public site origin is only `site.config.json` `origin` (still the GitHub Pages URL). A later move to Cloudflare Pages is prepared in `.github/workflows/cloudflare-pages.yml`; do not change `origin` until that host is checked. Purchases are one-time and do not auto-renew. Terms, privacy, and refund pages are linked from the footer. The contact mailbox is only `contactEmail` in `site.config.json`.
 
 ## Paywall / redeem codes
 
@@ -61,7 +61,7 @@ Checkout is a Cloudflare Worker against Waffo Pancake. It is not deployed, and t
 
 **Operators:** do not collect payment by hand. The old redeem-code runbook is marked obsolete in [`docs/ops-redeem.md`](docs/ops-redeem.md). Before merge, run `bash scripts/check-codes-json.sh` (fails if `codes.length > 0`).
 
-Site copy: 免费试学仅 Level 1 第 1–5 课 · 打卡日历与错题本免费使用 · 开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）· 月付 US$5.99 / 30 天 · 季卡 US$13.99 / 90 天 · Waffo 付款按钮（链接为空时显示即将开放）· 付款确认后自动开通。
+Site copy: 免费试学仅 Level 1 第 1–5 课 · 打卡日历与错题本免费使用 · 开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）· 月付 US$5.99 / 30 天 · 季卡 US$13.99 / 90 天 · 一次性付款，不自动续费 · Waffo 付款按钮（链接为空时显示即将开放）· 付款确认后自动开通。
 
 ## Lesson data
 

@@ -318,11 +318,29 @@ test("empty Waffo links render disabled soon buttons", () => {
   const terms = fs.readFileSync(path.join(root, "terms.html"), "utf8");
   const termsHant = fs.readFileSync(path.join(root, "zh-hant/terms.html"), "utf8");
   const termsEn = fs.readFileSync(path.join(root, "en/terms.html"), "utf8");
+  const contactEmail = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8")).contactEmail;
   assert.match(terms, /待幕僚长确认/);
   assert.match(termsHant, /待幕僚長確認/);
   assert.match(termsEn, /待幕僚长确认/);
+  assert.match(terms, /东莞市常平创客汇网络技术工作室/);
+  assert.match(termsHant, /東莞市常平創客彙網絡技術工作室/);
+  assert.match(termsEn, /a sole proprietorship registered in Dongguan, Guangdong, China/);
+  assert.match(terms, /在适用法律允许的最大范围内/);
+  assert.match(terms, /一次性付款，不自动续费/);
+  assert.doesNotMatch(terms, /不承担任何责任/);
   assert.doesNotMatch(terms, /生效日期/);
   assert.doesNotMatch(termsEn, /Effective date/i);
+  assert.equal(fs.readFileSync(path.join(root, "js/legal-pages.js"), "utf8").includes(contactEmail), false);
+  for (const rel of ["terms.html", "privacy.html", "refund.html", "zh-hant/terms.html", "en/refund.html"]) {
+    assert.match(fs.readFileSync(path.join(root, rel), "utf8"), new RegExp(contactEmail.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  }
+  const refund = fs.readFileSync(path.join(root, "refund.html"), "utf8");
+  assert.match(refund, /7 天/);
+  assert.match(refund, /每个付款邮箱限一次/);
+  assert.match(refund, /pancake\.waffo\.ai\/consumer\/portal\/login/);
+  assert.doesNotMatch(refund, /14 天/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /一次性付款，不自动续费/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /一次性付款，不自動續費/);
   assert.equal(fs.readFileSync(path.join(root, "index.html"), "utf8").includes('name="waffo-verify"'), false);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8"), /id="recover-form"/);
   const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });

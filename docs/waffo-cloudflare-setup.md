@@ -4,7 +4,7 @@
 
 实际开通的是 **Waffo Pancake**（商户后台 [pancake.waffo.ai](https://pancake.waffo.ai)，商户代收 / Merchant of Record），不是 `api-sandbox.waffo.com` 那套原生收单网关。不要自己用 openssl 生成商户 RSA，不要往后台上传 Payin 公钥，也不要再找旧的 Merchant Id。
 
-站点源站仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。Worker 名字仍是 `voa-lle-unlock`。VOA 这家店先不要建：等网站放到 Cloudflare Pages，并且价格页、服务条款、隐私政策、退款政策都在线上之后再建。法律页现在是草稿，顶部没有生效日期。
+站点源站仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。Worker 名字仍是 `voa-lle-unlock`。VOA 这家店先不要建：等网站放到 Cloudflare Pages，并且价格页、服务条款、隐私政策、退款政策都在线上之后再建。法律页顶部没有生效日期。联系邮箱只写在 `site.config.json` 的 `contactEmail`，现在仍是占位。
 
 公开文档（以页面为准，不要猜字段名）：
 
@@ -113,9 +113,11 @@ https://<Worker 主机名>/api/waffo/webhook
 | `refund.succeeded` | 钱已经退回，作废凭证 |
 | `refund.failed` | 钱没动，不作废 |
 
-不要勾 `subscription.*`，除非幕僚长决定改成订阅。代码里留了分支：这些事件会回 200，但不会延长或取消凭证。
+不要勾 `subscription.*`。若仍然收到，Worker 忽略并返回 HTTP 200，不延长、不作废凭证。订阅以后看数据再定。
 
 退款没有单独的「处理中」事件。工单在审核或处理时不会发 webhook；只有渠道把结果定下来才发。`refund.succeeded` 才作废，`refund.failed` 不作废。文档：[Webhooks](https://docs.waffo.ai/api-reference/webhooks.md) 的 Refund Lifecycle。
+
+店内审核按退款政策，不是 Worker 计时：首次购买付款后 7 天内可全额退，每个付款邮箱一次；超过 7 天或再次购买不退。买家发邮件到 `site.config.json` 的 `contactEmail` 并附订单号，或在买家门户 [https://pancake.waffo.ai/consumer/portal/login](https://pancake.waffo.ai/consumer/portal/login) 提交。平台允许一次性商品在付款后 14 天内创建退款工单；超过本店 7 天，或属于再次购买的，按政策拒绝。见 [Refunds](https://docs.waffo.ai/features/refunds.md)。
 
 拒付没有 webhook。Pancake 发邮件通知，回复寄到 `chargebacks@waffo.ai`。Worker 不会因为一封拒付邮件自动作废。见 [Chargebacks](https://docs.waffo.ai/mor/chargebacks.md)。
 
@@ -268,24 +270,9 @@ Content-Type: application/json
 
 这次改代码本身不要部署，也不要合并。
 
-## 6. 一次性购买和订阅（待幕僚长定）
+## 6. 一次性购买
 
-现在按一次性购买实现，和现有凭证一致：付一次，凭证从 `order.completed` 的时间起 30 天或 90 天，到期后前端验签失败。没有自动续费。
-
-Pancake 也支持订阅（月付 / 季付，可设试用期）。相关事件包括 `subscription.activated`、`subscription.payment_succeeded`、`subscription.renewed`、`subscription.recovered`、`subscription.canceled`、`subscription.past_due` 等。代码收到 `subscription.*` 只回 200，不改 `expiresAt`，也不作废。
-
-若以后改成订阅，差异是：
-
-| | 一次性（现在） | 订阅（未启用） |
-| --- | --- | --- |
-| 签发 | 只在 `order.completed` | 首次开通要看 `subscription.activated`，收据在 `subscription.payment_succeeded` |
-| 续费 | 没有。到期即失效 | `subscription.renewed` 要把凭证的 `expiresAt` 延到新的 `currentPeriodEnd` |
-| 取消 | 不涉及 | `subscription.canceling` 时当期通常仍可用；`subscription.canceled` 才结束。是否在 canceling 时就作废，要另定 |
-| 扣款失败 | 没有 webhook，课程保持锁定 | `subscription.past_due` 要决定是立刻作废还是留一段补缴期 |
-| 退款 | `refund.succeeded` 作废 | 同样只在 `refund.succeeded` 作废；要分清退的是哪一个账期 |
-| 试用 | 不使用 | `withTrial` 会让首期不按标价收费，凭证天数不能再写死 30/90 |
-
-建议继续用一次性 30 天 / 90 天。凭证、一次领取和找回都是按固定到期日做的。订阅要另定续费延长、取消和逾期，现在没有这个决定。
+只做一次性购买：30 天 US$5.99、90 天 US$13.99。不做自动续费，不设试用期。免费的 Level 1 第 1–5 课就是试用。订阅以后看数据再定。若收到 `subscription.*`，忽略并返回 HTTP 200，不改凭证。
 
 ## 7. 把网站放到 Cloudflare Pages
 

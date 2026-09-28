@@ -1,8 +1,7 @@
 /**
- * Store policies. No effective date. Remaining 待幕僚长确认 clauses are
- * listed in the terms (governing law, dispute venue) and privacy (how long
- * an order record is kept after the credential expires). The contact mailbox
- * is the contactEmail field in site.config.json.
+ * Store policies. No effective date. The contact mailbox is the contactEmail
+ * field in site.config.json. Governing law, venue, and the three-year order
+ * retention are decided and written here.
  */
 
 const OPERATOR_HANS = "东莞市常平创客汇网络技术工作室";
@@ -40,16 +39,12 @@ const PAGES = {
   },
 };
 
-function contactPhrase(lang, email) {
-  const safe = escapeHtml(email);
-  if (lang === "en") {
-    return `${safe} (placeholder, 待幕僚长确认; the brand is Eachsound, and the Outlook alias is not in use yet)`;
-  }
-  return `${safe}（占位，待幕僚长确认。品牌已定为声声慢 / Eachsound，Outlook 别名尚未更换）`;
+function contactPhrase(email) {
+  return escapeHtml(email);
 }
 
 function termsBody(lang, email) {
-  const contact = contactPhrase(lang, email);
+  const contact = contactPhrase(email);
   if (lang === "en") {
     return `
     <h2>What this site is</h2>
@@ -68,7 +63,8 @@ function termsBody(lang, email) {
     <p>To the maximum extent permitted by applicable law, our total liability to you arising out of this site is limited to the amount you actually paid for the order in question.</p>
     <p>These limits do not exclude liability for willful misconduct or gross negligence, and they do not exclude liability that applicable law does not allow to be excluded.</p>
     <h2>Governing law and disputes</h2>
-    <p>Governing law （待幕僚长确认）. Where a dispute is handled （待幕僚长确认）.</p>
+    <p>These terms are governed by the laws of the People's Republic of China, excluding its conflict-of-laws rules. These terms do not affect the rights given by the mandatory consumer protection laws of the place where the consumer lives.</p>
+    <p>If a dispute arises, contact ${contact} first and we will try to resolve it by friendly negotiation. If negotiation does not resolve it, the dispute is submitted to the people's court with jurisdiction at the operator's location, Dongguan, Guangdong Province.</p>
     <h2>Severability</h2>
     <p>If one clause is held invalid or unenforceable, the remaining clauses stay in effect.</p>
     <h2>Contact</h2>
@@ -91,7 +87,8 @@ function termsBody(lang, email) {
     <p>在适用法律允许的最大范围内，我们因本站向你承担的赔偿总额，不超过你就相关订单实际支付的金额。</p>
     <p>上述限制不排除因故意或重大过失造成的责任，也不排除法律不允许排除的责任。</p>
     <h2>适用法律与争议</h2>
-    <p>适用法律（待幕僚长确认）。争议解决（待幕僚长确认）。</p>
+    <p>本条款适用中华人民共和国法律（不含冲突规范）。本条款不影响消费者所在地强制性消费者保护法赋予的权利。</p>
+    <p>发生争议时，先友好协商，联系邮箱是 ${contact}。协商不成的，由经营者所在地（广东省东莞市）有管辖权的人民法院管辖。</p>
     <h2>可分割</h2>
     <p>若某一条被认定无效或不可执行，其余条款仍然有效。</p>
     <h2>联系</h2>
@@ -99,7 +96,7 @@ function termsBody(lang, email) {
 }
 
 function privacyBody(lang, email) {
-  const contact = contactPhrase(lang, email);
+  const contact = contactPhrase(email);
   if (lang === "en") {
     return `
     <h2>Who runs this site</h2>
@@ -109,7 +106,7 @@ function privacyBody(lang, email) {
     <h2>What we do not collect</h2>
     <p>This site does not ask for an account, and it does not collect card numbers, a billing address, or a government id. Check-in, the wrong-answer notebook, and lesson progress stay in this browser. The unlock credential is stored in this browser. Payment is processed by Waffo as merchant of record. Waffo's own privacy terms apply to the data they collect on the cashier.</p>
     <h2>How long</h2>
-    <p>The order record is kept so a refund can revoke access and so the buyer can restore the credential until it expires. Restoring does not start the 30 or 90 days over. How long that record is kept after expiry is （待幕僚长确认）.</p>
+    <p>The order record is kept so a refund can revoke access and so the buyer can restore the credential until it expires. Restoring does not start the 30 or 90 days over. After the credential expires, the order record is kept for 3 years for accounting and chargeback disputes. For those 3 years we keep only the order id, a one-way checksum of the email, the amount, the times, the status, the time of agreement at checkout, and the terms version. We do not keep the email address itself.</p>
     <h2>Contact</h2>
     <p>Privacy contact: ${contact}</p>`;
   }
@@ -121,13 +118,13 @@ function privacyBody(lang, email) {
     <h2>我们不收集的信息</h2>
     <p>本站不要求注册账号，也不收集卡号、账单地址或证件号码。打卡、错题本和课程进度保存在你这台浏览器里。开通凭证也保存在这台浏览器里。付款由 Waffo 作为商户代收处理。收银台收集的信息适用 Waffo 自己的隐私条款。</p>
     <h2>保存多久</h2>
-    <p>订单记录要留到可以按退款作废开通，也要留到买家在有效期内能够找回凭证。找回不会把 30 天或 90 天重新起算。过期之后再保留多久（待幕僚长确认）。</p>
+    <p>订单记录要留到可以按退款作废开通，也要留到买家在有效期内能够找回凭证。找回不会把 30 天或 90 天重新起算。凭证过期后再保留 3 年，供账务和拒付争议使用。这 3 年只保留订单号、邮箱的单向校验值、金额、时间、状态，以及结账同意时间和条款版本。不保留邮箱明文。</p>
     <h2>联系</h2>
     <p>隐私联系邮箱：${contact}</p>`;
 }
 
 function refundBody(lang, email) {
-  const contact = contactPhrase(lang, email);
+  const contact = contactPhrase(email);
   if (lang === "en") {
     return `
     <h2>No refunds</h2>

@@ -164,6 +164,9 @@ async function readOrder(kv, id) {
 }
 
 async function writeOrder(kv, record) {
+  // No KV expiration. The privacy policy keeps this record, including
+  // termsAcceptedAt and termsVersion, for 3 years after credential expiry.
+  // Rate-limit and webhook event keys use their own short TTLs.
   await kv.put(`order:${record.merchantOrderId}`, JSON.stringify(record));
   if (record.pancakeOrderId && ORDER_ID.test(record.pancakeOrderId)) {
     await kv.put(`alias:${record.pancakeOrderId}`, record.merchantOrderId);

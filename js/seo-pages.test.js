@@ -303,11 +303,11 @@ test("empty Waffo links render disabled soon buttons", () => {
     monthlyProductId: "",
     quarterlyProductId: "",
     domainVerify: "",
-    termsVersion: "2026-09-28-norefund",
+    termsVersion: "2026-09-28-law",
   });
   assert.equal(
     buildPaymentConfigScript(loadWaffoLinks(root)),
-    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":"","termsVersion":"2026-09-28-norefund"};\n'
+    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":"","termsVersion":"2026-09-28-law"};\n'
   );
   assert.equal(convertToHant("即将开放"), "即將開放");
   const { MESSAGES, buildI18nScript } = require("./messages.js");
@@ -320,9 +320,27 @@ test("empty Waffo links render disabled soon buttons", () => {
   const termsHant = fs.readFileSync(path.join(root, "zh-hant/terms.html"), "utf8");
   const termsEn = fs.readFileSync(path.join(root, "en/terms.html"), "utf8");
   const contactEmail = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8")).contactEmail;
-  assert.match(terms, /待幕僚长确认/);
-  assert.match(termsHant, /待幕僚長確認/);
-  assert.match(termsEn, /待幕僚长确认/);
+  assert.equal(contactEmail, "eachsound@outlook.com");
+  assert.doesNotMatch(terms, /待幕僚长确认/);
+  assert.doesNotMatch(termsHant, /待幕僚長確認/);
+  assert.doesNotMatch(termsEn, /待幕僚长确认/);
+  assert.doesNotMatch(terms, /contact@example\.com/);
+  assert.match(terms, /中华人民共和国法律（不含冲突规范）/);
+  assert.match(terms, /强制性消费者保护法赋予的权利/);
+  assert.match(terms, /广东省东莞市/);
+  assert.match(terms, new RegExp(contactEmail.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
+  assert.match(termsHant, /中華人民共和國法律（不含衝突規範）/);
+  assert.match(termsHant, /廣東省東莞市/);
+  assert.match(termsEn, /People's Republic of China, excluding its conflict-of-laws rules/);
+  assert.match(termsEn, /mandatory consumer protection laws/);
+  assert.match(termsEn, /Dongguan, Guangdong Province/);
+  const privacy = fs.readFileSync(path.join(root, "privacy.html"), "utf8");
+  const privacyEn = fs.readFileSync(path.join(root, "en/privacy.html"), "utf8");
+  assert.match(privacy, /凭证过期后再保留 3 年/);
+  assert.match(privacy, /单向校验值/);
+  assert.match(privacy, /结账同意时间和条款版本/);
+  assert.match(privacyEn, /kept for 3 years/);
+  assert.match(privacyEn, /terms version/);
   assert.match(terms, /东莞市常平创客汇网络技术工作室/);
   assert.match(termsHant, /東莞市常平創客彙網絡技術工作室/);
   assert.match(termsEn, /a sole proprietorship registered in Dongguan, Guangdong, China/);
@@ -393,7 +411,7 @@ test("worker config enables checkout buttons without a static href", () => {
     unlockPublicKey: "A".repeat(44),
     monthlyProductId: "PROD_monthly",
     quarterlyProductId: "PROD_quarterly",
-    termsVersion: "2026-09-28-norefund",
+    termsVersion: "2026-09-28-law",
   });
   const missingProduct = waffoPlansHtml(HANS, {
     workerBaseUrl: "https://pay.example",

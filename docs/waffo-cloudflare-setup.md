@@ -4,7 +4,7 @@
 
 实际开通的是 **Waffo Pancake**（商户后台 [pancake.waffo.ai](https://pancake.waffo.ai)，商户代收 / Merchant of Record），不是 `api-sandbox.waffo.com` 那套原生收单网关。不要自己用 openssl 生成商户 RSA，不要往后台上传 Payin 公钥，也不要再找旧的 Merchant Id。
 
-站点源站仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。Worker 名字仍是 `voa-lle-unlock`。VOA 这家店先不要建：等网站放到 Cloudflare Pages，并且价格页、服务条款、隐私政策、退款政策都在线上之后再建。法律页顶部没有生效日期。联系邮箱只写在 `site.config.json` 的 `contactEmail`，现在仍是占位。
+站点源站仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。Worker 名字仍是 `voa-lle-unlock`。VOA 这家店先不要建：等网站放到 Cloudflare Pages，并且价格页、服务条款、隐私政策、退款政策都在线上之后再建。法律页顶部没有生效日期。联系邮箱只写在 `site.config.json` 的 `contactEmail`，现为 `eachsound@outlook.com`。适用法律是中华人民共和国法律（不含冲突规范），并保留消费者所在地强制性消费者保护法。争议先发这个邮箱协商，协商不成由广东省东莞市有管辖权的人民法院管辖。凭证过期后订单记录再留 3 年。条款版本是 `site.config.json` 的 `termsVersion`。
 
 公开文档（以页面为准，不要猜字段名）：
 
@@ -305,6 +305,18 @@ Cloudflare 账号与第 3 节的 Worker 是同一个。
 | 整理输出 | `node scripts/stage-pages.js` |
 | 输出目录 | `dist` |
 | 部署命令 | `npx wrangler pages deploy dist --project-name=eachsound --commit-dirty=true` |
+
+在本机构出可直接上传的 `dist/`（不要现在上传，也不要部署）：
+
+```bash
+npm ci
+node scripts/build-pages.js
+node scripts/stage-pages.js
+```
+
+`dist/` 就是 Direct Upload 要选的目录。`npm run build` 只重写仓库里的页面，不会生成 `dist/`。
+
+`.github/workflows/cloudflare-pages.yml` 已有 `workflow_dispatch`。在 Actions 里对选中的分支点 Run workflow，会构建那个分支并执行上面的部署命令，传到项目 `eachsound` 的 production。命令没有 `--branch`，所以不是 Pages 的预览别名。这个工作流文件还不在默认分支 `main` 上，GitHub 在合并之前不会显示 Run workflow。不要为了出现按钮去合并或推 `main`，也不要现在运行。
 
 仪表盘里的 Build command 填 none（留空）。不要把构建命令填进 Cloudflare，否则会和 Action 各建一次。
 

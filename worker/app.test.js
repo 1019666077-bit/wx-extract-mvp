@@ -96,7 +96,7 @@ function envFor(fixtures, kv) {
     PANCAKE_PRODUCT_MONTHLY: MONTHLY_PRODUCT,
     PANCAKE_PRODUCT_QUARTERLY: QUARTERLY_PRODUCT,
     ALLOWED_ORIGIN: ORIGIN,
-    TERMS_VERSION: "2026-09-28-norefund",
+    TERMS_VERSION: "2026-09-28-law",
     ORDERS: kv,
   };
 }
@@ -104,7 +104,7 @@ function envFor(fixtures, kv) {
 function checkoutBody(fields) {
   return JSON.stringify({
     termsAccepted: true,
-    termsVersion: "2026-09-28-norefund",
+    termsVersion: "2026-09-28-law",
     ...fields,
   });
 }
@@ -218,7 +218,7 @@ test("checkout uses the dashboard product, webhook signature, claim once, refund
   assert.equal("amount" in createBody, false);
   assert.match(createBody.successUrl, /\/pricing-return\.html\?order=/);
   const pending = JSON.parse(kv.dump().get(`order:${checkoutJson.merchantOrderId}`));
-  assert.equal(pending.termsVersion, "2026-09-28-norefund");
+  assert.equal(pending.termsVersion, "2026-09-28-law");
   assert.equal(pending.termsAcceptedAt, now.toISOString());
   const orderId = checkoutJson.merchantOrderId;
   const storedCheckout = JSON.parse(kv.dump().get(`order:${orderId}`));
@@ -683,7 +683,7 @@ test("checkout without terms consent does not call Waffo or store an order", asy
   let called = false;
   const bodies = [
     { plan: "monthly", email: "buyer@example.com" },
-    { plan: "monthly", email: "buyer@example.com", termsAccepted: false, termsVersion: "2026-09-28-norefund" },
+    { plan: "monthly", email: "buyer@example.com", termsAccepted: false, termsVersion: "2026-09-28-law" },
     { plan: "monthly", email: "buyer@example.com", termsAccepted: true, termsVersion: "other-version" },
   ];
   for (const body of bodies) {

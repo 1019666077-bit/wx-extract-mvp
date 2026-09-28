@@ -16,7 +16,7 @@ test("empty worker config makes no network calls", async () => {
       plan: "monthly",
       email: "buyer@example.com",
       termsAccepted: false,
-      termsVersion: "2026-09-28-norefund",
+      termsVersion: "2026-09-28-law",
       fetchImpl,
     }),
     null

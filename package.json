@@ -1,0 +1,11 @@
+{
+  "private": true,
+  "scripts": {
+    "build": "node scripts/build-pages.js",
+    "check": "node scripts/build-pages.js --check",
+    "test": "node --test js/*.test.js"
+  },
+  "dependencies": {
+    "opencc-js": "^1.4.2"
+  }
+}

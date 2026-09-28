@@ -1,0 +1,372 @@
+{
+  "id": "lle2-27",
+  "number": 27,
+  "level": 2,
+  "levelId": "lle2",
+  "title": "Let's Learn English Level 2 Lesson 27",
+  "subtitle": "Fish out of Water",
+  "videoUrl": "https://voa-video-ns.akamaized.net/pangeavideo/2021/02/1/1f/1f94874c-4395-4a61-b536-714406498f46_720p.mp4",
+  "youtubeId": "",
+  "sourceUrl": "https://learningenglish.voanews.com/a/lets-learn-english-level-2-lesson-27/4374632.html",
+  "attribution": "Source: VOA Learning English – Let's Learn English Level 2, Lesson 27: Fish out of Water (learningenglish.voanews.com). Public domain. This unofficial study helper is not affiliated with VOA.",
+  "dialogue": [
+    {
+      "speaker": "Anna",
+      "en": "Hello, Ms. Weaver!",
+      "zh": "你好，韋弗女士！"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Oh, Anna. I’ve invited some people to dinner Saturday. We’re going to that new seafood restaurant -- Fish on a Dish.",
+      "zh": "哦，安娜。我週六請了一些人吃飯。我們要去那家新的海鮮餐廳——盤中魚。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Why don’t you join us? My treat.",
+      "zh": "你為什麼不一起來？我請客。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thanks, Ms. Weaver. But I already have plans. My friend has invited me to her houseboat.",
+      "zh": "謝謝，韋弗女士。可我已經有安排了。我朋友請我去她的船屋。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Houseboat, really? That’s unique.",
+      "zh": "船屋，真的？那可真特別。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yes, it is. In fact, I’m thinking of living on a houseboat.",
+      "zh": "是啊。其實，我還在考慮住在船屋上。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Aren’t you too tall and klutzy to live on a houseboat?",
+      "zh": "你會不會太高、太笨手笨腳，不適合住船屋？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I am not too tall!",
+      "zh": "我才沒有太高！"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "Is Anna really ready for a houseboat?",
+      "zh": "安娜真的準備好住船屋了嗎？"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "Ms. Weaver invited Anna to dinner. When we make friendly, informal invitations, we use phrases like “Why don’t…?”",
+      "zh": "韋弗女士請安娜吃飯。我們發出友好、非正式的邀請時，會用 “Why don’t…?” 這樣的說法。"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "For example, Ms. Weaver said, “Why don’t you join us? My treat!” That’s: Why don’t plus the subject plus the simple form of the verb.",
+      "zh": "比如韋弗女士說：“Why don’t you join us? My treat!” 結構是：Why don’t 加上主語，再加上動詞原形。"
+    },
+    {
+      "speaker": "Professor Bot",
+      "en": "Anna responded to the invitation by saying, “Thanks, but I already have plans.” Keep watching for more examples of informal invitations!",
+      "zh": "安娜回應邀請時說：“Thanks, but I already have plans.” 繼續看，後面還有更多非正式邀請的例子！"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "Anna, I’m so glad you could come!",
+      "zh": "安娜，真高興你能來！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi, Fanny!",
+      "zh": "嗨，範妮！"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "Hi, this is my son, Phoenix.",
+      "zh": "嗨，這是我兒子菲尼克斯。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi, Phoenix.",
+      "zh": "嗨，菲尼克斯。"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "How about you give Anna a tour and I will make some lunch?",
+      "zh": "你帶安娜參觀一下，我去做午飯怎麼樣？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "Aye, aye, captain!",
+      "zh": "是，船長！"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "Great!",
+      "zh": "太好了！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Do you really call her “captain”?",
+      "zh": "你真的叫她“船長”嗎？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "I kind of have to.",
+      "zh": "我好像不得不叫。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "So, Phoenix, I think I’d like to live on a houseboat. Do you like living here?",
+      "zh": "菲尼克斯，我覺得我想住在船屋上。你喜歡住在這兒嗎？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "I love it! It’s much different than living in a house.",
+      "zh": "我太喜歡了！這跟住在房子裡很不一樣。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, I bet. I bet you had to get rid of a lot of stuff, didn’t you?",
+      "zh": "哦，我猜也是。我猜你們得扔掉很多東西，對吧？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "No way! We moved from a 3-story house to a boat! So, we really had to downsize!",
+      "zh": "才不是扔掉那麼簡單！我們從一棟三層的房子搬到船上！所以真的得大幅縮小規模！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "I’d have to get rid of a lot of stuff. I have a rock collection and I have some really big rocks.",
+      "zh": "我得扔掉很多東西。我有石頭收藏，還有一些特別大的石頭。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Can you stop this boat from rocking for a minute?",
+      "zh": "你能不能讓這船先別晃一分鐘？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "No. We’re floating on water. I can’t do that.",
+      "zh": "不行。我們浮在水上。我做不到。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Well, since you live on the water, aren’t you afraid of great white sharks?",
+      "zh": "既然你們住在水上，難道不怕大白鯊嗎？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "No, not really. They don’t live in these waters.",
+      "zh": "不太怕。它們不住在這片水域。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "… that you know of. What about killer whales?",
+      "zh": "……就你所知。那逆戟鯨呢？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "No.",
+      "zh": "沒有。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Electric eels?",
+      "zh": "電鰻呢？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "No.",
+      "zh": "沒有。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Barracudas?",
+      "zh": "梭魚呢？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "No.",
+      "zh": "沒有。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Piranhas?",
+      "zh": "食人魚呢？"
+    },
+    {
+      "speaker": "Phoenix",
+      "en": "Uh-uh.",
+      "zh": "沒有。"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "You know, Anna, if you’re afraid of sea life, maybe you shouldn’t live on a houseboat. Do you have any boating experience?",
+      "zh": "安娜，你知道嗎，要是你怕海洋生物，也許就不該住船屋。你有沒有駕船經驗？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Oh, oh yeah, Fanny. I have battled the great waters before -- once on a swan boat and once in a duck boat ... bus. It was a boat that turned into a bus.",
+      "zh": "哦，哦有的，範妮。我以前跟浩瀚水域交過手——一次是天鵝船，一次是鴨子船……巴士。那是一艘會變成巴士的船。"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "Yeah, I don’t think that counts.",
+      "zh": "嗯，我覺得那不算。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Fanny, does this rocking ever bother you?",
+      "zh": "範妮，這種搖晃會不會讓你難受？"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "No, I love it. It goes up and down and side to side and up and down. Anna, I love it!",
+      "zh": "不會，我超愛。它上上下下，左右晃，再上上下下。安娜，我愛死了！"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "Anna, are you feeling okay?",
+      "zh": "安娜，你還好嗎？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Yeah, yeah. You know, I just need some fresh air.",
+      "zh": "還好，還好。你知道嗎，我只是需要點新鮮空氣。"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "Let me open a window for you.",
+      "zh": "我給你開扇窗。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "No, I need some fresh land air. I mean, I need to breathe air on land. Oh, is that the time? I should really be going.",
+      "zh": "不，我需要陸地上的新鮮空氣。我是說，我得在陸地上呼吸。哦，都這時候了？我真該走了。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Thanks for lunch, Fanny, and a tour of your houseboat. It’s given me a great idea!",
+      "zh": "謝謝午飯，範妮，也謝謝帶我參觀你的船屋。這給了我一個好主意！"
+    },
+    {
+      "speaker": "Fanny",
+      "en": "You’re going to live on a houseboat?",
+      "zh": "你要住船屋了？"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Sort of. Thanks again!",
+      "zh": "算是吧。再次謝謝！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Hi! How would you like to hang out on my boat? Great! See you then!",
+      "zh": "嗨！要不要來我的船上玩？太好了！到時候見！"
+    },
+    {
+      "speaker": "Anna",
+      "en": "…and this is my shark net.",
+      "zh": "……這是我的防鯊網。"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Thank you for the invitation, Anna.",
+      "zh": "謝謝你的邀請，安娜。"
+    },
+    {
+      "speaker": "Anna",
+      "en": "Of course, would you like more orange juice?",
+      "zh": "當然，還要橙汁嗎？"
+    },
+    {
+      "speaker": "Ms. Weaver",
+      "en": "Uh..",
+      "zh": "呃……"
+    },
+    {
+      "speaker": "Anna",
+      "en": "(to young man) Ahoy!",
+      "zh": "（對年輕人）啊嗬！"
+    }
+  ],
+  "quiz": [
+    {
+      "id": "q1",
+      "prompt": "Why does Anna turn down Ms. Weaver’s dinner invitation?",
+      "choices": [
+        "She is visiting a friend’s houseboat",
+        "She is afraid of seafood",
+        "She has to work late Saturday"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q2",
+      "prompt": "What bothers Anna on Fanny’s houseboat?",
+      "choices": [
+        "The boat keeps rocking",
+        "There is no lunch",
+        "Phoenix will not give a tour"
+      ],
+      "answerIndex": 0
+    },
+    {
+      "id": "q3",
+      "prompt": "Where does Anna host Ms. Weaver at the end?",
+      "choices": [
+        "On a boat sitting on land",
+        "At Fish on a Dish",
+        "On Fanny’s houseboat"
+      ],
+      "answerIndex": 0
+    }
+  ],
+  "prev": {
+    "id": "lle2-26",
+    "number": 26,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 26",
+    "subtitle": "Look-alikes"
+  },
+  "next": {
+    "id": "lle2-28",
+    "number": 28,
+    "level": 2,
+    "title": "Let's Learn English Level 2 Lesson 28",
+    "subtitle": "For the Birds"
+  },
+  "levelLessonIds": [
+    "lle2-01",
+    "lle2-02",
+    "lle2-03",
+    "lle2-04",
+    "lle2-05",
+    "lle2-06",
+    "lle2-07",
+    "lle2-08",
+    "lle2-09",
+    "lle2-10",
+    "lle2-11",
+    "lle2-12",
+    "lle2-13",
+    "lle2-14",
+    "lle2-15",
+    "lle2-16",
+    "lle2-17",
+    "lle2-18",
+    "lle2-19",
+    "lle2-20",
+    "lle2-21",
+    "lle2-22",
+    "lle2-23",
+    "lle2-24",
+    "lle2-25",
+    "lle2-26",
+    "lle2-27",
+    "lle2-28",
+    "lle2-29",
+    "lle2-30"
+  ]
+}

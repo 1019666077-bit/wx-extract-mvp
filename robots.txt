@@ -1,6 +1,5 @@
-# GitHub 项目页：搜索引擎只读取域名根目录的 robots.txt
-# （https://1019666077-bit.github.io/robots.txt），不会自动读取本文件。
-# 请在站长平台手动提交下面的 Sitemap。
+# 搜索引擎只读取主机根目录的 robots.txt（https://1019666077-bit.github.io/robots.txt），不会自动读取子路径里的本文件。
+# 部署在 GitHub 项目页时，请到站长平台手动提交下面的 Sitemap。
 User-agent: *
 Allow: /
 

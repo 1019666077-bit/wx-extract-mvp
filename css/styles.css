@@ -167,6 +167,39 @@ body {
   color: var(--accent);
 }
 
+.site-nav > .script-switch {
+  margin-left: auto;
+}
+
+.script-switch {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.script-switch a {
+  min-width: 44px;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 10px;
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.script-switch a[aria-current="true"] {
+  background: var(--accent);
+  color: #fff;
+}
+
+.script-switch a:hover {
+  text-decoration: none;
+}
+
 .back-link {
   color: var(--accent);
   font-weight: 700;

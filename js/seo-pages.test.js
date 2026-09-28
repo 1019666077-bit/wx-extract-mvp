@@ -20,6 +20,10 @@ const {
   readLessons,
   sourceLastmod,
   checkAll,
+  HANT,
+  convertToHant,
+  switcherHref,
+  OVERRIDES,
 } = require("./seo-pages.js");
 
 const root = path.resolve(__dirname, "..");
@@ -37,7 +41,7 @@ test("every lesson gets a Chinese title and description in range", () => {
       assert.match(title, new RegExp(`第${lesson.number}课`));
       assert.match(description, new RegExp(`第${lesson.number}课`));
       assert.match(title, /[\u4e00-\u9fff]/);
-      assert.match(description, /慢速英语|中英对照/);
+      assert.match(description, /慢速英文|中英对照|中英字幕/);
       const subtitle = String(lesson.subtitle || "");
       if (subtitle) {
         assert.ok(title.includes(Array.from(subtitle).slice(0, 6).join("")), title);
@@ -71,6 +75,10 @@ test("locked lesson HTML keeps the paywall meaningful", () => {
   assert.doesNotMatch(html, /id="lesson-data"/);
   assert.doesNotMatch(html, new RegExp(lesson.quiz[0].prompt.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")));
   assert.match(html, /课文节选/);
+  assert.match(html, /hreflang="zh-Hans"/);
+  assert.match(html, /hreflang="zh-Hant"/);
+  assert.match(html, /hreflang="x-default"/);
+  assert.match(html, /data-script="zh-Hant"/);
   assert.match(html, new RegExp(lesson.dialogue[0].zh));
   assert.match(html, /href="lle1-05\.html"/);
   assert.match(html, /href="lle1-07\.html"/);
@@ -96,7 +104,7 @@ test("free lesson HTML includes dialogue and does not preload the video", () => 
 test("sitemap lists the home page, key pages, and all lessons", () => {
   const xml = buildSitemap(levels, "2026-09-05");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locs.length, 86);
+  assert.equal(locs.length, 172);
   assert.equal(new Set(locs).size, locs.length);
   assert.ok(locs.includes(`${SITE}/`));
   assert.ok(locs.includes(`${SITE}/progress.html`));
@@ -105,7 +113,13 @@ test("sitemap lists the home page, key pages, and all lessons", () => {
   assert.ok(locs.includes(`${SITE}/lessons/lle1-01.html`));
   assert.ok(locs.includes(`${SITE}/lessons/lle1-52.html`));
   assert.ok(locs.includes(`${SITE}/lessons/lle2-30.html`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/lessons/lle1-01.html`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/lessons/lle2-30.html`));
   assert.equal([...xml.matchAll(/<lastmod>/g)].length, locs.length);
+  assert.equal([...xml.matchAll(/hreflang="zh-Hant"/g)].length, locs.length);
+  assert.equal([...xml.matchAll(/hreflang="x-default"/g)].length, locs.length);
+  assert.match(xml, /xmlns:xhtml="http:\/\/www\.w3\.org\/1999\/xhtml"/);
 });
 
 test("robots.txt allows crawling and names the sitemap", () => {
@@ -137,6 +151,14 @@ test("site root resolves GitHub project pages and local lesson urls", () => {
   assert.equal(siteRoot("/lessons/lle2-30.html"), "/");
   assert.equal(siteRoot("/progress.html"), "/");
   assert.equal(siteRoot("/"), "/");
+  assert.equal(siteRoot("/wx-extract-mvp/zh-hant/lessons/lle1-01.html"), "/wx-extract-mvp/");
+  assert.equal(siteRoot("/wx-extract-mvp/zh-hant/index.html"), "/wx-extract-mvp/");
+  assert.equal(siteRoot("/wx-extract-mvp/zh-hant/"), "/wx-extract-mvp/");
+  assert.equal(siteRoot("/wx-extract-mvp/zh-hant"), "/wx-extract-mvp/");
+  assert.equal(siteRoot("/zh-hant/lessons/lle1-06.html"), "/");
+  assert.equal(siteRoot("/zh-hant/progress.html"), "/");
+  assert.equal(siteRoot("/zh-hant/"), "/");
+  assert.equal(siteRoot("/zh-hant"), "/");
 });
 
 test("legacy lesson.html redirects old id links and is noindex", () => {
@@ -157,4 +179,106 @@ test("generated pages and sitemap match data/lessons.json", () => {
   assert.match(index, /rel="canonical"/);
   assert.match(index, /lessons\/lle2-30\.html/);
   assert.equal(index.includes("data/lessons.json"), false);
+  const hantIndex = fs.readFileSync(path.join(root, "zh-hant/index.html"), "utf8");
+  assert.match(hantIndex, /lang="zh-Hant"/);
+  assert.match(hantIndex, /lessons\/lle2-30\.html/);
+  assert.match(hantIndex, /data-script="zh-Hans"/);
+  const hantLesson = fs.readFileSync(path.join(root, "zh-hant/lessons/lle1-01.html"), "utf8");
+  assert.match(hantLesson, /lang="zh-Hant"/);
+  assert.doesNotMatch(hantLesson, /lang="zh-CN"/);
+});
+
+test("Traditional pages mirror Simplified urls and keep English lesson text", () => {
+  const level = levels[0];
+  const lesson = level.lessons[0];
+  const html = buildLessonPage(level, lesson, null, level.lessons[1], HANT);
+  assert.match(html, /lang="zh-Hant"/);
+  assert.match(html, new RegExp(`canonical" href="${SITE}/zh-hant/lessons/lle1-01.html"`));
+  assert.match(html, new RegExp(`hreflang="zh-Hans" href="${SITE}/lessons/lle1-01.html"`));
+  assert.match(html, new RegExp(`hreflang="x-default" href="${SITE}/lessons/lle1-01.html"`));
+  assert.match(html, /href="\.\.\/\.\.\/css\/styles\.css"/);
+  assert.match(html, /href="\.\.\/pricing\.html"/);
+  assert.match(html, /href="\.\.\/\.\.\/lessons\/lle1-01\.html"/);
+  assert.match(html, new RegExp(lesson.dialogue[0].en));
+  assert.match(html, new RegExp(lesson.subtitle));
+  assert.doesNotMatch(html, new RegExp(lesson.dialogue[0].zh));
+  assert.match(html, /課/);
+  const locked = level.lessons.find((item) => item.id === "lle1-06");
+  const lockedHtml = buildLessonPage(level, locked, level.lessons[4], level.lessons[6], HANT);
+  assert.doesNotMatch(lockedHtml, /akamaized/);
+  assert.doesNotMatch(lockedHtml, /id="lesson-data"/);
+  assert.match(lockedHtml, /課文節選/);
+  const stored = JSON.parse(fs.readFileSync(path.join(root, "data/web/zh-hant/lessons/lle1-01.json"), "utf8"));
+  assert.equal(stored.dialogue[0].en, lesson.dialogue[0].en);
+  assert.notEqual(stored.dialogue[0].zh, lesson.dialogue[0].zh);
+  assert.equal(stored.videoUrl, lesson.videoUrl);
+});
+
+test("script switcher links the same page in the other script", () => {
+  assert.equal(switcherHref("zh-Hans", "zh-Hant", "lessons/lle1-01.html"), "../zh-hant/lessons/lle1-01.html");
+  assert.equal(switcherHref("zh-Hant", "zh-Hans", "lessons/lle1-01.html"), "../../lessons/lle1-01.html");
+  assert.equal(switcherHref("zh-Hans", "zh-Hans", "lessons/lle1-01.html"), "lle1-01.html");
+  assert.equal(switcherHref("zh-Hans", "zh-Hant", "index.html"), "zh-hant/index.html");
+  assert.equal(switcherHref("zh-Hant", "zh-Hans", "progress.html"), "../progress.html");
+  assert.equal(switcherHref("zh-Hant", "zh-Hant", "index.html"), "index.html");
+  assert.equal(switcherHref("zh-Hans", "zh-Hant", "pricing.html"), "zh-hant/pricing.html");
+});
+
+test("OpenCC Taiwan phrases keep English and apply the override list", () => {
+  assert.equal(convertToHant("Hello, I'm Anna!"), "Hello, I'm Anna!");
+  assert.equal(convertToHant("课文视频与脚本来自"), "課文影片與腳本來自");
+  assert.equal(convertToHant("属于公有领域"), "屬於公共領域");
+  assert.equal(convertToHant("点击播放"), "點擊播放");
+  assert.equal(convertToHant("我爱互联网"), "我愛網路");
+  assert.equal(convertToHant("打开打卡页"), "打開打卡頁");
+  assert.ok(OVERRIDES.length >= 4);
+});
+
+test("site origin comes only from site.config.json", () => {
+  const config = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
+  assert.equal(SITE, config.origin.replace(/\/+$/, ""));
+  const host = new URL(SITE).host;
+  for (const rel of ["js/seo-pages.js", "js/app.js", "js/messages.js"]) {
+    const source = fs.readFileSync(path.join(root, rel), "utf8");
+    assert.equal(source.includes(host), false, rel);
+  }
+  const lesson = buildLessonPage(levels[0], levels[0].lessons[0], null, levels[0].lessons[1], undefined, "https://lessons.example");
+  assert.match(lesson, /https:\/\/lessons\.example\/lessons\/lle1-01\.html/);
+  assert.match(lesson, /hreflang="zh-Hant" href="https:\/\/lessons\.example\/zh-hant\/lessons\/lle1-01\.html"/);
+  assert.doesNotMatch(lesson, /github\.io/);
+  const robots = buildRobots("https://lessons.example");
+  assert.match(robots, /Sitemap: https:\/\/lessons\.example\/sitemap\.xml/);
+  assert.match(robots, /https:\/\/lessons\.example\/robots\.txt/);
+  assert.doesNotMatch(robots, /github\.io/);
+  const sitemap = buildSitemap(levels, "2026-09-05", "https://lessons.example");
+  assert.match(sitemap, /https:\/\/lessons\.example\/zh-hant\/lessons\/lle1-01\.html/);
+  assert.doesNotMatch(sitemap, /github\.io/);
+  const hostRootRobots = `${new URL(SITE).origin}/robots.txt`;
+  for (const rel of ["sitemap.xml", "robots.txt", "index.html", "zh-hant/index.html", "lessons/lle1-01.html", "zh-hant/lessons/lle1-06.html"]) {
+    const text = fs.readFileSync(path.join(root, rel), "utf8");
+    assert.equal(text.includes(SITE), true, rel);
+    const urls = text.match(/https?:\/\/[A-Za-z0-9._~:/?#[\]@!$&'()*+,;=%-]+/g) || [];
+    for (const url of urls) {
+      if (!url.includes(host)) {
+        continue;
+      }
+      const allowed = url.startsWith(SITE) || url === hostRootRobots;
+      assert.equal(allowed, true, `${rel} has ${url}`);
+    }
+  }
+});
+
+test("study state keys stay shared between scripts", () => {
+  const app = fs.readFileSync(path.join(root, "js/app.js"), "utf8");
+  assert.match(app, /const PROGRESS_KEY = "voa-lle-progress"/);
+  assert.match(app, /const SCRIPT_PREF_KEY = "voa-lle-script"/);
+  assert.match(app, /function pagePath\(relative\)/);
+  assert.match(app, /data\/web\/zh-hant\//);
+  assert.match(app, /pagePath\(`lessons\//);
+  assert.doesNotMatch(app, /voa-lle-progress-hant/);
+  const unlock = fs.readFileSync(path.join(root, "js/unlock.js"), "utf8");
+  assert.match(unlock, /voa-lle-unlock/);
+  const study = fs.readFileSync(path.join(root, "js/study.js"), "utf8");
+  assert.match(study, /voa-lle-checkins/);
+  assert.match(study, /voa-lle-wrongbook/);
 });

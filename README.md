@@ -40,6 +40,7 @@ Dates use **Asia/Shanghai** (`YYYY-MM-DD`). There is no account; clearing site d
 | `voa-lle-checkins` | `string[]` of `YYYY-MM-DD` | Any lesson quiz submit records today (deduped) |
 | `voa-lle-wrongbook` | `{ lessonId, lessonTitle, questionId, prompt, choices, correctIndex, chosenIndex, savedAt }[]` | Wrong answers are upserted by `lessonId + questionId`. A later correct answer removes that item |
 | `voa-lle-unlock` | `{ active, code, plan, unlockedAt, expiresAt }` | Set after a valid redeem code. While `active` and `expiresAt` is in the future, paid lessons open. Missing `expiresAt` counts as expired. |
+| `voa-lle-script` | `zh-Hans` or `zh-Hant` | Set only when the reader uses the 简/繁 switch. The next visit opens the same page in that script. Progress keys above are shared by both scripts. |
 
 A day counts as checked-in when the learner **submits a lesson quiz that day**. Current streak is consecutive Shanghai dates ending today, or yesterday if today is not yet checked in.
 
@@ -96,9 +97,10 @@ Then open [http://localhost:8080](http://localhost:8080).
 
 Opening `index.html` as a file URL will not load the JSON.
 
-Check-in, wrong-book, unlock, miniprogram, video-map, and the static-page generator can be unit-tested with:
+Install the Traditional Chinese converter, then run checks:
 
 ```bash
+npm install
 node --test js/*.test.js
 bash scripts/check-codes-json.sh
 bash scripts/build-mp-data.sh --check
@@ -106,40 +108,57 @@ bash scripts/sync-voa-videos.sh --dry-run
 node scripts/build-pages.js --check
 ```
 
+## Languages and site origin
+
+Simplified Chinese lives at the site root. Traditional Chinese (Taiwan wording) is a full mirror under `zh-hant/`: catalog, every lesson, progress, wrong-answer book, pricing, and the old `lesson.html` redirect. English lesson lines stay English. A 简/繁 control on each page links to the same screen in the other script.
+
+Both versions share one origin, so `localStorage` progress, check-in, wrong-book, and unlock carry across. `js/app.js` loads `data/web/` or `data/web/zh-hant/` from the site root, not from the `zh-hant/` folder.
+
+The published origin is the single `origin` field in [`site.config.json`](site.config.json). Canonical links, hreflang, Open Graph URLs, JSON-LD, `sitemap.xml`, and `robots.txt` all read that value at build time. To move to a custom domain later:
+
+1. Change `origin` in `site.config.json` (no trailing slash).
+2. Run `npm install` if needed, then `node scripts/build-pages.js`.
+3. Commit the regenerated pages and deploy.
+
+Do not paste the origin into HTML or JS. The generator test fails if `js/seo-pages.js` hardcodes the host.
+
+URL pattern, prefixed with that origin:
+
+| Script | Example |
+| --- | --- |
+| zh-Hans catalog | `/` |
+| zh-Hant catalog | `/zh-hant/` |
+| zh-Hans lesson | `/lessons/lle1-01.html` |
+| zh-Hant lesson | `/zh-hant/lessons/lle1-01.html` |
+| Locked lesson | `/lessons/lle1-06.html` and `/zh-hant/lessons/lle1-06.html` |
+| Level 2 | `/lessons/lle2-01.html` and `/zh-hant/lessons/lle2-01.html` |
+| Sitemap | `/sitemap.xml` |
+
+Each page sets `<html lang>` to `zh-CN` or `zh-Hant`, points its canonical at itself, and lists `zh-Hans`, `zh-Hant`, and `x-default` (the Simplified URL). The sitemap lists both sets with `xhtml:link` alternates.
+
 ## Crawlable lesson pages
 
-Each lesson has a static HTML page generated from `data/lessons.json`. Regenerate after editing lesson content:
+Each lesson has a static HTML page generated from `data/lessons.json`. Traditional copy is produced in the same build with [OpenCC](https://github.com/nk2028/opencc-js) `s2twp` (Simplified to Taiwan phrases), then a short override list in `js/seo-pages.js` (`OVERRIDES`): 腳本, 公共領域, 點擊播放, 網路, and 打開打卡/課表/頁面. Regenerate after editing lesson content or `site.config.json`:
 
 ```bash
+npm install
 node scripts/build-pages.js
 node scripts/build-pages.js --check
 ```
 
-`--check` fails when `lessons/*.html`, `data/web/`, `sitemap.xml`, or `robots.txt` drift from `data/lessons.json`. The same check runs inside `node --test js/*.test.js`.
+`--check` fails when `lessons/*.html`, `zh-hant/**/*.html`, `data/web/`, `js/i18n.js`, `sitemap.xml`, or `robots.txt` drift from `data/lessons.json`. The same check runs inside `node --test js/*.test.js`.
 
-URL pattern: `lessons/<id>.html`, for example:
-
-- https://1019666077-bit.github.io/wx-extract-mvp/lessons/lle1-01.html
-- https://1019666077-bit.github.io/wx-extract-mvp/lessons/lle1-06.html
-- https://1019666077-bit.github.io/wx-extract-mvp/lessons/lle2-01.html
-
-The catalog and lesson pages do not download the full `data/lessons.json`. The home page embeds a slim catalog (also written to `data/web/catalog.json`). Opening a lesson reads that page, and loads `data/web/lessons/<id>.json` only when the lesson is free or already unlocked.
+The catalog and lesson pages do not download the full `data/lessons.json`. The home page embeds a slim catalog (`data/web/catalog.json`, or `data/web/zh-hant/catalog.json` on the Traditional site). Opening a lesson reads that page, and loads the matching per-lesson JSON only when the lesson is free or already unlocked.
 
 Locked lesson HTML includes the Chinese title, a short intro, and the first two dialogue lines. The video URL, the rest of the dialogue, and the quiz stay out of the HTML until unlock. The per-lesson JSON files are still public, same as the old single JSON file: the paywall is a frontend gate, not a secret.
 
-Sitemap: https://1019666077-bit.github.io/wx-extract-mvp/sitemap.xml
-
-`robots.txt` in this repo allows crawling and points at that sitemap. On a GitHub **project** page, crawlers read robots from the host root (`https://1019666077-bit.github.io/robots.txt`), not from the project path. Submit the sitemap URL in webmaster tools.
+`robots.txt` in this repo allows crawling and points at `{origin}/sitemap.xml`. On a GitHub **project** page, crawlers read robots from the host root (`{scheme}://{host}/robots.txt`), not from the project path. The generated file names that host-root URL from `site.config.json`. Submit the sitemap URL in webmaster tools.
 
 Local testing note: there are **no public demo codes**, and `data/codes.json` stays empty in git. Unlock unit tests use their own fixtures. To try the redeem form locally, generate a code with `python3 scripts/gen-codes.py --monthly 1 --quarterly 0` and type it into the form (empty allowlist accepts `LLE-M-*` / `LLE-Q-*` format). Do not commit that code. Do not advertise codes to end users.
 
 ## Public preview
 
-Open on phone or desktop:
-
-https://1019666077-bit.github.io/wx-extract-mvp/
-
-GitHub Pages is served from `main` at `/` (repo root). A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once.
+GitHub Pages serves this repo from `main` at the origin in `site.config.json`. Open `/` for Simplified Chinese and `/zh-hant/` for Traditional Chinese. A newly published site can take about 30 seconds to stabilize; if it does not load, refresh once.
 
 ## WeChat miniprogram (paused)
 

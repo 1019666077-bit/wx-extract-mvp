@@ -17,6 +17,7 @@ const {
   buildLessonPage,
   buildSitemap,
   buildRobots,
+  buildNotFoundPage,
   readLessons,
   sourceLastmod,
   checkAll,
@@ -104,12 +105,19 @@ test("free lesson HTML includes dialogue and does not preload the video", () => 
 test("sitemap lists the home page, key pages, and all lessons", () => {
   const xml = buildSitemap(levels, "2026-09-05");
   const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => match[1]);
-  assert.equal(locs.length, 172);
+  const lessonCount = levels.reduce((sum, level) => sum + level.lessons.length, 0);
+  assert.equal(locs.length, (keyPages(SITE).length + lessonCount) * 2);
   assert.equal(new Set(locs).size, locs.length);
   assert.ok(locs.includes(`${SITE}/`));
   assert.ok(locs.includes(`${SITE}/progress.html`));
   assert.ok(locs.includes(`${SITE}/wrongbook.html`));
   assert.ok(locs.includes(`${SITE}/pricing.html`));
+  assert.ok(locs.includes(`${SITE}/terms.html`));
+  assert.ok(locs.includes(`${SITE}/privacy.html`));
+  assert.ok(locs.includes(`${SITE}/refund.html`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/terms.html`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/privacy.html`));
+  assert.ok(locs.includes(`${SITE}/zh-hant/refund.html`));
   assert.ok(locs.includes(`${SITE}/lessons/lle1-01.html`));
   assert.ok(locs.includes(`${SITE}/lessons/lle1-52.html`));
   assert.ok(locs.includes(`${SITE}/lessons/lle2-30.html`));
@@ -135,6 +143,36 @@ test("key pages use Simplified Chinese titles and descriptions", () => {
     assert.ok(textLength(page.description) >= DESC_MIN && textLength(page.description) <= DESC_MAX);
     assert.ok(page.loc.startsWith(SITE));
   }
+});
+
+test("legal pages are crawlable key pages with a shared nav", () => {
+  const ids = keyPages().map((page) => page.id);
+  for (const id of ["terms", "privacy", "refund"]) {
+    assert.ok(ids.includes(id), id);
+  }
+  for (const rel of ["terms.html", "privacy.html", "refund.html", "zh-hant/terms.html", "zh-hant/privacy.html", "zh-hant/refund.html"]) {
+    const html = fs.readFileSync(path.join(root, rel), "utf8");
+    assert.match(html, /class="legal-nav"/, rel);
+    assert.match(html, /rel="canonical"/, rel);
+    assert.doesNotMatch(html, /noindex/, rel);
+  }
+  for (const rel of ["index.html", "pricing.html", "progress.html", "wrongbook.html", "lessons/lle1-01.html"]) {
+    const html = fs.readFileSync(path.join(root, rel), "utf8");
+    assert.match(html, /href="(\.\.\/)*refund\.html"/, rel);
+  }
+});
+
+test("404 page is noindex and links back with absolute urls", () => {
+  const html = buildNotFoundPage();
+  assert.match(html, /noindex/);
+  assert.doesNotMatch(html, /rel="canonical"/);
+  assert.match(html, new RegExp(`href="${SITE}/"`));
+  assert.match(html, new RegExp(`href="${SITE}/lessons/lle1-01\\.html"`));
+  assert.match(html, new RegExp(`href="${SITE}/zh-hant/"`));
+  assert.match(html, /data-page="notfound"/);
+  const custom = buildNotFoundPage("https://lessons.example");
+  assert.match(custom, /href="https:\/\/lessons\.example\/pricing\.html"/);
+  assert.doesNotMatch(custom, /github\.io/);
 });
 
 test("site root resolves GitHub project pages and local lesson urls", () => {

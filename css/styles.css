@@ -75,6 +75,7 @@ body {
 .paywall-section,
 .excerpt-section,
 .directory-section,
+.legal-section,
 .footer {
   background: var(--card);
   border: 1px solid var(--line);
@@ -94,6 +95,7 @@ body {
 .paywall-section,
 .excerpt-section,
 .directory-section,
+.legal-section,
 .footer {
   padding: 22px 24px;
 }
@@ -800,6 +802,75 @@ h3 {
   margin: 0;
 }
 
+/* Keyboard focus: the default UA ring is easy to lose against the tinted
+   cards, so every interactive element gets an explicit high-contrast one. */
+:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.legal-nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 14px;
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.legal-nav a {
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.legal-nav a:hover,
+.legal-nav a:focus-visible {
+  text-decoration: underline;
+}
+
+.legal-section h2 {
+  margin: 0 0 10px;
+  font-size: 1.1rem;
+}
+
+.legal-section h3 {
+  margin: 18px 0 6px;
+  font-size: 1rem;
+}
+
+.legal-section p,
+.legal-section li {
+  margin: 0 0 10px;
+}
+
+.legal-section ul,
+.legal-section ol {
+  margin: 0 0 10px;
+  padding-left: 1.2em;
+}
+
+.legal-section li + li {
+  margin-top: 4px;
+}
+
+.legal-section .updated {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
 .checkin-stats {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -1034,6 +1105,15 @@ h3 {
   margin-top: 6px;
 }
 
+.link-list {
+  margin: 16px 0 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
 .pay-steps-title {
   margin: 20px 0 0;
   font-size: 1rem;
@@ -1127,6 +1207,7 @@ h3 {
   .paywall-section,
   .excerpt-section,
   .directory-section,
+  .legal-section,
   .footer {
     padding: 18px 16px;
   }

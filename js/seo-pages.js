@@ -293,6 +293,36 @@ function keyPages(origin = SITE) {
       ogType: "website",
       priority: "0.5",
     },
+    {
+      id: "terms",
+      file: "terms.html",
+      loc: `${origin}/terms.html`,
+      title: "服务条款与使用规则｜VOA慢速英文",
+      description:
+        "使用 VOA 慢速英文自学课的服务条款：说明免费试学范围、开通与兑换码的交付方式、课程内容的使用限制、服务与内容的变更，以及遇到付款或兑换问题时的处理方式。",
+      ogType: "website",
+      priority: "0.3",
+    },
+    {
+      id: "privacy",
+      file: "privacy.html",
+      loc: `${origin}/privacy.html`,
+      title: "隐私政策与数据说明｜VOA慢速英文自学",
+      description:
+        "本站如何处理你的数据：学习进度、打卡与错题只保存在浏览器本地，不使用 Cookie 和第三方统计，播放课文视频时会连接 VOA 的视频服务器。",
+      ogType: "website",
+      priority: "0.3",
+    },
+    {
+      id: "refund",
+      file: "refund.html",
+      loc: `${origin}/refund.html`,
+      title: "退款政策说明｜VOA慢速英文自学课",
+      description:
+        "开通属于数字内容，兑换码交付后即可使用，除适用法律要求退款的情形外不提供退款。付款后没收到码，或兑换码无法解锁时，请联系开通页上的联系方式处理。",
+      ogType: "website",
+      priority: "0.3",
+    },
   ];
 }
 
@@ -441,7 +471,7 @@ function dialogueHtml(lines) {
     .map(
       (line) => `        <article class="line" data-speaker="${escapeHtml(line.speaker)}">
           <p class="speaker">${escapeHtml(line.speaker)}</p>
-          <p class="en">${escapeHtml(line.en)}</p>
+          <p class="en" lang="en">${escapeHtml(line.en)}</p>
           <p class="zh">${escapeHtml(line.zh)}</p>
         </article>`
     )
@@ -452,10 +482,10 @@ function quizPreviewHtml(quiz) {
   return (quiz || [])
     .map((question, index) => {
       const choices = (question.choices || [])
-        .map((choice) => `<li>${escapeHtml(choice)}</li>`)
+        .map((choice) => `<li lang="en">${escapeHtml(choice)}</li>`)
         .join("");
       return `        <fieldset class="question">
-          <legend>${index + 1}. ${escapeHtml(question.prompt)}</legend>
+          <legend lang="en">${index + 1}. ${escapeHtml(question.prompt)}</legend>
           <ul class="quiz-preview">${choices}</ul>
         </fieldset>`;
     })
@@ -552,6 +582,23 @@ function levelHomeUrl(locale, levelId, origin) {
     return `${home}index.html?level=${levelId}`;
   }
   return `${home}?level=${levelId}`;
+}
+
+/**
+ * Legal/plan links shared by every footer. `base` is the prefix that takes the
+ * current page back to its own locale root ("" at the root, "../" inside
+ * lessons/, so that the zh-Hant copy stays inside /zh-hant/).
+ */
+function legalNav(base, locale) {
+  const item = (file, label) =>
+    `<a href="${base}${file}">${escapeHtml(tx(label, locale))}</a>`;
+  return `      <nav class="legal-nav" aria-label="${escapeHtml(tx("法律与开通", locale))}">
+        ${item("pricing.html", "开通方案")}
+        ${item("terms.html", "服务条款")}
+        ${item("privacy.html", "隐私政策")}
+        ${item("refund.html", "退款政策")}
+      </nav>
+`;
 }
 
 function buildLessonPage(level, lesson, prev, next, locale = HANS, origin = SITE) {
@@ -683,7 +730,7 @@ ${quiz}
 ${pager}
     </nav>
     <footer class="footer">
-      <p id="attribution">${escapeHtml(view.attribution || "")}</p>
+${legalNav(pageBase, loc)}      <p id="attribution">${escapeHtml(view.attribution || "")}</p>
     </footer>
   </div>
   <script type="application/json" id="lesson-nav">${navJson}</script>
@@ -779,6 +826,62 @@ User-agent: *
 Allow: /
 
 Sitemap: ${origin}/sitemap.xml
+`;
+}
+
+/**
+ * Branded 404 page. GitHub Pages serves this file for any missing path under
+ * the site root, so every link and asset here is absolute: a relative href
+ * would resolve against whatever bad URL the visitor landed on.
+ */
+function buildNotFoundPage(origin = SITE) {
+  const home = `${origin}/`;
+  const homeHant = `${origin}/zh-hant/`;
+  const link = (href, label) => `<a class="btn" href="${href}">${label}</a>`;
+  return `<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>页面不存在｜VOA慢速英文自学</title>
+  <meta name="description" content="这个网址已经没有对应页面。回到课表继续学 VOA Let&#39;s Learn English 慢速英文，或用下面的链接查看打卡、错题本与开通说明。" />
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0b6e4f" />
+  <link rel="icon" href="${FAVICON}" />
+  <link rel="stylesheet" href="${home}css/styles.css" />
+</head>
+<body data-page="notfound">
+  <div class="page">
+    <header class="header">
+      <p class="eyebrow">VOA 慢速英文 · 非官方自学</p>
+      <h1>找不到这个页面</h1>
+      <p class="subtitle">网址可能打错了，或者这一课已经换到新的课程页。你可以从下面回到课表。</p>
+      <div class="quiz-actions">
+        ${link(home, "回到课表")}
+        ${link(`${home}lessons/lle1-01.html`, "打开第 1 课")}
+      </div>
+    </header>
+    <section class="catalog-section" aria-label="常用页面">
+      <h2>常用页面</h2>
+      <ul class="link-list">
+        <li>${link(`${home}progress.html`, "打卡日历")}</li>
+        <li>${link(`${home}wrongbook.html`, "错题本")}</li>
+        <li>${link(`${home}pricing.html`, "开通方案")}</li>
+        <li>${link(homeHant, "繁體中文版首頁")}</li>
+      </ul>
+    </section>
+    <footer class="footer">
+      <nav class="legal-nav" aria-label="法律与开通">
+        <a href="${home}pricing.html">开通方案</a>
+        <a href="${home}terms.html">服务条款</a>
+        <a href="${home}privacy.html">隐私政策</a>
+        <a href="${home}refund.html">退款政策</a>
+      </nav>
+      <p>本站为非官方自学工具，与美国之音（Voice of America）没有隶属或背书关系。课文视频与脚本来自 VOA Learning English，属于公有领域。</p>
+    </footer>
+  </div>
+</body>
+</html>
 `;
 }
 
@@ -931,6 +1034,7 @@ function expectedFiles(root, payload, lastmod) {
   }
   files.set("sitemap.xml", buildSitemap(levels, lastmod));
   files.set("robots.txt", buildRobots());
+  files.set("404.html", buildNotFoundPage());
   return files;
 }
 
@@ -968,7 +1072,10 @@ function checkAll(root) {
       continue;
     }
     const disk = fs.readFileSync(full, "utf8");
-    if (disk !== content) {
+    // Compare with normalised line endings on both sides: a Windows checkout
+    // with core.autocrlf=true stores CRLF on disk, while the generators emit
+    // LF for built-from-scratch files but echo the shell file verbatim.
+    if (disk.replace(/\r\n/g, "\n") !== content.replace(/\r\n/g, "\n")) {
       problems.push(`stale ${rel}`);
     }
   }
@@ -1014,6 +1121,7 @@ module.exports = {
   buildLessonPage,
   buildSitemap,
   buildRobots,
+  buildNotFoundPage,
   webLesson,
   sourceLastmod,
   checkAll,

@@ -49,7 +49,7 @@ const MESSAGES = {
   nextMonth: "下一月",
   calendarAria: "{title}打卡日历",
   checkinNote: "提交任意课程测验即计为当日打卡。日期按 Asia/Shanghai（UTC+8）。",
-  quizChecked: "Score: {score} / {total} · 已打卡 {day}",
+  quizChecked: "测验 {score} / {total} · 已打卡 {day}",
   quizWrongSuffix: " · 错题本 {count} 题",
   levelClearNote: "Level 1 通关！你完成了全部 {count} 课测验。",
   backToClear: "回课表看通关纪念",

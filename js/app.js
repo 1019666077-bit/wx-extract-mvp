@@ -264,7 +264,7 @@ function migrateOldProgress() {
         completed: true,
         savedAt: new Date().toISOString(),
         answers: parsed.answers || {},
-        resultText: parsed.resultText || `Score: ${parsed.score} / ${parsed.total}`,
+        resultText: parsed.resultText || `测验 ${parsed.score} / ${parsed.total}`,
       };
       writeProgress(progress);
     }
@@ -588,7 +588,7 @@ function renderDialogue(dialogue) {
       (line) => `
         <article class="line" data-speaker="${escapeHtml(line.speaker)}">
           <p class="speaker">${escapeHtml(line.speaker)}</p>
-          <p class="en">${escapeHtml(line.en)}</p>
+          <p class="en" lang="en">${escapeHtml(line.en)}</p>
           <p class="zh">${escapeHtml(line.zh)}</p>
         </article>
       `
@@ -602,13 +602,13 @@ function renderQuiz(questions) {
     .map(
       (question, index) => `
         <fieldset class="question">
-          <legend>${index + 1}. ${escapeHtml(question.prompt)}</legend>
+          <legend lang="en">${index + 1}. ${escapeHtml(question.prompt)}</legend>
           ${question.choices
             .map(
               (choice, choiceIndex) => `
                 <label class="choice">
                   <input type="radio" name="${escapeHtml(question.id)}" value="${choiceIndex}" required />
-                  <span>${escapeHtml(choice)}</span>
+                  <span lang="en">${escapeHtml(choice)}</span>
                 </label>
               `
             )
@@ -697,7 +697,7 @@ function renderCheckinCalendar(root, view) {
       <h3 class="cal-title">${escapeHtml(monthTitle(year, month))}</h3>
       <button type="button" class="btn cal-nav" data-cal-dir="1" aria-label="${escapeHtml(t("nextMonth"))}">›</button>
     </div>
-    <div class="cal-grid" role="grid" aria-label="${escapeHtml(t("calendarAria", { title: monthTitle(year, month) }))}">
+    <div class="cal-grid" role="group" aria-label="${escapeHtml(t("calendarAria", { title: monthTitle(year, month) }))}">
       ${weekdays}
       ${grid}
     </div>
@@ -722,7 +722,7 @@ function gradeQuiz(lesson, level = null) {
   const score = lesson.quiz.reduce((total, question) => {
     return total + (answers[question.id] === question.answerIndex ? 1 : 0);
   }, 0);
-  const resultText = `Score: ${score} / ${lesson.quiz.length}`;
+  const resultText = `测验 ${score} / ${lesson.quiz.length}`;
   const wrongCount = VOAStudy.syncWrongbook(lesson, answers).length;
   VOAStudy.recordCheckin();
   updateWrongbookNavCount();
@@ -1230,6 +1230,12 @@ function init() {
   }
   if (page === "pricing") {
     initPricing();
+    return;
+  }
+  if (page === "terms" || page === "privacy" || page === "refund") {
+    // Legal pages only need the shared nav state.
+    renderUnlockNav();
+    updateWrongbookNavCount();
   }
 }
 

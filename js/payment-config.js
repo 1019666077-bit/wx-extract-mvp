@@ -1,1 +1,1 @@
-window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":"","termsVersion":"2026-09-28-law"};
+window.VOA_PAYMENT={"workerBaseUrl":"https://voa-lle-unlock.1019666077.workers.dev","unlockPublicKey":"MCowBQYDK2VwAyEAgtvIFzqmArRW0A+s4DnWVdtccmZO85EOjoucHWTS4ms=","monthlyProductId":"PROD_4L8Qvxjp4gJfgQFxb9mnIu","quarterlyProductId":"PROD_1OHp7txgz6gszrrsgenvdL","termsVersion":"2026-09-28-law"};

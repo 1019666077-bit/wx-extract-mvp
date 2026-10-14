@@ -65,6 +65,22 @@
     <xhtml:link rel="alternate" hreflang="x-default" href="https://eachsound.com/pricing.html" />
   </url>
   <url>
+    <loc>https://eachsound.com/pricing-return.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://eachsound.com/pricing-return.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eachsound.com/zh-hant/pricing-return.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eachsound.com/pricing-return.html" />
+  </url>
+  <url>
+    <loc>https://eachsound.com/zh-hant/pricing-return.html</loc>
+    <lastmod>2026-09-05</lastmod>
+    <priority>0.3</priority>
+    <xhtml:link rel="alternate" hreflang="zh-Hans" href="https://eachsound.com/pricing-return.html" />
+    <xhtml:link rel="alternate" hreflang="zh-Hant" href="https://eachsound.com/zh-hant/pricing-return.html" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://eachsound.com/pricing-return.html" />
+  </url>
+  <url>
     <loc>https://eachsound.com/terms.html</loc>
     <lastmod>2026-09-05</lastmod>
     <priority>0.4</priority>

@@ -38,6 +38,18 @@ test("Cloudflare Pages project name is eachsound and the workflow does not repla
   assert.match(wrangler, /name = "voa-lle-unlock-sandbox"/);
   assert.match(wrangler, /\[env\.sandbox\.kv_namespaces\][\s\S]*id = "49aac2630d6b4030bbbd739bcbe707eb"/);
   assert.doesNotMatch(wrangler, /replace_me/);
+  const prodVars = wrangler.slice(0, wrangler.indexOf("[env.sandbox]"));
+  assert.match(prodVars, /PANCAKE_MODE = "prod"/);
+  assert.match(prodVars, /WAFFO_API_BASE = "https:\/\/api\.waffo\.ai"/);
+  assert.match(prodVars, /PANCAKE_PRODUCT_MONTHLY = "PROD_4L8Qvxjp4gJfgQFxb9mnIu"/);
+  assert.match(prodVars, /PANCAKE_PRODUCT_QUARTERLY = "PROD_1OHp7txgz6gszrrsgenvdL"/);
+  assert.match(prodVars, /ALLOWED_ORIGIN = "https:\/\/eachsound\.com"/);
+  assert.match(prodVars, /TERMS_VERSION = "2026-09-28-law"/);
+  const sandbox = wrangler.slice(wrangler.indexOf("[env.sandbox.vars]"));
+  assert.match(sandbox, /PANCAKE_MODE = "test"/);
+  assert.match(sandbox, /PANCAKE_PRODUCT_MONTHLY = ""/);
+  assert.match(sandbox, /PANCAKE_PRODUCT_QUARTERLY = ""/);
+  assert.match(sandbox, /ALLOWED_ORIGIN = "https:\/\/sandbox\.eachsound\.pages\.dev"/);
 });
 
 test("staged site is served from the domain root and omits the Worker and miniprogram", () => {

@@ -18,11 +18,8 @@ test("Cloudflare Pages project name is eachsound and the workflow does not repla
   assert.match(workflow, /branches: \[main\]/);
   assert.doesNotMatch(workflow, /peaceiris|actions\/upload-pages-artifact|github-pages/);
   const names = fs.readdirSync(path.join(root, ".github/workflows")).sort();
-  assert.deepEqual(names, ["cloudflare-pages.yml", "cloudflare-sandbox.yml", "cloudflare-worker.yml"]);
-  const sandboxFlow = fs.readFileSync(path.join(root, ".github/workflows/cloudflare-sandbox.yml"), "utf8");
-  assert.match(sandboxFlow, /branches: \[cursor\/waffo-pricing-ad6a\]/);
-  assert.match(sandboxFlow, /refs\/heads\/cursor\/waffo-pricing-ad6a/);
-  assert.match(sandboxFlow, /node scripts\/sandbox-deploy\.js/);
+  assert.deepEqual(names, ["cloudflare-pages.yml", "cloudflare-worker.yml"]);
+  assert.equal(fs.existsSync(path.join(root, ".github/workflows/cloudflare-sandbox.yml")), false);
   const sandboxScript = fs.readFileSync(path.join(root, "scripts/sandbox-deploy.js"), "utf8");
   assert.match(sandboxScript, /--branch=sandbox/);
   assert.match(sandboxScript, /"deploy", "--env", "sandbox"/);

@@ -4,7 +4,7 @@
 
 实际开通的是 **Waffo Pancake**（商户后台 [pancake.waffo.ai](https://pancake.waffo.ai)，商户代收 / Merchant of Record），不是 `api-sandbox.waffo.com` 那套原生收单网关。不要自己用 openssl 生成商户 RSA，不要往后台上传 Payin 公钥，也不要再找旧的 Merchant Id。
 
-站点源站仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。Worker 名字仍是 `voa-lle-unlock`。VOA 这家店先不要建：等网站放到 Cloudflare Pages，并且价格页、服务条款、隐私政策、退款政策都在线上之后再建。法律页顶部没有生效日期。联系邮箱只写在 `site.config.json` 的 `contactEmail`，现为 `eachsound@outlook.com`。适用法律是中华人民共和国法律（不含冲突规范），并保留消费者所在地强制性消费者保护法。争议先发这个邮箱协商，协商不成由广东省东莞市有管辖权的人民法院管辖。凭证过期后订单记录再留 3 年。条款版本是 `site.config.json` 的 `termsVersion`。
+站点源站是 `https://eachsound.com`。Worker 名字仍是 `voa-lle-unlock`。VOA 这家店先不要建：等网站放到 Cloudflare Pages，并且价格页、服务条款、隐私政策、退款政策都在线上之后再建。法律页顶部没有生效日期。联系邮箱只写在 `site.config.json` 的 `contactEmail`，现为 `eachsound@outlook.com`。适用法律是中华人民共和国法律（不含冲突规范），并保留消费者所在地强制性消费者保护法。争议先发这个邮箱协商，协商不成由广东省东莞市有管辖权的人民法院管辖。凭证过期后订单记录再留 3 年。条款版本是 `site.config.json` 的 `termsVersion`。
 
 公开文档（以页面为准，不要猜字段名）：
 
@@ -180,7 +180,7 @@ npx wrangler deploy
 
 或者在 GitHub Actions 里手动运行「Cloudflare Worker」（`.github/workflows/cloudflare-worker.yml`）。它只有 `workflow_dispatch`，不会在 push 时跑，命令是在 `worker/` 里执行 `wrangler deploy`，用的是已经加好的 `CLOUDFLARE_API_TOKEN` 和 `CLOUDFLARE_ACCOUNT_ID`。这是生产 Worker `voa-lle-unlock`，现在不要点运行。
 
-沙箱是另一条工作流 `.github/workflows/cloudflare-sandbox.yml`，只在推到 `cursor/waffo-pricing-ad6a` 时跑。它部署 Worker `voa-lle-unlock-sandbox`（绑定预览 KV `49aac2630d6b4030bbbd739bcbe707eb`，`PANCAKE_MODE=test`），再用 `wrangler pages deploy --branch=sandbox` 上传到 Pages 项目 `eachsound` 的非生产分支。生产部署和 `eachsound.com` 不动。Pancake 密钥只在这步用 `wrangler secret put` 写入，不进 Git、不进日志。合并到 `main` 之前删掉这个工作流。
+临时沙箱工作流 `.github/workflows/cloudflare-sandbox.yml` 已从 `main` 删除。它只绑定过旧的 `cursor/waffo-pricing-ad6a` 分支。`worker/wrangler.toml` 里的 `[env.sandbox]` 还在，需要沙箱时仍用 `scripts/sandbox-deploy.js` 手动跑。那条路径部署 Worker `voa-lle-unlock-sandbox`（绑定预览 KV `49aac2630d6b4030bbbd739bcbe707eb`，`PANCAKE_MODE=test`），再用 `wrangler pages deploy --branch=sandbox` 上传到 Pages 项目 `eachsound` 的非生产分支。生产 Worker 和 `eachsound.com` 的生产 Pages 不走这条路径。Pancake 密钥只在沙箱部署时用 `wrangler secret put` 写入，不进 Git、不进日志。
 
 6. 把解锁公钥和 Worker 地址写进 `site.config.json` 的 `payment.worker`，商品 id 写进 `payment.pancake`，然后：
 
@@ -275,7 +275,7 @@ Content-Type: application/json
 
 ## 7. 把网站放到 Cloudflare Pages
 
-付款上线之前，站点要改放到 Cloudflare Pages。GitHub 的条款不允许把 Pages 主要用来做商业交易。Git 仓库仍然是唯一源。现在不要改 `site.config.json` 的 `origin`，它仍是 `https://1019666077-bit.github.io/wx-extract-mvp`。GitHub Pages 继续从仓库根目录发布，直到本节的验收做完。旧地址的跳转以后再做，见本节最后。
+付款上线之前，站点要改放到 Cloudflare Pages。GitHub 的条款不允许把 Pages 主要用来做商业交易。Git 仓库仍然是唯一源。`site.config.json` 的 `origin` 是 `https://eachsound.com`。GitHub Pages 继续从仓库根目录发布。旧地址的跳转以后再做，见本节最后。
 
 建 Pancake 的店之前，Pages 上要能打开：价格页，以及服务条款、隐私政策、退款政策的简体、繁体、英文（`/terms.html`、`/zh-hant/terms.html`、`/en/terms.html`，隐私和退款同样三条路径）。
 
@@ -365,13 +365,13 @@ node scripts/stage-pages.js
 9. 响应头里有 `X-Content-Type-Options: nosniff`。HTML 是 `Cache-Control: public, max-age=0, must-revalidate`。
 10. 再打开原来的 `https://1019666077-bit.github.io/wx-extract-mvp/`，确认 GitHub Pages 还能用。
 
-验收通过之后才改源站。canonical、hreflang、sitemap、Open Graph、JSON-LD 和 Worker 的 CORS 都跟这一个字段。`pages.dev` 只用来验收，不要把它写成最终的 `origin`。
+源站已改为 `https://eachsound.com`。canonical、hreflang、sitemap、Open Graph、JSON-LD 和 Worker 的 CORS 都跟这一个字段。`pages.dev` 只用来验收，不要把它写成 `origin`。生产 Worker 还没为这次源站重新部署。
 
 ### 迁站最终域名 eachsound.com
 
-最终对外域名是 `https://eachsound.com`（正在购买，还没绑定）。`site.config.json` 的 `origin` 现在仍然是 `https://1019666077-bit.github.io/wx-extract-mvp`，这一步不要改。
+最终对外域名是 `https://eachsound.com`。`site.config.json` 的 `origin` 已是 `https://eachsound.com`。
 
-自定义域通了、锁图标出现、并且上面的验收在 `pages.dev` 上做过之后，再把 `origin` 直接改成 `https://eachsound.com`。
+自定义域通了、锁图标出现、并且上面的验收在 `pages.dev` 上做过之后，canonical、hreflang 和 Open Graph 跟这个 origin。
 
 绑定分两步：先在 Pages 里加自定义域，再选一种 DNS。
 
@@ -384,10 +384,10 @@ node scripts/stage-pages.js
 
 **建议：** eachsound.com 是新买的域名，上面还没有必须留在阿里云的邮箱或其他站点，把 NS 改到 Cloudflare。自定义域、证书和 Pages 在同一处，少一次跨服务排错。如果买下来之后已经在阿里云配了 MX 或其他记录，就留在阿里云 DNS，只加 Pages 要求的记录，避免把那些记录一起搬走。
 
-改 `origin` 时按这个顺序，现在不要做：
+改 `origin` 的顺序：
 
-1. 把 `site.config.json` 的 `origin` 改成 `https://eachsound.com`，不要末尾斜杠。
-2. 运行 `npm run build`。它会重写页面，并把 `worker/wrangler.toml` 的 `ALLOWED_ORIGIN` 和两个商品 id 改成和 `site.config.json` 一致。不要手改那几行。
+1. 把 `site.config.json` 的 `origin` 改成 `https://eachsound.com`，不要末尾斜杠。这一步已经做了。
+2. 运行 `npm run build`。它会重写页面，并把 `worker/wrangler.toml` 的 `ALLOWED_ORIGIN` 和两个商品 id 改成和 `site.config.json` 一致。不要手改那几行。商品 id 仍是空的。
 3. 提交并推到 `main`，等 Pages 工作流把新的 `dist/` 传上去。
 4. 在 `worker/` 里再执行一次 `npx wrangler deploy`，或手动跑「Cloudflare Worker」工作流。CORS 要这次部署才换成新源站。现在不要部署。
 

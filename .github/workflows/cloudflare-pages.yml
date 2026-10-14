@@ -1,7 +1,7 @@
 # Publishes the static site to Cloudflare Pages project eachsound.
-# Preview host: https://eachsound.pages.dev. Final domain later: https://eachsound.com.
+# Preview host: https://eachsound.pages.dev. Production origin: https://eachsound.com.
 # Create the project in the dashboard with Direct Upload. Do not connect Git.
-# GitHub Pages is unchanged. site.config.json origin stays on GitHub Pages for now.
+# site.config.json origin is https://eachsound.com. This workflow deploys Pages only.
 # workflow_dispatch deploys whichever branch you select to eachsound production.
 # GitHub shows Run workflow only after this file is on the default branch.
 # This job does nothing until both GitHub secrets exist. Do not run it from here.

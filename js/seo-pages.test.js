@@ -376,7 +376,7 @@ test("empty Waffo links render disabled soon buttons", () => {
   assert.match(fs.readFileSync(path.join(root, "index.html"), "utf8"), /声声慢是非官方自学工具/);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/index.html"), "utf8"), /聲聲慢是非官方自學工具/);
   const config = JSON.parse(fs.readFileSync(path.join(root, "site.config.json"), "utf8"));
-  assert.match(config.origin, /github\.io/);
+  assert.equal(config.origin, "https://eachsound.com");
   assert.equal(fs.readFileSync(path.join(root, "index.html"), "utf8").includes('name="waffo-verify"'), false);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8"), /id="recover-form"/);
   const hans = waffoPlansHtml(HANS, { monthlyUrl: "", quarterlyUrl: "" });

@@ -13,7 +13,7 @@ PANCAKE_MODE = "test"
 PANCAKE_PRODUCT_MONTHLY = ""
 PANCAKE_PRODUCT_QUARTERLY = ""
 # Copied from site.config.json origin by scripts/build-pages.js. Do not edit by hand.
-ALLOWED_ORIGIN = "https://1019666077-bit.github.io/wx-extract-mvp"
+ALLOWED_ORIGIN = "https://eachsound.com"
 # Copied from site.config.json termsVersion by scripts/build-pages.js.
 TERMS_VERSION = "2026-09-28-law"
 

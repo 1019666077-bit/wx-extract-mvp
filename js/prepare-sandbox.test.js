@@ -25,7 +25,7 @@ test("sandbox prepare keeps the production Worker binding and origin", () => {
   assert.equal(config.payment.pancake.monthlyProductId, "PROD_monthlytest");
   const wrangler = fs.readFileSync(path.join(dir, "worker/wrangler.toml"), "utf8");
   assert.match(wrangler, /id = "84110c8900934ac6abe4841117e9d8a3"/);
-  assert.match(wrangler, /ALLOWED_ORIGIN = "https:\/\/1019666077-bit.github.io\/wx-extract-mvp"/);
+  assert.match(wrangler, /ALLOWED_ORIGIN = "https:\/\/eachsound.com"/);
   const sandbox = wrangler.slice(wrangler.indexOf("[env.sandbox.vars]"));
   assert.match(sandbox, /PANCAKE_PRODUCT_MONTHLY = "PROD_monthlytest"/);
   assert.match(sandbox, /PANCAKE_PRODUCT_QUARTERLY = "PROD_quarterlytest"/);

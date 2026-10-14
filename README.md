@@ -114,7 +114,7 @@ Simplified Chinese lives at the site root. Traditional Chinese (Taiwan wording) 
 
 Both versions share one origin, so `localStorage` progress, check-in, wrong-book, and unlock carry across. `js/app.js` loads `data/web/` or `data/web/zh-hant/` from the site root, not from the `zh-hant/` folder.
 
-The published origin is the single `origin` field in [`site.config.json`](site.config.json). Canonical links, hreflang, Open Graph URLs, JSON-LD, `sitemap.xml`, `robots.txt`, and the Worker `ALLOWED_ORIGIN` all read that value at build time. It is still the GitHub Pages URL. Do not change it yet. The Cloudflare Pages project name is `eachsound` (preview `https://eachsound.pages.dev`). The product name is 声声慢 / 聲聲慢, English Eachsound. The final domain, once purchased and bound, is `https://eachsound.com`. The Worker name stays `voa-lle-unlock`. The same three steps apply when you switch origin, and the value to use then is `https://eachsound.com`:
+The published origin is the single `origin` field in [`site.config.json`](site.config.json). Canonical links, hreflang, Open Graph URLs, JSON-LD, `sitemap.xml`, `robots.txt`, and the Worker `ALLOWED_ORIGIN` all read that value at build time. It is `https://eachsound.com`. The Cloudflare Pages project name is `eachsound` (preview `https://eachsound.pages.dev`). The product name is 声声慢 / 聲聲慢, English Eachsound. The Worker name stays `voa-lle-unlock`. To switch origin:
 
 1. Change `origin` in `site.config.json` (no trailing slash).
 2. Run `npm install` if needed, then `node scripts/build-pages.js`. That rewrite also copies `origin` into `worker/wrangler.toml`.

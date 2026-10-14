@@ -294,7 +294,7 @@ test("site origin comes only from site.config.json", () => {
 });
 
 test("empty Waffo links render disabled soon buttons", () => {
-  assert.deepEqual(loadWaffoLinks(root), {
+  const empty = {
     monthlyUrl: "",
     quarterlyUrl: "",
     returnUrl: "",
@@ -304,10 +304,25 @@ test("empty Waffo links render disabled soon buttons", () => {
     quarterlyProductId: "",
     domainVerify: "",
     termsVersion: "2026-09-28-law",
+  };
+  assert.equal(
+    buildPaymentConfigScript(empty),
+    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":"","termsVersion":"2026-09-28-law"};\n'
+  );
+  assert.deepEqual(loadWaffoLinks(root), {
+    monthlyUrl: "",
+    quarterlyUrl: "",
+    returnUrl: "",
+    workerBaseUrl: "https://voa-lle-unlock.1019666077.workers.dev",
+    unlockPublicKey: "MCowBQYDK2VwAyEAgtvIFzqmArRW0A+s4DnWVdtccmZO85EOjoucHWTS4ms=",
+    monthlyProductId: "PROD_4L8Qvxjp4gJfgQFxb9mnIu",
+    quarterlyProductId: "PROD_1OHp7txgz6gszrrsgenvdL",
+    domainVerify: "",
+    termsVersion: "2026-09-28-law",
   });
   assert.equal(
     buildPaymentConfigScript(loadWaffoLinks(root)),
-    'window.VOA_PAYMENT={"workerBaseUrl":"","unlockPublicKey":"","monthlyProductId":"","quarterlyProductId":"","termsVersion":"2026-09-28-law"};\n'
+    fs.readFileSync(path.join(root, "js/payment-config.js"), "utf8")
   );
   assert.equal(convertToHant("即将开放"), "即將開放");
   const { MESSAGES, buildI18nScript } = require("./messages.js");
@@ -391,8 +406,16 @@ test("empty Waffo links render disabled soon buttons", () => {
   assert.doesNotMatch(hant, /href=/);
   const hansPage = fs.readFileSync(path.join(root, "pricing.html"), "utf8");
   const hantPage = fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8");
-  assert.match(hansPage, /disabled>即将开放</);
-  assert.match(hantPage, /disabled>即將開放</);
+  const enPage = fs.readFileSync(path.join(root, "en/pricing.html"), "utf8");
+  assert.match(hansPage, /data-plan="monthly" disabled>用 Waffo 支付 US\$5\.99</);
+  assert.match(hansPage, /data-plan="quarterly" disabled>用 Waffo 支付 US\$13\.99</);
+  assert.match(hantPage, /data-plan="monthly" disabled>用 Waffo 支付 US\$5\.99</);
+  assert.match(hantPage, /data-plan="quarterly" disabled>用 Waffo 支付 US\$13\.99</);
+  assert.match(enPage, /data-plan="monthly" disabled>Pay US\$5\.99 with Waffo</);
+  assert.match(enPage, /data-plan="quarterly" disabled>Pay US\$13\.99 with Waffo</);
+  assert.doesNotMatch(hansPage, /<button[^>]*>即将开放<\/button>/);
+  assert.doesNotMatch(hantPage, /<button[^>]*>即將開放<\/button>/);
+  assert.doesNotMatch(enPage, /Coming soon/);
   assert.doesNotMatch(hansPage, /15232188653/);
   assert.doesNotMatch(hantPage, /15232188653/);
   assert.doesNotMatch(hansPage, /微信|¥39|¥99/);
@@ -446,15 +469,20 @@ test("worker config enables checkout buttons without a static href", () => {
   assert.doesNotMatch(lockedHant, /15232188653|微信/);
 });
 
-test("return page stays unpublished until payment.waffo.returnUrl is set", () => {
+test("return page is listed once checkout is configured", () => {
   const links = loadWaffoLinks(root);
   assert.equal(links.returnUrl, "");
+  const closed = returnStatusHtml(HANS, { returnUrl: "" });
+  const closedHant = returnStatusHtml(HANT, { returnUrl: "" });
+  assert.match(closed, /data-live="false"/);
+  assert.match(closed, /不会解锁课程/);
+  assert.match(closedHant, /不會解鎖課程/);
+  assert.doesNotMatch(closed, /微信|15232188653/);
   const hans = returnStatusHtml(HANS, links);
   const hant = returnStatusHtml(HANT, links);
-  assert.match(hans, /data-live="false"/);
-  assert.match(hans, /不会解锁课程/);
-  assert.match(hant, /不會解鎖課程/);
-  assert.doesNotMatch(hans, /微信|15232188653/);
+  assert.match(hans, /data-live="true"/);
+  assert.match(hans, /自动开通/);
+  assert.match(hant, /自動開通/);
   const live = "https://pay.example/return";
   const opened = returnStatusHtml(HANS, { returnUrl: live });
   assert.match(opened, /data-live="true"/);
@@ -467,11 +495,15 @@ test("return page stays unpublished until payment.waffo.returnUrl is set", () =>
   });
   assert.match(listed, /https:\/\/lessons\.example\/pricing-return\.html/);
   assert.match(listed, /https:\/\/lessons\.example\/zh-hant\/pricing-return\.html/);
+  const listedLive = buildSitemap(levels, "2026-09-05", SITE, links);
+  assert.match(listedLive, /https:\/\/eachsound\.com\/pricing-return\.html/);
+  assert.match(listedLive, /https:\/\/eachsound\.com\/zh-hant\/pricing-return\.html/);
   const page = fs.readFileSync(path.join(root, "pricing-return.html"), "utf8");
   const hantPage = fs.readFileSync(path.join(root, "zh-hant/pricing-return.html"), "utf8");
-  assert.match(page, /name="robots" content="noindex"/);
-  assert.match(hantPage, /name="robots" content="noindex"/);
-  assert.match(page, /data-live="false"/);
+  assert.doesNotMatch(page, /name="robots" content="noindex"/);
+  assert.doesNotMatch(hantPage, /name="robots" content="noindex"/);
+  assert.match(page, /data-live="true"/);
+  assert.match(hantPage, /data-live="true"/);
   assert.doesNotMatch(page, /15232188653|微信|¥39/);
   assert.doesNotMatch(hantPage, /15232188653|微信|¥39/);
   for (const rel of ["js/app.js", "js/messages.js", "js/i18n.js", "index.html", "zh-hant/index.html"]) {

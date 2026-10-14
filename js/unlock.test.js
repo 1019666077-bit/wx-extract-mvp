@@ -3,10 +3,21 @@ const assert = require("node:assert/strict");
 const { createUnlock, createMemoryStorage } = require("./unlock.js");
 const catalog = require("../data/lessons.json");
 
-const SAMPLE_CODES = [
-  { code: "VOA-DEMO-39", plan: "monthly" },
-  { code: "VOA-DEMO-99", plan: "quarterly" },
-];
+async function testKeys() {
+  const pair = await crypto.subtle.generateKey({ name: "Ed25519" }, true, ["sign", "verify"]);
+  const { signCredential } = await import("./credential.js");
+  const publicKey = await crypto.subtle.exportKey("spki", pair.publicKey);
+  let binary = "";
+  const bytes = new Uint8Array(publicKey);
+  for (let i = 0; i < bytes.length; i += 1) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return {
+    privateKey: pair.privateKey,
+    publicKey: btoa(binary),
+    signCredential,
+  };
+}
 
 function unlockAt(iso, storage = createMemoryStorage()) {
   return createUnlock({
@@ -42,28 +53,43 @@ test("lle2 ids and level:2 are paid even when the lesson number is 1-5", () => {
   assert.equal(unlock.canOpenLesson({ id: "lle2-03", number: 3 }), false);
 });
 
-test("redeem stores localStorage unlock state and opens paid lessons", () => {
+test("a verified credential opens paid lessons; unsigned storage does not", async () => {
   const storage = createMemoryStorage();
   const unlock = unlockAt("2026-09-04T02:00:00.000Z", storage);
-  const match = unlock.findCode(SAMPLE_CODES, " voa-demo-39 ");
-  assert.equal(match.plan, "monthly");
-
-  const state = unlock.redeem(match);
-  assert.deepEqual(JSON.parse(storage.getItem("voa-lle-unlock")), {
-    active: true,
-    code: "VOA-DEMO-39",
+  const keys = await testKeys();
+  const token = await keys.signCredential(keys.privateKey, {
+    orderId: "m1234567890abcdef1234567890abcd",
     plan: "monthly",
-    unlockedAt: "2026-09-04T02:00:00.000Z",
+    issuedAt: "2026-09-04T02:00:00.000Z",
     expiresAt: "2026-10-04T02:00:00.000Z",
   });
-  assert.equal(state.active, true);
+  assert.equal(unlock.isUnlocked(), false);
+  const state = await unlock.saveVerifiedCredential(token, keys.publicKey);
+  assert.equal(state.plan, "monthly");
+  assert.equal(state.orderId, "m1234567890abcdef1234567890abcd");
   assert.equal(unlock.isUnlocked(), true);
   assert.equal(unlock.canOpenLesson({ id: "lle1-06", number: 6 }), true);
   assert.equal(unlock.canOpenLesson({ id: "lle2-01", number: 1, level: 2 }), true);
-  assert.equal(unlock.planLabel(state.plan), "月付 ¥39");
+  assert.equal(unlock.planLabel(state.plan), "月付 US$5.99");
+  assert.equal(unlock.planLabel("quarterly"), "季卡 US$13.99");
+
+  const unsigned = createMemoryStorage();
+  unsigned.setItem(
+    "voa-lle-unlock",
+    JSON.stringify({
+      active: true,
+      code: "LLE-M-ABC123",
+      plan: "monthly",
+      unlockedAt: "2026-09-04T02:00:00.000Z",
+      expiresAt: "2026-10-04T02:00:00.000Z",
+    })
+  );
+  const legacy = unlockAt("2026-09-04T02:00:00.000Z", unsigned);
+  assert.equal(legacy.isUnlocked(), false);
+  assert.equal(unsigned.getItem("voa-lle-unlock"), null);
 });
 
-test("published catalog: L1 1-5 free, L1 6+ and all L2 locked until redeem", () => {
+test("published catalog: L1 1-5 free, L1 6+ and all L2 locked until a credential", async () => {
   const unlock = unlockAt("2026-09-04T02:00:00.000Z");
   const levels = catalog.levels;
   const l1 = levels.find((level) => level.id === "lle1");
@@ -118,75 +144,116 @@ test("published catalog: L1 1-5 free, L1 6+ and all L2 locked until redeem", () 
     assert.ok(lesson.dialogue.length >= 8);
   });
 
-  unlock.redeem({ code: "VOA-DEMO-39", plan: "monthly" });
+  const keys = await testKeys();
+  const token = await keys.signCredential(keys.privateKey, {
+    orderId: "m1234567890abcdef1234567890abcd",
+    plan: "quarterly",
+    issuedAt: "2026-09-04T02:00:00.000Z",
+    expiresAt: "2026-12-03T02:00:00.000Z",
+  });
+  await unlock.saveVerifiedCredential(token, keys.publicKey);
   l2.lessons.forEach((lesson) => {
     assert.equal(unlock.canOpenLesson(lesson), true, lesson.id);
   });
 });
 
-test("unknown codes fail and clearUnlock returns the catalog to locked", () => {
+test("clearUnlock returns the catalog to locked", async () => {
   const storage = createMemoryStorage();
   const unlock = unlockAt("2026-09-04T02:00:00.000Z", storage);
-  assert.equal(unlock.findCode(SAMPLE_CODES, "NOT-A-CODE"), null);
-
-  unlock.redeem(unlock.findCode(SAMPLE_CODES, "VOA-DEMO-99"));
+  const keys = await testKeys();
+  const token = await keys.signCredential(keys.privateKey, {
+    orderId: "m1234567890abcdef1234567890abcd",
+    plan: "quarterly",
+    issuedAt: "2026-09-04T02:00:00.000Z",
+    expiresAt: "2026-12-03T02:00:00.000Z",
+  });
+  await unlock.saveVerifiedCredential(token, keys.publicKey);
   assert.equal(unlock.canOpenLesson({ id: "lle1-07", number: 7 }), true);
-
   unlock.clearUnlock();
   assert.equal(storage.getItem("voa-lle-unlock"), null);
   assert.equal(unlock.isUnlocked(), false);
   assert.equal(unlock.canOpenLesson({ id: "lle1-07", number: 7 }), false);
 });
 
-test("empty allowlist accepts issued LLE-M/Q format and rejects invalid format", () => {
+test("format-only codes no longer unlock", () => {
   const unlock = unlockAt("2026-09-04T02:00:00.000Z");
-  const monthly = unlock.findCode([], " lle-m-aaaaaa ");
-  assert.equal(monthly.plan, "monthly");
-  assert.equal(monthly.code, "LLE-M-AAAAAA");
-  const quarterly = unlock.findCode([], "LLE-Q-ZZZZZ9");
-  assert.equal(quarterly.plan, "quarterly");
-  assert.equal(unlock.findCode([], "VOA-DEMO-39"), null);
-  assert.equal(unlock.findCode([], "LLE-M-SHORT"), null);
-  assert.equal(unlock.findCode([], "LLE-X-AAAAAA"), null);
-  assert.equal(unlock.findCode([], ""), null);
+  assert.equal(unlock.findCode([], "LLE-M-AAAAAA"), null);
+  assert.equal(unlock.findCode([], "LLE-Q-ZZZZZ9"), null);
+  assert.equal(unlock.findCode([{ code: "LLE-M-AAAAAA", plan: "monthly" }], "LLE-M-AAAAAA"), null);
+  assert.equal(unlock.isUnlocked(), false);
 });
 
-test("non-empty allowlist still only matches listed fixture codes", () => {
-  const unlock = unlockAt("2026-09-04T02:00:00.000Z");
-  assert.equal(unlock.findCode(SAMPLE_CODES, "LLE-M-AAAAAA"), null);
-  assert.equal(unlock.findCode(SAMPLE_CODES, "VOA-DEMO-99").plan, "quarterly");
-});
-
-test("monthly redeem stores expiresAt 30 days later; quarterly 90 days", () => {
+test("credential expiry follows the signed expiresAt", async () => {
   const storage = createMemoryStorage();
-  const unlock = unlockAt("2026-09-04T02:00:00.000Z", storage);
-  const monthly = unlock.redeem({ code: "VOA-DEMO-39", plan: "monthly" });
-  assert.equal(monthly.expiresAt, "2026-10-04T02:00:00.000Z");
-  unlock.clearUnlock();
-  const quarterly = unlock.redeem({ code: "VOA-DEMO-99", plan: "quarterly" });
-  assert.equal(quarterly.expiresAt, "2026-12-03T02:00:00.000Z");
-});
-
-test("missing plan defaults to 30-day expiry", () => {
-  const storage = createMemoryStorage();
-  const unlock = unlockAt("2026-09-04T02:00:00.000Z", storage);
-  const state = unlock.redeem({ code: "VOA-DEMO-39" });
-  assert.equal(state.plan, "unlocked");
-  assert.equal(state.expiresAt, "2026-10-04T02:00:00.000Z");
-});
-
-test("isUnlocked is false after expiresAt and paid lessons lock again", () => {
-  const storage = createMemoryStorage();
-  const atRedeem = unlockAt("2026-09-04T02:00:00.000Z", storage);
-  atRedeem.redeem({ code: "VOA-DEMO-39", plan: "monthly" });
-  assert.equal(atRedeem.isUnlocked(), true);
+  const keys = await testKeys();
+  const monthlyToken = await keys.signCredential(keys.privateKey, {
+    orderId: "m1234567890abcdef1234567890abcd",
+    plan: "monthly",
+    issuedAt: "2026-09-04T02:00:00.000Z",
+    expiresAt: "2026-10-04T02:00:00.000Z",
+  });
+  const monthly = unlockAt("2026-09-04T02:00:00.000Z", storage);
+  const monthlyState = await monthly.saveVerifiedCredential(monthlyToken, keys.publicKey);
+  assert.equal(monthlyState.expiresAt, "2026-10-04T02:00:00.000Z");
+  assert.equal(monthly.isUnlocked(), true);
 
   const stillValid = unlockAt("2026-10-04T02:00:00.000Z", storage);
+  await stillValid.restore(keys.publicKey);
   assert.equal(stillValid.isUnlocked(), true);
 
   const expired = unlockAt("2026-10-04T02:00:00.001Z", storage);
   assert.equal(expired.isUnlocked(), false);
   assert.equal(expired.canOpenLesson({ id: "lle1-06", number: 6 }), false);
+  assert.equal(storage.getItem("voa-lle-unlock"), null);
+});
+
+test("tampered credential is rejected and a stored token stays locked until restore", async () => {
+  const storage = createMemoryStorage();
+  const keys = await testKeys();
+  const token = await keys.signCredential(keys.privateKey, {
+    orderId: "m1234567890abcdef1234567890abcd",
+    plan: "monthly",
+    issuedAt: "2026-09-04T02:00:00.000Z",
+    expiresAt: "2026-10-04T02:00:00.000Z",
+  });
+  const writer = unlockAt("2026-09-04T02:00:00.000Z", storage);
+  await writer.saveVerifiedCredential(token, keys.publicKey);
+  const fresh = unlockAt("2026-09-05T02:00:00.000Z", storage);
+  assert.equal(fresh.isUnlocked(), false);
+  assert.ok(storage.getItem("voa-lle-unlock"));
+  await fresh.restore(keys.publicKey);
+  assert.equal(fresh.isUnlocked(), true);
+
+  const tampered = token.slice(0, -4) + (token.endsWith("aaaa") ? "bbbb" : "aaaa");
+  storage.setItem(
+    "voa-lle-unlock",
+    JSON.stringify({
+      active: true,
+      credential: tampered,
+      orderId: "m1234567890abcdef1234567890abcd",
+      plan: "monthly",
+      unlockedAt: "2026-09-04T02:00:00.000Z",
+      expiresAt: "2026-10-04T02:00:00.000Z",
+    })
+  );
+  const broken = unlockAt("2026-09-05T02:00:00.000Z", storage);
+  assert.equal(await broken.restore(keys.publicKey), null);
+  assert.equal(broken.isUnlocked(), false);
+  assert.equal(storage.getItem("voa-lle-unlock"), null);
+
+  storage.setItem(
+    "voa-lle-unlock",
+    JSON.stringify({
+      active: true,
+      credential: token,
+      orderId: "m1234567890abcdef1234567890abcd",
+      plan: "monthly",
+      unlockedAt: "2026-09-04T02:00:00.000Z",
+      expiresAt: "2026-10-04T02:00:00.000Z",
+    })
+  );
+  const noKey = unlockAt("2026-09-05T02:00:00.000Z", storage);
+  assert.equal(await noKey.restore(""), null);
   assert.equal(storage.getItem("voa-lle-unlock"), null);
 });
 

@@ -126,11 +126,10 @@ def write_json(path: Path, payload: dict) -> int:
 
 
 def copy_logic() -> None:
+    # Web unlock.js verifies Waffo credentials. The miniprogram copy stays on
+    # the old redeem-code path until that app is wired separately.
     UTILS.mkdir(parents=True, exist_ok=True)
-    for name in ("study.js", "unlock.js"):
-        src = ROOT / "js" / name
-        dest = UTILS / name
-        shutil.copyfile(src, dest)
+    shutil.copyfile(ROOT / "js" / "study.js", UTILS / "study.js")
 
 
 def png_chunk(tag: bytes, data: bytes) -> bytes:
@@ -235,9 +234,7 @@ def check() -> int:
     before_loader = LOADER_PATH.read_text(encoding="utf-8") if LOADER_PATH.exists() else ""
     before_ids = sorted(p.name for p in LESSON_DIR.glob("*.json")) if LESSON_DIR.exists() else []
     study_src = (ROOT / "js" / "study.js").read_bytes()
-    unlock_src = (ROOT / "js" / "unlock.js").read_bytes()
     before_study = (UTILS / "study.js").read_bytes() if (UTILS / "study.js").exists() else b""
-    before_unlock = (UTILS / "unlock.js").read_bytes() if (UTILS / "unlock.js").exists() else b""
 
     summary = build()
     after_catalog = CATALOG_PATH.read_bytes()
@@ -253,8 +250,6 @@ def check() -> int:
         problems.append("per-lesson JSON set does not match generator output")
     if before_study != study_src:
         problems.append("miniprogram/utils/study.js is out of sync with js/study.js")
-    if before_unlock != unlock_src:
-        problems.append("miniprogram/utils/unlock.js is out of sync with js/unlock.js")
     if summary["lessonCount"] != 82:
         problems.append(f"expected 82 lessons, got {summary['lessonCount']}")
     problems.extend(validate_video_map())

@@ -1,4 +1,5 @@
-# 搜索引擎只读取主机根目录的 robots.txt（https://1019666077-bit.github.io/robots.txt），不会自动读取子路径里的本文件。
+# 搜索引擎只读取主机根目录的 robots.txt（https://1019666077-bit.github.io/robots.txt），不会自动读取子路径 /wx-extract-mvp 里的本文件。
+# 迁到域名根（Cloudflare Pages）后，只改 site.config.json 的 origin 并重新构建，本文件就会出现在主机根上。
 # 部署在 GitHub 项目页时，请到站长平台手动提交下面的 Sitemap。
 User-agent: *
 Allow: /

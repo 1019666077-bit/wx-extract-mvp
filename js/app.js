@@ -2,7 +2,6 @@ const PROGRESS_KEY = "voa-lle-progress";
 const OLD_QUIZ_KEY = "voa-lle1-01-quiz";
 const CATALOG_LEVEL_KEY = "voa-lle-catalog-level";
 const SCRIPT_PREF_KEY = "voa-lle-script";
-const WECHAT_CONTACT = "15232188653";
 
 function siteRoot() {
   const path = window.location.pathname;
@@ -66,6 +65,7 @@ function syncSwitcherLinks() {
   document.querySelectorAll("[data-script]").forEach((link) => {
     const url = new URL(link.getAttribute("href"), window.location.href);
     url.search = window.location.search;
+    url.searchParams.delete("credential");
     url.hash = window.location.hash;
     link.href = `${url.pathname}${url.search}${url.hash}`;
   });
@@ -219,13 +219,19 @@ function selectedLevelId(catalog) {
   return catalog.levels[0].id;
 }
 
-async function loadCodes() {
-  const response = await fetch(sitePath("data/codes.json"));
-  if (!response.ok) {
-    throw new Error(t("loadCodesError"));
-  }
-  const payload = await response.json();
-  return Array.isArray(payload.codes) ? payload.codes : [];
+function paymentConfig() {
+  return window.VOA_PAYMENT || {};
+}
+
+function paymentChannelReady(payment) {
+  return Boolean(
+    payment &&
+      payment.workerBaseUrl &&
+      payment.unlockPublicKey &&
+      payment.monthlyProductId &&
+      payment.quarterlyProductId &&
+      payment.termsVersion
+  );
 }
 
 function readProgress() {
@@ -329,7 +335,7 @@ function catalogNoteText(catalog, unlocked) {
   if (unlocked) {
     return t("catalogNoteUnlocked", { l1: l1n, l2: l2n });
   }
-  return t("catalogNoteLocked", { wechat: WECHAT_CONTACT });
+  return t("catalogNoteLocked");
 }
 
 function checkinHintText() {
@@ -811,7 +817,7 @@ function renderLessonPaywall(lesson, level) {
   overlay.innerHTML = `
     <h2>${escapeHtml(t("paywallTitle"))}</h2>
     <p>${escapeHtml(t("paywallBody"))}</p>
-    <p>${escapeHtml(t("paywallNext", { wechat: WECHAT_CONTACT })).replace(WECHAT_CONTACT, `<strong>${WECHAT_CONTACT}</strong>`)}</p>
+    <p>${escapeHtml(t("paywallNext"))}</p>
     <div class="quiz-actions">
       <a class="btn primary" href="${pagePath("pricing.html")}">${escapeHtml(t("paywallCta"))}</a>
       <a class="btn" href="${backHref}">${escapeHtml(t("backCatalog"))}</a>
@@ -1131,44 +1137,172 @@ function renderPricingState() {
   }
 }
 
-async function initPricing() {
-  updateWrongbookNavCount();
-  renderPricingState();
+async function refreshRevocation() {
+  const payment = paymentConfig();
+  if (!payment.workerBaseUrl || typeof VOAPayment === "undefined" || typeof VOAUnlock === "undefined") {
+    return;
+  }
+  const state = VOAUnlock.readUnlock();
+  if (!state || !state.orderId) {
+    return;
+  }
+  try {
+    const status = await VOAPayment.readStatus({
+      baseUrl: payment.workerBaseUrl,
+      orderId: state.orderId,
+    });
+    if (status && status.state === "revoked") {
+      VOAUnlock.clearUnlock();
+    }
+  } catch (error) {
+    /* keep the local unlock when the status call fails */
+  }
+}
 
-  const form = document.getElementById("redeem-form");
-  const result = document.getElementById("redeem-result");
-  const clearBtn = document.getElementById("clear-unlock");
-
-  if (form) {
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      result.textContent = "";
-      const input = document.getElementById("redeem-code");
-      const raw = input ? input.value : "";
-
-      try {
-        const codes = await loadCodes();
-        const match = VOAUnlock.findCode(codes, raw);
-        if (!match) {
-          result.textContent = t("redeemInvalid");
-          return;
-        }
-        const state = VOAUnlock.redeem(match);
-        if (input) {
-          input.value = "";
-        }
-        renderPricingState();
-        const until = VOAUnlock.formatExpiryDate(state);
-        result.textContent = t("redeemOk", {
-          plan: localizedPlan(match.plan),
-          until: until ? t("untilSuffix", { date: until }) : "",
-        });
-      } catch (error) {
-        result.textContent = error.message === "兑换码无效" ? t("redeemInvalidShort") : error.message || t("redeemFail");
-      }
+function wireCheckoutButtons() {
+  const payment = paymentConfig();
+  const consent = document.getElementById("terms-consent");
+  const payButtons = () => Array.from(document.querySelectorAll("button[data-plan]"));
+  function syncConsent() {
+    const agreed = Boolean(consent && consent.checked);
+    payButtons().forEach((button) => {
+      button.disabled = !agreed;
     });
   }
+  if (!paymentChannelReady(payment) || typeof VOAPayment === "undefined") {
+    return;
+  }
+  if (consent) {
+    consent.addEventListener("change", syncConsent);
+  }
+  syncConsent();
+  payButtons().forEach((button) => {
+    button.addEventListener("click", async () => {
+      if (!consent || !consent.checked) {
+        return;
+      }
+      const resultEl = document.getElementById("redeem-result");
+      const emailInput = document.getElementById("checkout-email");
+      const email = emailInput ? emailInput.value.trim() : "";
+      if (!email) {
+        if (resultEl) {
+          resultEl.textContent = t("checkoutEmailRequired");
+        }
+        return;
+      }
+      if (resultEl) {
+        resultEl.textContent = t("checkoutWait");
+      }
+      button.disabled = true;
+      try {
+        const result = await VOAPayment.startCheckout({
+          baseUrl: payment.workerBaseUrl,
+          plan: button.dataset.plan,
+          script: currentScript(),
+          email,
+          termsAccepted: true,
+          termsVersion: payment.termsVersion,
+        });
+        if (result && result.checkoutUrl) {
+          window.location.href = result.checkoutUrl;
+          return;
+        }
+        if (resultEl) {
+          resultEl.textContent = t("checkoutFail");
+        }
+      } catch (error) {
+        if (resultEl) {
+          resultEl.textContent = t("checkoutFail");
+        }
+      }
+      syncConsent();
+    });
+  });
+}
 
+async function importCredentialFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const token = params.get("credential");
+  if (!token || typeof VOAUnlock === "undefined") {
+    return;
+  }
+  params.delete("credential");
+  const query = params.toString();
+  window.history.replaceState(null, "", `${window.location.pathname}${query ? `?${query}` : ""}${window.location.hash}`);
+  const result = document.getElementById("redeem-result");
+  try {
+    const state = await VOAUnlock.saveVerifiedCredential(token, paymentConfig().unlockPublicKey || "");
+    renderPricingState();
+    renderUnlockNav();
+    if (result) {
+      result.textContent = unlockStatusText(state, "importOk");
+    }
+  } catch (error) {
+    if (result) {
+      result.textContent = t("importFail");
+    }
+  }
+}
+
+function wireRecover() {
+  const form = document.getElementById("recover-form");
+  if (!form || form.dataset.wired === "true") {
+    return;
+  }
+  form.dataset.wired = "true";
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
+    const resultEl = document.getElementById("recover-result");
+    const payment = paymentConfig();
+    if (!paymentChannelReady(payment) || typeof VOAPayment === "undefined") {
+      if (resultEl) {
+        resultEl.textContent = t("recoverSoon");
+      }
+      return;
+    }
+    const orderInput = form.querySelector("[name=order]");
+    const emailInput = form.querySelector("[name=email]");
+    const orderId = orderInput ? orderInput.value.trim() : "";
+    const email = emailInput ? emailInput.value.trim() : "";
+    if (resultEl) {
+      resultEl.textContent = t("recoverWait");
+    }
+    try {
+      const outcome = await VOAPayment.recoverAccess({
+        baseUrl: payment.workerBaseUrl,
+        orderId,
+        email,
+      });
+      if (outcome.status === "paid" && outcome.credential) {
+        const state = await VOAUnlock.saveVerifiedCredential(outcome.credential, payment.unlockPublicKey);
+        renderPricingState();
+        renderUnlockNav();
+        if (resultEl) {
+          resultEl.textContent = unlockStatusText(state, "recoverOk");
+        }
+        return;
+      }
+      if (resultEl) {
+        resultEl.textContent = outcome.status === "limited" ? t("recoverLimited") : t("recoverFailed");
+      }
+    } catch (error) {
+      if (resultEl) {
+        resultEl.textContent = t("recoverFailed");
+      }
+    }
+  });
+}
+
+async function initPricing() {
+  updateWrongbookNavCount();
+  await refreshRevocation();
+  renderPricingState();
+  await importCredentialFromQuery();
+  wireCheckoutButtons();
+  wireRecover();
+
+  const result = document.getElementById("redeem-result");
+  const clearBtn = document.getElementById("clear-unlock");
   if (clearBtn) {
     clearBtn.addEventListener("click", () => {
       VOAUnlock.clearUnlock();
@@ -1205,12 +1339,25 @@ function initWrongbook() {
   }
 }
 
-function init() {
+async function bootUnlock() {
+  if (typeof VOAUnlock === "undefined" || typeof VOAUnlock.restore !== "function") {
+    return;
+  }
+  const payment = paymentConfig();
+  try {
+    await VOAUnlock.restore(payment.unlockPublicKey || "");
+  } catch (error) {
+    /* stay locked */
+  }
+}
+
+async function init() {
   syncSwitcherLinks();
   rememberScriptChoice();
   if (applyScriptPreference()) {
     return;
   }
+  await bootUnlock();
   const page = document.body.dataset.page;
   if (page === "catalog") {
     initCatalog();
@@ -1229,8 +1376,76 @@ function init() {
     return;
   }
   if (page === "pricing") {
-    initPricing();
+    await initPricing();
+    return;
   }
+  if (page === "pricing-return") {
+    await initPricingReturn();
+  }
+}
+
+function unlockStatusText(state, key) {
+  const until = VOAUnlock.formatExpiryDate(state);
+  return t(key, {
+    plan: localizedPlan(state.plan),
+    until: until ? t("untilSuffix", { date: until }) : "",
+  });
+}
+
+async function initPricingReturn() {
+  wireRecover();
+  const status = document.getElementById("return-status");
+  if (!status || status.dataset.live !== "true") {
+    return;
+  }
+  const payment = paymentConfig();
+  const orderId = new URLSearchParams(window.location.search).get("order") || new URLSearchParams(window.location.search).get("merchantOrderId");
+  if (!payment.workerBaseUrl || !payment.unlockPublicKey || typeof VOAPayment === "undefined") {
+    if (orderId) {
+      status.textContent = t("returnChecking");
+    }
+    return;
+  }
+  await refreshRevocation();
+  if (!orderId) {
+    return;
+  }
+  const local = VOAUnlock.readUnlock();
+  if (local && local.orderId === orderId) {
+    status.textContent = unlockStatusText(local, "returnUnlocked");
+    return;
+  }
+  status.textContent = t("returnChecking");
+  const outcome = await VOAPayment.pollClaim({
+    baseUrl: payment.workerBaseUrl,
+    orderId,
+  });
+  if (outcome.status === "paid" && outcome.credential) {
+    try {
+      const state = await VOAUnlock.saveVerifiedCredential(outcome.credential, payment.unlockPublicKey);
+      status.textContent = unlockStatusText(state, "returnUnlocked");
+      renderUnlockNav();
+    } catch (error) {
+      status.textContent = t("checkoutFail");
+    }
+    return;
+  }
+  if (outcome.status === "claimed") {
+    const again = VOAUnlock.readUnlock();
+    if (again && again.orderId === orderId) {
+      status.textContent = unlockStatusText(again, "returnUnlocked");
+      return;
+    }
+    status.textContent = t("returnAlreadyClaimed");
+    return;
+  }
+  if (outcome.status === "revoked") {
+    VOAUnlock.clearUnlock();
+    renderUnlockNav();
+    status.textContent = t("returnRevoked");
+    return;
+  }
+  status.textContent = t("returnTimeout");
 }
 
 init();

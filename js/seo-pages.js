@@ -7,10 +7,12 @@ const { buildI18nScript } = require("./messages.js");
 const { PAGES: LEGAL_PAGES, buildLegalPage } = require("./legal-pages.js");
 
 const TITLE_MIN = 16;
-const TITLE_MAX = 34;
+const TITLE_MAX = 46;
 const DESC_MIN = 70;
 const DESC_MAX = 120;
-const SITE_NAME = "VOA慢速英文自学";
+const SITE_NAME = "声声慢 Eachsound";
+const OG_IMAGE_PATH = "/img/og-cover.png";
+const OG_IMAGE_ALT = "声声慢 Eachsound · VOA 慢速英文 Let's Learn English 中英对照";
 
 const HANS = {
   id: "zh-Hans",
@@ -48,6 +50,8 @@ const OVERRIDES = [
   ["開啟課表", "打開課表"],
   ["開啟頁面", "打開頁面"],
   ["東莞市常平創客匯網路技術工作室", "東莞市常平創客彙網絡技術工作室"],
+  ["已釋出課程", "已上線課程"],
+  ["已釋出課", "已上線課程"],
 ];
 
 const toTaiwan = OpenCC.Converter({ from: "cn", to: "twp" });
@@ -394,7 +398,7 @@ function hreflangLinks(rel, origin) {
 }
 
 function lessonSeoTitle(lesson, locale = HANS) {
-  const prefix = `VOA慢速英文第${lesson.number}课`;
+  const prefix = `VOA慢速英文 Level ${lesson.level === 2 ? 2 : 1} 第${lesson.number}课`;
   const subtitle = String(lesson.subtitle || "").trim();
   let title;
   if (!subtitle) {
@@ -457,7 +461,7 @@ function keyPages(origin = SITE) {
       id: "home",
       file: "index.html",
       loc: `${origin}/`,
-      title: "VOA慢速英文｜Let's Learn English 中英字幕",
+      title: "VOA慢速英文中英字幕｜声声慢 Eachsound",
       description:
         "VOA Let's Learn English 慢速英文课表，中英对照字幕加听力小测验。适合台湾、香港、新加坡与马来西亚的中文学习者，Level 1 与 Level 2 共 82 课，前 5 课免费。",
       ogType: "website",
@@ -467,7 +471,7 @@ function keyPages(origin = SITE) {
       id: "progress",
       file: "progress.html",
       loc: `${origin}/progress.html`,
-      title: "VOA慢速英文打卡日历｜Let's Learn English",
+      title: "VOA慢速英文打卡日历｜声声慢 Eachsound",
       description:
         "用打卡日历记下 VOA Let's Learn English 学习天数。提交任意一课测验即完成当日打卡，连续天数按 UTC+8 计算，方便坚持慢速英文。",
       ogType: "website",
@@ -477,7 +481,7 @@ function keyPages(origin = SITE) {
       id: "wrongbook",
       file: "wrongbook.html",
       loc: `${origin}/wrongbook.html`,
-      title: "VOA慢速英文错题本｜Let's Learn English",
+      title: "VOA慢速英文错题本｜声声慢 Eachsound",
       description:
         "把 VOA Let's Learn English 测验里错过的题收进错题本。按课程归类复习，答对后自动移除，方便对照中英字幕补上慢速英文听力。",
       ogType: "website",
@@ -501,7 +505,7 @@ function legacyPage(origin = SITE) {
     id: "legacy",
     file: "lesson.html",
     loc: `${origin}/lesson.html`,
-    title: "VOA慢速英文课程｜Let's Learn English",
+    title: "VOA慢速英文课程｜声声慢 Eachsound",
     description:
       "正在打开 VOA Let's Learn English 慢速英文课文。每课都有单独页面，含中英对照字幕，适合台湾、香港、新加坡与马来西亚的学习者。",
     ogType: "website",
@@ -514,7 +518,7 @@ function returnPage(origin = SITE) {
     id: "return",
     file: "pricing-return.html",
     loc: `${origin}/pricing-return.html`,
-    title: "Waffo 付款后会自动开通课程",
+    title: "付款之后自动开通课程｜声声慢 Eachsound",
     description:
       "Waffo 付款完成后回到本页。确认到账后自动开通 VOA Let's Learn English 已上线课程，含 Level 1 与 Level 2 的慢速英文。",
     ogType: "website",
@@ -580,9 +584,14 @@ function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRe
     `<meta property="og:title" content="${escapeHtml(title)}" />`,
     `<meta property="og:description" content="${escapeHtml(description)}" />`,
     `<meta property="og:url" content="${escapeHtml(canonical)}" />`,
-    `<meta name="twitter:card" content="summary" />`,
+    `<meta property="og:image" content="${escapeHtml(`${origin || SITE}${OG_IMAGE_PATH}`)}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta property="og:image:alt" content="${escapeHtml(tx(OG_IMAGE_ALT, loc))}" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
     `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
     `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
+    `<meta name="twitter:image" content="${escapeHtml(`${origin || SITE}${OG_IMAGE_PATH}`)}" />`,
     `<meta name="theme-color" content="#0b6e4f" />`,
     `<link rel="icon" href="${FAVICON}" />`,
   );
@@ -590,6 +599,25 @@ function seoHead({ title, description, canonical, ogType, jsonLd, locale, pageRe
     lines.push(`<script type="application/ld+json">${compactJson(jsonLd)}</script>`);
   }
   return lines.join("\n  ");
+}
+
+function socialMeta({ title, description, url, origin, locale, siteName }) {
+  const image = `${origin || SITE}${OG_IMAGE_PATH}`;
+  return [
+    `<meta property="og:type" content="website" />`,
+    `<meta property="og:locale" content="${escapeHtml(locale)}" />`,
+    `<meta property="og:site_name" content="${escapeHtml(siteName)}" />`,
+    `<meta property="og:title" content="${escapeHtml(title)}" />`,
+    `<meta property="og:description" content="${escapeHtml(description)}" />`,
+    `<meta property="og:url" content="${escapeHtml(url)}" />`,
+    `<meta property="og:image" content="${escapeHtml(image)}" />`,
+    `<meta property="og:image:width" content="1200" />`,
+    `<meta property="og:image:height" content="630" />`,
+    `<meta name="twitter:card" content="summary_large_image" />`,
+    `<meta name="twitter:title" content="${escapeHtml(title)}" />`,
+    `<meta name="twitter:description" content="${escapeHtml(description)}" />`,
+    `<meta name="twitter:image" content="${escapeHtml(image)}" />`,
+  ].join("\n  ");
 }
 
 function homePitch(levels) {
@@ -806,7 +834,7 @@ ${dialogueHtml((view.dialogue || []).slice(0, 2))}
     </section>
     <section class="paywall-section" id="lesson-paywall" aria-label="${escapeHtml(tx("开通后学习", loc))}">
       <h2>${escapeHtml(tx("课程未解锁", loc))}</h2>
-      <p>${escapeHtml(tx("免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。", loc))}</p>
+      <p>${escapeHtml(tx("免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（Level 1 + Level 2）。打卡日历与错题本免费使用（无需开通）。", loc))}</p>
       <p>${escapeHtml(tx("下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天）。一次性付款，不自动续费。付款确认后会自动开通。", loc))}</p>
       <div class="quiz-actions">
         <a class="btn primary" href="${pageBase}pricing.html">${escapeHtml(tx("去开通", loc))}</a>
@@ -863,7 +891,7 @@ ${preconnect}  <link rel="stylesheet" href="${asset}css/styles.css" />
       </div>
     </nav>
     <header class="header">
-      <p class="eyebrow">${escapeHtml(tx("VOA 慢速英文 · 非官方自学", loc))}</p>
+      <p class="eyebrow">${escapeHtml(tx("声声慢 Eachsound · VOA 慢速英文 · 非官方自学", loc))}</p>
       <h1 id="lesson-title">${escapeHtml(visibleTitle)}</h1>
       <p id="lesson-subtitle" class="subtitle">${escapeHtml(levelName)} · ${escapeHtml(tx(`第${view.number}课`, loc))}</p>
       <p class="lesson-intro">${escapeHtml(lessonIntro(lesson, level.id, loc))}</p>
@@ -1209,6 +1237,7 @@ function buildEnglishPricingPage(origin, links) {
   <link rel="alternate" hreflang="en" href="${escapeHtml(origin)}/en/pricing.html" />
   <link rel="alternate" hreflang="x-default" href="${escapeHtml(origin)}/pricing.html" />
   <meta name="robots" content="index,follow" />
+  ${socialMeta({ title: "Pricing | Eachsound", description: "Eachsound is an unofficial study tool and is not Voice of America. One-time access: 30 days for US$5.99 or 90 days for US$13.99. Payment does not auto-renew.", url: `${origin}/en/pricing.html`, origin, locale: "en_US", siteName: "Eachsound" })}
   <meta name="theme-color" content="#0b6e4f" />
   <link rel="stylesheet" href="../css/styles.css" />
 </head>
@@ -1249,7 +1278,7 @@ function buildEnglishPricingPage(origin, links) {
           ${englishPayButton("quarterly", "Pay US$13.99 with Waffo", live)}
         </article>
       </div>
-      <p class="pay-note">The pay buttons stay off until this box is checked. They do not call the payment service before that.</p>
+      <p class="pay-note">Check the box above, then pick a plan to pay on Waffo's checkout page. Access opens automatically once the payment is confirmed.</p>
     </section>
     <footer class="footer">
       <p>Eachsound is an unofficial study tool and is not affiliated with Voice of America.</p>

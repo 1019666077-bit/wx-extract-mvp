@@ -871,7 +871,8 @@ function renderLesson(lesson) {
   const heading = document.getElementById("lesson-title");
   if (heading) {
     const sub = lesson.subtitle ? ` ${lesson.subtitle}` : "";
-    heading.textContent = t("lessonHeading", { n: lesson.number, sub });
+    const headingLevel = Number(lesson.level) === 2 || lesson.levelId === "lle2" ? "Level 2" : "Level 1";
+    heading.textContent = t("lessonHeading", { level: headingLevel, n: lesson.number, sub });
   }
   const subtitle = document.getElementById("lesson-subtitle");
   if (subtitle) {

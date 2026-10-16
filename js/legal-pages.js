@@ -5,14 +5,14 @@
  */
 
 const OPERATOR_HANS = "东莞市常平创客汇网络技术工作室";
-const OPERATOR_EN = `${OPERATOR_HANS}, a sole proprietorship registered in Dongguan, Guangdong, China`;
+const OPERATOR_EN = `${OPERATOR_HANS} (Dongguan Changping Chuangkehui Network Technology Studio), a sole proprietorship registered in Dongguan, Guangdong, China`;
 const PRODUCT_HANS = "声声慢";
 const PRODUCT_EN = "Eachsound";
 
 const PAGES = {
   terms: {
     file: "terms.html",
-    hansTitle: "服务条款｜声声慢",
+    hansTitle: "服务条款｜声声慢 Eachsound",
     hansDescription:
       "声声慢的服务条款。声声慢是非官方自学工具，不是美国之音。一次性付款，不自动续费。付款由 Waffo 作为商户代收处理。",
     enTitle: "Terms of service | Eachsound",
@@ -21,7 +21,7 @@ const PAGES = {
   },
   privacy: {
     file: "privacy.html",
-    hansTitle: "隐私政策｜声声慢",
+    hansTitle: "隐私政策｜声声慢 Eachsound",
     hansDescription:
       "声声慢的隐私政策。声声慢是非官方自学工具，不是美国之音。为找回开通，使用的买家信息只有订单号和付款邮箱。",
     enTitle: "Privacy policy | Eachsound",
@@ -30,7 +30,7 @@ const PAGES = {
   },
   refund: {
     file: "refund.html",
-    hansTitle: "退款政策｜声声慢",
+    hansTitle: "退款政策｜声声慢 Eachsound",
     hansDescription:
       "声声慢的退款政策。声声慢是非官方自学工具，不是美国之音。数字内容购买后立即开通，所有销售最终有效、不予退款。法律或 Waffo Pancake 强制要求的除外。",
     enTitle: "Refund policy | Eachsound",
@@ -179,7 +179,7 @@ function buildLegalPage(kind, lang, origin, convert, contactEmail) {
   const homeLabel = lang === "en" ? "Lessons" : convert("课表");
   const pricingLabel = lang === "en" ? "Pricing" : convert("开通");
   const heading = title.split("｜")[0].split("|")[0].trim();
-  const eyebrow = lang === "en" ? `${PRODUCT_EN} · not official VOA` : convert(`${PRODUCT_HANS} · 非 VOA 官方`);
+  const eyebrow = lang === "en" ? `${PRODUCT_EN} · not official VOA` : convert(`${PRODUCT_HANS} ${PRODUCT_EN} · 非 VOA 官方`);
   const sourceLang = hansLang === "en" ? "en" : "zh-Hans";
   return `<!DOCTYPE html>
 <html lang="${htmlLang}">
@@ -194,6 +194,18 @@ function buildLegalPage(kind, lang, origin, convert, contactEmail) {
   <link rel="alternate" hreflang="en" href="${escapeHtml(enUrl)}" />
   <link rel="alternate" hreflang="x-default" href="${escapeHtml(hansUrl)}" />
   <meta name="robots" content="index,follow" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="${escapeHtml(lang === "en" ? PRODUCT_EN : convert(`${PRODUCT_HANS} ${PRODUCT_EN}`))}" />
+  <meta property="og:title" content="${escapeHtml(title)}" />
+  <meta property="og:description" content="${escapeHtml(description)}" />
+  <meta property="og:url" content="${escapeHtml(canonical)}" />
+  <meta property="og:image" content="${escapeHtml(`${origin}/img/og-cover.png`)}" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${escapeHtml(title)}" />
+  <meta name="twitter:description" content="${escapeHtml(description)}" />
+  <meta name="twitter:image" content="${escapeHtml(`${origin}/img/og-cover.png`)}" />
   <meta name="theme-color" content="#0b6e4f" />
   <link rel="stylesheet" href="${prefix}css/styles.css" />
 </head>

@@ -14,7 +14,7 @@ const MESSAGES = {
   catalogNoteUnlocked:
     "已解锁全部已上线课程（Level 1 {l1} 课 + Level 2 {l2} 课）。打卡日历与错题本免费使用。免费试学仅 Level 1 第 1–5 课。坚持打卡、复习错题本，把这套课学下去。",
   catalogNoteLocked:
-    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。用 Waffo 支付（月付 US$5.99 / 季卡 US$13.99）。一次性付款，不自动续费。付款确认后自动开通。",
+    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（Level 1 + Level 2）。打卡日历与错题本免费使用（无需开通）。用 Waffo 支付（月付 US$5.99 / 季卡 US$13.99）。一次性付款，不自动续费。付款确认后自动开通。",
   checkinTodayStreak: "今日已打卡 · 连续 {streak} 天",
   checkinToday: "今日已打卡",
   checkinStreakPending: "连续打卡 {streak} 天，今天还没打",
@@ -56,7 +56,7 @@ const MESSAGES = {
   paywallAria: "开通后学习",
   paywallTitle: "课程未解锁",
   paywallBody:
-    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（含 Level 1 + Level 2 已发布课）。打卡日历与错题本免费使用（无需开通）。",
+    "免费试学仅 Level 1 第 1–5 课。开通解锁全部已上线课程（Level 1 + Level 2）。打卡日历与错题本免费使用（无需开通）。",
   paywallNext:
     "下一步：到开通页用 Waffo 支付（月付 US$5.99，30 天；季卡 US$13.99，90 天）。一次性付款，不自动续费。付款确认后会自动开通。",
   paywallCta: "去开通",
@@ -73,7 +73,7 @@ const MESSAGES = {
   pagerPrev: "← 上一课 · {n}",
   pagerNext: "下一课 · {n} →",
   lockedSuffix: "（未解锁）",
-  lessonHeading: "VOA慢速英文第{n}课{sub}",
+  lessonHeading: "VOA慢速英文 {level} 第{n}课{sub}",
   lessonMeta: "{level} · 第{n}课",
   emptyWrong: "暂无错题",
   markCorrect: "正确答案",
@@ -88,7 +88,7 @@ const MESSAGES = {
   unlockLocked: "当前未解锁或已过期。仅 Level 1 第 1–5 课可免费试学。",
   redeemInvalid: "兑换码无效，请核对后重试。",
   redeemInvalidShort: "兑换码无效",
-  redeemOk: "解锁成功：{plan}{until}。可学习全部已上线课程（含 Level 1 + Level 2 已发布课）。",
+  redeemOk: "解锁成功：{plan}{until}。可学习全部已上线课程（Level 1 + Level 2）。",
   redeemFail: "解锁失败。",
   redeemCleared: "已退出解锁。除 Level 1 第 1–5 课外再次锁定。",
   confirmClearWrong: "清除全部错题？",

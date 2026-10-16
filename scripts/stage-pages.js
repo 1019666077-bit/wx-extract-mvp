@@ -8,6 +8,7 @@ const PAGES_PROJECT = "eachsound";
 
 const ROOT_FILES = [
   "index.html",
+  "404.html",
   "pricing.html",
   "pricing-return.html",
   "progress.html",

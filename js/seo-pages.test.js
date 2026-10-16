@@ -382,8 +382,8 @@ test("empty Waffo links render disabled soon buttons", () => {
   assert.match(fs.readFileSync(path.join(root, "en/pricing.html"), "utf8"), /waive the right of withdrawal/);
   assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /一次性付款，不自动续费/);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /一次性付款，不自動續費/);
-  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /声声慢 · 非 VOA 官方/);
-  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /聲聲慢 · 非 VOA 官方/);
+  assert.match(fs.readFileSync(path.join(root, "pricing.html"), "utf8"), /声声慢 Eachsound · 非 VOA 官方/);
+  assert.match(fs.readFileSync(path.join(root, "zh-hant/pricing.html"), "utf8"), /聲聲慢 Eachsound · 非 VOA 官方/);
   assert.match(fs.readFileSync(path.join(root, "en/pricing.html"), "utf8"), /Eachsound · not official VOA/);
   assert.match(fs.readFileSync(path.join(root, "terms.html"), "utf8"), /声声慢是非官方自学工具/);
   assert.match(fs.readFileSync(path.join(root, "zh-hant/terms.html"), "utf8"), /聲聲慢是非官方自學工具/);
@@ -526,4 +526,24 @@ test("study state keys stay shared between scripts", () => {
   const study = fs.readFileSync(path.join(root, "js/study.js"), "utf8");
   assert.match(study, /voa-lle-checkins/);
   assert.match(study, /voa-lle-wrongbook/);
+});
+
+test("audit fixes: share image, Level titles, no dev notes, real 404", () => {
+  const read = (rel) => fs.readFileSync(path.join(root, rel), "utf8");
+  for (const rel of ["index.html", "zh-hant/index.html", "pricing.html", "lessons/lle1-06.html", "zh-hant/lessons/lle2-06.html", "en/terms.html", "en/pricing.html", "terms.html"]) {
+    const html = read(rel);
+    assert.match(html, /<meta name="twitter:card" content="summary_large_image" \/>/, rel);
+    assert.match(html, /<meta property="og:image" content="https:\/\/eachsound\.com\/img\/og-cover\.png" \/>/, rel);
+  }
+  assert.match(read("lessons/lle1-06.html"), /<title>VOA慢速英文 Level 1 第6课/);
+  assert.match(read("lessons/lle2-06.html"), /<title>VOA慢速英文 Level 2 第6课/);
+  assert.doesNotMatch(read("pricing.html"), /还没接上|未勾选时按钮不能点/);
+  assert.doesNotMatch(read("zh-hant/pricing.html"), /還沒接上|未勾選時按鈕不能點/);
+  assert.doesNotMatch(read("zh-hant/index.html") + read("js/i18n.js"), /已釋出/);
+  assert.match(read("en/terms.html"), /Dongguan Changping Chuangkehui Network Technology Studio/);
+  assert.match(read("css/styles.css"), /\[hidden\] \{\n  display: none !important;/);
+  assert.match(read("img/poster.svg"), /VOA 慢速英文/);
+  assert.match(read("img/poster-hant.svg"), /中英對照/);
+  assert.ok(fs.existsSync(path.join(root, "404.html")));
+  assert.ok(require("../scripts/stage-pages.js").ROOT_FILES.includes("404.html"));
 });

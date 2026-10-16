@@ -316,6 +316,10 @@ h3 {
   background: #f3efe6;
 }
 
+[hidden] {
+  display: none !important;
+}
+
 .lesson-card[hidden] {
   display: none;
 }
